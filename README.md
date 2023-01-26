@@ -19,3 +19,7 @@ Markdown er et språk som kan generere html. Det er enkelt i bruk, og krever ing
 
 ### Diskuter med andre som bidrar
 Vi har valgt å bruke [diskusjoner på Github](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions) for dialog mellom de som bidrar. På den måten er alle diskusjoner synlige for de som deltar, samtidig som vi ivaretar historikken på en god måte.
+
+### Diagram i markdown
+Github har støtte for å lage diagram i markdown dokumenter ved bruk av Mermaid.
+Se [her for en introduksjon](https://mermaid.js.org/intro/).
