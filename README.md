@@ -1,4 +1,4 @@
-# tillitsrammeverk
+# Tillitsrammeverk
 Repo for spesifikasjoner og annet relevant arbeid med Tillitsrammeverket
 
 ## Samarbeid om spesifikasjoner
