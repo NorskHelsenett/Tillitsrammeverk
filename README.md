@@ -16,3 +16,6 @@ Les [brukerveiledningen på Github](https://docs.github.com/en/get-started/quick
 Markdown er et språk som kan generere html. Det er enkelt i bruk, og krever ingen spesiell programvare.
  
 [Innføring til markdown på Github](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+### Diskuter med andre som bidrar
+Vi har valgt å bruke [diskusjoner på Github](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions) for dialog mellom de som bidrar. På den måten er alle diskusjoner synlige for de som deltar, samtidig som vi ivaretar historikken på en god måte.
