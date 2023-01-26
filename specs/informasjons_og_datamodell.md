@@ -15,7 +15,7 @@ EHDSI har definert en datamodell for utveksling av helseopplysninger på tvers a
 ## Informasjonsmodell 
 
 | Helsepersonellets identitet | |
-| --- | --- | --- |
+| --- | --- |
 | Helsepersonellets rolle hos helsevirksomheten | Strukturell rolle og Funksjonell rolle |
 | Helsepersonellets spesialitet | |
 | Helsepersonellets autorisasjoner | |
