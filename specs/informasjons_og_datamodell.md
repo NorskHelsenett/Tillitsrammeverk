@@ -1,0 +1,1 @@
+# Informasjons- og datamodell
