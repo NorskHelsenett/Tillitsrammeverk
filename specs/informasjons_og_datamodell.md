@@ -14,13 +14,16 @@ EHDSI har definert en datamodell for utveksling av helseopplysninger på tvers a
 
 ## Informasjonsmodell 
 
-| Helsepersonellets identitet | |
+| Informasjonselement | |
 | --- | --- |
-| Helsepersonellets rolle hos helsevirksomheten | Strukturell rolle og Funksjonell rolle |
+| Helsepersonellets identitet | |
+| Helsepersonellets rolle hos helsevirksomheten | |
+| Strukturell rolle og Funksjonell rolle | |
 | Helsepersonellets spesialitet | |
 | Helsepersonellets autorisasjoner | |
 | Delegerte rettigheter | |
-| Helsevirksomheten hvor helsepersonellet jobber | Helsetjenestetype og Behandlingssted |
+| Helsevirksomheten hvor helsepersonellet jobber | |
+| Helsetjenestetype og Behandlingssted | |
 | Overordnet formål med behandlingen av helseopplysningene | |
 | Pasient | |
  
@@ -83,6 +86,7 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 ##### Pasient 
 
 | Attributt | |
+| --- | --- |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
  
