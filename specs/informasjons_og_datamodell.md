@@ -15,6 +15,7 @@ EHDSI har definert en datamodell for utveksling av helseopplysninger på tvers a
 ## Informasjonsmodell 
 
 | Helsepersonellets identitet | |
+| --- | --- | --- |
 | Helsepersonellets rolle hos helsevirksomheten | Strukturell rolle og Funksjonell rolle |
 | Helsepersonellets spesialitet | |
 | Helsepersonellets autorisasjoner | |
@@ -58,6 +59,8 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 
 ##### Helsepersonell 
 
+| Attributt | Beskrivelse | Detaljer |
+| --- | --- |
 | Fødselsnummer | Skatt (Folkeregisteret) |
 | Navn | Skatt (Folkeregisteret) |
 | HPR-nummer | Helsedirektoratet (HPR) |
@@ -66,7 +69,9 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 
 ##### Behandlerrelasjon 
 
-| Strukturell rolle | [ASTM strukturelle roller](https://www.standard.no/no/Nettbutikk/produktkatalogen/Produktpresentasjon/?ProductID=629944) |Med autorisasjon,  uten autorisasjon,  og sekretær/adm personell.. |
+| Attributt | Beskrivelse | Detaljer |
+| --- | --- | --- |
+| Strukturell rolle | [ASTM strukturelle roller](https://www.standard.no/no/Nettbutikk/produktkatalogen/Produktpresentasjon/?ProductID=629944) | Med autorisasjon,  uten autorisasjon,  og sekretær/adm personell.. |
 | Funksjonell rolle | Styrk-08 | Gyldige verdier(?) |
 | Spesialitet | SNOMED: [clinical-speciality 2.16.840.1.113883.3.88.12.80.72](https://fhir-ru.github.io/valueset-c80-practice-codes.html) | |
 | Helsevirksomhet | Juridisk person - Org.nr fra virksomhetsregisteret | |
