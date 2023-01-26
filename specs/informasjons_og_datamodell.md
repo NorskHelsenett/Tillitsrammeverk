@@ -60,11 +60,11 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 ##### Helsepersonell 
 
 | Attributt | Beskrivelse | Detaljer |
-| --- | --- |
-| Fødselsnummer | Skatt (Folkeregisteret) |
-| Navn | Skatt (Folkeregisteret) |
-| HPR-nummer | Helsedirektoratet (HPR) |
-|Autorisasjoner og lisenser | Helsedirektoratet (HPR) |
+| --- | --- | --- |
+| Fødselsnummer | Skatt (Folkeregisteret) | |
+| Navn | Skatt (Folkeregisteret) | |
+| HPR-nummer | Helsedirektoratet (HPR) | |
+|Autorisasjoner og lisenser | Helsedirektoratet (HPR) | |
  
 
 ##### Behandlerrelasjon 
