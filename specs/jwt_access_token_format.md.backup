@@ -96,7 +96,7 @@ Denne strukturen benyttes til å beskrive grunnlaget for tilgangen til helseoppl
 | --- | --- |
 | "pid" | Fødselsenummer fra folkeregisteret |
 | "name" | Fullt navnt |
-| "professional_license" | Informasjon om helsepersonellets autorisasjon eller lisens.<br>Kilde: HPR|
+| "professional_license" | Informasjon om helsepersonellets autorisasjon eller lisens.<br>Kilde: HPR |
 
 ### 4.2.1 Spesifikasjon av "care_relationship" strukturen
 
