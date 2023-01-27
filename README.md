@@ -8,7 +8,7 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 - Det gjør samarbeid på tvers enklere
 
 ### Spesifikasjoner
-* [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md).
+* [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
 * [Profil for bruk av OpenID Connect ved deling av helseopplysninger via API](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md)
 * [Profil for JWT Access Token format](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/jwt_access_token_format.md)
 * [Profil for "authorization_details" strukturen ved bruk av HelseID](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/profil_for_authorization_details.md)
