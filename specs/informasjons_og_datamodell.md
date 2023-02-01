@@ -1,5 +1,6 @@
 # Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger
 Versjon: 0.1
+
 Dato: 31.01.2023
 
 ## Sammendrag
@@ -68,14 +69,12 @@ Spesifikasjonen beskriver også hvilke konkrete attributter som skal brukes for 
 
 Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil implementeres i relevante nasjonale ehelseløsninger og tillitstjenester.
 
-Datamodellen kan benyttes til flere formål:
-* tilgangsstyring hos ehelseløsninger, dokumentkilder og i API
-* logging
-* å tilfredsstille pasientens rettigheter
+Datamodellen skal benyttes til flere formål:
+* for tilgangsstyring og tilgangskontroll i ehelseløsninger, dokumentkilder og i API
+* til logging
+* for å tilfredsstille pasientens rettigheter
 
 ### 3.1 Informasjonsmodell
-"hvilken informasjon, hva og hvorfor"
-
 Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tre hovedkategorier:
 1. Informasjon om helsepersonellets identitet
 2. Informasjon om helsepersonellets behandlerrelasjon ovenfor pasienten
@@ -136,11 +135,11 @@ classDiagram
 ```
 
 ### 3.2 Datamodell 
-Informasjonsmodellen skal overføres fra konsument til datakilde i form av attributter formattert som nøkkelverdipar. Disse attributtene danner datamodellen.
+Informasjonsmodellen skal overføres fra konsument til datakilde i form av attributter formattert som nøkkelverdipar. Disse attributtene danner datamodellen, og er en detaljert beskrivelse av hvordan informasjonen skal uttrykkes.
 
 #### 3.2.1 Relasjon til eHSDI datamodell 
 
-EHDSI har definert en datamodell for utveksling av helseopplysninger på tvers av land i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet.
+EHDSI har definert en datamodell for utveksling av helseopplysninger på tvers av land i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
 
 #### 3.2.2 Påkrevd eller valgfri informasjon
 Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie..
@@ -149,9 +148,9 @@ I delingssammenheng er det nødvendig å ivareta sporbarheten - tiltro til ident
 
 #### 3.2.3 Prinsipper for datamodellen 
 
-Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandle med hverandre ved at man benytter samme språk for å uttrykke informasjonen som beskriver helsepersonellet og konteksten som helsepersonellet befinner seg i når han ber om tilgang til helseopplysningene. 
+Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandle med hverandre ved at man benytter samme språk for å uttrykke informasjonen som beskriver helsepersonellet og konteksten som helsepersonellet befinner seg i når han ber om tilgang til helseopplysningene. Den skisserte datamodellen legger til rette for en viss grad av dynamikk ved å angi hvilket kodeverk eller lister over gyldige verdier som er benyttet i datasettet.
 
-Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter. 
+Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
 
 Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om uavviselighet… mer her om tillitsnivå/sikkerhetsnivå/identiteter osv.. Hvem er den autoritative kilden til informasjonen osv.. 
 
@@ -176,7 +175,18 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 
 ##### Detaljert beskrivelse av attributter i datamodellen 
 
-##### Helsepersonell 
+##### Helsepersonell
+Pid: string
+System: 
+* 2.16.578.1.12.4.1.4.1 (F-nummer)
+* 2.16.578.1.12.4.1.4.2 (D-nummer)
+* 2.16.578.1.12.4.1.4.3 (H-nummer)
+
+Autorisasjoner:
+Hpr-nr: string
+System: 2.16.578.1.12.4.1.4.4
+
+
 
 | Attributt | Beskrivelse | Detaljer |
 | --- | --- | --- |
@@ -186,17 +196,31 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 |Autorisasjoner og lisenser | Helsedirektoratet (HPR) | |
  
 
-##### Behandlerrelasjon 
+##### Behandlerrelasjon
+structural_role: string
+System: ASTM
 
-| Attributt | Beskrivelse | Detaljer |
-| --- | --- | --- |
-| Strukturell rolle | [ASTM strukturelle roller](https://www.standard.no/no/Nettbutikk/produktkatalogen/Produktpresentasjon/?ProductID=629944) | Med autorisasjon,  uten autorisasjon,  og sekretær/adm personell.. |
-| Funksjonell rolle | Styrk-08 | Gyldige verdier(?) |
-| Spesialitet | SNOMED: [clinical-speciality 2.16.840.1.113883.3.88.12.80.72](https://fhir-ru.github.io/valueset-c80-practice-codes.html) | |
-| Helsevirksomhet | Juridisk person - Org.nr fra virksomhetsregisteret | |
-| Helsetjenestetype | [Volven koder](https://volven.no/categoryres.asp?open_f=true&catID=3&subID=8&srcTable=KVELEMENT&open=true&subCat=163) | |
-| Behandlingssted | Virksomhet - Org.nr fra virksomhetsregisteret | |
-| Formålet (PurposeOfUse) | HL7 koder (link) | |
+functional_role: string
+system: STYRK-08 (ISCO-08)
+
+clinical_speciality: 
+System: SNOMED-CT - clinical-speciality
+* oid: 2.16.840.1.113883.3.88.12.80.72
+
+
+legal_entity: string
+System: Virksomhetsregisteret
+
+point_of_care: string
+System: virksomhetsregisteret
+
+facility_type: string
+System: eHealth DSI code list  
+* 1.3.6.1.4.1.12559.11.10.1.3.2.2.2
+
+purpose_of_use: string
+System: HL7
+* link
 
 
 ##### Pasient 
