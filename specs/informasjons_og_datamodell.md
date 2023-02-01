@@ -104,6 +104,7 @@ Det er en selvfølge at pasienten må identifiseres ved deling av helseopplysnin
 
 #### Oppsummert informasjonsmodell
 
+```mermaid
 ---
 title: Informasjonsmodell
 ---
@@ -132,7 +133,7 @@ classDiagram
         +String Pid
     }
 
- 
+```
 
 ### 3.2 Datamodell 
 Informasjonsmodellen skal overføres fra konsument til datakilde i form av attributter formattert som nøkkelverdipar. Disse attributtene danner datamodellen.
