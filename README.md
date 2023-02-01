@@ -7,6 +7,9 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 - Det gir oss god kontroll over endringer og historikk
 - Det gjør samarbeid på tvers enklere
 
+## Prosess
+* Si noe om prosessen her
+
 ### Spesifikasjoner
 * [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
 * [Profil for bruk av OpenID Connect ved deling av helseopplysninger via API](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md)
