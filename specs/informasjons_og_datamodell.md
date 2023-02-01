@@ -120,7 +120,7 @@ classDiagram
     class Helsepersonell{
         +String Pid
         +String Name
-        +Authorizations ProfessionalLicence
+        +Autorisasjoner ProfessionalLicence
     }
     class Behandlerrelasjon{
         + String Role
