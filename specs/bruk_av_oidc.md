@@ -7,17 +7,20 @@ OpenID Connect er en protokoll som lar utvikleren selv velge en del sikkerhetsme
 
 HelseID gjør det mulig å gjenbruke en autentisering mellom to eller flere applikasjoner, såkalt Single Sign-On (SSO).  HelseID gjør det også mulig for applikasjonen som ber om autentisering, også kalt Relying Party (RP), å gjenbruke en pålogget brukersesjon når RP også er en OAuth klient som skal be om tilgang til et API. 
 
-[Legg inn en tegning her]
+> **_TODO:_** [Legg inn en tegning her]
 
 ## 2. Forutsetninger og underliggende krav
-- OpenID Connect 
-- OAuth 2.0 
-- FAPI 2.0 
+- OpenID Connect (RFC Lenke)
+- OAuth 2.0 (RFC Lenke)
+- HelseID sikkerhetsprofil (basert på FAPI 2.0)
 - JWT profil for tillitsrammeverk - "trusted_claims"
-- +++
+
 
 ### 2.1 Tillitsrammeverk for deling av helseopplysninger
-Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor, beskrives i egne dokumenter - legg inn lenke til en beskrivelse av rammeverket, men legg inn en svært overordnet oppsummering her:
+Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskrevet i egne dokumenter.
+
+> **_TODO:_** [Legg inn lenker til rammeverket, samt en kort oppsummering.}
+
 - Helsenettet 
 - Norm for informasjonssikkerhet 
 - eID i tillitsrammeverket 
@@ -28,11 +31,47 @@ Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor, beskrives 
 
 RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. protokoll, men med følgende presisering: 
 * RP skal benytte en av følgende mekanismer ved forespørsler mot HelseID: 
-  * Request Object, som beskrevet i …., eller 
+  * Request Object, som beskrevet i …., eller   
+    **Spørsmål:_** Skal vi kreve at parametre inkluderes i RO, eller forsette dagens policy hvor det er valgfritt   
   * Pushed Authorization Requests, som beskrevet i.. 
-* RP/API klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i…. 
+* Dersom Request Object benyttes skal denne overføres til HelseID som et form parameter.
+* Når støtte er på plass, skal DPoP benyttes for å krypografisk binde access token til klient.
+
+
+* RP/API klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i > **_TODO:_** [Lenke til eget dokument]
  * Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
- * RP skal autentisere brukeren iht. regler i tillitsrammeverket 
+ * RP skal autentisere brukeren iht. regler i tillitsrammeverket **_TODO:_** [Lenke her}
+   * Dette inkluderer å verifisere at lokal brukeridentitet (om noen) i RP er lik brukeridentiteten returnert fra HelseID.
+
+```mermaid
+sequenceDiagram 
+  title Overordnet Authorization Code flyt
+  actor HP as Helsepersonell
+  participant RP as Client
+  participant HelseID as STS
+  participant IDP
+  participant API as API Resource
+
+  HP-->RP: Hent helseinformasjon  
+  RP->>HelseID: Authenticate User
+  activate HelseID
+  HelseID->>IDP: Authenticate User
+  IDP->>HelseID: OK
+  HelseID->>RP: Ok
+  deactivate HelseID
+  
+  RP->>HelseID: Get Tokens
+  HelseID->>RP: Identity Token, Access Token and Refresh Token
+  loop Until Access Token expires or Context changes
+  RP->>API: Invoke with Access Token as Bearer Token
+  end
+
+Note over RP: Access Token Expires
+RP->>HelseID: Get new Access Token with Refresh token   
+HelseID->>RP: New Access Token 
+ 
+```
+Hvert enkelt steg i flyten over er beskrevet i detalj under
 
 #### 3.1.1 Legg inn sekvensdiagram som viser:
 * Vise at RP konstruerer RAR struktur.. 
@@ -49,7 +88,6 @@ RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. pro
   * Ikke bruk videre føderering 
 * Vise kontroll av autentisering 
 * Vise utstedelse av access token og id token 
-* Vise generering av
 * Vise kall til token endepunktet med Auth Code 
 * Vise utstedelse av Access Token 
 
