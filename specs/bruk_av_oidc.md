@@ -29,23 +29,26 @@ Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskreve
 ## 3. Beskrivelse av autentiseringsflyt
 ### 3.1 Autentiseringsforespørsel
 
-RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. protokoll, men med følgende presisering: 
+RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. protokoll, men med følgende presiseringer: 
 * RP skal benytte en av følgende mekanismer ved forespørsler mot HelseID: 
   * Request Object, som beskrevet i …., eller   
     **Spørsmål:_** Skal vi kreve at parametre inkluderes i RO, eller forsette dagens policy hvor det er valgfritt   
   * Pushed Authorization Requests, som beskrevet i.. 
+  
 * Dersom Request Object benyttes skal denne overføres til HelseID som et form parameter.
-* Når støtte er på plass, skal DPoP benyttes for å krypografisk binde access token til klient.
 
+* Når støtte er på plass, skal DPoP benyttes for å krypografisk binde Access Token til klient.
 
 * RP/API klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i > **_TODO:_** [Lenke til eget dokument]
- * Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
- * RP skal autentisere brukeren iht. regler i tillitsrammeverket **_TODO:_** [Lenke her}
+
+* Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
+
+* RP skal autentisere brukeren iht. regler i tillitsrammeverket **_TODO:_** [Lenke her}
    * Dette inkluderer å verifisere at lokal brukeridentitet (om noen) i RP er lik brukeridentiteten returnert fra HelseID.
 
 ```mermaid
 sequenceDiagram 
-  title Overordnet Authorization Code flyt
+  title Overordnet autentiseringsflyt
   actor HP as Helsepersonell
   participant RP as Client
   participant HelseID as STS
@@ -73,23 +76,52 @@ HelseID->>RP: New Access Token
 ```
 Hvert enkelt steg i flyten over er beskrevet i detalj under
 
-#### 3.1.1 Legg inn sekvensdiagram som viser:
-* Vise at RP konstruerer RAR struktur.. 
-* Vise at RP oppretter RO/PAR 
-* Vise kall til HelseID 
+#### 3.1.1 Legg inn sekvensdiagram som viser første versjon
+#### 3.1.1 Legg inn sekvensdiagram som viser målbilde (PAR, DPoP)
+
+
+#### 3.1.1 Kall fra RP for brukerautentisering
+* Authorization Details (context, virksomhet, annet)
+  - Forslag: I målbilde, men ikke nødvendig i første iterasjon
+
+* Resource Indicators (Required)
+  - Use case: RP konsumerer flere API-er med krav 
+* Request Object (Optional)
+* POST til HelseID (Required if Request Object is used)
+* Vis til profil for krav (dokumentasjon.helseid.no)
+
+#### 3.1.2 Kontroller i HelseID
+
 * Vise kontroller i HelseID 
   * Vise autentisering av klient 
+    (Krav til signeringsalg, levetid på token, JTI)
   * Vise kontroll av klient 
-  * Vise sjekk av systemidentitet 
+    (Godkjent for PDS)
+  * Vise sjekk av systemidentitet
+    (Ikke implementert ennå) 
   * Vise sjekk av virksomhetsidentitet 
   * Vise berikelse av personinformasjon 
   * Vise berikelse av HPR informasjon 
+
+#### 3.1.3 Kall til IDP
+
 * Vise kall til IdP 
   * Ikke bruk videre føderering 
 * Vise kontroll av autentisering 
+
+
+#### 3.1.3 Kall fra RP til Token-endepunkt
+* Authorization Details (context, virksomhet, annet)
+* Client Assertion
+
 * Vise utstedelse av access token og id token 
 * Vise kall til token endepunktet med Auth Code 
 * Vise utstedelse av Access Token 
+
+#### 3.1.4 Kontroll i RP av Identity Token
+* Pek til profil
+* Kontroll av lokal identitet vs Identity Token
+
 
 ### 3.2 Generering av Access Token 
 - Peke på "trusted_claims" profilen 
@@ -100,6 +132,10 @@ Hvert enkelt steg i flyten over er beskrevet i detalj under
 - eID 
 - Validering og bruk av informasjon i token 
 - Revisjonslogging 
+
+### 3.4 Bruk av refreshtoken
+
+
 
 ## 4. Sikkerhetsvurderinger
 HelseID krever sikkerhetsprofilen FAPI 2.0 (lenke til vår versjon av profilen)
