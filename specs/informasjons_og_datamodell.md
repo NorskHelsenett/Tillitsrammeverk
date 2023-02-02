@@ -230,15 +230,31 @@ System: HL7
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
 ## 4. Sikkerhets- og personvernshensyn
-Om fritekst i sikkerhetsbilletter:
+#### Cybersikkerhet
 * Informasjonen kan bli presentert i forskjellige verktøy
-	* Excel
-	* Web applikasjoner
-* Sikkerhetsutfordringer med logging: Log4J som eksempel
+	* f.eks. excel og andre verktøy som har sine sårbarheter
+	* Web applikasjoner med sine sårbarheter
+		* Sikkerhetsutfordringer knyttet til XSS angrep i nettleser
+		* Sikkerhetsutfordringer knyttet til internettprotokoller (http/tls/oauth)
+			
+* Sikkerhetsutfordringer knyttet til logging - Log4J som eksempel på kompromitterte programvarekomponenter
 
+#### Personvern
 
+* Mangelfull informasjon om personvernskonsekvenser ovenfor pasienten
+* Mangelfull informasjon om personvernskonsekvenser ovenfor helsepersonellet
+* Misbruk av data
+* Brudd på dataminimeringsprinsippet
+* Overvåkning av ansatte i andre virksomheter
 
-Pasientens identitet, konteksten kan være sensitiv - vurder pseudonymisering eller kryptering for å ivareta konfidensialitet - knytte til overføringsmekansime og kontekst (f.eks sikkerhetsbilletter)
+* Angripere kan observere personinformasjon som flyter til/fra (http request/response) de tekniske tjenestene som benyttes ved deling av helseopplysninger. 
+
+* Lekkasje av PII fra tjenestene
+* Lekkasje av PII fra HelseID
+* Lekkasje av PII fra Klienter
+
+* Datamodellen kan være sensitiv (personopplysninger om både pasient og helsepersonell) - vurder pseudonymisering eller kryptering for å ivareta konfidensialitet - knytte til overføringsmekansime og kontekst (f.eks sikkerhetsbilletter)
+
  
 ## 5. Anerkjennelse av bidrag til spesifikasjonen
 Vi ønsker å takke kongen, fedrelandet og Ringnes, samt alle andre som har hatt innvirkning på spesifikasjonen..
