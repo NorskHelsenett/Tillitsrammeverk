@@ -10,10 +10,12 @@ HelseID gjør det mulig å gjenbruke en autentisering mellom to eller flere appl
 > **_TODO:_** [Legg inn en tegning her]
 
 ## 2. Forutsetninger og underliggende krav
-- OpenID Connect (RFC Lenke)
-- OAuth 2.0 (RFC Lenke)
-- HelseID sikkerhetsprofil (basert på FAPI 2.0)
-- JWT profil for tillitsrammeverk - "trusted_claims"
+
+
+- [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html)
+- [OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)
+- [HelseID sikkerhetsprofil for klienter](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/128352260/Security+profile+for+clients+using+HelseID) (basert på FAPI 2.0)
+- JWT profil for tillitsrammeverk - "trusted_claims"  **_TODO:_** [Legg til lenke]
 
 
 ### 2.1 Tillitsrammeverk for deling av helseopplysninger
@@ -39,7 +41,7 @@ RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. pro
 
 * Når støtte er på plass, skal DPoP benyttes for å krypografisk binde Access Token til klient.
 
-* RP/API klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i > **_TODO:_** [Lenke til eget dokument]
+* RP/API klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i **_TODO:_** [Lenke til eget dokument]
 
 * Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
 
@@ -48,6 +50,7 @@ RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. pro
 
 ```mermaid
 sequenceDiagram 
+  autonumber
   title Overordnet autentiseringsflyt
   actor HP as Helsepersonell
   participant RP as Client
@@ -56,14 +59,14 @@ sequenceDiagram
   participant API as API Resource
 
   HP-->RP: Hent helseinformasjon  
-  RP->>HelseID: Authenticate User
+  RP->>HelseID: Authenticate User (authorize-endpoint)
   activate HelseID
   HelseID->>IDP: Authenticate User
   IDP->>HelseID: OK
   HelseID->>RP: Ok
   deactivate HelseID
   
-  RP->>HelseID: Get Tokens
+  RP->>HelseID: Get Tokens (token-endpoint)
   HelseID->>RP: Identity Token, Access Token and Refresh Token
   loop Until Access Token expires or Context changes
   RP->>API: Invoke with Access Token as Bearer Token
@@ -81,14 +84,32 @@ Hvert enkelt steg i flyten over er beskrevet i detalj under
 
 
 #### 3.1.1 Kall fra RP for brukerautentisering
+Når et helsepersonell ønsker å få tilgang til ekstern helseinformasjon (f.eks dokumenter i Kjernejournal), er det nødvendig å autentisere personellet i HelseID, ref steg 1 og 2 i figuren over.
+
+Brukeren skal sendes i nettleser til endepunktet /authorize i HelseID.
+
+
+
+
 * Authorization Details (context, virksomhet, annet)
-  - Forslag: I målbilde, men ikke nødvendig i første iterasjon
+  - Forslag: I målbilde, men ikke nødvendig i første iterasjon. Bruk client assertion i stedet.
+
+
+
 
 * Resource Indicators (Required)
   - Use case: RP konsumerer flere API-er med krav 
 * Request Object (Optional)
 * POST til HelseID (Required if Request Object is used)
 * Vis til profil for krav (dokumentasjon.helseid.no)
+
+4. Oversikt over hvilke API-er som skal kalles (For RI)
+1. Hent brukerkontekst (For RO)
+2. Hent virksomhetsinformasjon (For RO)
+3. Hent annen relevant informasjon (For RO)
+
+Utover denne gjøres kall i henhold til vår profil.
+
 
 #### 3.1.2 Kontroller i HelseID
 
