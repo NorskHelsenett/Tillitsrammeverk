@@ -327,10 +327,12 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 |   |   |
 | ---| ---|
-|Obligatorisk:| ja|
-|Data type: | String|
-|Kodeverk: |HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html|
-|Gyldige verdier:| TREAT, ETREAT, ... |
+| Obligatorisk: | ja |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Data type: | String |
+| Kodeverk: | HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
+| Gyldige verdier:| TREAT, ETREAT, ... |
 
 
 
