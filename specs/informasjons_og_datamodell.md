@@ -310,7 +310,7 @@ Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befin
 | Gyldige verdier:| Hospital, Resident Physician, Pharmacy, Other |
 
 
-##### "locality"
+###### "locality"
 Attributtet angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
 
 |   |   |
@@ -335,8 +335,8 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 | Gyldige verdier:| TREAT, ETREAT, ... |
 
 
-
-##### Pasient 
+##### Pasient
+###### "patient_identifier"
 
 | Attributt | |
 | --- | --- |
