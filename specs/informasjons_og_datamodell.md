@@ -139,7 +139,7 @@ Informasjonsmodellen skal overføres fra konsument til datakilde i form av attri
 
 #### 3.2.1 Relasjon til eHSDI datamodell 
 
-EHDSI har definert en datamodell for utveksling av helseopplysninger på tvers av land i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
+I forbindelse med EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
 
 #### 3.2.2 Påkrevd eller valgfri informasjon
 Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie..
@@ -176,69 +176,197 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 ##### Detaljert beskrivelse av attributter i datamodellen 
 
 ##### Helsepersonell
-Pid: string
-System: 
-* 2.16.578.1.12.4.1.4.1 (F-nummer)
-* 2.16.578.1.12.4.1.4.2 (D-nummer)
-* 2.16.578.1.12.4.1.4.3 (H-nummer)
+Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 
-Autorisasjoner:
-Hpr-nr: string
-System: 2.16.578.1.12.4.1.4.4
+###### "pid"
+Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
 
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | String |
+| Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
+| Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
+| Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer), 2.16.578.1.12.4.1.4.2 (D-nummer), 2.16.578.1.12.4.1.4.3 (H-nummer)|
 
+###### "structural_role"
+Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell med lisens, uten lisens eller et administrativt personell.
 
-| Attributt | Beskrivelse | Detaljer |
-| --- | --- | --- |
-| Fødselsnummer | Skatt (Folkeregisteret) | |
-| Navn | Skatt (Folkeregisteret) | |
-| HPR-nummer | Helsedirektoratet (HPR) | |
-|Autorisasjoner og lisenser | Helsedirektoratet (HPR) | |
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | String |
+| Autoritativ kilde: | Konsumenten, helsevirksomhet |
+| Informasjonskilde: | Konsumentens EPJ system |
+| Kodeverk: | ASTM |
+| Gyldige verdier: | "Licensed Health Care Providers", "Non-Licensed Health Care Providers", "Clerical and Administrative Personnel" |
+
+###### "hpr_nr"
+Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
+ 
+|   |   |
+| ---| ---|
+| Obligatorisk: | Nei |
+| Data type: | String |
+| Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
+| Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
+| Kodeverk: | 2.16.578.1.12.4.1.4.4 |
+
+###### "professional_licence"
+Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
+
+|   |   |
+| ---| ---|
+| Obligatorisk: | Nei |
+| Data type: | Object | 
+| Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
+| Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell |
  
 
 ##### Behandlerrelasjon
-structural_role: string
-System: ASTM
+Helsepersonellets behandlerrelasjon til pasientent angis ved hans rolle, spesialitet, virksomhet hvor han yter helsehjelp, behandlingssted, helsetjenestetype og en angivelse av formålet med behandlingen av helseopplysningene.
 
-functional_role: string
-system: STYRK-08 (ISCO-08)
+###### "functional_role"
+Attributtet "functional_role" representerer helsepersonellets rolle hos virksomheten i hans behandling av pasienten, og angis av kode fra STYRK-08.
 
-clinical_speciality: 
-System: SNOMED-CT - clinical-speciality
-* oid: 2.16.840.1.113883.3.88.12.80.72
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | String |
+| Autoritativ kilde: | Konsumenten - helsepersonellets rolle i virksomheten |
+| Informasjonskilde: | Konsumentens EPJ/HR system |
+| Kodeverk: | STYRK-08 (ISCO-08) |
+| Gyldige verdier: | Helsefaglige koder (må avklares - subsett av STYRK-08) |
 
-
-legal_entity: string
-System: Virksomhetsregisteret
-
-point_of_care: string
-System: virksomhetsregisteret
-
-facility_type: string
-System: eHealth DSI code list  
-* 1.3.6.1.4.1.12559.11.10.1.3.2.2.2
-
-purpose_of_use: string
-System: HL7
-* link
+###### "clinical_speciality"
+Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i sin behandling av pasienten
 
 
-##### Pasient 
+|   |   |
+| ---| ---|
+| Obligatorisk: | Nei |
+| Data type: | String |
+| Autoritativ kilde: | Konsumenten - helsepersonellets rolle i virksomheten |
+| Informasjonskilde: | Konsumentens EPJ/HR system |
+| Kodeverk: | SNOMED-CT (Clinical-speciality) |
+| oid: | 2.16.840.1.113883.3.88.12.80.72 |
+
+###### "legal_entity_id"
+Attributtet "legal_entity" identifiserer virksomheten hvor helsepersonellet yter helsehjelp.
+
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | String |
+| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Informasjonskilde: | Konsument (HelseID + Altinn) |
+| Kodeverk: | (kode for enhetsregisteret)|
+
+###### "legal_entity_name"
+Attributtet "legal_entity" inneholder navnet på virksomheten hvor helsepersonellet yter helsehjelp.
+
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | String |
+| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Informasjonskilde: | Konsument (HelseID + Altinn) |
+| Kodeverk: | (kode for enhetsregisteret)|
+
+###### "point_of_care_id"
+Attributtet "legal_entity" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
+
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | String |
+| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Informasjonskilde: | Konsument (HelseID + Altinn) |
+| Kodeverk: | (kode for enhetsregisteret)|
+
+###### "point_of_care_name"
+Attributtet "legal_entity" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
+
+
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | String |
+| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Informasjonskilde: | Konsument (HelseID + Altinn) |
+| Kodeverk: | (kode for enhetsregisteret) |
+
+###### "facility_type"
+Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befinner seg ved.
+
+|   |   |
+| ---| ---|
+| Obligatorisk: | Ja |
+| Data type: | string |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Kodeverk: | eHealth DSI code list |
+| oid code: | 1.3.6.1.4.1.12559.11.10.1.3.2.2.2 |
+| Gyldige verdier:| Hospital, Resident Physician, Pharmacy, Other |
+
+
+###### "locality"
+Attributtet angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
+
+|   |   |
+| ---| ---|
+| Obligatorisk:| Ja |
+| Data type: | String |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Kodeverk: | ingen |
+| Gyldige verdier: | Alfanumerisk (A..Å, a..å, 1..9) - ingen spesialtegn |
+
+###### "purpose_of_use"
+Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlingen av personopplysninger.
+
+|   |   |
+| ---| ---|
+| Obligatorisk: | ja |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Data type: | String |
+| Kodeverk: | HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
+| Gyldige verdier:| TREAT, ETREAT, ... |
+
+
+##### Pasient
+###### "patient_identifier"
 
 | Attributt | |
 | --- | --- |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
 ## 4. Sikkerhets- og personvernshensyn
-Om fritekst i sikkerhetsbilletter:
+#### Cybersikkerhet
 * Informasjonen kan bli presentert i forskjellige verktøy
-	* Excel
-	* Web applikasjoner
-* Sikkerhetsutfordringer med logging: Log4J som eksempel
+	* f.eks. excel og andre verktøy som har sine sårbarheter
+	* Web applikasjoner med sine sårbarheter
+		* Sikkerhetsutfordringer knyttet til XSS angrep i nettleser
+		* Sikkerhetsutfordringer knyttet til internettprotokoller (http/tls/oauth)
+			
+* Sikkerhetsutfordringer knyttet til logging - Log4J som eksempel på kompromitterte programvarekomponenter
 
+#### Personvern
 
+* Mangelfull informasjon om personvernskonsekvenser ovenfor pasienten
+* Mangelfull informasjon om personvernskonsekvenser ovenfor helsepersonellet
+* Misbruk av data
+* Brudd på dataminimeringsprinsippet
+* Overvåkning av ansatte i andre virksomheter
 
-Pasientens identitet, konteksten kan være sensitiv - vurder pseudonymisering eller kryptering for å ivareta konfidensialitet - knytte til overføringsmekansime og kontekst (f.eks sikkerhetsbilletter)
+* Angripere kan observere personinformasjon som flyter til/fra (http request/response) de tekniske tjenestene som benyttes ved deling av helseopplysninger.
+	* Lekkasje av PII fra tjenestene
+	* Lekkasje av PII fra HelseID
+	* Lekkasje av PII fra Klienter
+	
+* Datamodellen kan være sensitiv (personopplysninger om både pasient og helsepersonell) - vurder pseudonymisering eller kryptering for å ivareta konfidensialitet - knytte til overføringsmekansime og kontekst (f.eks sikkerhetsbilletter)
+
  
 ## 5. Anerkjennelse av bidrag til spesifikasjonen
 Vi ønsker å takke kongen, fedrelandet og Ringnes, samt alle andre som har hatt innvirkning på spesifikasjonen..
