@@ -369,12 +369,10 @@ Som tiltak mot potensiell lekkasje av PII bør tiltak for å ivareta konfidensia
 Det er en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
 
 ##### Misbruk av data
-Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av partene som mottar verdiene i datasettet.
+Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av en eller flere av partene som mottar verdiene i datasettet.
 
 ##### Overvåkning av ansatte i andre virksomheter
 Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
-
-
 	
  
 ## 5. Anerkjennelse av bidragsytere til spesifikasjonen
