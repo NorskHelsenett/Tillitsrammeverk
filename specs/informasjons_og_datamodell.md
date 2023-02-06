@@ -158,20 +158,24 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 
 ##### Oversikt over attributter i datamodellen 
 
-| Informasjonskategori | Attributter | Obligatorisk | Informasjonskilde |
-| --- | --- | --- | --- |
-| Helsepersonell | Fødselsnummer | | eID-ordning |
-| | Navn | | Folkeregisteret |
-| | HPR-nummer | | HPR-registeret |
-| | Autorisasjoner og lisenser | | HPR-registeret |
-| Behandlerelasjon | Strukturell rolle | | Konsument |
-| | Funksjonell rolle | | Konsument |
-| | Spesialitet | | Konsument |
-| | Helsevirksomhet | | Konsument |
-| | Helsetjenestetype | | Konsument |
-| | Behandlingssted | | Konsument |
-| | Formålet med behandlingen | | Konsument |
-| Pasient | Fødselsnummer/identifikator | | Konsument |
+| Informasjonskategori | Attributt | Informasjonskilde |
+| --- | --- | --- | 
+| Helsepersonell | "pid" | HelseID |
+| | "navn" | HelseID |
+| | "structural_role" | Konsument |
+| | "hpr-nummer" | HelseID |
+| | "professional_licence" | HelseID |
+| Behandlerelasjon | Strukturell rolle | Konsument |
+| | "functional_role" |  Konsument |
+| | "clinical_speciality" |  Konsument |
+| | "legal_entity_id" | Konsument/HelseID |
+| | "legal_entity_name" | Konsument/HelseID |
+| | "point_of_care_id" | Konsument |
+| | "point_of_care_name" | Konsument |
+| | "facility_type" | Konsument |
+| | "locality" | Konsument |
+| | "purpose_of_use" |  Konsument |
+| Pasient | "patient_identifier" |  Konsument |
 
 ##### Detaljert beskrivelse av attributter i datamodellen 
 
@@ -344,31 +348,36 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 ## 4. Sikkerhets- og personvernshensyn
 #### Cybersikkerhet
-* Informasjonen kan bli presentert i forskjellige verktøy
-	* f.eks. excel og andre verktøy som har sine sårbarheter
-	* Web applikasjoner med sine sårbarheter
-		* Sikkerhetsutfordringer knyttet til XSS angrep i nettleser
-		* Sikkerhetsutfordringer knyttet til internettprotokoller (http/tls/oauth)
-			
-* Sikkerhetsutfordringer knyttet til logging - Log4J som eksempel på kompromitterte programvarekomponenter
+Både egenprodusert og tredjeparts programvarekomponenter som brukes til datalagring samt behandling og presentasjon av informasjonen i datamodellen kan inneholde svakheter som lar en angriper utnytte data som overføres mellom partene til å utføre forskjellige typer angrep på innsiden av en organisasjon.
+
+Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og behandles av forskjellige typer programvare. Sikkerhetsangrep som utføres i forbindelse med datalagring er svært vanlig, og utgjør en generell sikkerhetsrisiko som kan begrenses ved at verdier som overføres kan valideres og kontrolleres.
+
+Informasjonen i datamodellen vil blant annet benyttes til å utføre analyse av logger, og vil kunne bli vist til sluttbrukere i forskjellige applikasjoner. Dette åpner for angrep mot sårbarheter i programvare, som f.eks. misbruk av makroer eller XSS angrep i nettlesere. Sannsynligheten for denne typen sikkerhetsangrep bør begrenses ved at verdier som overføres kan valideres og kontrolleres.
+
 
 #### Personvern
+##### Lekkasje av sensitive personopplysninger
+Datamodellen vil bli benyttet til å overføre sensitive personopplysninger om helsepersonellet og helsepersonellets relasjon til sin pasient. Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere sensitiv personinformasjon som overføres mellom de tekniske tjenestene som benyttes ved deling av helseopplysninger. 
+Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
+* mellom konsument og autorisasjonsserver/IdP
+* mellom konsument og informasjonstjeneste
+* mellom informasjonstjeneste og datagrensesnitt
 
-* Mangelfull informasjon om personvernskonsekvenser ovenfor pasienten
-* Mangelfull informasjon om personvernskonsekvenser ovenfor helsepersonellet
-* Misbruk av data
-* Brudd på dataminimeringsprinsippet
-* Overvåkning av ansatte i andre virksomheter
+Som tiltak mot potensiell lekkasje av PII bør tiltak for å ivareta konfidensialiteten vurderes.
 
-* Angripere kan observere personinformasjon som flyter til/fra (http request/response) de tekniske tjenestene som benyttes ved deling av helseopplysninger.
-	* Lekkasje av PII fra tjenestene
-	* Lekkasje av PII fra HelseID
-	* Lekkasje av PII fra Klienter
+##### Mangelfull informasjon om personvernskonsevenser
+Det er en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
+
+##### Misbruk av data
+Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av partene som mottar verdiene i datasettet.
+
+##### Overvåkning av ansatte i andre virksomheter
+Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
+
+
 	
-* Datamodellen kan være sensitiv (personopplysninger om både pasient og helsepersonell) - vurder pseudonymisering eller kryptering for å ivareta konfidensialitet - knytte til overføringsmekansime og kontekst (f.eks sikkerhetsbilletter)
-
  
-## 5. Anerkjennelse av bidrag til spesifikasjonen
+## 5. Anerkjennelse av bidragsytere til spesifikasjonen
 Vi ønsker å takke kongen, fedrelandet og Ringnes, samt alle andre som har hatt innvirkning på spesifikasjonen..
 
 Norsk Helsenett SF har hatt det overordnede ansvaret for å utvikle denne spesifikasjonen basert på viktige bidrag fra sektoren...
