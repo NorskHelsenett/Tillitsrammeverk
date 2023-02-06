@@ -101,7 +101,7 @@ Informasjonen som beskriver helsepersonellets behandlerrelasjon til sin pasient 
 Det er en selvfølge at pasienten må identifiseres ved deling av helseopplysninger. Det er ikke nødvendig å overføre annen informasjon om pasienten enn en unik identifikator.
 
 
-#### Oppsummert informasjonsmodell
+#### 3.1.4 Oppsummert informasjonsmodell
 
 ```mermaid
 ---
@@ -112,24 +112,12 @@ classDiagram
 	Helsepersonell --* Behandlerrelasjon
 	Behandlerrelasjon --* Pasient
     class Autorisasjoner{
-    		+String HprNr
-    		+List<String> Autorisasjoner
-    		+List<String> Lisenser
     }
     class Helsepersonell{
-        +String Pid
-        +String Name
-        +Autorisasjoner ProfessionalLicence
     }
     class Behandlerrelasjon{
-        + String Role
-        + String LegalEntity
-        + String PointOfCare
-        + String FacilityType
-        + String PurposeOfUse
     }
     class Pasient{
-        +String Pid
     }
 
 ```
@@ -152,11 +140,9 @@ Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandl
 
 Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
 
-Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om uavviselighet… mer her om tillitsnivå/sikkerhetsnivå/identiteter osv.. Hvem er den autoritative kilden til informasjonen osv.. 
+Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om uavviselighet… mer her om tillitsnivå/sikkerhetsnivå/identiteter osv.. Hvem er den autoritative kilden til informasjonen osv..
 
-#### 3.2.4 Attributter i datamodellen 
-
-##### Oversikt over attributter i datamodellen 
+#### 3.2.4 Oversikt over attributter i datamodellen 
 
 | Informasjonskategori | Attributt | Informasjonskilde |
 | --- | --- | --- | 
@@ -177,12 +163,10 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 | | "purpose_of_use" |  Konsument |
 | Pasient | "patient_identifier" |  Konsument |
 
-##### Detaljert beskrivelse av attributter i datamodellen 
-
-##### Helsepersonell
+#### 3.2.5 Kategori: Helsepersonell
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 
-###### "pid"
+##### "pid"
 Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
 
 |   |   |
@@ -191,10 +175,10 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 | Data type: | String |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
 | Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
-| Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer), 2.16.578.1.12.4.1.4.2 (D-nummer), 2.16.578.1.12.4.1.4.3 (H-nummer)|
+| Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 
-###### "structural_role"
-Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell med lisens, uten lisens eller et administrativt personell.
+##### "structural_role"
+Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell med lisens, uten lisens eller om han er et administrativt personell.
 
 |   |   |
 | ---| ---|
@@ -203,9 +187,9 @@ Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell 
 | Autoritativ kilde: | Konsumenten, helsevirksomhet |
 | Informasjonskilde: | Konsumentens EPJ system |
 | Kodeverk: | ASTM |
-| Gyldige verdier: | "Licensed Health Care Providers", "Non-Licensed Health Care Providers", "Clerical and Administrative Personnel" |
+| Gyldige verdier: | "Licensed Health Care Providers",<br/>"Non-Licensed Health Care Providers",<br/>"Clerical and Administrative Personnel" |
 
-###### "hpr_nr"
+##### "hpr_nr"
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
  
 |   |   |
@@ -216,7 +200,7 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
-###### "professional_licence"
+##### "professional_licence"
 Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
 
 |   |   |
@@ -227,10 +211,10 @@ Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisen
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell |
  
 
-##### Behandlerrelasjon
+#### 3.2.6 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis ved hans rolle, spesialitet, virksomhet hvor han yter helsehjelp, behandlingssted, helsetjenestetype og en angivelse av formålet med behandlingen av helseopplysningene.
 
-###### "functional_role"
+##### "functional_role"
 Attributtet "functional_role" representerer helsepersonellets rolle hos virksomheten i hans behandling av pasienten, og angis av kode fra STYRK-08.
 
 |   |   |
@@ -242,7 +226,7 @@ Attributtet "functional_role" representerer helsepersonellets rolle hos virksomh
 | Kodeverk: | STYRK-08 (ISCO-08) |
 | Gyldige verdier: | Helsefaglige koder (må avklares - subsett av STYRK-08) |
 
-###### "clinical_speciality"
+##### "clinical_speciality"
 Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i sin behandling av pasienten
 
 
@@ -252,10 +236,10 @@ Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i 
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten - helsepersonellets rolle i virksomheten |
 | Informasjonskilde: | Konsumentens EPJ/HR system |
-| Kodeverk: | SNOMED-CT (Clinical-speciality) |
+| Kodeverk: | SNOMED-CT: Clinical-speciality |
 | oid: | 2.16.840.1.113883.3.88.12.80.72 |
 
-###### "legal_entity_id"
+##### "legal_entity_id"
 Attributtet "legal_entity" identifiserer virksomheten hvor helsepersonellet yter helsehjelp.
 
 |   |   |
@@ -266,7 +250,7 @@ Attributtet "legal_entity" identifiserer virksomheten hvor helsepersonellet yter
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
-###### "legal_entity_name"
+##### "legal_entity_name"
 Attributtet "legal_entity" inneholder navnet på virksomheten hvor helsepersonellet yter helsehjelp.
 
 |   |   |
@@ -277,7 +261,7 @@ Attributtet "legal_entity" inneholder navnet på virksomheten hvor helsepersonel
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
-###### "point_of_care_id"
+##### "point_of_care_id"
 Attributtet "legal_entity" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 |   |   |
@@ -288,7 +272,7 @@ Attributtet "legal_entity" identifiserer behandlingsstedet hvor helsepersonellet
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
-###### "point_of_care_name"
+##### "point_of_care_name"
 Attributtet "legal_entity" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 
@@ -300,7 +284,7 @@ Attributtet "legal_entity" inneholder navnet på behandlingsstedet hvor helseper
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret) |
 
-###### "facility_type"
+##### "facility_type"
 Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befinner seg ved.
 
 |   |   |
@@ -311,10 +295,10 @@ Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befin
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | eHealth DSI code list |
 | oid code: | 1.3.6.1.4.1.12559.11.10.1.3.2.2.2 |
-| Gyldige verdier:| Hospital, Resident Physician, Pharmacy, Other |
+| Gyldige verdier:| Hospital,<br/>Resident Physician,<br/>Pharmacy,<br/>Other |
 
 
-###### "locality"
+##### "locality"
 Attributtet angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
 
 |   |   |
@@ -326,7 +310,7 @@ Attributtet angir fysisk sted/avdeling hvor helsepersonellet yter eller administ
 | Kodeverk: | ingen |
 | Gyldige verdier: | Alfanumerisk (A..Å, a..å, 1..9) - ingen spesialtegn |
 
-###### "purpose_of_use"
+##### "purpose_of_use"
 Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlingen av personopplysninger.
 
 |   |   |
@@ -336,18 +320,18 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | String |
 | Kodeverk: | HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
-| Gyldige verdier:| TREAT, ETREAT, ... |
+| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>... |
 
 
-##### Pasient
-###### "patient_identifier"
+#### 3.2.7 Kategori: Pasient
+##### "patient_identifier"
 
 | Attributt | |
 | --- | --- |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
 ## 4. Sikkerhets- og personvernshensyn
-#### Cybersikkerhet
+### 4.1 Cybersikkerhet
 Både egenprodusert og tredjeparts programvarekomponenter som brukes til datalagring samt behandling og presentasjon av informasjonen i datamodellen kan inneholde svakheter som lar en angriper utnytte data som overføres mellom partene til å utføre forskjellige typer angrep på innsiden av en organisasjon.
 
 Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og behandles av forskjellige typer programvare. Sikkerhetsangrep som utføres i forbindelse med datalagring er svært vanlig, og utgjør en generell sikkerhetsrisiko som kan begrenses ved at verdier som overføres kan valideres og kontrolleres.
@@ -355,8 +339,8 @@ Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og beh
 Informasjonen i datamodellen vil blant annet benyttes til å utføre analyse av logger, og vil kunne bli vist til sluttbrukere i forskjellige applikasjoner. Dette åpner for angrep mot sårbarheter i programvare, som f.eks. misbruk av makroer eller XSS angrep i nettlesere. Sannsynligheten for denne typen sikkerhetsangrep bør begrenses ved at verdier som overføres kan valideres og kontrolleres.
 
 
-#### Personvern
-##### Lekkasje av sensitive personopplysninger
+### 4.2 Personvern
+#### 4.2.1 Lekkasje av sensitive personopplysninger
 Datamodellen vil bli benyttet til å overføre sensitive personopplysninger om helsepersonellet og helsepersonellets relasjon til sin pasient. Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere sensitiv personinformasjon som overføres mellom de tekniske tjenestene som benyttes ved deling av helseopplysninger. 
 Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
 * mellom konsument og autorisasjonsserver/IdP
@@ -365,13 +349,13 @@ Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
 
 Som tiltak mot potensiell lekkasje av PII bør tiltak for å ivareta konfidensialiteten vurderes.
 
-##### Mangelfull informasjon om personvernskonsevenser
+#### 4.2.2 Mangelfull informasjon om personvernskonsevenser
 Det er en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
 
-##### Misbruk av data
+#### 4.2.3 Misbruk av data
 Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av en eller flere av partene som mottar verdiene i datasettet.
 
-##### Overvåkning av ansatte i andre virksomheter
+#### 4.2.4 Overvåkning av ansatte i andre virksomheter
 Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
 	
  
