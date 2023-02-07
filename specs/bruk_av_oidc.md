@@ -1,4 +1,7 @@
 # Bruk av OpenID Connect for deling av helseopplysninger via API
+# IKKE FERDIG
+# VELDIG UNDER ARBEID
+# IKKE LES OM DU IKKE SKAL BIDRA
 
 ## 1. Introduksjon
 Dette dokumentet er en teknisk spesifikasjon som beskriver hvordan OpenID Connect og OAuth 2.0 skal benyttes ved deling av helseopplysninger innad i Helsenettet. Dokumentet er ment for utviklere og tekniske arkitekter som skal konsumere API hvor det er et krav at helsepersonellet er autentisert.
@@ -81,13 +84,14 @@ sequenceDiagram
   participant API as API Resource
 
   HP-->RP: Hent helseinformasjon  
+  rect rgba(150, 150, 150, 0.1)
   RP->>HelseID: Authenticate User (authorize-endpoint)
   activate HelseID
   HelseID->>IDP: Authenticate User
   IDP->>HelseID: OK
   HelseID->>RP: Ok
   deactivate HelseID
-  
+  end
   RP->>HelseID: Get Tokens (token-endpoint)
   HelseID->>RP: Identity Token, Access Token and Refresh Token
   loop Until Access Token expires or Context changes
@@ -101,8 +105,7 @@ HelseID->>RP: New Access Token
 ```
 Hvert enkelt steg i flyten over er beskrevet i detalj under
 
-#### 3.1.1 Legg inn sekvensdiagram som viser første versjon
-#### 3.1.1 Legg inn sekvensdiagram som viser målbilde (PAR, DPoP)
+**_TODO:_** [Legg inn sekvensdiagram som viser målbilde med PAR og DPoP]
 
 
 #### 3.1.1 Kall fra RP for brukerautentisering
@@ -183,7 +186,7 @@ Dersom alle kontroller er ok, sjekker HelseID om brukeren allerede har en sesjon
 Om ikke, sendes brukeren til ekstern IDP for autentisering.
 
 
-### 3.1.3 Kontroller av resultat fra ekstern IDP
+### 3.1.3 Kontroller av svar fra ekstern IDP
 Etter at en bruker har autentisert seg hos en ekstern IDP, vil HelseID kontrollere resultatet.
 
 ```mermaid
@@ -208,7 +211,12 @@ HelseID forventer å få informasjon fra IDP om identitet til bruker, sikkerhets
 
 Dersom dette feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 
-#### 3.1.3 Kall fra RP til Token-endepunkt
+
+#### 3.1.3 Håndtering av resultat av brukerautentisering i klient
+Når klienten mottar resultatet fra brukerautentiseringen fra HelseID, skal dette benyttes for å hente Identity-, Refresh- og Access Tokens. Dette gjøres i henhold i protokkspesifikasjon og HelseID sin sikkerhetsprofil.
+
+
+#### 3.1.4 Kall fra klient for å hente tokens
 * Authorization Details (context, virksomhet, annet)
 * Client Assertion
 
@@ -224,7 +232,13 @@ Dersom dette feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
   * Vise berikelse av personinformasjon 
   * Vise berikelse av HPR informasjon 
 
+###  Validering av Client Assertion
 
+#### Validering av ekstra informasjon i Client Assertion (eller Request Object)
+
+
+### 3.1.4 Generering av Access Token og Identity Token
+- Peke på "trusted_claims" profilen 
 
 
 * Vise utstedelse av access token og id token 
@@ -236,8 +250,6 @@ Dersom dette feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 * Kontroll av lokal identitet vs Identity Token
 
 
-### 3.2 Generering av Access Token 
-- Peke på "trusted_claims" profilen 
 
 ### 3.3 Forespørsel til API
 - Validering av token i API
