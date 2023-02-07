@@ -45,7 +45,7 @@ RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. pro
 
 * Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
 
-* RP skal autentisere brukeren iht. regler i tillitsrammeverket **_TODO:_** [Lenke her}
+* RP skal autentisere brukeren iht. regler i tillitsrammeverket **_TODO:_** [Lenke her]
    * Dette inkluderer å verifisere at lokal brukeridentitet (om noen) i RP er lik brukeridentiteten returnert fra HelseID.
 
 ```mermaid
@@ -86,32 +86,57 @@ Hvert enkelt steg i flyten over er beskrevet i detalj under
 #### 3.1.1 Kall fra RP for brukerautentisering
 Når et helsepersonell ønsker å få tilgang til ekstern helseinformasjon (f.eks dokumenter i Kjernejournal), er det nødvendig å autentisere personellet i HelseID, ref steg 1 og 2 i figuren over.
 
-Brukeren skal sendes i nettleser til endepunktet /authorize i HelseID.
+Brukeren skal sendes i nettleser til endepunktet /authorize i HelseID. Endepunktet er dokumentert [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5571605/Authorize+Endpoint).
+
+Utover normal protokollflyt er det følgende nødvendig
+
+#### 3.1.1.1 Overføre ekstra informasjon fra RP
+Tillitsmodellen krever at det overføres ekstra informasjon om helsepersonell-kontekst. Informasjonsmodellen er beskrevet her **_TODO:_** [Lenke her].
+Denne informasjonen kan sendes til HelseID som en signert JWT i parameteret "request" - et såkalt [Request Object](https://openid.net/specs/openid-connect-core-1_0.html#RequestObject). 
+
+Merk at denne informasjonen også kan sendes til token endepunktet som en del av client_assertion. Det er opp til leverandør å velge mekanisme.
+
+**_TODO:_** [Lenke til konkret eksempel + eksempelkode].
+
+Et request object SKAL overføres som et form parameter i en POST request.
+
+#### 3.1.1.2 Forspørsel om tilgang til flere API-er
+API-er som inngår i tillitsmodellen krever at Access Tokens ment for dem, ikke skal kunne brukes mot andre API-er. I praksis innebærer dette at claimet "aud" (audience) ikke kan ha mer enn en verdi. Audience er navnet som identifiserer API-et i HelseID
+
+Vi støtter mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8707) som gjør det enkelt å hente ut ett Access Token per API for en klient. Bruk av Resource indikators er beskrevet [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
 
 
+### 3.1.2 Kontroller i HelseID av forespørsler om brukerautentisering
+Figuren under viser hvilke kontroller HelseID gjør når en klient forespør brukerautentisering.
+
+```mermaid
+flowchart TD
+  S[Kall fra Klient] --> Param
+  Param{Kontroll av standard protokollparamtere}
+  Param-- Ugyldig --> Error 
+  Param-- Ok --->RO{Er Request Object brukt}
+  RO-- Ja -->V_RO{Kontroller RO\nSe 'Kontroll av påstander fra klient'} 
+  V_RO-- OK --> IDP[Send bruker til IDP]
+  V_RO-- Ugyldig --> Error
+
+```
+#### 3.1.2.1 Kontroll av standard protokollparamtere
+Det første som skjer en en kontroll av protokollparametre i forespørselen i henhold til OpenID Connect og sikkerhetsprofilen til HelseID. Dette inkluderer, men er ikke begrenset til:
+
+  * Sjekk av at klienten er registrert og aktivert i HelseID
+  * Sjekk av at klienten forspør API-er og annen informasjon den har tilgang til
+  * Sjekk av at klienten sender med en gyldig redirect_uri
+  * Sjekk av at klienten bruker PKCE
+  * (Fremtidig) Sjekk av at klienten bruker DPoP dersom et forespurt API krever det
+  * (Fremtidig) Sjekk av systemidentitet
+
+Dersom noen av disse kontrollene feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
+
+Merk at protokollparametre både kan sendes som GET eller POST parametre, eller som en del av et Request Object.
+
+#### 3.1.2.1 Kontroll av Request Object
 
 
-* Authorization Details (context, virksomhet, annet)
-  - Forslag: I målbilde, men ikke nødvendig i første iterasjon. Bruk client assertion i stedet.
-
-
-
-
-* Resource Indicators (Required)
-  - Use case: RP konsumerer flere API-er med krav 
-* Request Object (Optional)
-* POST til HelseID (Required if Request Object is used)
-* Vis til profil for krav (dokumentasjon.helseid.no)
-
-4. Oversikt over hvilke API-er som skal kalles (For RI)
-1. Hent brukerkontekst (For RO)
-2. Hent virksomhetsinformasjon (For RO)
-3. Hent annen relevant informasjon (For RO)
-
-Utover denne gjøres kall i henhold til vår profil.
-
-
-#### 3.1.2 Kontroller i HelseID
 
 * Vise kontroller i HelseID 
   * Vise autentisering av klient 
@@ -139,7 +164,7 @@ Utover denne gjøres kall i henhold til vår profil.
 * Vise kall til token endepunktet med Auth Code 
 * Vise utstedelse av Access Token 
 
-#### 3.1.4 Kontroll i RP av Identity Token
+#### 3.1.4 Kontroller i RP av Identity Token
 * Pek til profil
 * Kontroll av lokal identitet vs Identity Token
 
@@ -148,14 +173,14 @@ Utover denne gjøres kall i henhold til vår profil.
 - Peke på "trusted_claims" profilen 
 
 ### 3.3 Forespørsel til API
-- Validering av token 
+- Validering av token i API
 - DPoP 
 - eID 
 - Validering og bruk av informasjon i token 
 - Revisjonslogging 
 
 ### 3.4 Bruk av refreshtoken
-
+ 
 
 
 ## 4. Sikkerhetsvurderinger
