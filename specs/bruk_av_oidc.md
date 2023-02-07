@@ -1,5 +1,7 @@
 # Bruk av OpenID Connect for deling av helseopplysninger via API
-# IKKE FERDIG, VELDIG UNDER ARBEID, IKKE LES OM DU IKKE SKAL BIDRA
+# IKKE FERDIG
+# VELDIG UNDER ARBEID
+# IKKE LES OM DU IKKE SKAL BIDRA
 
 ## 1. Introduksjon
 Dette dokumentet er en teknisk spesifikasjon som beskriver hvordan OpenID Connect og OAuth 2.0 skal benyttes ved deling av helseopplysninger innad i Helsenettet. Dokumentet er ment for utviklere og tekniske arkitekter som skal konsumere API hvor det er et krav at helsepersonellet er autentisert.
