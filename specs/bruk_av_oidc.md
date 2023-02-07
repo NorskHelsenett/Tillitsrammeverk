@@ -28,7 +28,29 @@ Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskreve
 - eID i tillitsrammeverket 
 - Avtaleverk 
 
-## 3. Beskrivelse av autentiseringsflyt
+## 3. Krav knyttet til bruk av HelseID
+### Krav til RP/Klient
+- Skal
+- Bør
+- Kan
+- Kommende krav
+
+### Krav til API/Tjeneste
+- Skal
+- Bør
+- Kan
+- Kommende krav
+
+### Krav til HelseID
+- Skal
+- Bør
+- Kan
+- Kommende krav
+
+## 3. Bruk av HelseID ved deling av helseopplysninger
+
+### 3.1 Overordnet beskrivelse av bruksmønster
+
 ### 3.1 Autentiseringsforespørsel
 
 RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. protokoll, men med følgende presiseringer: 
@@ -39,7 +61,7 @@ RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. pro
   
 * Dersom Request Object benyttes skal denne overføres til HelseID som et form parameter.
 
-* Når støtte er på plass, skal DPoP benyttes for å krypografisk binde Access Token til klient.
+* Det er et krav at et token ikke skal kunne stjeles eller misbrukes. Mekanismene som skal forhindre dette er ikke tilgjengelig i HelseID enda, men når de er på plass skal klienten bruke DPoP eller mTLS for å binde seg krypografisk til Access Tokens.
 
 * RP/API klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i **_TODO:_** [Lenke til eget dokument]
 
@@ -84,26 +106,38 @@ Hvert enkelt steg i flyten over er beskrevet i detalj under
 
 
 #### 3.1.1 Kall fra RP for brukerautentisering
-Når et helsepersonell ønsker å få tilgang til ekstern helseinformasjon (f.eks dokumenter i Kjernejournal), er det nødvendig å autentisere personellet i HelseID, ref steg 1 og 2 i figuren over.
+Når et helsepersonell ønsker å få tilgang til helseopplysninger i andre virksomheter SKAL helsepersonellet autentiseres i HelseID, ref steg 1 og 2 i figuren over.
 
-Brukeren skal sendes i nettleser til endepunktet /authorize i HelseID. Endepunktet er dokumentert [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5571605/Authorize+Endpoint).
+Brukeren SKAL sendes i nettleser til endepunktet [/authorize](https://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint) i HelseID. Endepunktet er dokumentert [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5571605/Authorize+Endpoint).
 
 Utover normal protokollflyt er det følgende nødvendig
 
-#### 3.1.1.1 Overføre ekstra informasjon fra RP
-Tillitsmodellen krever at det overføres ekstra informasjon om helsepersonell-kontekst. Informasjonsmodellen er beskrevet her **_TODO:_** [Lenke her].
-Denne informasjonen kan sendes til HelseID som en signert JWT i parameteret "request" - et såkalt [Request Object](https://openid.net/specs/openid-connect-core-1_0.html#RequestObject). 
+##### 3.1.1.x Krav knyttet til forespørsler om brukerautentisering
+Basert på FAPI 2.0, med egne tilpassinger [lenke til vår profil]
+* Request Object (signert med klienthemmeligheten)
+* Hvordan velge IdP
 
-Merk at denne informasjonen også kan sendes til token endepunktet som en del av client_assertion. Det er opp til leverandør å velge mekanisme.
+
+#### 3.1.1.1 Overføre informasjon om grunnlaget for tilgang fra RP
+Ved deling av helseopplysninger på tvers av virksomheter i helsesektoren krever tillitsrammeverket at konsumentens EPJ-system overfører informasjon som beskriver hvorfor helsepersonellet har fått tilgang til pasientens helseopplysninger.
+Datamodellen er [beskrevet i en egen spesifikasjon](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
+
+HelseID krever at denne informasjonen struktureres og formatteres i henhold til spesifikasjonen [profil for authorization_details" struktur](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/profil_for_authorization_details.md).
+
+Strukturen som inneholder informasjon om grunnlaget for at helsepersonellet har fått tilgang til pasientens helseopplysninger skal enten:
+* sendes til HelseID i autentiseringsforespørselen ved å benytte parameteret "request" i henhold til [OpenID Connect - Request Object](https://openid.net/specs/openid-connect-core-1_0.html#RequestObject), eller
+* sendes til [token endepunktet](https://www.rfc-editor.org/rfc/rfc6749#section-3.2) som del av klientautentiseringen i henhold til [client_assertion](https://www.rfc-editor.org/rfc/rfc7521#page-13), og [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication). 
+
+Det er opp til leverandør å velge mekanismen som passer best.
 
 **_TODO:_** [Lenke til konkret eksempel + eksempelkode].
 
-Et request object SKAL overføres som et form parameter i en POST request.
+Et request object SKAL overføres som et FORM verdier i en POST request.
 
 #### 3.1.1.2 Forspørsel om tilgang til flere API-er
-API-er som inngår i tillitsmodellen krever at Access Tokens ment for dem, ikke skal kunne brukes mot andre API-er. I praksis innebærer dette at claimet "aud" (audience) ikke kan ha mer enn en verdi. Audience er navnet som identifiserer API-et i HelseID
+Tjenester som inngår i tillitsmodellen krever at Access Tokens ment for dem, ikke skal kunne brukes for å få tilgang andre API-er. I praksis innebærer dette at claimet "aud" (audience) ikke kan ha mer enn en verdi. *Audience* er navnet som identifiserer API-et i HelseID
 
-Vi støtter mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8707) som gjør det enkelt å hente ut ett Access Token per API for en klient. Bruk av Resource indikators er beskrevet [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
+HelseID gjør det enkelt for klienter å hente ett Access Token per tjeneste ved å tilby mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8707). Bruk av Resource indikators er beskrevet [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
 
 
 ### 3.1.2 Kontroller i HelseID av forespørsler om brukerautentisering
