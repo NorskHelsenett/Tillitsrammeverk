@@ -110,13 +110,15 @@ Vi støtter mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8
 Figuren under viser hvilke kontroller HelseID gjør når en klient forespør brukerautentisering.
 
 ```mermaid
-flowchart TD
-  S[Kall fra Klient] --> Param
+flowchart LR
+  Error[Vis feilmelding]
   Param{Kontroll av standard protokollparamtere}
+  S[Autentiseringsforspørsel fra Klient] --> Param
   Param-- Ugyldig --> Error 
   Param-- Ok --->RO{Er Request Object brukt}
   RO-- Ja -->V_RO{Kontroller RO\nSe 'Kontroll av påstander fra klient'} 
-  V_RO-- OK --> IDP[Send bruker til IDP]
+  RO-- Nei -->IDP
+  V_RO-- OK --> IDP[Send bruker til IDP\n Ved SSO, send bruker tilbake til fagsystem]
   V_RO-- Ugyldig --> Error
 
 ```
@@ -132,10 +134,49 @@ Det første som skjer en en kontroll av protokollparametre i forespørselen i he
 
 Dersom noen av disse kontrollene feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 
-Merk at protokollparametre både kan sendes som GET eller POST parametre, eller som en del av et Request Object.
+Merk at protokollparametre både kan sendes som GET eller POST parametre, eller som en del av et Request Object. 
 
-#### 3.1.2.1 Kontroll av Request Object
+#### 3.1.2.2 Kontroll av Request Object
+Dersom klienten har inkludert et Request Object for å overføre kontekstuell informasjon til HelseID (f.eks virksomhet eller brukerkontekst), vil kontroll av dette skje på samme måte som for client assertions i Token-endepunktet. Se **_TODO:_** [LEGG INN LENKE TIL AVSNITT].
 
+Dersom noen av disse kontrollene feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
+
+
+#### 3.1.2.3 Kall til IDP
+
+Dersom alle kontroller er ok, sjekker HelseID om brukeren allerede har en sesjon i HelseID. Dersom dette er tilfelle, og klienten ikke eksplisitt har spurt om å ikke benytte Single sign-on, sendes brukeren tilbake til klienten (fagsystemet).
+
+Om ikke, sendes brukeren til ekstern IDP for autentisering.
+
+
+### 3.1.3 Kontroller av resultat fra ekstern IDP
+Etter at en bruker har autentisert seg hos en ekstern IDP, vil HelseID kontrollere resultatet.
+
+```mermaid
+flowchart LR
+  Error[Vis feilmelding]
+  IDP{Kontroll av identitetstoken fra ekstern IDP}  
+  S[Svar fra IDP] --> IDP
+  IDP-- Ugyldig --> Error
+  IDP-- OK --> IDP_I{Kontroll av informasjon fra IDP}
+  IDP_I-- Ugyldig --> Error
+  IDP_I-- OK --> IDP_P[Persister nødvendig informasjon i brukersesjon]
+  IDP_P-->Client[Send bruker tilbake til fagsystem]  
+```
+
+### 3.1.3.1 Kontroll av svar fra ekstern IDP
+Etter at brukeren har autentisert seg i ekstern IDP, sendes informasjon om dette tilbake til HelseID. Dette vil alltid være et Identity Token. HelseID validerer først gyldigheten på dette tokenet i henhold til protokollspesifikasjon og egen sikkerhetsprofil. 
+
+Dersom noen av disse kontrollene feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
+
+### 3.1.3.1 Kontroll av informasjon fra ekstern IDP
+HelseID forventer å få informasjon fra IDP om identitet til bruker, sikkerhetsnivå, påloggingsmekanisme mm. HelseID kontroller at denne informasjon er tilstede og gyldig.
+
+Dersom dette feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
+
+#### 3.1.3 Kall fra RP til Token-endepunkt
+* Authorization Details (context, virksomhet, annet)
+* Client Assertion
 
 
 * Vise kontroller i HelseID 
@@ -149,16 +190,8 @@ Merk at protokollparametre både kan sendes som GET eller POST parametre, eller 
   * Vise berikelse av personinformasjon 
   * Vise berikelse av HPR informasjon 
 
-#### 3.1.3 Kall til IDP
-
-* Vise kall til IdP 
-  * Ikke bruk videre føderering 
-* Vise kontroll av autentisering 
 
 
-#### 3.1.3 Kall fra RP til Token-endepunkt
-* Authorization Details (context, virksomhet, annet)
-* Client Assertion
 
 * Vise utstedelse av access token og id token 
 * Vise kall til token endepunktet med Auth Code 
