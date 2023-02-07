@@ -112,12 +112,17 @@ classDiagram
 	Helsepersonell --* Behandlerrelasjon
 	Behandlerrelasjon --* Pasient
     class Autorisasjoner{
+	    +Object Autorisasjoner
     }
     class Helsepersonell{
+	    +Object Identitet
+	    +Autorisasjoner Autorisasjoner
     }
     class Behandlerrelasjon{
+		+Object KontekstuellInformasjon
     }
     class Pasient{
+    		+Object PasientIdentifikator
     }
 
 ```
