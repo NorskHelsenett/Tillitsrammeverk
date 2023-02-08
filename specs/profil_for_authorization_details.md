@@ -65,7 +65,9 @@ sequenceDiagram
 	HelseID->>HelseID: Kontroll av tilgangsforespørsel
 	HelseID->>HelseID: Genererer Access Token m. info fra authorization_details
 	HelseID->>Klient: Overfører Access Token
-	Klient->>API: Forespørsel med Access Token i http header
+	Klient->>API/Tjeneste: Forespørsel med Access Token i http header
+	API/Tjeneste->>API/Tjeneste: Kontroll av Access Token
+	API/Tjeneste->>API/Tjeneste: Tilgangskontroll basert på info i authorization_details
 
 ```
 
