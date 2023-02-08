@@ -97,7 +97,7 @@ sequenceDiagram
 	},
 	"patient_relationship": {
 		"functional_role": {
-			"value": "",
+			"value": "2212",
 			"system_oid": "STYRK-08"
 		},
 		"clinical_speciality": {
@@ -119,12 +119,12 @@ sequenceDiagram
 				"system_oid": "1.3.6.1.4.1.12559.11.10.1.3.2.2.2"//eHealth DSI
 			},
 			"locality": {
-				"value": "Sengepost X" //"^[a-zA-Z0-9_]*$"
+				"value": "Sengepost X" //policy - kun alfanumerisk "^[a-zA-Z0-9_]*$"
 			}
 		},
 		"purpose_of_use": {
 			"value": "TREAT",
-			"system_oid": "https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html"
+			"system_oid": "urn:oid:2.16.840.1.113883.1.11.20448"
 		}
 	},
 	"patient":{
@@ -139,8 +139,25 @@ sequenceDiagram
 
 
 ### 3.3 Overføring av authorization_details strukturen
-#### 3.3.1 I authorization endepunktet - authorization_details i RO
+Authorization_details strukturen som er definert i denne spesifikasjonen skal overføres til HelseID i forespørsler om tilgang til tjenester eller APIer som deler helseopplysninger, og danner grunnlaget for tilgangen som blir gitt i HelseID.
+
+Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet.
+
+#### 3.3.1 Via authorization endepunktet - authorization_details i RO
+Når authorization_details strukturen overføres som parameter i authorization endepunktet MÅ den inngå som parameter i et Request Object, som beskrevet i [OpenID Connect spesifikasjonen](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests) og iht [gjeldende krav til bruk av Request Object i HelseID](https://lenke.no).
+
 #### 3.3.2 I token endepunktet - authorization_details i client_assertion
+Når authorization_details strukturen overføres som parameter i token endepunktet MÅ den inngå som parameter i Client Assertion, som beskrevet i [OAuth Assertion Framework](https://www.rfc-editor.org/rfc/rfc7521) iht [gjeldende krav til klientautentisering i HelseID](https:://).
 
 
 ## 4. Sikkerhets- og personvernshensyn
+
+### Sikkerhetshensyn
+Peke til https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html#name-security-considerations
+Beskriv valgte tiltak som forhindrer deler av problemet..
+Beskriv ytterligere tiltak som må vurderes av klient/server/HelseID
+
+### Personvernshensyn
+Peke til https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html#name-privacy-considerations
+Beskriv valgte tiltak som forhindrer deler av problemet
+Beskriv ytterligere tiltak som må vurderes av klient/server/HelseID
