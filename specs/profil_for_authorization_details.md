@@ -5,7 +5,7 @@
 ## Dokumentets status
 
 ## Definisjon av begrep og forkortelser
-Spesifikasjonen benytter begreper og terminologi definert i [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] and ISO29100 apply.
+Spesifikasjonen benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
 
 | Begrep | Definisjon |
 | --- | --- |
@@ -75,13 +75,72 @@ sequenceDiagram
 ## 3. Spesifikasjon
 ### 3.1 Avvik fra standard
 - vi reflekterer ikke "authorization_details" i access token
-- kan brukes mot token-endepunktet 
+- kan brukes mot token-endepunktet for å endre grant (hmmm...)
 - annet...?
 
 ### 3.2 JSON Struktur
+
+```json
+"authorization_details":{
+	"type": "medical_records",
+	"actions": ["read"],
+	"locations": "https://kj.nhn.no/",
+	"practicioner": {
+		"pid": {
+			"value": "22046557946",
+			"system_oid": "2.16.578.1.12.4.1.4.1" //F-Nummer
+		},
+		"structural_role": {
+			"value": "Licensed Health Care Providers",
+			"system_oid": "oid-code"
+		},
+	},
+	"patient_relationship": {
+		"functional_role": {
+			"value": "",
+			"system_oid": "STYRK-08"
+		},
+		"clinical_speciality": {
+			"value": "xxxx",
+			"system_oid": "2.16.840.1.113883.3.88.12.80.72" //SNOMED
+		},
+		"organization":{
+			"legal_entity": {
+				"name": "Juridisk Enhet AS",
+				"org_id": "1231232132",
+				"system_oid": "kode for enhetsregisteret"
+			},
+			"point_of_care": {
+				"org_id": "123123123",
+				"system_oid": "kode for enhetsregisteret"
+			},
+			"facility_type": {
+				"value": "Hospital",
+				"system_oid": "1.3.6.1.4.1.12559.11.10.1.3.2.2.2"//eHealth DSI
+			},
+			"locality": {
+				"value": "Sengepost X" //"^[a-zA-Z0-9_]*$"
+			}
+		},
+		"purpose_of_use": {
+			"value": "TREAT",
+			"system_oid": "https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html"
+		}
+	},
+	"patient":{
+		"identifier": {
+			"value": "21981298231",
+			"system_oid": "2.16.578.1.12.4.1.4.2" //D-nummer
+		}
+	}
+}
+
+```
+
+
 ### 3.3 Overføring av authorization_details strukturen
-#### 3.3.1 authorization_details i RO
-#### 3.3.2 authorization_details i client_assertion
+#### 3.3.1 I authorization endepunktet - authorization_details i RO
+#### 3.3.2 I token endepunktet - authorization_details i client_assertion
 
 
 ## 4. Sikkerhets- og personvernshensyn
