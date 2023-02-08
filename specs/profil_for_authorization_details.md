@@ -80,7 +80,7 @@ sequenceDiagram
 
 ### 3.2 JSON Struktur
 
-```json
+```JSON
 "authorization_details":{
 	"type": "medical_records",
 	"actions": ["read"],
@@ -147,7 +147,7 @@ Strukturen kan inngå som parameter i forespørsler til både authorize-endepunk
 Når authorization_details strukturen overføres som parameter i authorization endepunktet MÅ den inngå som parameter i et Request Object, som beskrevet i [OpenID Connect spesifikasjonen](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests) og iht [gjeldende krav til bruk av Request Object i HelseID](https://lenke.no).
 
 #### 3.3.2 I token endepunktet - authorization_details i client_assertion
-Når authorization_details strukturen overføres som parameter i token endepunktet MÅ den inngå som parameter i Client Assertion, som beskrevet i [OAuth Assertion Framework](https://www.rfc-editor.org/rfc/rfc7521) iht [gjeldende krav til klientautentisering i HelseID](https:://).
+Når authorization_details strukturen overføres som parameter i token endepunktet MÅ den inngå som parameter i Client Assertion, som beskrevet i [OAuth Assertion Framework](https://www.rfc-editor.org/rfc/rfc7521) iht [gjeldende krav til klientautentisering i HelseID](https://lenke.no).
 
 
 ## 4. Sikkerhets- og personvernshensyn
