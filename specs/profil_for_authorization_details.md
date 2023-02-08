@@ -63,6 +63,7 @@ sequenceDiagram
 	Klient->>Klient: Pakker inn i "authorization_details" struktur
 	Klient->>HelseID: Tilgangsforespørsel m. authorization_details parameter
 	HelseID->>HelseID: Kontroll av tilgangsforespørsel
+	API/Tjeneste->>API/Tjeneste: Tilgangskontroll basert på info i authorization_details
 	HelseID->>HelseID: Genererer Access Token m. info fra authorization_details
 	HelseID->>Klient: Overfører Access Token
 	Klient->>API/Tjeneste: Forespørsel med Access Token i http header
