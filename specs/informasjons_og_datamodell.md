@@ -180,6 +180,8 @@ title: Informasjonsmodell
 ---
 classDiagram
 
+	Helsepersonell -- Behandlerrelasjon
+	Behandlerrelasjon -- Pasient
 	Helsepersonell o-- FormalAuthorization
 	Helsepersonell o-- IdentityAttribute
 	Behandlerrelasjon o-- IdentityAttribute
