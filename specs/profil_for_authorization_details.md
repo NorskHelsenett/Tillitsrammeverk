@@ -119,7 +119,7 @@ sequenceDiagram
 				"system_oid": "1.3.6.1.4.1.12559.11.10.1.3.2.2.2"//eHealth DSI
 			},
 			"locality": {
-				"value": "Sengepost X" //policy - kun alfanumerisk "^[a-zA-Z0-9_]*$"
+				"value": "Sengepost X" //policy - kun alfanumeriske tegn "^[a-zA-Z0-9_]*$"
 			}
 		},
 		"purpose_of_use": {
@@ -141,7 +141,7 @@ sequenceDiagram
 ### 3.3 Overføring av authorization_details strukturen
 Authorization_details strukturen som er definert i denne spesifikasjonen skal overføres til HelseID i forespørsler om tilgang til tjenester eller APIer som deler helseopplysninger, og danner grunnlaget for tilgangen som blir gitt i HelseID.
 
-Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet. Dette er spesifisert ytterligere i [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md).
+Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet. Se [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md) for en detaljert beskrivelse av hvordan HelseID skal brukes.
 
 #### 3.3.1 Via authorization endepunktet - authorization_details i RO
 Når authorization_details strukturen overføres som parameter i authorization endepunktet MÅ den inngå som parameter i et Request Object, som beskrevet i [OpenID Connect spesifikasjonen](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests) og iht [gjeldende krav til bruk av Request Object i HelseID](https://lenke.no).

@@ -308,7 +308,7 @@ Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befin
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | eHealth DSI code list |
 | oid code: | 1.3.6.1.4.1.12559.11.10.1.3.2.2.2 |
-| Gyldige verdier:| Hospital,<br/>Resident Physician,<br/>Pharmacy,<br/>Other |
+| Gyldige verdier:| Hospital,<br/>Resident Physician,<br/>Pharmacy,<br/>++? |
 
 
 ##### "locality"
@@ -321,7 +321,7 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | ingen |
-| Gyldige verdier: | Alfanumerisk (A..Å, a..å, 1..9) - ingen spesialtegn |
+| Gyldige verdier: | kun alfanumeriske tegn (regex: "^[a-zA-Z0-9_]*$") |
 
 ##### "purpose_of_use"
 Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlingen av personopplysninger.
@@ -332,7 +332,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | String |
-| Kodeverk: | HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
+| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448<br/> HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
 | Gyldige verdier:| TREAT, <br/>ETREAT,<br/>... |
 
 
