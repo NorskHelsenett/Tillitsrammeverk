@@ -174,6 +174,57 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 -->
 
+´´´mermaid
+classDiagram
+	
+	class IdentityAttribute{
+		+String value
+		+String oid_system
+		+bool isOptional		
+	}
+	
+	class LegalEntity{
+		+String id
+		+String name		
+	}
+	class Organization{
+		+LegalEntity legalEntity
+		+LegalEntity pointOfCare
+		+IdentityAttribute facility
+		+String locality
+	}
+	
+	class Authorization{
+	}
+	
+	class Licence{
+	}
+	
+	class FormalAuthorization{
+		+String hpr_nr
+		+List<Authorization> authorizations
+		+List<Licence> licences
+	}
+	
+	class Helsepersonell{
+		+IdentityAttribute name
+		+IdentityAttribute pid
+		+FormalAuthorization professional_licence
+	}
+		
+	class Behandlerrelasjon{
+		+IdentityAttribute functionalRole
+		+IdentityAttribute clinicalSpeciality
+		+Organization healthCareInstitution
+		+PurposeOfUse purposeOfUse
+	}
+	
+	class Pasient{
+		+String pid
+	}
+
+´´´
+
 #### 3.2.5 Kategori: Helsepersonell
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 
