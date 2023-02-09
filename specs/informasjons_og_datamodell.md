@@ -191,7 +191,7 @@ classDiagram
 	FormalAuthorization o-- Licence
 	Organization o-- LegalEntity
 	Organization o-- IdentityAttribute
-	PurposeOfUse <-- IdentityAttribute
+	PurposeOfUse <|-- IdentityAttribute
 
 
 	
