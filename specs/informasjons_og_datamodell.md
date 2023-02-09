@@ -178,7 +178,6 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 ---
 title: Informasjonsmodell
 ---
-
 classDiagram
 	class IdentityAttribute{
 		+String value
@@ -223,8 +222,8 @@ classDiagram
 	class Pasient{
 		+String pid
 	}
+```
 
-´´´
 
 #### 3.2.5 Kategori: Helsepersonell
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
