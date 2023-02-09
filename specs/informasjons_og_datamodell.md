@@ -179,6 +179,16 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 title: Informasjonsmodell
 ---
 classDiagram
+
+	Helsepersonell o-- FormalAuthorization
+	Helsepersonell o-- IdentityAttribute
+	Behandlerrelasjon o-- IdentityAttribute
+	Behandlerrelasjon o-- Organization
+	Behandlerrelasjon o-- PurposeOfUse
+	FormalAuthorization o-- Authorization
+	FormalAuthorization o-- Licence
+	Organization o-- LegalEntity
+
 	class IdentityAttribute{
 		+String value
 		+String oid_system
@@ -223,11 +233,6 @@ classDiagram
 		+String pid
 	}
 	
-	Helsepersonell o-- IdentityAttribute
-	Helsepersonell o-- FormalAuthorization
-	Behandlerrelasjon o-- IdentityAttribute
-	Behandlerrelasjon o-- Organization
-	Behandlerrelasjon o-- PurposeOfUse
 	
 	
 ```
