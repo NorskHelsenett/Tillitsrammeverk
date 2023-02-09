@@ -222,6 +222,14 @@ classDiagram
 	class Pasient{
 		+String pid
 	}
+	
+	Helsepersonell o-- IdentityAttribute
+	Helsepersonell o-- FormalAuthorization
+	Behandlerrelasjon o-- IdentityAttribute
+	Behandlerrelasjon o-- Organization
+	Behandlerrelasjon o-- PurposeOfUse
+	
+	
 ```
 
 
