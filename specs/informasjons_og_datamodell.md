@@ -130,25 +130,29 @@ classDiagram
 ### 3.2 Datamodell 
 Informasjonsmodellen skal overføres fra konsument til datakilde i form av attributter formattert som nøkkelverdipar. Disse attributtene danner datamodellen, og er en detaljert beskrivelse av hvordan informasjonen skal uttrykkes.
 
-#### 3.2.1 Relasjon til eHSDI datamodell 
-
-I forbindelse med EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
-
-#### 3.2.2 Påkrevd eller valgfri informasjon
-Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie..
-
-I delingssammenheng er det nødvendig å ivareta sporbarheten - tiltro til identitetene er grunnleggende
-
-#### 3.2.3 Prinsipper for datamodellen 
-
+#### 3.2.1 Prinsipper for datamodellen 
 Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandle med hverandre ved at man benytter samme språk for å uttrykke informasjonen som beskriver helsepersonellet og konteksten som helsepersonellet befinner seg i når han ber om tilgang til helseopplysningene. Den skisserte datamodellen legger til rette for en viss grad av dynamikk ved å angi hvilket kodeverk eller lister over gyldige verdier som er benyttet i datasettet.
 
 Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
 
-Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om uavviselighet… mer her om tillitsnivå/sikkerhetsnivå/identiteter osv.. Hvem er den autoritative kilden til informasjonen osv..
+> TODO: Informasjonen i datamodellen skal være sporbar slik at vi ivaretar prinsippet om uavviselighet… 
+
+> TODO: mer her om tillitsnivå/sikkerhetsnivå/identiteter osv.. Hvem er den autoritative kilden til informasjonen osv..
+
+#### 3.2.2 Relasjon til eHSDI datamodell 
+
+I forbindelse med EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
+
+#### 3.2.3 Påkrevd eller valgfri informasjon
+Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.
+
+Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
+
+
 
 #### 3.2.4 Oversikt over attributter i datamodellen 
 
+<!-- 
 | Informasjonskategori | Attributt | Informasjonskilde |
 | --- | --- | --- | 
 | Helsepersonell | "pid" | HelseID |
@@ -167,6 +171,8 @@ Informasjonen i datamodellen skal være sporbar, og må ivareta prinsippet om ua
 | | "locality" | Konsument |
 | | "purpose_of_use" |  Konsument |
 | Pasient | "patient_identifier" |  Konsument |
+
+-->
 
 #### 3.2.5 Kategori: Helsepersonell
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
@@ -207,6 +213,8 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 
 ##### "professional_licence"
 Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
+
+> *TODO: Spesifiser datasmodell for lisenser og autorisasjoner fra HPR*
 
 |   |   |
 | ---| ---|
@@ -260,25 +268,25 @@ Attributtet "legal_entity" inneholder navnet på virksomheten hvor helsepersonel
 
 |   |   |
 | ---| ---|
-| Obligatorisk: | Ja |
+| Obligatorisk: | Ja *(avvik fra EHDSI)* |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
 ##### "point_of_care_id"
-Attributtet "legal_entity" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
+Attributtet "point_of_care_id" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 |   |   |
 | ---| ---|
-| Obligatorisk: | Ja |
+| Obligatorisk: | Ja *(avvik fra EHDSI)* |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
 ##### "point_of_care_name"
-Attributtet "legal_entity" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
+Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 
 |   |   |
@@ -304,7 +312,7 @@ Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befin
 
 
 ##### "locality"
-Attributtet angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
+Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
 
 |   |   |
 | ---| ---|
@@ -320,7 +328,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 |   |   |
 | ---| ---|
-| Obligatorisk: | ja |
+| Obligatorisk: | Ja |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | String |

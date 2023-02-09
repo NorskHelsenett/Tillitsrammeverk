@@ -1,4 +1,4 @@
-# Profil for RAR (authorization_details) json struktur
+# Profil for bruk av Rich Authorization Requests (authorization_details) i HelseID
 
 ## Sammendrag
 
