@@ -190,12 +190,34 @@ classDiagram
 	FormalAuthorization o-- Authorization
 	FormalAuthorization o-- Licence
 	Organization o-- LegalEntity
+	Organization o-- IdentityAttribute
+	PurposeOfUse <-- IdentityAttribute
 
+
+	
+	class Helsepersonell{
+		+IdentityAttribute name
+		+IdentityAttribute pid
+		+FormalAuthorization professional_licence
+	}
+		
+	class Behandlerrelasjon{
+		+IdentityAttribute functionalRole
+		+IdentityAttribute clinicalSpeciality
+		+Organization healthCareInstitution
+		+PurposeOfUse purposeOfUse
+	}
+	
+	class Pasient{
+		+String pid
+	}
+	
 	class IdentityAttribute{
 		+String value
 		+String oid_system
 		+bool isOptional		
 	}	
+	
 	class LegalEntity{
 		+String id
 		+String name		
@@ -216,23 +238,6 @@ classDiagram
 		+String hpr_nr
 		+List<Authorization> authorizations
 		+List<Licence> licences
-	}
-	
-	class Helsepersonell{
-		+IdentityAttribute name
-		+IdentityAttribute pid
-		+FormalAuthorization professional_licence
-	}
-		
-	class Behandlerrelasjon{
-		+IdentityAttribute functionalRole
-		+IdentityAttribute clinicalSpeciality
-		+Organization healthCareInstitution
-		+PurposeOfUse purposeOfUse
-	}
-	
-	class Pasient{
-		+String pid
 	}
 	
 	
