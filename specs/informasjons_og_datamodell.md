@@ -176,7 +176,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 ```mermaid
 ---
-title: Informasjonsmodell
+title: Datamodell
 ---
 classDiagram
 
