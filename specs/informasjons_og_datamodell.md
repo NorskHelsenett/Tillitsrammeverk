@@ -174,11 +174,11 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 -->
 
-
-´´´´mermaid
+```mermaid
 ---
 title: Informasjonsmodell
 ---
+
 classDiagram
 	class IdentityAttribute{
 		+String value
