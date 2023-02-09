@@ -174,15 +174,17 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 -->
 
-´´´mermaid
+
+´´´´mermaid
+---
+title: Informasjonsmodell
+---
 classDiagram
-	
 	class IdentityAttribute{
 		+String value
 		+String oid_system
 		+bool isOptional		
-	}
-	
+	}	
 	class LegalEntity{
 		+String id
 		+String name		
@@ -193,7 +195,6 @@ classDiagram
 		+IdentityAttribute facility
 		+String locality
 	}
-	
 	class Authorization{
 	}
 	
