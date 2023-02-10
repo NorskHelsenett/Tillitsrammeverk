@@ -3,6 +3,46 @@
 # VELDIG UNDER ARBEID
 # IKKE LES OM DU IKKE SKAL BIDRA
 
+- [Bruk av OpenID Connect for deling av helseopplysninger via API](#bruk-av-openid-connect-for-deling-av-helseopplysninger-via-api)
+- [IKKE FERDIG](#ikke-ferdig)
+- [VELDIG UNDER ARBEID](#veldig-under-arbeid)
+- [IKKE LES OM DU IKKE SKAL BIDRA](#ikke-les-om-du-ikke-skal-bidra)
+  - [1. Introduksjon](#1-introduksjon)
+  - [2. Forutsetninger og underliggende krav](#2-forutsetninger-og-underliggende-krav)
+    - [2.1 Tillitsrammeverk for deling av helseopplysninger](#21-tillitsrammeverk-for-deling-av-helseopplysninger)
+    - [3. Krav knyttet til bruk av HelseID](#3-krav-knyttet-til-bruk-av-helseid)
+      - [Krav til RP/Klient](#krav-til-rpklient)
+      - [Krav til API/Tjeneste](#krav-til-apitjeneste)
+      - [Krav til HelseID](#krav-til-helseid)
+  - [3. Bruk av HelseID ved deling av helseopplysninger](#3-bruk-av-helseid-ved-deling-av-helseopplysninger)
+    - [3.1 Overordnet beskrivelse av bruksmønster](#31-overordnet-beskrivelse-av-bruksmønster)
+      - [3.1.1 Kall fra RP for brukerautentisering](#311-kall-fra-rp-for-brukerautentisering)
+        - [3.1.1.x Krav knyttet til forespørsler om brukerautentisering](#311x-krav-knyttet-til-forespørsler-om-brukerautentisering)
+        - [3.1.1.x Overføre informasjon om grunnlaget for tilgang fra RP](#311x-overføre-informasjon-om-grunnlaget-for-tilgang-fra-rp)
+        - [3.1.1.2 Forspørsel om tilgang til flere API-er](#3112-forspørsel-om-tilgang-til-flere-api-er)
+      - [3.1.2 Kontroller i HelseID av forespørsler om brukerautentisering](#312-kontroller-i-helseid-av-forespørsler-om-brukerautentisering)
+        - [3.1.2.1 Kontroll av standard protokollparamtere](#3121-kontroll-av-standard-protokollparamtere)
+        - [3.1.2.2 Kontroll av Request Object](#3122-kontroll-av-request-object)
+        - [3.1.2.3 Kall til IDP](#3123-kall-til-idp)
+      - [3.1.3 Kontroller av svar fra ekstern IDP](#313-kontroller-av-svar-fra-ekstern-idp)
+        - [3.1.3.1 Kontroll av svar fra ekstern IDP](#3131-kontroll-av-svar-fra-ekstern-idp)
+        - [3.1.3.1 Kontroll av informasjon fra ekstern IDP](#3131-kontroll-av-informasjon-fra-ekstern-idp)
+      - [3.1.3 Håndtering av resultat av brukerautentisering i klient](#313-håndtering-av-resultat-av-brukerautentisering-i-klient)
+      - [3.1.4 Kall fra klient for å hente tokens](#314-kall-fra-klient-for-å-hente-tokens)
+        - [Bruk av PKCE](#bruk-av-pkce)
+        - [Bruk av Client Assertion](#bruk-av-client-assertion)
+        - [Bruk av Resource Indicators](#bruk-av-resource-indicators)
+        - [Bruk av "authorization\_details"](#bruk-av-authorization_details)
+      - [Kontroller i HelseID av forespørsel om tokens](#kontroller-i-helseid-av-forespørsel-om-tokens)
+    - [Validering av Client Assertion](#validering-av-client-assertion)
+      - [Validering av ekstra informasjon i Client Assertion (eller Request Object)](#validering-av-ekstra-informasjon-i-client-assertion-eller-request-object)
+    - [3.1.4 Generering av Access Token og Identity Token](#314-generering-av-access-token-og-identity-token)
+      - [3.1.4 Kontroller i RP av Identity Token](#314-kontroller-i-rp-av-identity-token)
+    - [3.3 Forespørsel til API](#33-forespørsel-til-api)
+    - [3.4 Bruk av refreshtoken](#34-bruk-av-refreshtoken)
+  - [4. Sikkerhetsvurderinger](#4-sikkerhetsvurderinger)
+
+
 ## 1. Introduksjon
 Dette dokumentet er en teknisk spesifikasjon som beskriver hvordan OpenID Connect og OAuth 2.0 skal benyttes ved deling av helseopplysninger innad i Helsenettet. Dokumentet er ment for utviklere og tekniske arkitekter som skal konsumere API hvor det er et krav at helsepersonellet er autentisert.
 
@@ -225,16 +265,25 @@ Dette gjøres i henhold til spesifikasjon og sikkerhetsprofil og inkluderer:
 ##### Bruk av PKCE
 Klienten skal bruke PKCE (også beskrevet for brukerautentisering) som beskrevet i [rfc7636](https://www.rfc-editor.org/rfc/rfc7636).
 
-#### Bruk av Client Assertion
+##### Bruk av Client Assertion
 For klientautentisering skal klienten brukes en client assertion som beskrevet i [rfc7523](https://www.rfc-editor.org/rfc/rfc7523.html#section-2.2).  
 
 Klient skal bruke den private nøkkelen som tilsvarer offentlig nøkkel registrert hos HelseID.
  
+##### Bruk av Resource Indicators
+Uthenting av API-spesifikke Access Tokens skal gjøres som beskrevet i **_TODO:_** [Lenke til tidligere avsnitt].
 
+##### Bruk av "authorization_details"
+Klienten kan sende inn utvidet informasjon til HelseID ved bruk av "authorization_details"-claimet". Se **_TODO:_** [Lenke til eget avsnitt om A_D, felles for RO og Client Assertion]
 
-* Authorization Details (context, virksomhet, annet)
-* Client Assertion
+Verdien på dette er en json-struktur. HelseID støtter flere typer informasjonselementer:
+* Informasjon om organisasjonsnummer
+* Informasjon om behandlingskonteksten
+* Annen informasjon.
 
+For å sende denne informasjonen til token-endepunktet, må "authorization_details" inkluderes i JWT-en som postes som client assertion. 
+
+#### Kontroller i HelseID av forespørsel om tokens
 
 * Vise kontroller i HelseID 
   * Vise autentisering av klient 
