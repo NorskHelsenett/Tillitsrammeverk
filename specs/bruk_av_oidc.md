@@ -53,8 +53,6 @@ HelseID gjør det mulig å gjenbruke en autentisering mellom to eller flere appl
 > **_TODO:_** [Legg inn en tegning her]
 
 ## 2. Forutsetninger og underliggende krav
-
-
 - [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html)
 - [OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)
 - [HelseID sikkerhetsprofil for klienter](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/128352260/Security+profile+for+clients+using+HelseID) (basert på FAPI 2.0)
@@ -284,6 +282,25 @@ Verdien på dette er en json-struktur. HelseID støtter flere typer informasjons
 For å sende denne informasjonen til token-endepunktet, må "authorization_details" inkluderes i JWT-en som postes som client assertion. 
 
 #### Kontroller i HelseID av forespørsel om tokens
+Figuren under viser hvilke kontroller HelseID gjør når en klient forespør tokens i forbindelse med en brukerautentisering.
+
+```mermaid
+flowchart 
+  Error[Returner feilmelding]
+  Param{Kontroll av standard protokollparametre}
+  AD{Er Authorization Details brukt}
+  Tokens[Generer Tokens og send svar til klient]
+  S[Tokenforspørsel fra Klient] --> Param
+  Param-- Ugyldig --> Error 
+  Param-- Ok --->CA{Autentiser klient - Client Assertion}
+  CA-- Ugyldig -->Error
+  CA-- Ok --> AD
+  AD-- Ja -->V_AD{Kontroller AD\nSe 'Kontroll av påstander fra klient'}
+  AD-- Nei --> Tokens 
+  V_AD-- Ugyldig --> Error
+
+
+```
 
 * Vise kontroller i HelseID 
   * Vise autentisering av klient 
