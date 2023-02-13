@@ -191,7 +191,7 @@ classDiagram
 	FormalAuthorization o-- Licence
 	Organization o-- LegalEntity
 	Organization o-- IdentityAttribute
-	PurposeOfUse <|-- IdentityAttribute
+	PurposeOfUse --|> IdentityAttribute
 
 
 	
@@ -248,22 +248,24 @@ classDiagram
 #### 3.2.5 Kategori: Helsepersonell
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 
-##### "pid"
+##### Identifikator for helsepesonell - fødselsnummer
 Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "pid" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
 | Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 
-##### "structural_role"
+##### Strukturell rolle
 Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell med lisens, uten lisens eller om han er et administrativt personell.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "structural_role" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten, helsevirksomhet |
@@ -271,24 +273,26 @@ Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell 
 | Kodeverk: | ASTM |
 | Gyldige verdier: | "Licensed Health Care Providers",<br/>"Non-Licensed Health Care Providers",<br/>"Clerical and Administrative Personnel" |
 
-##### "hpr_nr"
+##### Identifikator fra Helsepersonellregisteret
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
  
 |   |   |
 | ---| ---|
+| Attributtnavn: | "hpr_nr" |
 | Obligatorisk: | Nei |
 | Data type: | String |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
-##### "professional_licence"
+##### Helsepersonellets autorisasjoner og lisenser
 Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
 
 > *TODO: Spesifiser datasmodell for lisenser og autorisasjoner fra HPR*
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "professional_licence" |
 | Obligatorisk: | Nei |
 | Data type: | Object | 
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
@@ -298,24 +302,25 @@ Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisen
 #### 3.2.6 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis ved hans rolle, spesialitet, virksomhet hvor han yter helsehjelp, behandlingssted, helsetjenestetype og en angivelse av formålet med behandlingen av helseopplysningene.
 
-##### "functional_role"
+##### Helsepersonellets funksjonelle rolle
 Attributtet "functional_role" representerer helsepersonellets rolle hos virksomheten i hans behandling av pasienten, og angis av kode fra STYRK-08.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "functional_role" |
 | Obligatorisk: | Ja |
 | Data type: | String |
-| Autoritativ kilde: | Konsumenten - helsepersonellets rolle i virksomheten |
+| Autoritativ kilde: | Konsumenten - helsepersonellets rolle hos virksomheten |
 | Informasjonskilde: | Konsumentens EPJ/HR system |
 | Kodeverk: | STYRK-08 (ISCO-08) |
 | Gyldige verdier: | Helsefaglige koder (må avklares - subsett av STYRK-08) |
 
-##### "clinical_speciality"
+##### Helsepersonellets spesialitet
 Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i sin behandling av pasienten
-
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "clinical_speciality" |
 | Obligatorisk: | Nei |
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten - helsepersonellets rolle i virksomheten |
@@ -323,56 +328,61 @@ Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i 
 | Kodeverk: | SNOMED-CT: Clinical-speciality |
 | oid: | 2.16.840.1.113883.3.88.12.80.72 |
 
-##### "legal_entity_id"
+##### Identifikator for den dataansvarlige virksomheten 
 Attributtet "legal_entity" identifiserer virksomheten hvor helsepersonellet yter helsehjelp.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "legal_entity_id" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
-##### "legal_entity_name"
+##### Navn på den dataansvarlige virksomheten
 Attributtet "legal_entity" inneholder navnet på virksomheten hvor helsepersonellet yter helsehjelp.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "legal_entity_name" |
 | Obligatorisk: | Ja *(avvik fra EHDSI)* |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
-##### "point_of_care_id"
+##### Identifikator for behandlingssted
 Attributtet "point_of_care_id" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "point_of_care_id" |
 | Obligatorisk: | Ja *(avvik fra EHDSI)* |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
-| Kodeverk: | (kode for enhetsregisteret)|
+| Kodeverk: | (kode for enhetsregisteret) |
 
-##### "point_of_care_name"
+##### Navn på behandlingssted
 Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "point_of_care_name" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret) |
 
-##### "facility_type"
-Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befinner seg ved.
+##### Helsetjenestetype
+Attributtet "facility_type" angir hvilken type helsetjenester som leveres ved virksomheten som helsepersonellet jobber for.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "facility_type" |
 | Obligatorisk: | Ja |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
@@ -382,11 +392,12 @@ Attributtet "facility_type" angir hvilken type virksomhet helsepersonellet befin
 | Gyldige verdier:| Hospital,<br/>Resident Physician,<br/>Pharmacy,<br/>++? |
 
 
-##### "locality"
+##### Fysisk sted
 Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "locality" |
 | Obligatorisk:| Ja |
 | Data type: | String |
 | Autoritativ kilde: | Konsument |
@@ -394,11 +405,12 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 | Kodeverk: | ingen |
 | Gyldige verdier: | kun alfanumeriske tegn (regex: "^[a-zA-Z0-9_]*$") |
 
-##### "purpose_of_use"
+##### Formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlingen av personopplysninger.
 
 |   |   |
 | ---| ---|
+| Attributtnavn: | "purpose_of_use" |
 | Obligatorisk: | Ja |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -408,10 +420,11 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 
 #### 3.2.7 Kategori: Pasient
-##### "patient_identifier"
+##### Unik identifikator for pasienten
 
 | Attributt | |
 | --- | --- |
+| Attributtnavn: | "patient_id" |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
 ## 4. Sikkerhets- og personvernshensyn
