@@ -379,8 +379,8 @@ Attributtet "facility_type" angir hvilken type helsetjenester som leveres ved vi
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | eHealth DSI code list |
-| oid code: | 1.3.6.1.4.1.12559.11.10.1.3.2.2.2 |
+| Kodeverk: | eHealth DSI code list<br/> Volven<br/>  |
+| oid code: | 1.3.6.1.4.1.12559.11.10.1.3.2.2.2<br/>volven: 8627<br/>volven: 8662<br/>volven: 8663<br/>volven: 8664<br/>volven: 8665<br/>volven: 8666 |
 | Gyldige verdier:| Hospital,<br/>Resident Physician,<br/>Pharmacy,<br/>++? |
 
 
@@ -436,13 +436,13 @@ Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
 * mellom konsument og informasjonstjeneste
 * mellom informasjonstjeneste og datagrensesnitt
 
-Som tiltak mot potensiell lekkasje av PII bør tiltak for å ivareta konfidensialiteten vurderes.
+For å sikre oss mot potensiell lekkasje av PII bør det vurderes å innføre tiltak for å ivareta konfidensialiteten.
 
 #### 4.2.2 Mangelfull informasjon om personvernskonsevenser
 Det er en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
 
 #### 4.2.3 Misbruk av data
-Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av en eller flere av partene som mottar verdiene i datasettet.
+Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av en eller flere parter som mottar verdiene i datasettet.
 
 #### 4.2.4 Overvåkning av ansatte i andre virksomheter
 Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
@@ -459,19 +459,19 @@ Vi ønsker å takk Ola Nordmann ved EPJ-leverandør x, Berit Bermann ved direkto
 
 ### JSON eksempel
 
-#### Eksempel #1 - fastlege
+#### Eksempel #1 - Fastlege ber om tilgang til dokument
 
-#### Eksempel #2 - kommune
+#### Eksempel #2 - Kommunalt ansatt ber om tilgang til dokument
 
-#### Eksempel #2 - foretak
+#### Eksempel #3 - HP i foretak ber om tilgang til dokument
 
 ### SAML eksempel
 
-#### Eksempel #1 - fastlege
+#### Eksempel #1 - Fastlege ber om tilgang til dokument
 
-#### Eksempel #2 - kommune
+#### Eksempel #2 - Kommunalt ansatt ber om tilgang til dokument
 
-#### Eksempel #2 - foretak
+#### Eksempel #3 - HP i foretak ber om tilgang til dokument
 
 ## 7. Normative referanser 
 
