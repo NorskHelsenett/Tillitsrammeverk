@@ -463,8 +463,25 @@ Norsk Helsenett SF har hatt det overordnede ansvaret for å utvikle denne spesif
 
 Vi ønsker å takk Ola Nordmann ved EPJ-leverandør x, Berit Bermann ved direktoratet for ehelse, Carla Carlmann ved Kommune x for verdifulle bidrag i utviklingen av spesifikasjonen.
 
+## 6. Eksempler på bruk av datamodell
 
-## 6. Normative referanser 
+### JSON eksempel
+
+#### Eksempel #1 - fastlege
+
+#### Eksempel #2 - kommune
+
+#### Eksempel #2 - foretak
+
+### SAML eksempel
+
+#### Eksempel #1 - fastlege
+
+#### Eksempel #2 - kommune
+
+#### Eksempel #2 - foretak
+
+## 7. Normative referanser 
 
 Normative referanser spesifiserer dokumenter som må leses for å forstå eller implementere datamodellen, eller teknologi som må være på plass for å kunne implementere teknologien. 
 
