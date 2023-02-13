@@ -16,26 +16,18 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 
 ## Innholdsfortegnelse
 1. Innledning<br/>
-	1.1 Relasjon til eHSDI<br/>
-	1.2 Påkrevd eller valgfri informasjon<br/> 
 2. Bakgrunn
 3. Spesifikasjon<br/>
 	3.1 Informasjonsmodell<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;3.1.1 <br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 <br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;3.1.3 <br/>
 	3.2 Datamodell<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Relasjon til eHSDI datamodell<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;3.2.2 Påkrevd eller valgfri informasjon<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;3.2.3 Prinsipper for datamodellen<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;3.2.4 Attributter i datamodellen
-	3.3 Bruk av datamodellen hos konsumenten<br/>
-	3.3 Bruk av datamodellen hos NHN<br/>
-	3.3 Bruk av datamodellen hos dokumentkilden<br/>
-4. Sikkerhetshensyn
-5. Takk til de som har bidratt til spesifikasjonen
-6. Normative referanser 
-7. Vedlegg
+4. Sikkerhets- og personvernshensyn<br/>
+	4.1 Cybersikkerhet<br/>
+	4.2 Personvern 
+5. Anerkjennelse av bidragsytere til spesifikasjonen
+6. Eksempler på bruk av datamodell<br/>
+	6.1 JSON eksempel<br/>
+	6.2 SAML eksempel<br/>
+7. Normative referanser 
 
 
 ## 1. Innledning 
