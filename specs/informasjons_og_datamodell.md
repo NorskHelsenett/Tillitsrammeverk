@@ -245,7 +245,8 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "pid" |
+| Attributt: | "pid" |
+| Attributt EHDSI: "urn:oasis:names:tc:xacml:1.0:subject:subject-id" | |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
@@ -257,7 +258,8 @@ Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell 
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "structural_role" |
+| Attributt: | "structural_role" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xacml:2.0:subject:role" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten, helsevirksomhet |
@@ -265,17 +267,22 @@ Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell 
 | Kodeverk: | ASTM |
 | Gyldige verdier: | "Licensed Health Care Providers",<br/>"Non-Licensed Health Care Providers",<br/>"Clerical and Administrative Personnel" |
 
+
+
 ##### Identifikator fra Helsepersonellregisteret
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
  
 |   |   |
 | ---| ---|
-| Attributtnavn: | "hpr_nr" |
+| Attributt: | "hpr_nr" |
+| Attributt EHDSI: | |
 | Obligatorisk: | Nei |
 | Data type: | String |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
+
+"hpr_nr": "xxxxxxxxx"
 
 ##### Helsepersonellets autorisasjoner og lisenser
 Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
@@ -284,12 +291,12 @@ Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisen
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "professional_licence" |
+| Attributt: | "professional_licence" |
+| Attributt EHDSI: | |
 | Obligatorisk: | Nei |
 | Data type: | Object | 
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell |
- 
 
 #### 3.2.6 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis ved hans rolle, spesialitet, virksomhet hvor han yter helsehjelp, behandlingssted, helsetjenestetype og en angivelse av formålet med behandlingen av helseopplysningene.
@@ -299,7 +306,8 @@ Attributtet "functional_role" representerer helsepersonellets rolle hos virksomh
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "functional_role" |
+| Attributt: | "functional_role" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:functional-role" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten - helsepersonellets rolle hos virksomheten |
@@ -312,7 +320,8 @@ Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i 
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "clinical_speciality" |
+| Attributt: | "clinical_speciality" |
+| Attributt EHDSI: | "urn:ehdsi:names:wp3.4:subject:clinical-speciality" |
 | Obligatorisk: | Nei |
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten - helsepersonellets rolle i virksomheten |
@@ -325,7 +334,8 @@ Attributtet "legal_entity" identifiserer virksomheten hvor helsepersonellet yter
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "legal_entity_id" |
+| Attributt: | "legal_entity_id" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
@@ -337,7 +347,8 @@ Attributtet "legal_entity" inneholder navnet på virksomheten hvor helsepersonel
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "legal_entity_name" |
+| Attributt: | "legal_entity_name" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
 | Obligatorisk: | Ja *(avvik fra EHDSI)* |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
@@ -349,8 +360,9 @@ Attributtet "point_of_care_id" identifiserer behandlingsstedet hvor helsepersone
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "point_of_care_id" |
-| Obligatorisk: | Ja *(avvik fra EHDSI)* |
+| Attributt: | "point_of_care_id" |
+| Attributt EHDSI: | N/A |
+| Obligatorisk: | Nei |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
@@ -359,11 +371,11 @@ Attributtet "point_of_care_id" identifiserer behandlingsstedet hvor helsepersone
 ##### Navn på behandlingssted
 Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
-
 |   |   |
 | ---| ---|
-| Attributtnavn: | "point_of_care_name" |
-| Obligatorisk: | Ja |
+| Attributt: | "point_of_care_name" |
+| Attributt EHDSI: | N/A |
+| Obligatorisk: | Nei |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
@@ -374,7 +386,8 @@ Attributtet "facility_type" angir hvilken type helsetjenester som leveres ved vi
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "facility_type" |
+| Attributt: | "facility_type" |
+| Attributt EHDSI: | "urn:ehdsi:names:subject:healthcare-facility-type" |
 | Obligatorisk: | Ja |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
@@ -389,7 +402,8 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "locality" |
+| Attributt: | "locality" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:environment:locality" |
 | Obligatorisk:| Ja |
 | Data type: | String |
 | Autoritativ kilde: | Konsument |
@@ -402,7 +416,8 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 |   |   |
 | ---| ---|
-| Attributtnavn: | "purpose_of_use" |
+| Attributt: | "purpose_of_use" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:purposeofuse" |
 | Obligatorisk: | Ja |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -416,7 +431,8 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 | Attributt | |
 | --- | --- |
-| Attributtnavn: | "patient_id" |
+| Attributt: | "patient_id" |
+| Attributt EHDSI: | |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
 ## 4. Sikkerhets- og personvernshensyn
@@ -447,6 +463,8 @@ Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasi
 #### 4.2.4 Overvåkning av ansatte i andre virksomheter
 Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
 	
+#### 4.2.5 Urettmessig tilegnelse av helseopplysninger
+Det er en risiko for at helsepersonellet som ber om tilgang til helseopplysninger ikke har et tjenstlig behov, og at opplysningene ikke er relevante og nødvendige i behandlingen av pasienten.
  
 ## 5. Anerkjennelse av bidragsytere til spesifikasjonen
 Vi ønsker å takke kongen, fedrelandet og Ringnes, samt alle andre som har hatt innvirkning på spesifikasjonen..
@@ -457,21 +475,114 @@ Vi ønsker å takk Ola Nordmann ved EPJ-leverandør x, Berit Bermann ved direkto
 
 ## 6. Eksempler på bruk av datamodell
 
-### JSON eksempel
 
 #### Eksempel #1 - Fastlege ber om tilgang til dokument
+##### JSON
+{
+	"practicioner": {
+		"pid":{
+			"value": "xxxxxx34794",
+			"oid_system": "2.16.578.1.12.4.1.4.1"
+		},
+		"structural_role": {
+			"value": "Licensed Health Care Providers",
+			"system_oid": "2.16.578.1.12.x.x.x.x"
+		},
+		"professional_license": {
+			"hpr_nr": "xxxxxxxxx",
+			"authorization": {[...]},
+			"licence": {[...]}
+		}
+	},
+	"care_relationship": {
+		"functional_role": {
+			"value": "2211",
+			"system_oid": ""
+		},
+		"clinical_speciality": {
+			"value": "419772000"
+			"system_oid": ""
+		},
+		"legal_entity": {
+			"id": "921592761",
+			"name": "Lege Leif Lagesen",
+			"system_oid": ""
+		},
+		"point_of_care": {
+			"id": "123456789",
+			"point_of_care_name": "Det beste legekontoret i byen",
+			"system_oid": ""
+		}
+		"facility_type":{
+			"value": "05",
+			"system_oid": ""
+		}
+		"locality": "Helsehjelpgata 1 0001 Valderborg",
+		"purpose_of_use": {
+			"value": "TREAT",
+			"system_oid": ""
+		}
+	},
+	"patient": {
+		"value": "xxxxxx95164",
+		"oid_system": "2.16.578.1.12.4.1.4.1"
+	}
+}
+
 
 #### Eksempel #2 - Kommunalt ansatt ber om tilgang til dokument
+{
+	"practicioner": {
+		"pid":{
+			"value": "xxxxxx34794",
+			"oid_system": "2.16.578.1.12.4.1.4.1"
+		},
+		"structural_role": {
+			"value": "Non-Licensed Health Care Providers",
+			"code" : "",
+			"system_oid": "2.16.578.1.12.x.x.x.x"
+		},
+	},
+	"care_relationship": {
+		"functional_role": {
+			"code": "2226",
+			"system_oid": ""
+		},
+		"clinical_speciality": {
+			"code": "722165004"
+			"system_oid": ""
+		},
+		"legal_entity": {
+			"id": "921592761",
+			"name": "Helsearbeider Helge Helsefyr",
+			"system_oid": ""
+		},
+		"point_of_care": {
+			"id": "123456789",
+			"point_of_care_name": "Det beste sykehjemmet i landet",
+			"system_oid": ""
+		}
+		"facility_type":{
+			"code": "KP02",
+			"system_oid": "8663"
+		}
+		"locality": "Helsehjelpgata 4 0001 Valderborg",
+		"purpose_of_use": {
+			"code": "COC",
+			"system_oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+		}
+	},
+	"patient": {
+		"value": "xxxxxx95164",
+		"oid_system": "2.16.578.1.12.4.1.4.1"
+	}
+}
 
 #### Eksempel #3 - HP i foretak ber om tilgang til dokument
 
-### SAML eksempel
+#### Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege
 
-#### Eksempel #1 - Fastlege ber om tilgang til dokument
 
-#### Eksempel #2 - Kommunalt ansatt ber om tilgang til dokument
-
-#### Eksempel #3 - HP i foretak ber om tilgang til dokument
 
 ## 7. Normative referanser 
 
