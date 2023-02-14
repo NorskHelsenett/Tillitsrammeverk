@@ -8,7 +8,30 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 - Det gjør samarbeid på tvers enklere
 
 ## Prosess
-* Si noe om prosessen her
+Utviklingen av spesifikasjonene vil foregå over flere iterasjoner, hvor hver iterasjon fører til en ny versjon av spesifikasjonen. NHN skal sørge for framdrift og vil fungere som reviewer av pull-requests, sørger for framdrift i viktige diskusjoner og vil håndtere eventuelle tilbakemeldinger via issues.
+
+Hvis det ikke oppstår nye diskusjoner eller issues som peker på feil, eller dersom endringene kun består av språklige endringer skal det gjennomføres en avstemning om hvorvidt spesifikasjonen skal publiseres som versjon 1.0.
+
+### Diskusjoner
+Spesifikasjonene vil bli basert på diskusjoner og innspill gjort i Github. Diskusjoner og innspill i andre kanaler vil ikke bli behandlet. Derfor er det viktig at diskusjoner som foregår utenfor dette repositoriet blir dokumentert skriftlig, enten som diskusjon, eller som issues eller pull-requests.
+
+### Issues
+Når du oppdager feil eller mangler i spesifikasjonen må du opprette en issue i Github. Dersom det er behov for å diskutere eller på annen måte behandle en registrert issue skal dette gjøres skriftlig ved å legge inn kommentarer.
+Dersom en issue fører til en endring i spesifikasjonen skal denne endringen gjøres via en pull-request, eller som en merge mot den branchen man jobber mot.
+
+### Pull-request
+Dersom du ønsker å gjøre endringer direkte i spesifikasjonen skal du benytte [pull-requests i Github](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). 
+Hvis en pull-request er knyttet til en issue ønsker vi at du lenker pull-requesten til issuet.
+
+Norsk Helsenett vil fungere som reviewer av pull-requests, og vil gjøre en kvalitetskontroll og håndtere eventuelle diskusjoner knyttet til innsjekkingen.
+
+### Behov for møter og avklaringer
+Vi anser det som sannsynlig at det vil bli behov for å gjennomføre møter, men legger ikke opp til en fast møteserie med mindre det viser seg å bli et  behov. Dersom det viser seg at bidragsyterne til spesifikasjonene har behov for å gjennomføre møter vil disse møtene fasiliteres av NHN og avtales fortløpende.
+
+### Versjonering
+Spesifikasjonen vil versjoneres etter hver iterasjon, hvor versjonen indikeres av et suffix, f.eks. "-1", "-2", osv.
+
+Når spesifikasjonen ansees som ferdig skal den publiseres som versjon 1.0.
 
 ### Spesifikasjoner
 * [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
