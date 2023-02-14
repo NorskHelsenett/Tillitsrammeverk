@@ -1,7 +1,7 @@
 # Bruk av OpenID Connect for deling av helseopplysninger via API
 Versjon: 0.1
 
-Dato: 31.01.2023
+Dato: 14.02.2023
 
 ## Definisjon av begrep og forkortelser
 Dokuemntet benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
@@ -25,6 +25,7 @@ Dokuemntet benytter begreper og terminologi som er definert i følgende spesifik
   - [Innholdsfortegnelse](#innholdsfortegnelse)
   - [Introduksjon](#introduksjon)
   - [Forutsetninger og underliggende krav](#forutsetninger-og-underliggende-krav)
+    - [Underliggende spesifikasjoner og profiler](#underliggende-spesifikasjoner-og-profiler)
     - [Tillitsrammeverk for deling av helseopplysninger](#tillitsrammeverk-for-deling-av-helseopplysninger)
     - [Krav knyttet til bruk av HelseID](#krav-knyttet-til-bruk-av-helseid)
       - [Krav til RP/Klient](#krav-til-rpklient)
@@ -54,7 +55,8 @@ Dokuemntet benytter begreper og terminologi som er definert i følgende spesifik
       - [Generering av Identity Token og Access Token](#generering-av-identity-token-og-access-token)
     - [Bruk av RAR](#bruk-av-rar)
     - [Kontroller i klient av Identity Token](#kontroller-i-klient-av-identity-token)
-    - [Forespørsel til API](#forespørsel-til-api)
+    - [Kontroller i klient av Access Token](#kontroller-i-klient-av-access-token)
+    - [Kontroller av Access Token i API](#kontroller-av-access-token-i-api)
     - [Bruk av refreshtoken](#bruk-av-refreshtoken)
   - [Sikkerhetsvurderinger](#sikkerhetsvurderinger)
 
@@ -66,24 +68,30 @@ OpenID Connect er en protokoll som lar utvikleren selv velge en del sikkerhetsme
 
 HelseID gjør det mulig å gjenbruke en autentisering mellom to eller flere applikasjoner, såkalt Single Sign-On (SSO).  HelseID gjør det også mulig for applikasjonen som ber om autentisering, også kalt Relying Party (RP), å gjenbruke en pålogget brukersesjon når RP også er en OAuth klient som skal be om tilgang til et API. 
 
+Merk at begrepene RP og klient brukes synonymt i dette dokument.
+
 > **_TODO:_** [Legg inn en tegning her]
 
 ## Forutsetninger og underliggende krav
+- Underliggende spesifikasjoner og profiler
+- Tillitsrammeverk for deling av helseopplysninger
+
+### Underliggende spesifikasjoner og profiler
+
 - [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html)
 - [OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)
-- [HelseID sikkerhetsprofil for klienter](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/128352260/Security+profile+for+clients+using+HelseID) (basert på FAPI 2.0)
-- JWT profil for tillitsrammeverk - "trusted_claims"  **_TODO:_** [Legg til lenke]
-
+- [FAPI 2.0](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html) Ikke normativ, men underlag for HelseID sin sikkerhetsprofil
+- [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics)
 
 ### Tillitsrammeverk for deling av helseopplysninger
 Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskrevet i egne dokumenter.
 
-> **_TODO:_** [Legg inn lenker til rammeverket, samt en kort oppsummering.}
-
-- Helsenettet 
-- Norm for informasjonssikkerhet 
-- eID i tillitsrammeverket 
-- Avtaleverk 
+- [JWT profil for tillitsrammeverk](jwt_access_token_format.md)
+- [RAR profil for tillitsrammeverk](profil_for_authorization_details.md)
+- Helsenettet **_TODO_**
+- Norm for informasjonssikkerhet **_TODO_**
+- eID i tillitsrammeverket **_TODO_**
+- Avtaleverk **_TODO_**
 
 ### Krav knyttet til bruk av HelseID
 #### Krav til RP/Klient
@@ -110,10 +118,9 @@ Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskreve
 RP ber om autentisering av den fysiske personen ved bruk av normal flyt iht. protokoll, men med følgende presiseringer: 
 * RP skal benytte en av følgende mekanismer ved forespørsler mot HelseID: 
   * Request Object, som beskrevet i …., eller   
-    **Spørsmål:** [Skal vi kreve at parametre inkluderes i RO, eller forsette dagens policy hvor det er valgfritt]  
   * Pushed Authorization Requests, som beskrevet i.. 
   
-* Dersom Request Object benyttes skal denne overføres til HelseID som et form parameter.
+* Dersom Request Object benyttes skal denne overføres til HelseID som et FORM parameter.
 
 * Det er et krav at et token ikke skal kunne stjeles eller misbrukes. Mekanismene som skal forhindre dette er ikke tilgjengelig i HelseID enda, men når de er på plass skal klienten bruke DPoP eller mTLS for å binde seg krypografisk til Access Tokens.
 
