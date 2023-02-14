@@ -31,18 +31,18 @@ Dokuemntet benytter begreper og terminologi som er definert i følgende spesifik
       - [Krav til RP/Klient](#krav-til-rpklient)
       - [Krav til API/Tjeneste](#krav-til-apitjeneste)
       - [Krav til HelseID](#krav-til-helseid)
+      - [Krav til IDP](#krav-til-idp)
   - [Bruk av HelseID ved deling av helseopplysninger](#bruk-av-helseid-ved-deling-av-helseopplysninger)
     - [Overordnet beskrivelse av bruksmønster](#overordnet-beskrivelse-av-bruksmønster)
       - [Kall fra RP for brukerautentisering](#kall-fra-rp-for-brukerautentisering)
-        - [Krav knyttet til forespørsler om brukerautentisering](#krav-knyttet-til-forespørsler-om-brukerautentisering)
         - [Overføre informasjon om grunnlaget for tilgang fra RP](#overføre-informasjon-om-grunnlaget-for-tilgang-fra-rp)
         - [Forspørsel om tilgang til flere API-er](#forspørsel-om-tilgang-til-flere-api-er)
       - [Kontroller i HelseID av forespørsler om brukerautentisering](#kontroller-i-helseid-av-forespørsler-om-brukerautentisering)
-        - [Kontroll av standard protokollparamtere](#kontroll-av-standard-protokollparamtere)
-        - [Kontroll av Request Object](#kontroll-av-request-object)
-        - [Kall til IDP](#kall-til-idp)
-      - [Kontroller av svar fra ekstern IDP](#kontroller-av-svar-fra-ekstern-idp)
-        - [Kontroll av svar fra ekstern IDP](#kontroll-av-svar-fra-ekstern-idp)
+        - [Kontroll av standard protokollparametre i HelseID](#kontroll-av-standard-protokollparametre-i-helseid)
+        - [Kontroll av Request Object i HelseID](#kontroll-av-request-object-i-helseid)
+        - [Kall til IDP fra HelseID](#kall-til-idp-fra-helseid)
+      - [Kontroller av svar fra ekstern IDP til HelseID](#kontroller-av-svar-fra-ekstern-idp-til-helseid)
+        - [Kontroll av Identity Token sendt fra ekstern IDP til HelseID](#kontroll-av-identity-token-sendt-fra-ekstern-idp-til-helseid)
         - [Kontroll av informasjon fra ekstern IDP](#kontroll-av-informasjon-fra-ekstern-idp)
       - [Håndtering av resultat av brukerautentisering i klient](#håndtering-av-resultat-av-brukerautentisering-i-klient)
       - [Kall fra klient for å hente tokens](#kall-fra-klient-for-å-hente-tokens)
@@ -112,6 +112,10 @@ Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskreve
 - Kan
 - Kommende krav
 
+#### Krav til IDP
+- Sikkerhetprofil
+- Må være godkjent ihht formelle krav i tillitsmodell (nkom, egne prosesser)
+
 ## Bruk av HelseID ved deling av helseopplysninger
 
 ### Overordnet beskrivelse av bruksmønster
@@ -171,13 +175,12 @@ Når et helsepersonell ønsker å få tilgang til helseopplysninger i andre virk
 
 Brukeren SKAL sendes i nettleser til endepunktet [/authorize](https://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint) i HelseID. Endepunktet er dokumentert [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5571605/Authorize+Endpoint).
 
-Utover normal protokollflyt er det følgende nødvendig
-
-##### Krav knyttet til forespørsler om brukerautentisering
-Basert på FAPI 2.0, med egne tilpassinger [lenke til vår profil]
-* Request Object (signert med klienthemmeligheten)
-* Hvordan velge IdP
-
+Utover normal protokollflyt er det følgende tilpasninger
+* PKCE SKAL benyttes
+* Request Objects med asymmetrisk signering KAN benyttes
+* Indikering av ønsket sikkerhetsnivå og identitetstilbyder med acr_values KAN benyttes
+* Resource Indicators SKAL benyttes dersom klient skal ha tilgang til flere API-er
+  
 
 ##### Overføre informasjon om grunnlaget for tilgang fra RP
 Ved deling av helseopplysninger på tvers av virksomheter i helsesektoren krever tillitsrammeverket at konsumentens EPJ-system overfører informasjon som beskriver hvorfor helsepersonellet har fått tilgang til pasientens helseopplysninger.
@@ -193,7 +196,7 @@ Det er opp til leverandør å velge mekanismen som passer best.
 
 **_TODO:_** [Lenke til konkret eksempel + eksempelkode].
 
-Et request object SKAL overføres som et FORM verdier i en POST request.
+Et Request Object SKAL overføres som et form parameter i en POST request.
 
 ##### Forspørsel om tilgang til flere API-er
 Tjenester som inngår i tillitsmodellen krever at Access Tokens ment for dem, ikke skal kunne brukes for å få tilgang andre API-er. I praksis innebærer dette at claimet "aud" (audience) ikke kan ha mer enn en verdi. *Audience* er navnet som identifiserer API-et i HelseID
@@ -217,34 +220,36 @@ flowchart LR
   V_RO-- Ugyldig --> Error
 
 ```
-##### Kontroll av standard protokollparamtere
-Det første som skjer en en kontroll av protokollparametre i forespørselen i henhold til OpenID Connect og sikkerhetsprofilen til HelseID. Dette inkluderer, men er ikke begrenset til:
+##### Kontroll av standard protokollparametre i HelseID
+Når en forespørsel om brukeautentisering mottas av HelseID, gjøres det først en kontroll av protokollparametre i henhold til OpenID Connect og sikkerhetsprofilen til HelseID. Dette inkluderer, men er ikke begrenset til:
 
   * Sjekk av at klienten er registrert og aktivert i HelseID
-  * Sjekk av at klienten forspør API-er og annen informasjon den har tilgang til
-  * Sjekk av at klienten sender med en gyldig redirect_uri
+  * Sjekk av at klienten bare forspør API-er og annen informasjon som den har tilgang til
+  * Sjekk av at klienten sender en preregistrert redirect_uri
   * Sjekk av at klienten bruker PKCE
   * (Fremtidig) Sjekk av systemidentitet
 
 Dersom noen av disse kontrollene feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 
-Merk at protokollparametre både kan sendes som GET eller POST parametre, eller som en del av et Request Object. 
+Merk at protokollparametre KAN sendes som GET eller POST parametre, eller som en del av et Request Object. 
 
-##### Kontroll av Request Object
+##### Kontroll av Request Object i HelseID
 Dersom klienten har inkludert et Request Object for å overføre kontekstuell informasjon til HelseID (f.eks virksomhet eller brukerkontekst), vil kontroll av dette skje på samme måte som for client assertions i Token-endepunktet. Se [Validering av authorization_details i Client Assertion eller Request Object](validering-av-authorizationdetails-i-client-assertion-eller-request-object).
 
 Dersom noen av disse kontrollene feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 
-
-##### Kall til IDP
-
-Dersom alle kontroller er ok, sjekker HelseID om brukeren allerede har en sesjon i HelseID. Dersom dette er tilfelle, og klienten ikke eksplisitt har spurt om å ikke benytte Single sign-on, sendes brukeren tilbake til klienten (fagsystemet).
-
-Om ikke, sendes brukeren til ekstern IDP for autentisering.
+Er Request Object SKAL overføres som et POST parameter.
 
 
-#### Kontroller av svar fra ekstern IDP
-Etter at en bruker har autentisert seg hos en ekstern IDP, vil HelseID kontrollere resultatet.
+##### Kall til IDP fra HelseID
+Dersom alle kontroller er ok, sjekker HelseID om brukeren allerede har en sesjon i HelseID. Dersom dette er tilfelle, og klienten ikke har deaktivert Single sign-on, sendes brukeren tilbake til klienten (fagsystemet).
+
+I andre tilfeller sendes brukeren til ekstern IDP for autentisering.
+
+#### Kontroller av svar fra ekstern IDP til HelseID
+Etter at en bruker har autentisert seg hos en ekstern IDP sendes resultatet til HelseID. Alle integrasjoner mellom HelseID og eksterner IDP-er er basert på OpenID Connect, og følger sikkerhetsprofilen.
+
+HelseID kontrollerer resultatet fra HelseID som følger.
 
 ```mermaid
 flowchart LR
@@ -258,7 +263,7 @@ flowchart LR
   IDP_P-->Client[Send bruker tilbake til fagsystem]  
 ```
 
-##### Kontroll av svar fra ekstern IDP
+##### Kontroll av Identity Token sendt fra ekstern IDP til HelseID
 Etter at brukeren har autentisert seg i ekstern IDP, sendes informasjon om dette tilbake til HelseID. Dette vil alltid være et Identity Token. HelseID validerer først gyldigheten på dette tokenet i henhold til protokollspesifikasjon og egen sikkerhetsprofil. 
 
 Dersom noen av disse kontrollene feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
