@@ -285,7 +285,7 @@ For klientautentisering skal klienten brukes en client assertion som beskrevet i
 Klient skal bruke den private nøkkelen som tilsvarer offentlig nøkkel registrert hos HelseID.
  
 ##### Bruk av Resource Indicators
-Uthenting av API-spesifikke Access Tokens skal gjøres som beskrevet i **_TODO:_** [Lenke til tidligere avsnitt].
+Uthenting av API-spesifikke Access Tokens skal gjøres som beskrevet [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
 
 ##### Bruk av RAR ("authorization_details")
 Klienten kan sende inn utvidet informasjon til HelseID ved bruk av "authorization_details"-claimet. 
@@ -371,19 +371,31 @@ Se egen profil i [Profil for bruk av Rich Authorization Requests](profil_for_aut
 
 
 ### Kontroller i klient av Identity Token
-* Pek til profil
-* Kontroll av lokal identitet vs Identity Token
+Når klienten mottar svar fra token-endepunktet, skal den kontrollere Identity Tokens. Dette skal gjøres som beskrevet **_TODO:_** [Lenke til eget dokument for validering av ID-tokens]. Utover standard JWT-validering, inkluderer dette:
+* Sjekke at sikkerhetnivå på brukerautentisering er korrekt (4 / High)
+* Dersom klient også har lokal brukerinnlogging, skal det kontrolleres at lokalt innlogget helsepersonell er det samme som logget seg inn med HelseID. Dette er normalt en sjekk på fødselsnummer eller helsepersonellnummer.
+
+### Kontroller i klient av Access Token
+Klienten skal ikke kontrollere Access Token, men sende dette videre til API-et som et Bearer Token som beskrevet i [rfc6750](https://www.rfc-editor.org/rfc/rfc6750).
 
 
-### Forespørsel til API
+### Kontroller av Access Token i API
+
 - Validering av token i API
 - DPoP 
 - eID 
 - Validering og bruk av informasjon i token 
 - Revisjonslogging 
 
+
 ### Bruk av refreshtoken
- 
+Klienten skal bruke Refresh Tokens i følgende tilfeller:
+* Dersom at Access Tokens ikke er varig lengre.
+* Dersom det er behov for et Access Tokens for et spesifikt API
+* Dersom konteksten til et helsepersonell har endret seg (f.eks bytte av roller eller virsomhet)
+
+Refresh Tokens brukes som spesifisert i [rfc6749](https://www.rfc-editor.org/rfc/rfc6749#section-1.5), og i sikkerhetsprofilen til HelseID.
+Dersom kontekst skal oppdates gjøres dette som beskrevet [Bruk av RAR](#bruk-av-rar).
 
 ## Sikkerhetsvurderinger
 HelseID krever sikkerhetsprofilen FAPI 2.0 (lenke til vår versjon av profilen)
