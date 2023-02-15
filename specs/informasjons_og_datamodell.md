@@ -246,7 +246,7 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 |   |   |
 | ---| ---|
 | Attributt: | "pid" |
-| Attributt EHDSI: "urn:oasis:names:tc:xacml:1.0:subject:subject-id" | |
+| Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
@@ -478,6 +478,9 @@ Vi ønsker å takk Ola Nordmann ved EPJ-leverandør x, Berit Bermann ved direkto
 
 #### Eksempel #1 - Fastlege ber om tilgang til dokument
 ##### JSON
+I dette eksempelet har en fastlege ...
+
+```JSON
 {
 	"practicioner": {
 		"pid":{
@@ -528,9 +531,13 @@ Vi ønsker å takk Ola Nordmann ved EPJ-leverandør x, Berit Bermann ved direkto
 		"oid_system": "2.16.578.1.12.4.1.4.1"
 	}
 }
+```
 
+#### Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
 
-#### Eksempel #2 - Kommunalt ansatt ber om tilgang til dokument
+I dette eksempelet har...
+
+```JSON
 {
 	"practicioner": {
 		"pid":{
@@ -577,6 +584,7 @@ Vi ønsker å takk Ola Nordmann ved EPJ-leverandør x, Berit Bermann ved direkto
 		"oid_system": "2.16.578.1.12.4.1.4.1"
 	}
 }
+```
 
 #### Eksempel #3 - HP i foretak ber om tilgang til dokument
 

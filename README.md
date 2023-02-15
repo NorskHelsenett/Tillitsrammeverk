@@ -7,6 +7,13 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 - Det gir oss god kontroll over endringer og historikk
 - Det gjør samarbeid på tvers enklere
 
+### Spesifikasjoner
+* [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
+* [Profil for bruk av OpenID Connect ved deling av helseopplysninger via API](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md)
+* [Profil for JWT Access Token format](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/jwt_access_token_format.md)
+* [Profil for "authorization_details" strukturen ved bruk av HelseID](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/profil_for_authorization_details.md)
+
+
 ## Prosess
 Utviklingen av spesifikasjonene vil foregå over flere iterasjoner, hvor hver iterasjon fører til en ny versjon av spesifikasjonen. NHN skal sørge for framdrift og vil fungere som reviewer av pull-requests, sørger for framdrift i viktige diskusjoner og vil håndtere eventuelle tilbakemeldinger via issues.
 
@@ -33,11 +40,6 @@ Spesifikasjonen vil versjoneres etter hver iterasjon, hvor versjonen indikeres a
 
 Når spesifikasjonen ansees som ferdig skal den publiseres som versjon 1.0.
 
-### Spesifikasjoner
-* [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
-* [Profil for bruk av OpenID Connect ved deling av helseopplysninger via API](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md)
-* [Profil for JWT Access Token format](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/jwt_access_token_format.md)
-* [Profil for "authorization_details" strukturen ved bruk av HelseID](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/profil_for_authorization_details.md)
 
 
 ## Innføring til bruk av Github

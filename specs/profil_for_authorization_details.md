@@ -17,6 +17,9 @@ Spesifikasjonen benytter begreper og terminologi som er definert i følgende spe
 | RP | Relying Party |
 | Klient | Som i "client" i Client-Server modell |
 | RAR | [Rich Authorization Requests](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-rar) |
+| JWT | |
+| JOSE | |
+
 
 
 ## Innholdsfortegnelse

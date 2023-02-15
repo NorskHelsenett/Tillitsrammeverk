@@ -1,117 +1,214 @@
 # JWT profil for å beskrive grunnlaget for tilgang til helseopplysninger innad i Helsenettet
 
+## Sammendrag
+Denne spesifikasjonen definerer et JSON element med en tilhørende struktur som skal brukes for å formidle informasjon om helsepersonell ved bruk av protokollene OpenID Connect og OAuth 2.0. Tiltroen til informasjonen som ligger i JSON elementet i bygger på tillitsrammeverket for deling av helseopplysninger i Helsenettet.
+
+
+## Dokumentets status
+Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
+
+Spesifikasjonen skal versjoneres for å støtte endringer over tid.
+
+## Innholdsfortegnelse
+
 ## 1. Introduksjon
-Norsk Helsenett har spesifisert en JWT struktur for å gi aktører som benytter HelseID nødvendig informasjon for å tilfredsstille sikkerhetsmessige og lovpålagte krav til tilgangskontroll ved deling av helseopplysninger via API.  
+Å lage et tydelig skille mellom informasjon som inngår i tillitsrammeverket og informasjon som ligger utenfor tillitsrammeverket forhindrer at aktørene i samhandlingen benytter informasjon som ikke inngår i tillitsrammeverket til tilgangsstyring og dokumentasjon.
 
-Denne strukturen skal benyttes i ID Tokens og Access Tokens som utstedes av HelseID, men skal også benyttes for å strukturere userinfo endepunktet i HelseID. 
+Norsk Helsenett har derfor spesifisert en JWT struktur som er tilpasset behovene i forbindelse med deling av helseopplysninger. Strukturen skal inneholde nødvendig informasjon for å tilfredsstille sikkerhetsmessige og lovpålagte krav knyttet til tilgangskontroll, logging og pasientens behov for informasjon om tilganger som er gitt til hans helseopplysninger.
 
-Informasjonen som kreves for tilgangskontroll og dokumentasjon av tilgang til helseopplysninger er i dag ikke standardisert, og krever en annen representasjon enn den som finnes i de standardiserte spesifikasjonene og profilene som er tilgjengelige i dag. 
+Denne strukturen skal benyttes i ID Tokens og Access Tokens som utstedes av HelseID, men kan også benyttes for å strukturere informasjon i userinfo endepunktet i HelseID. 
+ 
 
 ## 2. Spesifikasjonens struktur
-* Claims
-  * Claim navn
-  * Objekt eller Array (verdien for et claim kan være enkeltstående eller array) 
-  * Obligatorisk (valgfri eller påkrevd) 
-  * Beskrivelse
-  * Informasjonskilder 
-  
+Spesifikasjonen definerer en JSON struktur som skal benyttes for å beskrive grunnlaget for tilgang til helseopplysninger. Attributter i JSON strukturen som inneholder informasjon kalles "claims" (påstander).
 
-Generiske strukturer 
-* Virksomhet
-* Legger opp til fleksibilitet (identifikator, system, navn) 
-* Eksempel: "legal_entity" 
+Spesifikasjonen tar først for seg det øverste nivået i JSON strukturen, og tar deretter for seg de underliggende strukturene for hvert overordnede element.
+
+### Claims i spesifikasjonen
+Et claim er et navn-verdi par, hvor verdien kan være en datatype eller et objekt. Et objekt kan være en JSON-struktur eller et JSON-array.
+
+````JSON
+Datatype:
+"tekstverdi": "Tekst"
+"tallverdi": 1234
+
+Vi benytter "_" for å skille mellom ord i navngivingen av claims.
+
+Objekt:
+"claim_navn": { "claim-navn2": "claim-verdi2"}
+"claim_navn": ["element1", "element2"]
+````
 
 
-## 3. Spesifikasjon av strukturen i "Trusted Claims" elementet
-Denne spesifikasjonen definerer et JSON element som brukes for å formidle informasjon om helsepersonell. Tiltroen til denne informasjonen bygger på tillitsrammeverket for deling av helseopplysninger i Helsenettet. 
 
-Å lage et tydelig skille mellom informasjon som inngår i tillitsrammeverket og informasjon som ligger utenfor tillitsrammeverket forhindrer at aktørene i samhandlingen benytter informasjon som ikke inngår i tillitsrammeverket til tilgangsstyring og dokumentasjon. 
+### Generiske strukturer 
+#### Fleksibilitet i JSON strukturen
+Spesifikasjonen legger opp til dynamikk i hvordan informasjonen uttrykkes. Dette lar oss uttrykke metainformasjon om påstandene i en mer konsis form.
+
+````JSON
+"claim_name": {
+	"claim1": "verdi",
+	"claim2": "metainformasjon"
+	"claim3": "metainformasjon"
+}
+````
+
+
+#### Elementer som beskriver virksomheter
+Spesifikasjonen definerer flere claims som beskriver virksomheter. Disse attributtene følger samme struktur
+
+````JSON
+"juridisk_enhet": {
+	"id": "1234",
+	"name": "Virksomheten AS"
+}
+````
+
+#### Kodeverk
+Mange av verdiene i informasjons- og datamodellen skal være basert på gyldige verdier angitt av kodeverk eller hvitelister. Denne spesifikasjonen definerer en struktur for hvordan verdier basert på kodeverk eller hvitelister skal struktureres.
+
+````JSON
+Eksempel på verdi basert på kodeverk:
+"claim_name": {
+	"code": "1234",
+	"text": "",
+	"oid_system": "x.x.x.x.x.x.x.x.x.x",
+
+
+Eksempel på verdi basert på hviteliste:
+"claim_name": {
+	"code": "1234",
+	"text": "",
+	"classification_system": "egennavn"
+}
+````
+
+## 3. Spesifikasjon av strukturen i "trusted_claims" elementet
 
 Elementet "trusted_claims" utgjør toppnivået for innholdet som beskriver grunnlaget for utlevering av helseopplysninger. Elementet er et enkeltstående objekt som består av to claims med underliggende strukturer: 
 
-| | |
+| Claim type | Beskrivelse |
 | --- | ---| 
-| trust_framework | Informasjon om tillitsrammeverket som beskriver tilliten man kan ha til påstandene i "claims" objektet. |
+| "trust_framework" | Informasjon om tillitsrammeverket som beskriver tilliten man kan ha til påstandene i "claims" objektet. |
 | "claims" | Påstander hvor tilliten er basert på det angitte tillitsrammeverket |
+
+````JSON
+"trust_framework":{
+	"trust_framework": { ... },
+	"claims": { ... }
+}
+````
 
 De underliggende elementene som blir spesifisert videre i dette dokumentet deles opp i egne spesifikasjoner som skal benyttes for å beskrive formålet ved utlevering/deling av helseopplysninger.
 
-## 4. Spesifikasjon av strukturen i elementet "trust_framework"
+### 3.1 Spesifikasjon av strukturen i elementet "trust_framework"
 Denne strukturen beskriver tillitsrammeverket som ligger til grunn for tilliten som mottakeren kan ha til informasjonen som ligger i "claims" strukturen. Elementet "trust_framework" er et enkeltstående objekt som består av to underliggende strukturer.
 
-| Claim type | Verdi | Påkrevd |
-| --- | --- | --- |
-| Version | Verdi som angir versjon av tillitrammeverk | Ja |
-| Agreement | Struktur som beskriver hvilken avtale/kontrakt som ligger til grunn for tillitsforholdet. <br>Kilde: NHN MIN/Tillitsanker| Ja |
+| Claim type | Beskrivelse |
+| --- | --- | 
+| "framework" | Verdi som angir versjon av tillitrammeverk | 
+| "agreement" | Struktur som beskriver hvilken avtale/kontrakt som ligger til grunn for tillitsforholdet. <br>Kilde: NHN MIN/Tillitsanker| 
 
-### 4.1	Spesifikasjon av "version" elementet
-"Version" elementet har en tekstlig verdi som angir hvilken versjon av tillitsrammeverket som var i bruk når strukturen ble opprettet. Strukturen er ment å kunne støtte flere samtidige tillitsrammeverk. 
-NHN vedlikeholder en liste over gyldige verdier for elementet "version" og hvilket tillitsrammeverk verdien peker på.
-
-> "trust_framework":{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "nhn_high",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8< … >8<br>
+````JSON
+"trust_framework":{
+    "framework": "eksempel",
+	"agreement": {
+		8<...>8
+	}
 }
+````
 
-### 4.2	Spesifikasjon av "Agreement" strukturen
-"Agreement" elementet er ett enkeltstående objekt som inneholder en JSON struktur som inneholder informasjon om vilkårene for bruk av tjenesten. Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på denne avtalen.
 
-| Claim | Verdi | Påkrevd |
+#### 3.1.1 Spesifikasjon av elementet "framework"
+"framework" elementet har en tekstlig verdi som angir hvilken versjon av tillitsrammeverket som var i bruk når strukturen ble opprettet av HelseID.
+
+>"nhn_high" indikerer at tillitsrammeverket er tilpasset deling av helseopplysninger i behandlingsrettede helseregistre
+
+
+````JSON
+"trust_framework":{
+	"framework": "nhn_high",
+	8< … >8
+}
+````
+
+
+#### 3.1.2 Spesifikasjon av strukturen "agreement"
+Elementet "agreement" er ett enkeltstående objekt som inneholder informasjon om vilkårene for bruk av tjenesten. Objektet er en JSON struktur.
+Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på avtalen som "agreement" elementet refererer til.
+
+| Claim | Verdi | 
 | --- | --- | -- |
-| Version | Versjonsnummer for avtalen | Ja |
-| Legal_entity | Informasjon om den juridiske enheten som inngikk avtale/aksepterte vilkår |Ja | 
-| Date | Dato når vilkår ble akseptert/inngått avtale | Ja |
-| Agreement_id | Løpenummer for den aktuelle avtalen/identifikator | Ja |
-| Granting_body | Informasjon om den juridiske enheten som det ble inngått avtale med | Ja |
+| "version" | Versjonsnummer for avtalen | 
+| "legal_entity" | Informasjon om den juridiske enheten som inngikk avtale/aksepterte vilkår |
+| "date" | Dato når vilkår ble akseptert/inngått avtale | 
+| "id" | Løpenummer for den aktuelle avtalen/identifikator | 
+| "granting_body" | Informasjon om den juridiske enheten som det ble inngått avtale med |
+
+````JSON
+"trust_framework":{
+    8< .... >8
+	"agreement": {
+		"version": "1.0",
+		"legal_entity": {
+			"id": "123456789",
+			"name": "Helsevirksomheten AS"
+		},
+		"date": "14.02.2023"
+		"id": "10001",
+		"granting_body": {
+			"id": "987654321",
+			"name": "Norsk Helsenett SF"
+		}
+	}
+}
+````
+
+### 3.2	Spesifikasjon av strukturen i "claims" elementet
+Claims elementet er ett enkeltstående objekt som består av fire attributter med underliggende strukturer.
+
+Attributtene som ligger i "claims" elementet er:
+* "practicioner"
+* "care_relationship"
+* "patient"
+* "system"
 
 
-### 4.3	Spesifikasjon av strukturen i Claims elementet
-Claims elementet inneholder informasjonen om helsepersonellet som beskriver grunnlaget for tilgangen til helseopplysninger.
-
-Claims elementet er ett enkeltstående objekt som består av to claims med underliggende strukturer.
 
 | Claim | Beskrivelse |
 | --- | --- |
 | "practitioner" | Informasjon om helsepersonellet<br><br> Kilde: HPR, Konsument (klient/IdP) |
 | "care_relationship" | Informasjon om helsepersonellets relasjon til pasienten |
-| "system" | Informasjon om systemet som ber om tilgang til et API på vegne av helsepersonellet <br><br>Kilde: Konsument eller Databehandler – må være forhåndsregistrert i NHN sin database | 
+| "patient" | Informasjon om pasienten |
+| "system" | Informasjon om systemet som ber om tilgang til et API på vegne av helsepersonellet <br><br>Kilde: Konsument eller Databehandler – må være forhåndsregistrert i NHN sin database |
 
-
-#### 4.3.1 Spesifikasjon av practitioner strukturen
-
-Denne strukturen benyttes til å beskrive grunnlaget for tilgangen til helseopplysningene.
-
-##### Eksempel på practitioner object uten verdier
+_*Eksempel på JSON strukturen:*_
+````JSON
 {
-    "practitioner": {
-        "professional_licence":{ [object] }, 
-        "role": { [object] },
-        "site_of_care":{ [object] },
-        "purpose": { [object] }
-    }
+	"practicioner":{
+		8<...>8
+	},
+	"care_relationship": {
+		8<...>8	
+	},
+	"patient": {
+		8<...>8	
+	},
+	"system": {
+		8<...>8
+	}
 }
+````
 
-##### Spesifikasjon av claims i practitioners strukturen
-| Claim | Beskrivelse |
-| --- | --- |
-| "pid" | Fødselsenummer fra folkeregisteret |
-| "name" | Fullt navnt |
-| "professional_license" | Informasjon om helsepersonellets autorisasjon eller lisens.<br>Kilde: HPR |
+#### 4.3.1 Spesifikasjon av "practitioner", "care_relationship" og "patient" elementene
 
-### 4.2.1 Spesifikasjon av "care_relationship" strukturen
+> (*) JSON strukturen som inneholder "practitioner", "care_relationship" og "patient" elementene  hoveddelen av denne strukturen er beskrevet i spesifikasjonen [Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), hvor JSON strukturen for denne informasjonen er definert. 
+
+Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesifikasjonen av [informasjons- og datamodell](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
 
 
-### 4.3.1 Spesifikasjon av System
 
-
-{
-    "system":{
-        "system_identifier": "[value]",
-        "software_identifier": "[value]",
-        "software_name": "[value]",
-        "operated_by": {[object]}
-}
-
+#### 4.3.4 Spesifikasjon av "system" elementet
 
 | Claim | Beskrivelse |
 | --- | --- |
@@ -120,3 +217,52 @@ Denne strukturen benyttes til å beskrive grunnlaget for tilgangen til helseoppl
 | "software_name" | Navn på programvare som det kjørende systemet benytter innad i føderasjonen |
 | "operated_by" | Struktur som beskriver hvilken virksomhet som har det operative ansvaret for systemet (databehandler). |
 | "on_authority_of" | Dersom virksomheten er en databehandler som har fått det operative ansvaret for systemet fra en helsevirksomhet blir dette beskrevet i denne strukturen |
+
+
+##### Eksempel på "system" object uten verdier
+````JSON
+{
+    "system":{
+        "system_identifier": "[value]",
+        "software_identifier": "[value]",
+        "software_name": "[value]",
+        "operated_by": {[object]}
+}
+````
+
+
+
+## 4. Sikkerhets- og personvernshensyn
+
+### 4.1 Sikkerhetshensyn
+
+#### 4.1.1 Tyveri og misbruk av tokens
+>TODO: beskrivelse
+
+
+#### 4.1.2 Manglende validering av Access Token hos tjenesten
+>TODO: beskrivelse
+
+#### 4.1.3 Feilkonfigurering av behandling av Access Token
+
+
+### 4.2 Personvernshensyn
+#### 4.2.1 Lekkasje av sensitive personopplysninger
+Datamodellen vil bli benyttet til å overføre sensitive personopplysninger om helsepersonellet og helsepersonellets relasjon til sin pasient. Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere sensitiv personinformasjon som overføres mellom de tekniske tjenestene som benyttes ved deling av helseopplysninger. Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
+
+mellom konsument og autorisasjonsserver/IdP
+mellom konsument og informasjonstjeneste
+mellom informasjonstjeneste og datagrensesnitt
+For å sikre oss mot potensiell lekkasje av PII bør det vurderes å innføre tiltak for å ivareta konfidensialiteten.
+
+#### 4.2.2 Mangelfull informasjon om personvernskonsevenser
+Ettersom informasjon i Access Tokens kan bli lagret hos mange aktører og brukt til å informere pasitenten om tilgangen til pasientens helseopplysninger er det en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
+
+#### 4.2.3 Misbruk av data
+Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av en eller flere parter som mottar verdiene i datasettet.
+
+#### 4.2.4 Overvåkning av ansatte i andre virksomheter
+Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
+
+#### 4.2.5 Urettmessig tilegnelse av helseopplysninger
+Det er en risiko for at helsepersonellet som ber om tilgang til helseopplysninger ikke har et tjenstlig behov, og at opplysningene ikke er relevante og nødvendige i behandlingen av pasienten.
