@@ -82,7 +82,14 @@ Merk at begrepene RP og klient brukes synonymt i dette dokument.
 - [OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)
 - [FAPI 2.0](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html) Ikke normativ, men underlag for HelseID sin sikkerhetsprofil
 - [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics)
-- 
+- [JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens](https://datatracker.ietf.org/doc/html/rfc9068)
+- [Proof Key for Code Exchange](https://www.rfc-editor.org/rfc/rfc7636)
+- [JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication](https://www.rfc-editor.org/rfc/rfc7523)
+
+#### Fremtidige krav
+- [OAuth 2.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)
+- [OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop) 
+- [OAuth 2.0 Pushed Authorization Requests](https://datatracker.ietf.org/doc/html/rfc9126)
 
 ### Tillitsrammeverk for deling av helseopplysninger
 Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskrevet i egne dokumenter.
@@ -102,7 +109,7 @@ Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskreve
 | --- | --- | --- 
 | Klient/RP | SKAL | Følge HelseID sikkerhetsprofil for klienter
 | Klient/RP | SKAL | Benytte PKCE
-| Klient/RP | KAN | Benytte asymmetrisk signerte Request Objects for å ocerføre informasjon om grunnlaget for tilgang
+| Klient/RP | KAN | Benytte asymmetrisk signerte Request Objects for å overføre informasjon om grunnlaget for tilgang
 | Klient/RP | SKAL | Benytte Resource Indicators ved forespørsel om tilgang til flere API-er
 
 | Klient/RP | SKAL | FREMTIDIG KRAV. Benytte DPoP for å binde Access Token til klient.
@@ -144,7 +151,6 @@ Klient ber om autentisering av den fysiske personen ved bruk av normal flyt iht.
 * Dersom Request Object benyttes skal dette overføres til HelseID som et FORM parameter.
 
 * Det er et krav at et token ikke skal kunne stjeles eller misbrukes. Mekanismene som skal forhindre dette er ikke tilgjengelig i HelseID enda, men når de er på plass skal klienten bruke DPoP for å binde seg krypografisk til Access Tokens.
-
 
 * Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
 
@@ -417,10 +423,15 @@ Klienten skal ikke kontrollere Access Token, men sende dette videre til API-et s
 
 
 ### Kontroller av Access Token i API
+Et API skal kontrollere ett innkommende Access Token i henhold til [rfc9068] med følgende unntak:
+- Claimet "typ" kan være "jwt", i tillegg til til "at+jwt" og "application/at+jwt".
 
-- Validering av token i API
+Se også [Guidelines for using JSON Web Tokens](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/284229708/Guidelines+for+using+JSON+Web+Tokens+JWTs) i HelseID sin dokumentasjon for kontroll av claims spesifikke for HelseID.
+
+Et fremtidig krav vil være å også kontrollere at tokenet er sendt av korrekt klient, se 
+
+
 - DPoP 
-- eID 
 - Validering og bruk av informasjon i token 
 - Revisjonslogging 
 
