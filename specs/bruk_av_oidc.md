@@ -1,6 +1,7 @@
 <div style="font-size:2.5em;">Bruk av OpenID Connect for deling av helseopplysninger via API</div>
 
 Versjon: 0.1
+
 Dato: 14.02.2023
 
 <span style="font-size:2em;">Innholdsfortegnelse</span>
