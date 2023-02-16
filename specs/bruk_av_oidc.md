@@ -226,7 +226,7 @@ HelseID gjør det enkelt for klienter å hente ett Access Token per tjeneste ved
 Figuren under viser hvilke kontroller HelseID gjør når en klient forespør brukerautentisering.
 
 ```mermaid
-flowchart LR
+flowchart TD
   Error[Vis feilmelding]
   Param{Kontroll av standard protokollparamtere}
   S[Autentiseringsforspørsel fra Klient] --> Param
