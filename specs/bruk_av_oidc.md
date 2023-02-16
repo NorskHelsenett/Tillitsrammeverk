@@ -62,7 +62,7 @@ Dokuemntet benytter begreper og terminologi som er definert i følgende spesifik
 
 
 ## Introduksjon
-Dette dokumentet er en teknisk spesifikasjon som beskriver hvordan OpenID Connect og OAuth 2.0 skal benyttes ved deling av helseopplysninger innad i Helsenettet. Dokumentet er ment for utviklere og tekniske arkitekter som skal konsumere API hvor det er et krav at helsepersonellet er autentisert.
+Dette dokumentet er en beskrivelse av hvordan OpenID Connect og OAuth 2.0 skal benyttes ved deling av helseopplysninger innad i Helsenettet. Dokumentet er ment for utviklere og tekniske arkitekter som skal konsumere API hvor det er et krav at helsepersonellet er autentisert. Det bygger på ett sett med spesifikasjoner [beskrevet under](#forutsetninger-og-underliggende-krav).
 
 OpenID Connect er en protokoll som lar utvikleren selv velge en del sikkerhetsmessige egenskaper ved protokollen. Når man deler helseopplysninger er det forventet at sikkerheten blir ivaretatt på god nok måte. Denne spesifikasjonen er ikke en generell beskrivelse av hvordan OpenID Connect skal benyttes, men en spesifikk beskrivelse av hvordan HelseID skal brukes ved deling av helseopplysninger. 
 
@@ -87,15 +87,29 @@ Merk at begrepene RP og klient brukes synonymt i dette dokument.
 ### Tillitsrammeverk for deling av helseopplysninger
 Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskrevet i egne dokumenter.
 
-- [JWT profil for tillitsrammeverk](jwt_access_token_format.md)
-- [RAR profil for tillitsrammeverk](profil_for_authorization_details.md)
+- [JWT spesifikasjon for tillitsrammeverk](jwt_access_token_format.md)
+- [RAR spesifikasjon for tillitsrammeverk](profil_for_authorization_details.md)
+- [Informasjons- og datamodell for tillitsrammeverk](informasjons_og_datamodell.md )
 - [Medlemskap i Helsenettet](https://www.nhn.no/medlemskap-og-tilknytning/avtaler-vilkar-og-priser)
 - [Norm for informasjonssikkerhet og personvern i helse- og omsorgssektoren](https://www.ehelse.no/normen/normen-for-informasjonssikkerhet-og-personvern-i-helse-og-omsorgssektoren)
 - eID i tillitsrammeverket **_TODO_**
 - Avtaleverk **_TODO_**
 
-### Krav knyttet til bruk av HelseID
+### Oppsummering av krav knyttet til bruk av HelseID
 #### Krav til RP/Klient
+
+| Aktør | Krav | Beskrivelse 
+| --- | --- | --- 
+| Klient/RP | SKAL | Følge HelseID sikkerhetsprofil for klienter
+| Klient/RP | SKAL | Benytte PKCE
+| Klient/RP | KAN | Benytte asymmetrisk signerte Request Objects for å ocerføre informasjon om grunnlaget for tilgang
+| Klient/RP | SKAL | Benytte Resource Indicators ved forespørsel om tilgang til flere API-er
+
+| Klient/RP | SKAL | FREMTIDIG KRAV. Benytte DPoP for å binde Access Token til klient.
+| Klient/RP | SKAL | FREMTIDIG KRAV. Benytte PAR for å sende parametre for brukerautentisering.
+
+
+
 - Skal
 - Bør
 - Kan
@@ -137,8 +151,8 @@ Klient ber om autentisering av den fysiske personen ved bruk av normal flyt iht.
 * Klient skal bruke Pushed Authorization Requests som beskrevet i [rfc9126](https://datatracker.ietf.org/doc/html/rfc9126) (fremtidig krav) 
 
 
-* RP skal autentisere brukeren iht. regler i tillitsrammeverket **_TODO:_** [Lenke her]
-   * Dette inkluderer å verifisere at lokal brukeridentitet (om noen) i RP er lik brukeridentiteten returnert fra HelseID.
+* Klient skal autentisere brukeren iht. regler i tillitsrammeverket **_TODO:_** [Lenke her]
+   * Dette inkluderer å verifisere at lokal brukeridentitet (om noen) i klient er lik brukeridentiteten returnert fra HelseID.
 
 ```mermaid
 sequenceDiagram 
@@ -206,7 +220,7 @@ Et Request Object SKAL overføres som et form parameter i en POST request.
 ##### Forspørsel om tilgang til flere API-er
 Tjenester som inngår i tillitsmodellen krever at Access Tokens ment for dem, ikke skal kunne brukes for å få tilgang andre API-er. I praksis innebærer dette at claimet "aud" (audience) ikke kan ha mer enn en verdi. *Audience* er navnet som identifiserer API-et i HelseID
 
-HelseID gjør det enkelt for klienter å hente ett Access Token per tjeneste ved å tilby mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8707). Bruk av Resource indikators er beskrevet [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
+HelseID gjør det enkelt for klienter å hente ett Access Token per tjeneste ved å tilby mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8707). Bruk av Resource indikators [er beskrevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
 
 
 #### Kontroller i HelseID av forespørsler om brukerautentisering
@@ -282,10 +296,8 @@ Dersom dette feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 
 Dersom kontrollene er ok, vil HelseID peristere informasjonen fra IDP for bruk ved generering av tokens.
 
-
 #### Håndtering av resultat av brukerautentisering i klient
 Når klienten mottar resultatet fra brukerautentiseringen fra HelseID, skal dette benyttes for å hente Identity-, Refresh- og Access Tokens. Dette gjøres i henhold i protokkspesifikasjon og HelseID sin sikkerhetsprofil.
-
 
 #### Kall fra klient for å hente tokens
 Etter vellykket brukesautentisering skal klient kalle token-endepunktet til HelseID for å hente Identity Token, Access Token og Refresh Token. Det skal benyttes POST.
@@ -298,17 +310,17 @@ Dette gjøres i henhold til spesifikasjon og sikkerhetsprofil og inkluderer:
 - (Fremtidig) Bruk av DPoP
 
 ##### Bruk av PKCE
-Klienten skal bruke PKCE (også beskrevet for brukerautentisering) som beskrevet i [rfc7636](https://www.rfc-editor.org/rfc/rfc7636).
+Klienten skal bruke PKCE som beskrevet i [rfc7636](https://www.rfc-editor.org/rfc/rfc7636).
 
 ##### Bruk av Client Assertion
-For klientautentisering skal klienten brukes en client assertion som beskrevet i [rfc7523](https://www.rfc-editor.org/rfc/rfc7523.html#section-2.2).  
+For klientautentisering skal klienten brukes en client assertion som beskrevet i [rfc7523](https://www.rfc-editor.org/rfc/rfc7523.html#section-2.2) og i [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/45973505/How+to+submit+organizational+information+to+HelseID+machine-to-machine) i dokumentasjonen til HelseID.
 
 Klient skal bruke den private nøkkelen som tilsvarer offentlig nøkkel registrert hos HelseID.
 
-Kodeeksempel for bygging av Client Assertion er tilgjengelig [her](https://github.com/NorskHelsenett/HelseID.Samples/tree/master/ClientCredentials).
+Kodeeksempel for bygging av Client Assertion [er tilgjengelig her](https://github.com/NorskHelsenett/HelseID.Samples/tree/master/ClientCredentials).
  
 ##### Bruk av Resource Indicators
-Uthenting av API-spesifikke Access Tokens skal gjøres som beskrevet [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
+Uthenting av API-spesifikke Access Tokens skal gjøres [som beskrevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
 
 ##### Bruk av RAR ("authorization_details")
 Klienten kan sende inn utvidet informasjon til HelseID ved bruk av "authorization_details"-claimet. 
