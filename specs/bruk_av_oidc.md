@@ -105,41 +105,33 @@ Tillitsrammeverk for deling av helseopplysninger i norsk helsesektor er beskreve
 ### Oppsummering av krav knyttet til bruk av HelseID
 #### Krav til RP/Klient
 
-| Aktør | Krav | Beskrivelse 
-| --- | --- | --- 
-| Klient/RP | SKAL | Følge HelseID sikkerhetsprofil for klienter
-| Klient/RP | SKAL | Benytte PKCE
-| Klient/RP | KAN | Benytte asymmetrisk signerte Request Objects for å overføre informasjon om grunnlaget for tilgang
-| Klient/RP | SKAL | Benytte Resource Indicators ved forespørsel om tilgang til flere API-er
-
-| Klient/RP | SKAL | FREMTIDIG KRAV. Benytte DPoP for å binde Access Token til klient.
-| Klient/RP | SKAL | FREMTIDIG KRAV. Benytte PAR for å sende parametre for brukerautentisering.
-
-
-
-- Skal
-- Bør
-- Kan
-- Kommende krav
+Krav | Beskrivelse 
+| --- | --- 
+SKAL | Følge HelseID sikkerhetsprofil for klienter
+SKAL | Benytte PKCE
+SKAL | Benytte Resource Indicators ved forespørsel om tilgang til flere API-er
+KAN | Benytte asymmetrisk signerte Request Objects for å overføre informasjon om grunnlaget for tilgang
+SKAL | FREMTIDIG KRAV. Benytte DPoP for å binde Access Token til klient.
+SKAL | FREMTIDIG KRAV. Benytte PAR for å sende parametre for brukerautentisering.
 
 #### Krav til API/Tjeneste
-- Skal
-- Bør
-- Kan
-- Kommende krav
+Krav | Beskrivelse 
+| --- | --- 
+SKAL | Følge HelseID sikkhetsprofil for API-er
+**_TODO_**  | **_TODO_**
 
 #### Krav til HelseID
-- Skal
-- Bør
-- Kan
-- Kommende krav
+Krav | Beskrivelse 
+| --- | --- 
 
 #### Krav til IDP
-- Sikkerhetprofil
-- Må være godkjent ihht formelle krav i tillitsmodell (nkom, egne prosesser)
+Krav | Beskrivelse 
+| --- | --- 
+SKAL | Følge HelseID sikkerhetsprofil for IDP-er
+**_TODO_**  | **_TODO_**
+
 
 ## Bruk av HelseID ved deling av helseopplysninger
-
 Dette avsnittet beskriver i større detalj bruksmønsteret for å dele helseopplysninger mellom fagsystemer og API-er.
 
 ### Overordnet beskrivelse av bruksmønster
@@ -185,18 +177,19 @@ sequenceDiagram
   RP->>API: Invoke with Access Token as Bearer Token
   end
 
-Note over RP: Access Token Expires
+Note over RP: Access Token expires or Context  changes
 RP->>HelseID: Get new Access Token with Refresh token   
 HelseID->>RP: New Access Token 
  
 ```
-Hvert enkelt steg i flyten over er beskrevet i detalj under
 
-**_TODO:_** [Legg inn sekvensdiagram som viser målbilde med PAR og DPoP]
+Hvert enkelt steg i flyten over er beskrevet i detalj under.
+
+**_TODO_** [Legg inn sekvensdiagram som viser målbilde med PAR og DPoP]
 
 
-#### Kall fra klient for brukerautentisering
-Når et helsepersonell ønsker å få tilgang til helseopplysninger i andre virksomheter SKAL helsepersonellet autentiseres i HelseID, ref steg 1 og 2 i figuren over.
+#### Kall fra klient for brukerautentisering (steg 1-2)
+Når et helsepersonell ønsker å få tilgang til helseopplysninger i andre virksomheter SKAL helsepersonellet autentiseres i HelseID.
 
 Brukeren SKAL sendes i nettleser til endepunktet [/authorize](https://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint) i HelseID. Endepunktet er dokumentert [her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5571605/Authorize+Endpoint).
 
@@ -229,7 +222,7 @@ Tjenester som inngår i tillitsmodellen krever at Access Tokens ment for dem, ik
 HelseID gjør det enkelt for klienter å hente ett Access Token per tjeneste ved å tilby mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8707). Bruk av Resource indikators [er beskrevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
 
 
-#### Kontroller i HelseID av forespørsler om brukerautentisering
+#### Kontroller i HelseID av forespørsler om brukerautentisering (mellom steg 2-3)
 Figuren under viser hvilke kontroller HelseID gjør når en klient forespør brukerautentisering.
 
 ```mermaid
@@ -273,7 +266,7 @@ Dersom alle kontroller er ok, sjekker HelseID om brukeren allerede har en sesjon
 
 I andre tilfeller sendes brukeren til ekstern IDP for autentisering.
 
-#### Kontroller av svar fra ekstern IDP til HelseID
+#### Kontroller av svar fra ekstern IDP til HelseID (mellom steg 4-5)
 Etter at en bruker har autentisert seg hos en ekstern IDP sendes resultatet til HelseID. Alle integrasjoner mellom HelseID og eksterner IDP-er er basert på OpenID Connect, og følger sikkerhetsprofilen.
 
 HelseID kontrollerer resultatet fra HelseID som følger.
@@ -302,10 +295,10 @@ Dersom dette feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 
 Dersom kontrollene er ok, vil HelseID peristere informasjonen fra IDP for bruk ved generering av tokens.
 
-#### Håndtering av resultat av brukerautentisering i klient
-Når klienten mottar resultatet fra brukerautentiseringen fra HelseID, skal dette benyttes for å hente Identity-, Refresh- og Access Tokens. Dette gjøres i henhold i protokkspesifikasjon og HelseID sin sikkerhetsprofil.
+#### Håndtering av resultat av brukerautentisering i klient (mellom steg 5 og 6)
+Når klienten mottar resultatet fra brukerautentiseringen fra HelseID, skal dette benyttes for å hente Identity-, Refresh- og Access Tokens. Dette gjøres i henhold i OpenID Connect og HelseID sin sikkerhetsprofil.
 
-#### Kall fra klient for å hente tokens
+#### Kall fra klient for å hente tokens (steg 6)
 Etter vellykket brukesautentisering skal klient kalle token-endepunktet til HelseID for å hente Identity Token, Access Token og Refresh Token. Det skal benyttes POST.
 
 Dette gjøres i henhold til spesifikasjon og sikkerhetsprofil og inkluderer:
@@ -340,7 +333,7 @@ For å sende denne informasjonen til token-endepunktet, må "authorization_detai
 Se egen profil i [Profil for bruk av Rich Authorization Requests](profil_for_authorization_details.md)
 
 
-#### Kontroller i HelseID av forespørsel om tokens
+#### Kontroller i HelseID av forespørsel om tokens (mellom steg 6 og 7)
 Figuren under viser hvilke kontroller HelseID gjør når en klient forespør tokens i forbindelse med en brukerautentisering.
 
 ```mermaid
@@ -376,11 +369,8 @@ ELLER
 
 * resource (dersom Resource Indicators ble brukt, må denne være lik en av ressursene som ble oppgitt mot authorize-endepunktet)
 
-~~* Vise kontroller i HelseID~~
-~~  * Vise kontroll av klient ~~
-~~    (Godkjent for PDS)~~
-  * Vise sjekk av systemidentitet
-    (Ikke implementert ennå) 
+  * Vise sjekk av systemidentitet (fremtidig) 
+  
   * Vise sjekk av virksomhetsidentitet 
   * Vise berikelse av personinformasjon 
   * Vise berikelse av HPR informasjon 
@@ -436,7 +426,7 @@ Et fremtidig krav vil være å også kontrollere at tokenet er sendt av korrekt 
 - Revisjonslogging 
 
 
-### Bruk av refreshtoken
+### Bruk av Refresh Token
 Klienten skal bruke Refresh Tokens i følgende tilfeller:
 * Dersom at Access Tokens ikke er varig lengre.
 * Dersom det er behov for et Access Tokens for et spesifikt API
