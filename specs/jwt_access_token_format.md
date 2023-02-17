@@ -244,7 +244,7 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 >TODO: beskrivelse
 
 #### 4.1.3 Feilkonfigurering av behandling av Access Token
-
+>TODO: beskrivelse
 
 ### 4.2 Personvernshensyn
 #### 4.2.1 Lekkasje av sensitive personopplysninger
