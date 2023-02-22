@@ -131,40 +131,9 @@ Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktø
 
 > TODO: mer her om tillitsnivå/sikkerhetsnivå/identiteter osv.. Hvem er den autoritative kilden til informasjonen osv..
 
-#### 3.2.2 Relasjon til eHSDI datamodell 
-
-I forbindelse med EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
-
-#### 3.2.3 Påkrevd eller valgfri informasjon
-Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.
-
-Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
 
-
-#### 3.2.4 Oversikt over attributter i datamodellen 
-
-<!-- 
-| Informasjonskategori | Attributt | Informasjonskilde |
-| --- | --- | --- | 
-| Helsepersonell | "pid" | HelseID |
-| | "navn" | HelseID |
-| | "structural_role" | Konsument |
-| | "hpr-nummer" | HelseID |
-| | "professional_licence" | HelseID |
-| Behandlerelasjon | Strukturell rolle | Konsument |
-| | "functional_role" |  Konsument |
-| | "clinical_speciality" |  Konsument |
-| | "legal_entity_id" | Konsument/HelseID |
-| | "legal_entity_name" | Konsument/HelseID |
-| | "point_of_care_id" | Konsument |
-| | "point_of_care_name" | Konsument |
-| | "facility_type" | Konsument |
-| | "locality" | Konsument |
-| | "purpose_of_use" |  Konsument |
-| Pasient | "patient_identifier" |  Konsument |
-
--->
+#### 3.2.2 Oversikt over attributter i datamodellen 
 
 ```mermaid
 ---
@@ -231,164 +200,312 @@ classDiagram
 		+List<Authorization> authorizations
 		+List<Licence> licences
 	}
-	
-	
-	
+		
 ```
 
+#### 3.2.3 Oppsummering av påkrevd eller valgfri informasjon
+Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.
 
-#### 3.2.5 Kategori: Helsepersonell
+Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
+
+| Informasjon | Beskrivelse | Informasjonskilde | Påkrevd |
+| --- | --- | --- | --- |
+| "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** |
+| "structural_role" | Indikerer hvorvidt dette er et helsepersonell med/uten lisens/autorisasjon eller person med sekretærfunksjon | Konsumentens EPJ | **Ja** |
+| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** |
+| "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** |
+| "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** |
+| "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** |
+| "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** |
+| "legal_entity_id" | Den dataansvarlige virksomhetens org.nr | Konsumentens EPJ | **Ja** |
+| "legal_entity_name" | Den dataansvarlige virksomhetens navn | Konsumentens EPJ | **Ja** |
+| "point_of_care_id" | Behandlingsstedets org.nr., dersom det er relevant | Konsumentens EPJ | **Nei** |
+| "point_of_care_name" | Behandlingsstedets navn, dersom det er relevant | Konsumentens EPJ | **Nei** |
+| "facility_type" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** |
+| "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |
+| "purpose_of_use" | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** |
+| "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** |
+
+#### 3.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
+
+I forbindelse med EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
+
+
+#### 3.2.5 Kategori: Helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
+Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
-##### Identifikator for helsepesonell - fødselsnummer
+
+##### 3.2.5.1 Identifikator for helsepersonellet som "fysisk person"
 Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
 
 |   |   |
 | ---| ---|
+| Informasjonselement | Unik identifikator for helsepersonellet |
 | Attributt: | "pid" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id" |
-| Obligatorisk: | Ja |
+| Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
 | Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 
-##### Strukturell rolle
+###### Identifikator for Helsepersonellet - Attributt SAML format
+
+````XML
+<saml:Attribute Name="2.16.578.1.12.4.1.4.1">
+	<saml:AttributeValue xsi:type="xs:string">xxxxxx34794</saml:AttributeValue>
+</saml:Attribute>
+````
+
+###### Identifikator for Helsepersonellet - Attributt JSON format
+
+````JSON
+"pid":{
+	"value": "xxxxxx34794",
+	"oid_system": "2.16.578.1.12.4.1.4.1"
+}
+````
+
+
+##### 3.2.5.2 Helsepersonellets strukturelle rolle
 Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell med lisens, uten lisens eller om han er et administrativt personell.
 
 |   |   |
 | ---| ---|
+| Informasjonselement | Indikererer hvorvidt sluttbrukeren har lisens, er uten lisens eller er sekretær/har en administrativ rolle |
 | Attributt: | "structural_role" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xacml:2.0:subject:role" |
-| Obligatorisk: | Ja |
+| Obligatorisk: | **Ja** |
 | Data type: | String |
-| Autoritativ kilde: | Konsumenten, helsevirksomhet |
+| Autoritativ kilde: | Den konsumerende helsevirksomheten |
 | Informasjonskilde: | Konsumentens EPJ system |
 | Kodeverk: | ASTM |
 | Gyldige verdier: | "Licensed Health Care Providers",<br/>"Non-Licensed Health Care Providers",<br/>"Clerical and Administrative Personnel" |
 
+###### Helsepersonellets strukturelle rolle - Attributt SAML format
+
+````XML
+<saml:Attribute Name="urn:oasis:names:tc:xacml:2.0:subject:role">
+	<saml:AttributeValue>
+		<Role xmlns:xsi="'urn:hl7-org:v3">Licensed Health Care Providers</Role>
+	</saml:AttributeValue>
+</saml:Attribute>
+````
 
 
-##### Identifikator fra Helsepersonellregisteret
+###### Helsepersonellets strukturelle rolle - Attributt JSON format
+
+````JSON
+"structural_role": {
+	"value": "Licensed Health Care Providers",
+	"code": "xxxxxx",
+	"oid": "2.16.578.1.12.x.x.x.x"
+}
+```` 
+
+
+##### 3.2.5.3 Informasjon om helsepersonellet fra Helsepersonellregisteret
+
+###### Helsepersonellnummer
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
  
 |   |   |
 | ---| ---|
 | Attributt: | "hpr_nr" |
-| Attributt EHDSI: | |
-| Obligatorisk: | Nei |
+| Informasjonselement | Unik identifikator for helsepersonellet knyttet opp til formelle autorisasjoner eller lisenser |
+| Attributt EHDSI: | N/A (?) |
+| Obligatorisk: | **Nei** |
 | Data type: | String |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
-"hpr_nr": "xxxxxxxxx"
-
-##### Helsepersonellets autorisasjoner og lisenser
-Verdien for attributtet "professional_licence" beskriver autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
-
-> *TODO: Spesifiser datasmodell for lisenser og autorisasjoner fra HPR*
+###### Helsepersonellets autorisasjoner og lisenser
+Attributtene "authorization" og "licence" brukes for å beskrive autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
 
 |   |   |
 | ---| ---|
-| Attributt: | "professional_licence" |
-| Attributt EHDSI: | |
-| Obligatorisk: | Nei |
+| Informasjonselement | Beskriver helsepersonellets autorisasjoner og/eller lisenser |
+| Attributter: | "authorization"<br/>"licence" |
+| Attributt EHDSI: | N/A |
+| Obligatorisk: | **Nei** |
 | Data type: | Object | 
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell |
 
+###### Helsepersonellregister - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Helsepersonellregister - Atributter JSON format
+
+````JSON
+"professional_license": {
+	"hpr_nr": "xxxxxxxxx",
+	"authorization": {[...]},
+	"licence": {[...]},
+	"oid": "xx.xx.xx.xx"
+}
+````  
+
+
 #### 3.2.6 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis ved hans rolle, spesialitet, virksomhet hvor han yter helsehjelp, behandlingssted, helsetjenestetype og en angivelse av formålet med behandlingen av helseopplysningene.
 
-##### Helsepersonellets funksjonelle rolle
+##### 3.2.6.1 Helsepersonellets funksjonelle rolle
 Attributtet "functional_role" representerer helsepersonellets rolle hos virksomheten i hans behandling av pasienten, og angis av kode fra STYRK-08.
 
 |   |   |
 | ---| ---|
+| Informasjonselement | Yrkesklassifisering av helsepersonellet i organisasjonen.<br/>Basert på den internasjonale standarden ISCO-08 |
 | Attributt: | "functional_role" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:functional-role" |
-| Obligatorisk: | Ja |
+| Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten - helsepersonellets rolle hos virksomheten |
 | Informasjonskilde: | Konsumentens EPJ/HR system |
 | Kodeverk: | STYRK-08 (ISCO-08) |
 | Gyldige verdier: | Helsefaglige koder (må avklares - subsett av STYRK-08) |
 
-##### Helsepersonellets spesialitet
+###### Helsepersonellets funksjonelle rolle - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Helsepersonellets funksjonelle rolle - Attributter JSON format
+````JSON
+"functional_role": {
+	"Text": "Lege", 
+	"value": "2211",
+	"oid": "STYRK-08"
+}
+```` 
+
+
+##### 3.2.6.2 Helsepersonellets spesialitet
 Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i sin behandling av pasienten
 
 |   |   |
 | ---| ---|
+| Informasjonselement | Helsepersonellets spesialitet |
 | Attributt: | "clinical_speciality" |
 | Attributt EHDSI: | "urn:ehdsi:names:wp3.4:subject:clinical-speciality" |
-| Obligatorisk: | Nei |
+| Obligatorisk: | **Nei** |
 | Data type: | String |
 | Autoritativ kilde: | Konsumenten - helsepersonellets rolle i virksomheten |
 | Informasjonskilde: | Konsumentens EPJ/HR system |
 | Kodeverk: | SNOMED-CT: Clinical-speciality |
 | oid: | 2.16.840.1.113883.3.88.12.80.72 |
 
-##### Identifikator for den dataansvarlige virksomheten 
-Attributtet "legal_entity" identifiserer virksomheten hvor helsepersonellet yter helsehjelp.
+###### Helsepersonellets spesialitet - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Helsepersonellets spesialitet - Attributter JSON format
+````JSON
+"clinical_speciality": {
+	"text": "xxxxxx",
+	"code": "419772000",
+	"oid": "xx.xx.xx.xx.xx.xx"
+}
+```` 
+
+
+##### Den dataansvarlige virksomheten 
+Attributtet "legal_entity_id" og "legal_entity_name" identifiserer virksomheten hvor helsepersonellet yter helsehjelp.
 
 |   |   |
 | ---| ---|
-| Attributt: | "legal_entity_id" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization" |
+| Informasjonselement | Virksomheten (hovedenhet) hvor helsepersonellet yter helsehjelp |
+| Attributt: | "legal_entity_id"<br/>"legal_entity_name" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
 | Obligatorisk: | Ja |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret)|
 
-##### Navn på den dataansvarlige virksomheten
-Attributtet "legal_entity" inneholder navnet på virksomheten hvor helsepersonellet yter helsehjelp.
+
+###### Den dataansvarlige virksomheten - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Den dataansvarlige virksomheten - Attributter JSON format
+
+````JSON
+"legal_entity": {
+	"id": "921592761",
+	"name": "Lege Leif Lagesen ENK",
+	"oid": "x.x.x.x.x.x"
+}
+```` 
+
+##### Behandlingssted
+
+Attributtet "point_of_care_id" og "point_of_care_name" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 |   |   |
 | ---| ---|
-| Attributt: | "legal_entity_name" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
-| Obligatorisk: | Ja *(avvik fra EHDSI)* |
-| Data type: | String |
-| Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsument (HelseID + Altinn) |
-| Kodeverk: | (kode for enhetsregisteret)|
-
-##### Identifikator for behandlingssted
-Attributtet "point_of_care_id" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
-
-|   |   |
-| ---| ---|
-| Attributt: | "point_of_care_id" |
+| Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
+| Attributt: | "point_of_care_id"<br/>"point_of_care_name" |
 | Attributt EHDSI: | N/A |
-| Obligatorisk: | Nei |
+| Obligatorisk: | **Nei** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
 | Kodeverk: | (kode for enhetsregisteret) |
 
-##### Navn på behandlingssted
 Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
-|   |   |
-| ---| ---|
-| Attributt: | "point_of_care_name" |
-| Attributt EHDSI: | N/A |
-| Obligatorisk: | Nei |
-| Data type: | String |
-| Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsument (HelseID + Altinn) |
-| Kodeverk: | (kode for enhetsregisteret) |
+###### Behandlingssted - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Behandlingssted - Attributter JSON format
+
+````JSON
+"point_of_care": {
+	"id": "123456789",
+	"name": "Det beste legekontoret i byen AS",
+	"system_oid": ""
+}
+````
+
 
 ##### Helsetjenestetype
 Attributtet "facility_type" angir hvilken type helsetjenester som leveres ved virksomheten som helsepersonellet jobber for.
 
 |   |   |
 | ---| ---|
+| Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "facility_type" |
 | Attributt EHDSI: | "urn:ehdsi:names:subject:healthcare-facility-type" |
-| Obligatorisk: | Ja |
+| Obligatorisk: | **Ja** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -396,47 +513,185 @@ Attributtet "facility_type" angir hvilken type helsetjenester som leveres ved vi
 | oid code: | 1.3.6.1.4.1.12559.11.10.1.3.2.2.2<br/>volven: 8627<br/>volven: 8662<br/>volven: 8663<br/>volven: 8664<br/>volven: 8665<br/>volven: 8666 |
 | Gyldige verdier:| Hospital,<br/>Resident Physician,<br/>Pharmacy,<br/>++? |
 
+###### Helsetjenestetype - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Helsetjenestetype - Attributter JSON format
+
+````JSON
+"facility_type":{
+	"text": "Sykepleietjeneste",
+	"code": "KP02",
+	"system_oid": "8663"
+}
+````
 
 ##### Fysisk sted
 Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
 
 |   |   |
 | ---| ---|
+| Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
 | Attributt: | "locality" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:environment:locality" |
-| Obligatorisk:| Ja |
+| Obligatorisk:| **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | ingen |
 | Gyldige verdier: | kun alfanumeriske tegn (regex: "^[a-zA-Z0-9_]*$") |
 
+###### Fysisk sted - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Fysisk sted - Attributter JSON format
+
+````JSON
+"locality": "Helsehjelpgata 4, 0001 Valderborg"
+
+````
+
 ##### Formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlingen av personopplysninger.
 
 |   |   |
 | ---| ---|
+| Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
 | Attributt: | "purpose_of_use" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:purposeofuse" |
-| Obligatorisk: | Ja |
+| Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | String |
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448<br/> HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
 | Gyldige verdier:| TREAT, <br/>ETREAT,<br/>... |
 
+###### Formålet med behandlingen av personopplysninger - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Formålet med behandlingen av personopplysninger - Attributter JSON format
+
+````JSON
+"purpose_of_use": {
+	"value": "TREAT",
+	"system_oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+}
+
+````
 
 #### 3.2.7 Kategori: Pasient
 ##### Unik identifikator for pasienten
 
 | Attributt | |
 | --- | --- |
+| Informasjonselement | Unik identifikator for pasienten som helsepersonellet ber om helseopplysninger for |
 | Attributt: | "patient_id" |
 | Attributt EHDSI: | |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
-## 4. Sikkerhets- og personvernshensyn
-### 4.1 Cybersikkerhet
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
+###### Formålet med behandlingen av personopplysninger - Attributter JSON format
+
+````JSON
+"patient": {
+	"id": "TREAT",
+	"oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+}
+
+````
+
+## 4. JSON profil for datamodell
+Full modell - valgfrie elementer er tatt med
+
+````JSON
+{
+	"practicioner": {
+		"pid":{
+			"value": "xxxxxx34794",
+			"oid": "2.16.578.1.12.4.1.4.1"
+		},
+		"structural_role": {
+			"text": "Licensed Health Care Providers",
+			"code": "xxxx",
+			"oid": "2.16.578.1.12.x.x.x.x"
+		},
+		"professional_license": {
+			"hpr_nr": "xxxxxxxxx",
+			"authorization": {[...]},
+			"licence": {[...]}
+		}
+	},
+	"care_relationship": {
+		"functional_role": {
+			"code": "2211",
+			"oid": ""
+		},
+		"clinical_speciality": {
+			"value": "419772000",
+			"oid": ""
+		},
+		"legal_entity": {
+			"id": "921592761",
+			"name": "Lege Leif Lagesen",
+			"oid": ""
+		},
+		"point_of_care": {
+			"id": "123456789",
+			"name": "Det beste legekontoret i byen AS",
+			"oid": ""
+		},
+		"facility_type":{
+			"text": "helsetjenestetype",
+			"value": "05",
+			"oid": ""
+		}
+		"locality": "Helsehjelpgata 1 0001 Valderborg",
+		"purpose_of_use": {
+			"Text": "beskrivelse",
+			"code": "TREAT",
+			"oid": ""
+		}
+	},
+	"patient": {
+		"value": "xxxxxx95164",
+		"oid": "2.16.578.1.12.4.1.4.1"
+	}
+}
+````
+
+## 5. SAML profil for datamodell
+
+````xml
+
+```` 
+
+
+## 6. Sikkerhets- og personvernshensyn
+### 6.1 Cybersikkerhet
 Både egenprodusert og tredjeparts programvarekomponenter som brukes til datalagring samt behandling og presentasjon av informasjonen i datamodellen kan inneholde svakheter som lar en angriper utnytte data som overføres mellom partene til å utføre forskjellige typer angrep på innsiden av en organisasjon.
 
 Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og behandles av forskjellige typer programvare. Sikkerhetsangrep som utføres i forbindelse med datalagring er svært vanlig, og utgjør en generell sikkerhetsrisiko som kan begrenses ved at verdier som overføres kan valideres og kontrolleres.
@@ -444,8 +699,8 @@ Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og beh
 Informasjonen i datamodellen vil blant annet benyttes til å utføre analyse av logger, og vil kunne bli vist til sluttbrukere i forskjellige applikasjoner. Dette åpner for angrep mot sårbarheter i programvare, som f.eks. misbruk av makroer eller XSS angrep i nettlesere. Sannsynligheten for denne typen sikkerhetsangrep bør begrenses ved at verdier som overføres kan valideres og kontrolleres.
 
 
-### 4.2 Personvern
-#### 4.2.1 Lekkasje av sensitive personopplysninger
+### 6.2 Personvern
+#### 6.2.1 Lekkasje av sensitive personopplysninger
 Datamodellen vil bli benyttet til å overføre sensitive personopplysninger om helsepersonellet og helsepersonellets relasjon til sin pasient. Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere sensitiv personinformasjon som overføres mellom de tekniske tjenestene som benyttes ved deling av helseopplysninger. 
 Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
 * mellom konsument og autorisasjonsserver/IdP
@@ -454,31 +709,33 @@ Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
 
 For å sikre oss mot potensiell lekkasje av PII bør det vurderes å innføre tiltak for å ivareta konfidensialiteten.
 
-#### 4.2.2 Mangelfull informasjon om personvernskonsevenser
+#### 6.2.2 Mangelfull informasjon om personvernskonsevenser
 Det er en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
 
-#### 4.2.3 Misbruk av data
+#### 6.2.3 Misbruk av data
 Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av en eller flere parter som mottar verdiene i datasettet.
 
-#### 4.2.4 Overvåkning av ansatte i andre virksomheter
+#### 6.2.4 Overvåkning av ansatte i andre virksomheter
 Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
 	
-#### 4.2.5 Urettmessig tilegnelse av helseopplysninger
+#### 6.2.5 Urettmessig tilegnelse av helseopplysninger
 Det er en risiko for at helsepersonellet som ber om tilgang til helseopplysninger ikke har et tjenstlig behov, og at opplysningene ikke er relevante og nødvendige i behandlingen av pasienten.
  
-## 5. Anerkjennelse av bidragsytere til spesifikasjonen
+## 7. Anerkjennelse av bidragsytere til spesifikasjonen
 Vi ønsker å takke kongen, fedrelandet og Ringnes, samt alle andre som har hatt innvirkning på spesifikasjonen..
 
 Norsk Helsenett SF har hatt det overordnede ansvaret for å utvikle denne spesifikasjonen basert på viktige bidrag fra sektoren...
 
-Vi ønsker å takk Ola Nordmann ved EPJ-leverandør x, Berit Bermann ved direktoratet for ehelse, Carla Carlmann ved Kommune x for verdifulle bidrag i utviklingen av spesifikasjonen.
+Vi ønsker å takk Erik Vegler Broen ved Oslo Kommune, Trond Elde ved DIPS, +++ for verdifulle bidrag i utviklingen av spesifikasjonen.
 
-## 6. Eksempler på bruk av datamodell
+## 8. Eksempler på bruk av datamodell
 
 
 #### Eksempel #1 - Fastlege ber om tilgang til dokument
-##### JSON
 I dette eksempelet har en fastlege ...
+
+
+##### JSON
 
 ```JSON
 {
@@ -488,7 +745,8 @@ I dette eksempelet har en fastlege ...
 			"oid_system": "2.16.578.1.12.4.1.4.1"
 		},
 		"structural_role": {
-			"value": "Licensed Health Care Providers",
+			"text": "Licensed Health Care Providers",
+			"code": "xxxxx",
 			"system_oid": "2.16.578.1.12.x.x.x.x"
 		},
 		"professional_license": {
@@ -502,24 +760,15 @@ I dette eksempelet har en fastlege ...
 			"value": "2211",
 			"system_oid": ""
 		},
-		"clinical_speciality": {
-			"value": "419772000"
-			"system_oid": ""
-		},
 		"legal_entity": {
 			"id": "921592761",
 			"name": "Lege Leif Lagesen",
 			"system_oid": ""
 		},
-		"point_of_care": {
-			"id": "123456789",
-			"point_of_care_name": "Det beste legekontoret i byen",
-			"system_oid": ""
-		}
 		"facility_type":{
 			"value": "05",
 			"system_oid": ""
-		}
+		},
 		"locality": "Helsehjelpgata 1 0001 Valderborg",
 		"purpose_of_use": {
 			"value": "TREAT",
@@ -533,66 +782,71 @@ I dette eksempelet har en fastlege ...
 }
 ```
 
+##### SAML
+
 #### Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
 
 I dette eksempelet har...
+
+##### JSON
+Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 
 ```JSON
 {
 	"practicioner": {
 		"pid":{
 			"value": "xxxxxx34794",
-			"oid_system": "2.16.578.1.12.4.1.4.1"
+			"oid": "2.16.578.1.12.4.1.4.1"
 		},
 		"structural_role": {
 			"value": "Non-Licensed Health Care Providers",
 			"code" : "",
-			"system_oid": "2.16.578.1.12.x.x.x.x"
+			"oid": "2.16.578.1.12.x.x.x.x"
 		},
 	},
 	"care_relationship": {
 		"functional_role": {
 			"code": "2226",
-			"system_oid": ""
-		},
-		"clinical_speciality": {
-			"code": "722165004"
-			"system_oid": ""
+			"oid": ""
 		},
 		"legal_entity": {
 			"id": "921592761",
 			"name": "Helsearbeider Helge Helsefyr",
-			"system_oid": ""
+			"oid": ""
 		},
 		"point_of_care": {
 			"id": "123456789",
 			"point_of_care_name": "Det beste sykehjemmet i landet",
-			"system_oid": ""
-		}
+			"oid": ""
+		},
 		"facility_type":{
 			"code": "KP02",
-			"system_oid": "8663"
-		}
+			"oid": "8663"
+		},
 		"locality": "Helsehjelpgata 4 0001 Valderborg",
 		"purpose_of_use": {
 			"code": "COC",
-			"system_oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+			"oid": "urn:oid:2.16.840.1.113883.1.11.20448"
 		}
 	},
 	"patient": {
 		"value": "xxxxxx95164",
-		"oid_system": "2.16.578.1.12.4.1.4.1"
+		"oid": "2.16.578.1.12.4.1.4.1"
 	}
 }
 ```
 
+##### SAML
+
 #### Eksempel #3 - HP i foretak ber om tilgang til dokument
+##### JSON
+##### SAML
 
 #### Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege
+##### JSON
+##### SAML
 
-
-
-## 7. Normative referanser 
+## 9. Normative referanser 
 
 Normative referanser spesifiserer dokumenter som må leses for å forstå eller implementere datamodellen, eller teknologi som må være på plass for å kunne implementere teknologien. 
 
