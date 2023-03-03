@@ -31,7 +31,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 
 
 ## 1. Innledning 
-For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til helseopplysninger som ligger lagret hos andre virksomheter enn den virksomheten hvor de yter helsehjelp. Lovverket vårt sier at helsevirksomheter er pliktig til å dele helseopplysninger med alt helsepersonell så fremt de har et tjenstlig behov og at opplysningene er relevante og nødvendige i helsepersonellets behandling av pasienten.
+For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til helseopplysninger som ligger lagret hos andre virksomheter enn den virksomheten hvor de yter helsehjelp. Lovverket vårt sier at helsevirksomheter er pliktig til å dele helseopplysninger med alt helsepersonell så fremt de har et tjenstlig behov og at opplysningene er relevante og nødvendige i helsepersonellets behandling av pasienten. (Spørsmål: Bør ikke Norm for informasjonssikkerhet også tas med her?)
 
 Kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte.
 
@@ -43,8 +43,9 @@ I tillitsrammeverket legges det opp til en oppgavefordeling knyttet til tilgangs
 På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter er det nødvendig at sektoren samler seg om et felles språk for å uttrykke grunnlaget for tilgang slik at aktørene kan forstå hverandre. Et felles språk vil også bidra til å kommunisere på en konsistent måte til innbygger.
 
 Denne spesifikasjonen definerer et felles språk som skal benyttes til å uttrykke helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt.
-Spesifikasjonen definerer en informasjonsmodell og en datamodell som skal implementeres i programvare som benyttes av helsepersonell når de yter helsehjelp til sin pasient.
+Spesifikasjonen definerer en informasjonsmodell, datamodell og kodeverk (?) som skal implementeres i programvare som benyttes av helsepersonell når de yter helsehjelp til sin pasient.
 
+> Kommentar Trond E: Mener det bør fram at tilgangskontroll ikke kun er knyttet til tjenstlig behov, men også kontroll av pasientens reservasjoner knyttet til utlevering av pasientopplysninger (sperring) som en del av å "støtte opp under innbyggers rettigheter".
 
  
 ## 2. Bakgrunn for spesifikasjonen
@@ -57,7 +58,7 @@ Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knytt
 
 Spesifikasjonen inneholder en informasjonsmodell som beskriver hvilken informasjon som skal overføres mellom aktørene, hva denne informasjonen beskriver, og hvorfor den skal overføres.
 
-Spesifikasjonen beskriver også hvilke konkrete attributter som skal brukes for å beskrive informasjonsmodellen i form av en datamodell. Datamodellen beskriver også hvilke verdier som er gyldige for attributtene.
+Spesifikasjonen beskriver også hvilke konkrete attributter som skal brukes for å beskrive informasjonsmodellen i form av en datamodell. Datamodellen beskriver også hvilke verdier (mer konkret kodeverk ?) som er gyldige for attributtene.
 
 Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil implementeres i relevante nasjonale ehelseløsninger og tillitstjenester.
 
@@ -76,18 +77,20 @@ Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tr
 #### 3.1.1 Helsepersonellets Identitet
 Helsepersonellets grunnleggende identitet består av informasjon som sjelden endres, slik som personens navn og fødselsnummer, i tillegg til helsepersonellets offentlige godkjenninger.
 
-Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person. Identiteten vil benyttes i forbindelse med tilgangsstyring, tilgangskontroll og logging. 
+Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person. Identiteten vil benyttes i forbindelse med tilgangskontroll (typisk sjekk av sperrer) og logging. 
 
 #### 3.1.2 Helsepersonellets behandlerrelasjon til sin pasient
 I delingssammenheng består helsepersonellets digitale identitet også av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets behandlerrelasjon til pasienten.
 
-Norsk lov sier at helsepersonell bare skal gis tilgang til helseopplysninger dersom det foreligger et tjenstlig behov og at opplysningene er relevant og nødvendig i behandlingen av pasienten. Det er helsepersonellet og konsumentens ansvar å sørge for at tilgangen til helseopplysningene er i henhold til loven, men den utleverende part har likevel behov for overført informasjon som beskriver bakgrunnen for forespørselen om helseopplysninger for å tilfredsstille lovkrav knyttet til dokumentasjon og å utføre tilgangskontroll. 
+Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at helsepersonell bare skal gis tilgang til helseopplysninger dersom det foreligger et tjenstlig behov og at opplysningene er relevant og nødvendig i behandlingen av pasienten. Det er helsepersonellet og konsumentens ansvar å sørge for at tilgangen til helseopplysningene er i henhold til loven, men den utleverende part har likevel behov for overført informasjon som beskriver bakgrunnen for forespørselen om helseopplysninger for å tilfredsstille lovkrav knyttet til dokumentasjon og å utføre tilgangskontroll. 
 
 Informasjonen som beskriver helsepersonellets behandlerrelasjon til sin pasient består av følgende informasjon:
 * Helsepersonellets rolle i sin behandling av pasienten
 * Helsevirksomhet og behandlingssted
 * Helsetjenestetype ved behandlingssted
 * Formålet med behandlingen av helseopplysninger
+
+
 
 #### 3.1.3 Pasientens identitet
 Det er en selvfølge at pasienten må identifiseres ved deling av helseopplysninger. Det er ikke nødvendig å overføre annen informasjon om pasienten enn en unik identifikator.
@@ -125,7 +128,7 @@ Informasjonsmodellen skal overføres fra konsument til datakilde i form av attri
 #### 3.2.1 Prinsipper for datamodellen 
 Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandle med hverandre ved at man benytter samme språk for å uttrykke informasjonen som beskriver helsepersonellet og konteksten som helsepersonellet befinner seg i når han ber om tilgang til helseopplysningene. Den skisserte datamodellen legger til rette for en viss grad av dynamikk ved å angi hvilket kodeverk eller lister over gyldige verdier som er benyttet i datasettet.
 
-Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
+Datamodellen skal brukes i sikkerhetsbilletter/-bevis (token) som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
 
 > TODO: Informasjonen i datamodellen skal være sporbar slik at vi ivaretar prinsippet om uavviselighet… 
 
@@ -211,7 +214,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | Informasjon | Beskrivelse | Informasjonskilde | Påkrevd |
 | --- | --- | --- | --- |
 | "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** |
-| "structural_role" | Indikerer hvorvidt dette er et helsepersonell med/uten lisens/autorisasjon eller person med sekretærfunksjon | Konsumentens EPJ | **Ja** |
+| "structural_role" | Indikerer hvorvidt dette er et helsepersonell med/uten lisens/autorisasjon eller person med sekretærfunksjon (Trond: Finner ikke denne i datamodellen) | Konsumentens EPJ | **Ja** |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** |
 | "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** |
 | "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** |
@@ -226,6 +229,9 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | "purpose_of_use" | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** |
 | "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** |
 
+> Kommentar Trond E> Skulle gjerne få mappet dennne fra HSØ sin [attributtliste](https://github.com/HL7Norway/AuditEvent/blob/main/attributtliste.md). 
+
+
 #### 3.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
 I forbindelse med EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
@@ -236,7 +242,7 @@ Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret,
 Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
 
-##### 3.2.5.1 Identifikator for helsepersonellet som "fysisk person"
+##### 3.2.5.1 Identifikator for helsepersonellet som "fysisk person" (Entitet: Helsepersonell)
 Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
 
 |   |   |
@@ -268,7 +274,7 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 ````
 
 
-##### 3.2.5.2 Helsepersonellets strukturelle rolle
+##### 3.2.5.2 Helsepersonellets strukturelle rolle (Entitet: ?)
 Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell med lisens, uten lisens eller om han er et administrativt personell.
 
 |   |   |
@@ -305,7 +311,7 @@ Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell 
 ```` 
 
 
-##### 3.2.5.3 Informasjon om helsepersonellet fra Helsepersonellregisteret
+##### 3.2.5.3 Informasjon om helsepersonellet fra Helsepersonellregisteret (Entitet: FormalAuthorization)
 
 ###### Helsepersonellnummer
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
@@ -698,6 +704,8 @@ Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og beh
 
 Informasjonen i datamodellen vil blant annet benyttes til å utføre analyse av logger, og vil kunne bli vist til sluttbrukere i forskjellige applikasjoner. Dette åpner for angrep mot sårbarheter i programvare, som f.eks. misbruk av makroer eller XSS angrep i nettlesere. Sannsynligheten for denne typen sikkerhetsangrep bør begrenses ved at verdier som overføres kan valideres og kontrolleres.
 
+> Kommentar TRE: Tenker det er greit å ta en runde på hva konkret _validering_ og _kontrollering_ faktisk innebærer. Når vi ser på [attributtmodellen til HSØ](https://github.com/HL7Norway/AuditEvent/blob/main/attributtliste.md), så er det jo lagt inn en fleksibilitet mht. hvilke kodeverk som brukes for hver av attributtene, ref. angivelse av `:system` (og `:assigner`) for hver av attributtene.
+
 
 ### 6.2 Personvern
 #### 6.2.1 Lekkasje av sensitive personopplysninger
@@ -708,6 +716,7 @@ Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
 * mellom informasjonstjeneste og datagrensesnitt
 
 For å sikre oss mot potensiell lekkasje av PII bør det vurderes å innføre tiltak for å ivareta konfidensialiteten.
+> Kommentar TRE: JWT og SAML-tokens transporteres i en HTTPS request i hhv. HTTP Authorization Header og HTTP Body som Header i SOAP-melding. Sistnevnte er da like godt/dårlig beskyttet som selve payload i SOAP-meldingen. For førstnevnte, så er det jo en generell utfording av HTTPS termineres i transportlaget. Det gjelder jo både HTTP Headers og Body. Må man man ha ende-til-ende-kryptering, så er vel VPN eneste mulighet dersom man ikke implementerer dette i applikasjonslaget (JWE) og kryptering av payload i HTTP Body.
 
 #### 6.2.2 Mangelfull informasjon om personvernskonsevenser
 Det er en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
