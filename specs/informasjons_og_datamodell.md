@@ -404,7 +404,7 @@ Attributtet "legal_entity_id" og "legal_entity_name" identifiserer virksomheten 
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
-| Kodeverk: | (kode for enhetsregisteret)|
+| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 
 
 ###### Den dataansvarlige virksomheten - Attributter SAML format
@@ -422,7 +422,7 @@ Attributtet "legal_entity_id" og "legal_entity_name" identifiserer virksomheten 
 "legal_entity": {
 	"id": "921592761",
 	"name": "Lege Leif Lagesen ENK",
-	"oid": "x.x.x.x.x.x"
+	"oid": "2.16.578.1.12.4.1.4.101"
 }
 ```` 
 
@@ -440,7 +440,7 @@ Attributtet "point_of_care_id" og "point_of_care_name" identifiserer behandlings
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
-| Kodeverk: | (kode for enhetsregisteret) |
+| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 
 Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
@@ -459,7 +459,7 @@ Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor he
 "point_of_care": {
 	"id": "123456789",
 	"name": "Det beste legekontoret i byen AS",
-	"system_oid": ""
+	"system_oid": "2.16.578.1.12.4.1.4.101"
 }
 ````
 
@@ -624,12 +624,12 @@ Full modell - valgfrie elementer er tatt med
 		"legal_entity": {
 			"id": "921592761",
 			"name": "Lege Leif Lagesen",
-			"oid": ""
+			"oid": "2.16.578.1.12.4.1.4.101"
 		},
 		"point_of_care": {
 			"id": "123456789",
 			"name": "Det beste legekontoret i byen AS",
-			"oid": ""
+			"oid": "2.16.578.1.12.4.1.4.101"
 		},
 		"facility_type":{
 			"text": "helsetjenestetype",
@@ -725,7 +725,7 @@ I dette eksempelet har en fastlege ...
 		"legal_entity": {
 			"id": "921592761",
 			"name": "Lege Leif Lagesen",
-			"system_oid": ""
+			"system_oid": "2.16.578.1.12.4.1.4.101"
 		},
 		"facility_type":{
 			"value": "05",
@@ -769,12 +769,12 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 		"legal_entity": {
 			"id": "921592761",
 			"name": "Helsearbeider Helge Helsefyr",
-			"oid": ""
+			"oid": "2.16.578.1.12.4.1.4.101"
 		},
 		"point_of_care": {
 			"id": "123456789",
 			"point_of_care_name": "Det beste sykehjemmet i landet",
-			"oid": ""
+			"oid": "2.16.578.1.12.4.1.4.101"
 		},
 		"facility_type":{
 			"code": "KP02",

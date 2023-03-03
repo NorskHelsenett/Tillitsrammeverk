@@ -107,11 +107,11 @@ sequenceDiagram
 			"legal_entity": {
 				"name": "Juridisk Enhet AS",
 				"org_id": "1231232132",
-				"system_oid": "kode for enhetsregisteret"
+				"system_oid": "2.16.578.1.12.4.1.4.101"
 			},
 			"point_of_care": {
 				"org_id": "123123123",
-				"system_oid": "kode for enhetsregisteret"
+				"system_oid": "2.16.578.1.12.4.1.4.101"
 			},
 			"facility_type": {
 				"value": "Hospital",
