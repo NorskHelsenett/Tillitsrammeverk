@@ -208,22 +208,22 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Informasjon | Beskrivelse | Informasjonskilde | Påkrevd |
-| --- | --- | --- | --- |
-| "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** |
-| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** |
-| "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** |
-| "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** |
-| "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** |
-| "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** |
-| "legal_entity_id" | Den dataansvarlige virksomhetens org.nr | Konsumentens EPJ | **Ja** |
-| "legal_entity_name" | Den dataansvarlige virksomhetens navn | Konsumentens EPJ | **Ja** |
-| "point_of_care_id" | Behandlingsstedets org.nr., dersom det er relevant | Konsumentens EPJ | **Nei** |
-| "point_of_care_name" | Behandlingsstedets navn, dersom det er relevant | Konsumentens EPJ | **Nei** |
-| "facility_type" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** |
-| "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |
-| "purpose_of_use" | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** |
-| "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** |
+| Informasjon | Beskrivelse | Informasjonskilde | Påkrevd | Status |
+| --- | --- | --- | --- | --- |
+| "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "legal_entity_id" | Den dataansvarlige virksomhetens org.nr | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
+| "legal_entity_name" | Den dataansvarlige virksomhetens navn | Konsumentens EPJ | **Ja** |<span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "point_of_care_id" | Behandlingsstedets org.nr., dersom det er relevant | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "point_of_care_name" | Behandlingsstedets navn, dersom det er relevant | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "facility_type" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |<span style="color: red; font-weight: bold;">Under behandling</span> |
+| "purpose_of_use" | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 
 #### 3.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
@@ -274,6 +274,7 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 |   |   |
 | ---| ---|
 | Attributt: | "hpr_nr" |
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Unik identifikator for helsepersonellet knyttet opp til formelle autorisasjoner eller lisenser |
 | Attributt EHDSI: | N/A (?) |
 | Obligatorisk: | **Nei** |
@@ -287,6 +288,7 @@ Attributtene "authorization" og "licence" brukes for å beskrive autorisasjoner 
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Beskriver helsepersonellets autorisasjoner og/eller lisenser |
 | Attributter: | "authorization"<br/>"licence" |
 | Attributt EHDSI: | N/A |
@@ -324,6 +326,7 @@ Attributtet "functional_role" representerer helsepersonellets rolle hos virksomh
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Yrkesklassifisering av helsepersonellet i organisasjonen.<br/>Basert på den internasjonale standarden ISCO-08 |
 | Attributt: | "functional_role" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:functional-role" |
@@ -358,6 +361,7 @@ Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i 
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Helsepersonellets spesialitet |
 | Attributt: | "clinical_speciality" |
 | Attributt EHDSI: | "urn:ehdsi:names:wp3.4:subject:clinical-speciality" |
@@ -392,6 +396,7 @@ Attributtet "legal_entity_id" og "legal_entity_name" identifiserer virksomheten 
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Virksomheten (hovedenhet) hvor helsepersonellet yter helsehjelp |
 | Attributt: | "legal_entity_id"<br/>"legal_entity_name" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
@@ -427,6 +432,7 @@ Attributtet "point_of_care_id" og "point_of_care_name" identifiserer behandlings
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
 | Attributt: | "point_of_care_id"<br/>"point_of_care_name" |
 | Attributt EHDSI: | N/A |
@@ -463,6 +469,7 @@ Attributtet "facility_type" angir hvilken type helsetjenester som leveres ved vi
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "facility_type" |
 | Attributt EHDSI: | "urn:ehdsi:names:subject:healthcare-facility-type" |
@@ -498,6 +505,7 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
 | Attributt: | "locality" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:environment:locality" |
@@ -529,6 +537,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 |   |   |
 | ---| ---|
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
 | Attributt: | "purpose_of_use" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:purposeofuse" |
@@ -563,6 +572,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 | Attributt | |
 | --- | --- |
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Unik identifikator for pasienten som helsepersonellet ber om helseopplysninger for |
 | Attributt: | "patient_id" |
 | Attributt EHDSI: | |
@@ -593,6 +603,7 @@ Full modell - valgfrie elementer er tatt med
 	"practicioner": {
 		"pid":{
 			"value": "xxxxxx34794",
+			"name": "Lege Legesen",
 			"oid": "2.16.578.1.12.4.1.4.1"
 		},
 		"professional_license": {
@@ -604,7 +615,7 @@ Full modell - valgfrie elementer er tatt med
 	"care_relationship": {
 		"functional_role": {
 			"code": "2211",
-			"oid": ""
+			"oid": "STYRK-08"
 		},
 		"clinical_speciality": {
 			"value": "419772000",
@@ -624,7 +635,7 @@ Full modell - valgfrie elementer er tatt med
 			"text": "helsetjenestetype",
 			"value": "05",
 			"oid": ""
-		}
+		},
 		"locality": "Helsehjelpgata 1 0001 Valderborg",
 		"purpose_of_use": {
 			"Text": "beskrivelse",
