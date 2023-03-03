@@ -211,7 +211,6 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | Informasjon | Beskrivelse | Informasjonskilde | Påkrevd |
 | --- | --- | --- | --- |
 | "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** |
-| "structural_role" | Indikerer hvorvidt dette er et helsepersonell med/uten lisens/autorisasjon eller person med sekretærfunksjon | Konsumentens EPJ | **Ja** |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** |
 | "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** |
 | "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** |
@@ -266,44 +265,6 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 	"oid_system": "2.16.578.1.12.4.1.4.1"
 }
 ````
-
-
-##### 3.2.5.2 Helsepersonellets strukturelle rolle
-Attributtet "structural_role" angir hvorvidt sluttbrukeren er et helsepersonell med lisens, uten lisens eller om han er et administrativt personell.
-
-|   |   |
-| ---| ---|
-| Informasjonselement | Indikererer hvorvidt sluttbrukeren har lisens, er uten lisens eller er sekretær/har en administrativ rolle |
-| Attributt: | "structural_role" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xacml:2.0:subject:role" |
-| Obligatorisk: | **Ja** |
-| Data type: | String |
-| Autoritativ kilde: | Den konsumerende helsevirksomheten |
-| Informasjonskilde: | Konsumentens EPJ system |
-| Kodeverk: | ASTM |
-| Gyldige verdier: | "Licensed Health Care Providers",<br/>"Non-Licensed Health Care Providers",<br/>"Clerical and Administrative Personnel" |
-
-###### Helsepersonellets strukturelle rolle - Attributt SAML format
-
-````XML
-<saml:Attribute Name="urn:oasis:names:tc:xacml:2.0:subject:role">
-	<saml:AttributeValue>
-		<Role xmlns:xsi="'urn:hl7-org:v3">Licensed Health Care Providers</Role>
-	</saml:AttributeValue>
-</saml:Attribute>
-````
-
-
-###### Helsepersonellets strukturelle rolle - Attributt JSON format
-
-````JSON
-"structural_role": {
-	"value": "Licensed Health Care Providers",
-	"code": "xxxxxx",
-	"oid": "2.16.578.1.12.x.x.x.x"
-}
-```` 
-
 
 ##### 3.2.5.3 Informasjon om helsepersonellet fra Helsepersonellregisteret
 
@@ -634,11 +595,6 @@ Full modell - valgfrie elementer er tatt med
 			"value": "xxxxxx34794",
 			"oid": "2.16.578.1.12.4.1.4.1"
 		},
-		"structural_role": {
-			"text": "Licensed Health Care Providers",
-			"code": "xxxx",
-			"oid": "2.16.578.1.12.x.x.x.x"
-		},
 		"professional_license": {
 			"hpr_nr": "xxxxxxxxx",
 			"authorization": {[...]},
@@ -744,11 +700,6 @@ I dette eksempelet har en fastlege ...
 			"value": "xxxxxx34794",
 			"oid_system": "2.16.578.1.12.4.1.4.1"
 		},
-		"structural_role": {
-			"text": "Licensed Health Care Providers",
-			"code": "xxxxx",
-			"system_oid": "2.16.578.1.12.x.x.x.x"
-		},
 		"professional_license": {
 			"hpr_nr": "xxxxxxxxx",
 			"authorization": {[...]},
@@ -797,11 +748,6 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 		"pid":{
 			"value": "xxxxxx34794",
 			"oid": "2.16.578.1.12.4.1.4.1"
-		},
-		"structural_role": {
-			"value": "Non-Licensed Health Care Providers",
-			"code" : "",
-			"oid": "2.16.578.1.12.x.x.x.x"
 		},
 	},
 	"care_relationship": {

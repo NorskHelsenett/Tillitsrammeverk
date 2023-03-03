@@ -92,11 +92,7 @@ sequenceDiagram
 		"pid": {
 			"value": "22046557946",
 			"system_oid": "2.16.578.1.12.4.1.4.1" //F-Nummer
-		},
-		"structural_role": {
-			"value": "Licensed Health Care Providers",
-			"system_oid": "oid-code"
-		},
+		}
 	},
 	"patient_relationship": {
 		"functional_role": {
