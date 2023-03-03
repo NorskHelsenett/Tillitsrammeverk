@@ -1,13 +1,15 @@
 # Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger
-Versjon: 0.1
-
-Dato: 31.01.2023
 
 ## Sammendrag
 Denne spesifikasjonen definerer en informasjons- og datamodell som skal brukes for å uttrykke et helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren i Norge.
 
 
 ## Dokumentets status
+
+| Versjon | Dokumentets status | dato |
+| --- | --- | --- |
+| -0 | Utkast | 17.02.2023 |
+
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
 

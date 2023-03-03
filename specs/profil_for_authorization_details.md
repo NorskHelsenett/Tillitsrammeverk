@@ -4,6 +4,15 @@
 
 ## Dokumentets status
 
+| Versjon | Dokumentets status | dato |
+| --- | --- | --- |
+| -0 | Utkast | 17.02.2023 |
+
+Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
+
+Spesifikasjonen skal versjoneres for å støtte endringer over tid.
+
+
 ## Definisjon av begrep og forkortelser
 Spesifikasjonen benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
 
