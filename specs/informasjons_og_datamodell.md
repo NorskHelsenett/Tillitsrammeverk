@@ -250,6 +250,8 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 
 ###### Helsepersonellnummer
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
+
+Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseopplysninger. Derfor kan ikke attributtet være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
  
 |   |   |
 | ---| ---|
@@ -264,6 +266,15 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
 
+###### Helsepersonellets funksjonelle rolle - Attributter SAML format
+
+````XML
+<AttributeStatement>
+<saml:Attribute>
+??
+</saml:Attribute>
+````
+
 ###### Helsepersonellregister - Atributter JSON format
 
 ````JSON
@@ -271,8 +282,7 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 	"hpr_nr": "xxxxxxxxx",
 	"oid": "xx.xx.xx.xx"
 }
-````  
-
+````
 
 #### 3.2.6 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis ved hans rolle, spesialitet, virksomhet hvor han yter helsehjelp, behandlingssted, helsetjenestetype og en angivelse av formålet med behandlingen av helseopplysningene.
@@ -384,13 +394,13 @@ Attributtet "legal_entity_id" og "legal_entity_name" identifiserer virksomheten 
 
 ##### Behandlingssted
 
-Attributtet "point_of_care_id" og "point_of_care_name" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
+Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
-| Attributt: | "point_of_care_id"<br/>"point_of_care_name" |
+| Attributt: | "point_of_care" |
 | Attributt EHDSI: | N/A |
 | Obligatorisk: | **Nei** |
 | Data type: | String |
@@ -564,8 +574,7 @@ Full modell - valgfrie elementer er tatt med
 		},
 		"professional_license": {
 			"hpr_nr": "xxxxxxxxx",
-			"authorization": {[...]},
-			"licence": {[...]}
+			"oid": "x.x.x.x.x.x."
 		}
 	},
 	"care_relationship": {
@@ -670,8 +679,7 @@ I dette eksempelet har en fastlege ...
 		},
 		"professional_license": {
 			"hpr_nr": "xxxxxxxxx",
-			"authorization": {[...]},
-			"licence": {[...]}
+			"oid": "xxxxxxxxxx"
 		}
 	},
 	"care_relationship": {
