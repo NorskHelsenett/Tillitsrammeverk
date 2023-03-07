@@ -196,7 +196,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
+| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - Konsumentens EPJ for §9 samarbeid og multi-tenancy system<br>- HelseID for single-tenancy/on-premise system | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
 | "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "facility_type" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |<span style="color: red; font-weight: bold;">Under behandling</span> |
@@ -360,7 +360,8 @@ Attributtet "legal_entity" identifiserer den dataansvarlige hvor helsepersonelle
 
 Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
 
-For multi-tenancy løsninger og §9-samarbeid må journalsystemet fortelle hvilekn
+- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal_entity". HelseID kontrollerer at databehandler har rett til å opptre på vegne av helsevirksomheten ved å gjøre oppslag i delegeringer som er utført i Altinn.
+- For single-tenancy/on-premise løsninger vil HelseID utlede helsevirksomhet.
 
 |   |   |
 | ---| ---|
@@ -368,10 +369,10 @@ For multi-tenancy løsninger og §9-samarbeid må journalsystemet fortelle hvile
 | Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
 | Attributt: | "legal_entity" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
-| Obligatorisk: | Ja |
+| Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsument (HelseID + Altinn) |
+| Informasjonskilde: | §9/multi tenancy: Konsumentens journalsystem<br>single-tenancy: Utledes av HelseID  |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 
 
@@ -396,8 +397,8 @@ For multi-tenancy løsninger og §9-samarbeid må journalsystemet fortelle hvile
 
 ##### Behandlingssted
 
-Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
-Attributtet er obligatorisk. Dersom "legal_entity" og "point_of_care" har lik verdi, skal den gjentas i begge attributter.
+Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.<br>
+Attributtet er obligatorisk. Dersom verdiene for "legal_entity" og "point_of_care" er like skal den gjentas i begge attributter.
 
 |   |   |
 | ---| ---|
@@ -408,7 +409,7 @@ Attributtet er obligatorisk. Dersom "legal_entity" og "point_of_care" har lik ve
 | Obligatorisk: | **JA** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsument (HelseID + Altinn) |
+| Informasjonskilde: | Konsumentens journalsystem |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 
 Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
@@ -446,7 +447,7 @@ Attributtet "facility_type" angir hvilken type helsetjenester som leveres ved vi
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | eHealth DSI code list<br/> Volven<br/>  |
+| Kodeverk: | - eHealth DSI code list<br/>-Volven<br/>  |
 | oid code: | 1.3.6.1.4.1.12559.11.10.1.3.2.2.2<br/>volven: 8627<br/>volven: 8662<br/>volven: 8663<br/>volven: 8664<br/>volven: 8665<br/>volven: 8666 |
 | Gyldige verdier:| Hospital,<br/>Resident Physician,<br/>Pharmacy,<br/>++? |
 
