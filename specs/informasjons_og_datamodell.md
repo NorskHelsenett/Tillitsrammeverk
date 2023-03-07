@@ -102,15 +102,10 @@ Det er en selvfølge at pasienten må identifiseres ved deling av helseopplysnin
 title: Informasjonsmodell
 ---
 classDiagram
-    Helsepersonell o-- Autorisasjoner
 	Helsepersonell --* Behandlerrelasjon
 	Behandlerrelasjon --* Pasient
-    class Autorisasjoner{
-	    +Object Autorisasjoner
-    }
     class Helsepersonell{
 	    +Object Identitet
-	    +Autorisasjoner Autorisasjoner
     }
     class Behandlerrelasjon{
 		+Object KontekstuellInformasjon
@@ -144,24 +139,19 @@ title: Datamodell
 classDiagram
 
 	Helsepersonell -- Behandlerrelasjon
-	Behandlerrelasjon -- Pasient
-	Helsepersonell o-- FormalAuthorization
 	Helsepersonell o-- IdentityAttribute
 	Behandlerrelasjon o-- IdentityAttribute
-	Behandlerrelasjon o-- Organization
 	Behandlerrelasjon o-- PurposeOfUse
-	FormalAuthorization o-- Authorization
-	FormalAuthorization o-- Licence
+	Behandlerrelasjon o-- Organization
 	Organization o-- LegalEntity
 	Organization o-- IdentityAttribute
 	PurposeOfUse --|> IdentityAttribute
+	Behandlerrelasjon -- Pasient
 
-
-	
 	class Helsepersonell{
 		+IdentityAttribute name
 		+IdentityAttribute pid
-		+FormalAuthorization professional_licence
+		+String hpr_nr
 	}
 		
 	class Behandlerrelasjon{
@@ -191,17 +181,7 @@ classDiagram
 		+IdentityAttribute facility
 		+String locality
 	}
-	class Authorization{
-	}
 	
-	class Licence{
-	}
-	
-	class FormalAuthorization{
-		+String hpr_nr
-		+List<Authorization> authorizations
-		+List<Licence> licences
-	}
 		
 ```
 
@@ -213,9 +193,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | Informasjon | Beskrivelse | Informasjonskilde | Påkrevd | Status |
 | --- | --- | --- | --- | --- |
 | "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "legal_entity_id" | Den dataansvarlige virksomhetens org.nr | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
@@ -276,7 +254,7 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 |   |   |
 | ---| ---|
 | Attributt: | "hpr_nr" |
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Unik identifikator for helsepersonellet knyttet opp til formelle autorisasjoner eller lisenser |
 | Attributt EHDSI: | N/A (?) |
 | Obligatorisk: | **Nei** |
@@ -285,36 +263,12 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
-###### Helsepersonellets autorisasjoner og lisenser
-Attributtene "authorization" og "licence" brukes for å beskrive autorisasjoner og lisenser som Helsepersonellet har fått tildelt av statens autorisasjonskontor for helsepersonell.
-
-|   |   |
-| ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| Informasjonselement | Beskriver helsepersonellets autorisasjoner og/eller lisenser |
-| Attributter: | "authorization"<br/>"licence" |
-| Attributt EHDSI: | N/A |
-| Obligatorisk: | **Nei** |
-| Data type: | Object | 
-| Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell |
-
-###### Helsepersonellregister - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
 
 ###### Helsepersonellregister - Atributter JSON format
 
 ````JSON
 "professional_license": {
 	"hpr_nr": "xxxxxxxxx",
-	"authorization": {[...]},
-	"licence": {[...]},
 	"oid": "xx.xx.xx.xx"
 }
 ````  
