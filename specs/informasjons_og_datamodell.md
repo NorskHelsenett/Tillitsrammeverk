@@ -196,10 +196,8 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "legal_entity_id" | Den dataansvarlige virksomhetens org.nr | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
-| "legal_entity_name" | Den dataansvarlige virksomhetens navn | Konsumentens EPJ | **Ja** |<span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "point_of_care_id" | Behandlingsstedets org.nr., dersom det er relevant | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "point_of_care_name" | Behandlingsstedets navn, dersom det er relevant | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
+| "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "facility_type" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |<span style="color: red; font-weight: bold;">Under behandling</span> |
 | "purpose_of_use" | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
@@ -358,13 +356,17 @@ Attributtet "clinical_speciality" representerer helsepersonellets spesialitet i 
 
 
 ##### Den dataansvarlige virksomheten 
-Attributtet "legal_entity_id" og "legal_entity_name" identifiserer virksomheten hvor helsepersonellet yter helsehjelp.
+Attributtet "legal_entity" identifiserer den dataansvarlige hvor helsepersonellet yter helsehjelp.
+
+Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
+
+For multi-tenancy løsninger og §9-samarbeid må journalsystemet fortelle hvilekn
 
 |   |   |
 | ---| ---|
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Virksomheten (hovedenhet) hvor helsepersonellet yter helsehjelp |
-| Attributt: | "legal_entity_id"<br/>"legal_entity_name" |
+| Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
+| Attributt: | "legal_entity" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
 | Obligatorisk: | Ja |
 | Data type: | String |
@@ -395,6 +397,7 @@ Attributtet "legal_entity_id" og "legal_entity_name" identifiserer virksomheten 
 ##### Behandlingssted
 
 Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.
+Attributtet er obligatorisk. Dersom "legal_entity" og "point_of_care" har lik verdi, skal den gjentas i begge attributter.
 
 |   |   |
 | ---| ---|
@@ -402,7 +405,7 @@ Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonelle
 | Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
 | Attributt: | "point_of_care" |
 | Attributt EHDSI: | N/A |
-| Obligatorisk: | **Nei** |
+| Obligatorisk: | **JA** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsument (HelseID + Altinn) |
