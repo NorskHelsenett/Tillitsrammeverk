@@ -50,34 +50,28 @@ Prioritering av aktive diskusjonstråder:
 1. [#6 - HP fødselsnummer og navn](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/6)
     - Loggen bør ha navnet som gjaldt på tidspunktet ved forespørsel. 
     - Kan konkludere med at begge deler skal med.. Flytt over som issue.
-
 2. [#24 - innspill til informasjonsmodell](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/24)
     - Denne kan tas som en issue:
         - Hvilke attributter skal med - hvilke er optional
     - Lukk diskusjonstråden, flytt info over til andre diskusjonstråder
     - Hvor pasienten befinner seg? Bør inn i informasjonsmodellen, konsumenten vet dette.. Kan ikke være obligatorisk.
-
 3. [#22 - Standard struktur for attributter](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/22)
 4. [#23 - Organisasjon som objekt](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/23)
     - bør dette reflekteres i informasjonsmodellen
     - kan relateres både til helsepersonellet og pasienten
 5. [#12 - Attributter for virksomhet](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/12)
 - Hvordan håndterer vi Oslo kommune, med etatene sine?
-
 6. [#11 - "Purpose of Use"](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/11)
     - OK - hvis man abstraherer det til et høyt nivå
     - Vi må skille dette fra helsetjenestetype (med IPLOS)
 7. [#3 - HPR-nummer](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/3)
 8. [#7 - Er HPR valgfritt eller påkrevd](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/7)
 9. [#8 - inkludere autorisasjoner og lisenser i tokens](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/8)
-
 10. [#4 - "funksjonell rolle"](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/4)
     - Avklare hva dette er.. funksjonell rolle vs ansattrolle
     - Oslo klarer ikke å fylle ut denne er det mulig å levere noe på denne i september?
-    - Dersom vi kan være enige om at den ikke er obligatorisk kan Oslo
-
+    - Dersom vi kan være enige om at den ikke er obligatorisk kan Oslo leve med at den tas med videre
 11. [#10 - "location"](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/10)
-
 12. [#28 - fastlegerelasjon](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions/28)
 
 Må vi opprette noen nye diskusjonstråder?
@@ -109,9 +103,11 @@ https://github.com/NorskHelsenett/Tillitsrammeverk/issues
 ### 3. Gjennomgang av PR
 https://github.com/NorskHelsenett/Tillitsrammeverk/pulls
 
-1. [#35 - av Trond Elde](https://github.com/NorskHelsenett/Tillitsrammeverk/pull/35)
+1. [PR #35](https://github.com/NorskHelsenett/Tillitsrammeverk/pull/35)
 
-Gi tilbakemelding til Trond om å ta ut kommentarene og be ham om å opprette diskusjonstråder eller issues der hvor det passer.. 
+Vi gir følgende tilbakemelding på PR:
+- opprett diskusjonstråder eller issues i stedet for kommentarer
+- fjern kommentarer fra PR og be om review av tekstlige endringer av dokumentet
 
 ### 4. Oppgavefordeling
 Forsatt fokus på diskusjonene.
@@ -126,14 +122,9 @@ Vi har planlagt følgende møter:
 - 07.03.2023: HPR og lokal identifikator, IPLOS
 - 10.03.2023: Location, Purpose of Use
 
-Ønske fra gruppa:
-- NHN fokuserer på risikovurderinger og sikkerhetsvurderinger i tirsdagsmøtene
-- Løsningsmønster for Gerica. Sekvensdiagram?
-- Hvordan kan man implementere uten proxy (bruk av HelseID og KJ)
-- RAR vs assertion framework (authorize endpunkt vs token endepunkt) : Tydelighet ovenfor leverandørene
-
 Må temaene justeres etter gjennomgang av diskusjoner og issues?
 - bør klare å ta inn litt mer.. Pasientens identifikator etc.
+
 
 Bør vi planlegge flere fokuserte møter for denne eller neste uke?
 
@@ -145,8 +136,17 @@ Har de tatt i bruk, eller er i stand til å ta i bruk nasjonale kodeverk (volven
 Er målet om september realistisk?
 
 ### 7. Annet/eventuelt?
-EHDSI/FHIR/HL7 - det kan være verdifullt å få input fra vårt arbeid.. 
-Det virker som om de har et veldig teknisk tilnærming - i motsetning til vår mer funksjonelle tilnærming.
+#### Tirsdagsmøter
+Gruppa har et ønske om at de tekniske møtene på tirsdager fokuserer på arbeidet mot mål i september:
+- NHN fokuserer på risikovurderinger og sikkerhetsvurderinger i tirsdagsmøtene
+- Løsningsmønster for Gerica. Sekvensdiagram?
+- Hvordan kan man implementere uten proxy (bruk av HelseID og KJ)
+- RAR vs assertion framework (authorize endpunkt vs token endepunkt) : Tydelighet ovenfor leverandørene
 
-Tas med spørsmålet inn i NHN sin EHDSI - myhealth team.
+#### EHDS
+EHDSI/FHIR/HL7 - vi bør kommunisere at vi i norge har jobbet mye med temaet. Kanskje er det verdifullt for EHDSI å få input fra vårt arbeid.
+
+Det kan virke som om de har et mer teknisk fokusert tilnærming i motsetning til vår mer funksjonelle tilnærming.
+
+NHN tar forslaget inn i NHN sitt myhealth@eu team.
 
