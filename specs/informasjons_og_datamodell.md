@@ -192,7 +192,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 | Informasjon | Beskrivelse | Informasjonskilde | Påkrevd | Status |
 | --- | --- | --- | --- | --- |
-| "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "pid" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
@@ -218,8 +218,9 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 
 |   |   |
 | ---| ---|
-| Informasjonselement | Unik identifikator for helsepersonellet |
 | Attributt: | "pid" |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Unik identifikator og navn på helsepersonellet |
 | Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id" |
 | Obligatorisk: | **Ja** |
 | Data type: | String |
@@ -240,6 +241,7 @@ Attributtet "pid" er en forkortelse for "personal identifier", hvor verdien iden
 ````JSON
 "pid":{
 	"value": "xxxxxx34794",
+	"name": "Lege Legesen",
 	"oid_system": "2.16.578.1.12.4.1.4.1"
 }
 ````
