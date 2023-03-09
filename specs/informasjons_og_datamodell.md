@@ -603,51 +603,63 @@ Full modell - valgfrie elementer er tatt med
 ````JSON
 {
 	"practicioner": {
-		"pid":{
-			"value": "xxxxxx34794",
-			"name": "Lege Legesen",
-			"oid": "2.16.578.1.12.4.1.4.1"
+		"pid": {
+			"value": "04056600324",
+			"name": "Magnar Koman",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"professional_license": {
-			"hpr_nr": "xxxxxxxxx",
-			"authorization": {[...]},
-			"licence": {[...]}
+		"hpr_nr": {
+			"value": "9144900",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"care_relationship": {
-		"functional_role": {
-			"code": "2211",
-			"oid": "STYRK-08"
-		},
 		"clinical_speciality": {
-			"value": "419772000",
-			"oid": ""
+			"code": "190",
+			"text": "Indremedisin",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.7426",
+			"assigner": "https://www.helsedirektoratet.no/"
 		},
 		"legal_entity": {
-			"id": "921592761",
-			"name": "Lege Leif Lagesen",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "993467049",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF",
+			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
-			"id": "123456789",
-			"name": "Det beste legekontoret i byen AS",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "974589095",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"facility_type":{
-			"text": "helsetjenestetype",
-			"value": "05",
-			"oid": ""
+		"location": {
+			"text": "Indremedisinsk avdeling"
 		},
-		"locality": "Helsehjelpgata 1 0001 Valderborg",
+		"facility_type": {
+			"code": "S03",
+			"text": "Indremedisin",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+			"assigner": "https://volven.no/"
+		},
 		"purpose_of_use": {
-			"Text": "beskrivelse",
 			"code": "TREAT",
-			"oid": ""
+			"text": "Treatment",
+			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+			"assigner": "https://terminology.hl7.org/"
 		}
 	},
 	"patient": {
-		"value": "xxxxxx95164",
-		"oid": "2.16.578.1.12.4.1.4.1"
+		"id": "13116900216",
+		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+		"assigner": "https://www.skatteetaten.no"
 	}
 }
 ````
