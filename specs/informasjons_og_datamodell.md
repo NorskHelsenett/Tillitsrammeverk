@@ -125,7 +125,7 @@ Informasjonsmodellen skal overføres fra konsument til datakilde i form av attri
 #### 3.2.1 Prinsipper for datamodellen 
 Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandle med hverandre ved at man benytter samme språk for å uttrykke informasjonen som beskriver helsepersonellet og konteksten som helsepersonellet befinner seg i når han ber om tilgang til helseopplysningene. Den skisserte datamodellen legger til rette for en viss grad av dynamikk ved å angi hvilket kodeverk eller lister over gyldige verdier som er benyttet i datasettet.
 
-Datamodellen skal brukes i sikkerhetsbilletter/-bevis (token) som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
+Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
 
 > TODO: Informasjonen i datamodellen skal være sporbar slik at vi ivaretar prinsippet om uavviselighet… 
 
@@ -211,7 +211,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | Informasjon | Beskrivelse | Informasjonskilde | Påkrevd |
 | --- | --- | --- | --- |
 | "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** |
-| "structural_role" | Indikerer hvorvidt dette er et helsepersonell med/uten lisens/autorisasjon eller person med sekretærfunksjon (Trond: Finner ikke denne i datamodellen) | Konsumentens EPJ | **Ja** |
+| "structural_role" | Indikerer hvorvidt dette er et helsepersonell med/uten lisens/autorisasjon eller person med sekretærfunksjon | Konsumentens EPJ | **Ja** |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** |
 | "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** |
 | "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** |
@@ -225,8 +225,6 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |
 | "purpose_of_use" | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** |
 | "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** |
-
-> Kommentar Trond E> Skulle gjerne få mappet dennne fra HSØ sin [attributtliste](https://github.com/HL7Norway/AuditEvent/blob/main/attributtliste.md). 
 
 
 #### 3.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
