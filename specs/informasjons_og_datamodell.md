@@ -647,13 +647,7 @@ Full modell - valgfrie elementer er tatt med
 			"code": "S03",
 			"text": "Indremedisin",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
-			"assigner": "https://volven.no/"
-		},
-		"purpose_of_use": {
-			"code": "TREAT",
-			"text": "Treatment",
-			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
-			"assigner": "https://terminology.hl7.org/"
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"patient": {
@@ -714,47 +708,54 @@ Vi ønsker å takk Erik Vegler Broen ved Oslo Kommune, Trond Elde ved DIPS, +++ 
 
 
 #### Eksempel #1 - Fastlege ber om tilgang til dokument
-I dette eksempelet har en fastlege ...
-
 
 ##### JSON
 
 ```JSON
 {
 	"practicioner": {
-		"pid":{
-			"value": "xxxxxx34794",
-			"oid_system": "2.16.578.1.12.4.1.4.1"
+		"pid": {
+			"value": "20086600138",
+			"name": "August September",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"professional_license": {
-			"hpr_nr": "xxxxxxxxx",
-			"authorization": {[...]},
-			"licence": {[...]}
+		"hpr_nr": {
+			"value": "9144897",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"care_relationship": {
-		"functional_role": {
-			"value": "2211",
-			"system_oid": ""
-		},
 		"legal_entity": {
-			"id": "921592761",
-			"name": "Lege Leif Lagesen",
-			"system_oid": "2.16.578.1.12.4.1.4.101"
+			"id": "100100673",
+			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
+			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"facility_type":{
-			"value": "05",
-			"system_oid": ""
+		"point_of_care": {
+			"id": "100100673",
+			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"locality": "Helsehjelpgata 1 0001 Valderborg",
-		"purpose_of_use": {
-			"value": "TREAT",
-			"system_oid": ""
+		"facility_type": {
+			"code": "KX17",
+			"text": "Fastlege, liste uten fast lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"patient": {
-		"value": "xxxxxx95164",
-		"oid_system": "2.16.578.1.12.4.1.4.1"
+		"id": "13116900216",
+		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+		"assigner": "https://www.skatteetaten.no"
 	}
 }
 ```
@@ -763,50 +764,57 @@ I dette eksempelet har en fastlege ...
 
 #### Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
 
-I dette eksempelet har...
-
-##### JSON
-Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
-
 ```JSON
 {
 	"practicioner": {
-		"pid":{
-			"value": "xxxxxx34794",
-			"oid": "2.16.578.1.12.4.1.4.1"
+		"pid": {
+			"value": "03117000205",
+			"name": "Rita Lin",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"assigner": "https://www.skatteetaten.no"
 		},
+		"hpr_nr": {
+			"value": "9144900",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
+		}
 	},
 	"care_relationship": {
-		"functional_role": {
-			"code": "2226",
-			"oid": ""
-		},
 		"legal_entity": {
-			"id": "921592761",
-			"name": "Helsearbeider Helge Helsefyr",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "997506499",
+			"name": "OSLO KOMMUNE HELSEETATEN",
+			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
-			"id": "123456789",
-			"point_of_care_name": "Det beste sykehjemmet i landet",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "875300342",
+			"name": "MADSERUDHJEMMET",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"facility_type":{
-			"code": "KP02",
-			"oid": "8663"
-		},
-		"locality": "Helsehjelpgata 4 0001 Valderborg",
-		"purpose_of_use": {
-			"code": "COC",
-			"oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+		"facility_type": {
+			"code": "KP01",
+			"text": "Legetjeneste ved sykehjem",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"patient": {
-		"value": "xxxxxx95164",
-		"oid": "2.16.578.1.12.4.1.4.1"
+		"id": "13116900216",
+		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+		"assigner": "https://www.skatteetaten.no"
 	}
 }
 ```
+
+##### JSON
+Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 
 ##### SAML
 
