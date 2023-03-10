@@ -52,7 +52,12 @@ Markdown er et språk som kan brukes for å generere html. Det er enkelt i bruk,
  
 [Innføring til markdown på Github](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
-Det finnes mange teksteditorer som man kan bruke for å få en forhåndsvisning av HTML koden som blir generert. [Ta en titt på nettet for å se om du finner noen som passer for deg](https://duckduckgo.com/?q=markdown+editor&t=h_&ia=web).
+### Verktøy for Markdown (.md filer)
+Vi anbefaler to verktøy for å skrive .md filer:
+- Github: Github har innebygget teksteditor for Markdown. Dette er den enkleste måten å gjøre endringer, og krever ingen installert programvare på din maskin.
+- [Visual Studio Code](https://code.visualstudio.com/): Er et utviklingsverktøy for å skrive programmeringskode. Ved å bruke extensions kan blant annet få forhåndsvisning av dokumentet du skriver.
+
+Det finnes mange andre teksteditorer som man også tilbyr forhåndsvisning av HTML koden som blir generert. [Ta en titt på nettet for å se om du finner noen som passer for deg](https://duckduckgo.com/?q=markdown+editor&t=h_&ia=web).
 
 ### Diskuter med andre som bidrar
 Vi har valgt å bruke [diskusjoner på Github](https://github.com/NorskHelsenett/Tillitsrammeverk/discussions) for dialog mellom de som bidrar. På den måten er alle diskusjoner synlige for de som deltar, samtidig som vi ivaretar historikken på en god måte.

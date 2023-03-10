@@ -5,6 +5,11 @@ Denne spesifikasjonen definerer et JSON element med en tilhørende struktur som 
 
 
 ## Dokumentets status
+
+| Versjon | Dokumentets status | dato |
+| --- | --- | --- |
+| -0 | Utkast | 17.02.2023 |
+
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
 
 Spesifikasjonen skal versjoneres for å støtte endringer over tid.
@@ -60,7 +65,8 @@ Spesifikasjonen definerer flere claims som beskriver virksomheter. Disse attribu
 ````JSON
 "juridisk_enhet": {
 	"id": "1234",
-	"name": "Virksomheten AS"
+	"name": "Virksomheten AS",
+	"oid": "2.16.578.1.12.4.1.4.101"
 }
 ````
 
@@ -152,13 +158,15 @@ Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på av
 		"version": "1.0",
 		"legal_entity": {
 			"id": "123456789",
-			"name": "Helsevirksomheten AS"
+			"name": "Helsevirksomheten AS",
+			"oid": "2.16.578.1.12.4.1.4.101"
 		},
 		"date": "14.02.2023"
 		"id": "10001",
 		"granting_body": {
 			"id": "987654321",
-			"name": "Norsk Helsenett SF"
+			"name": "Norsk Helsenett SF",
+			"oid": "2.16.578.1.12.4.1.4.101"
 		}
 	}
 }

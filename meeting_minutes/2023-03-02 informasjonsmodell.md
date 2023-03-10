@@ -1,15 +1,15 @@
 # Møte i feature-team for informasjons- og datamodell - 02.03.2023
 
 ## Til stede
-Richard Husevåg (HSØ)
-Morten Stensøy (HNIKT)
-Sverre Martin Jensen (Oslo Kommune)
-Erik Vegler Broen (Oslo Kommune - Origo)
-Simone Vandeberg (NHN)
-Steinar Noem (NHN)
+- Richard Husevåg (HSØ)
+- Morten Stensøy (HNIKT)
+- Sverre Martin Jensen (Oslo Kommune)
+- Erik Vegler Broen (Oslo Kommune - Origo)
+- Simone Vandeberg (NHN)
+- Steinar Noem (NHN)
 
 ### Observatører
-Ragnhild Varmedal (Observatør - NHN)
+- Ragnhild Varmedal (Observatør - NHN)
 
 ## Agenda
 1. Introduksjon, forslag til prosess

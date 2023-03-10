@@ -4,6 +4,15 @@
 
 ## Dokumentets status
 
+| Versjon | Dokumentets status | dato |
+| --- | --- | --- |
+| -0 | Utkast | 17.02.2023 |
+
+Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
+
+Spesifikasjonen skal versjoneres for å støtte endringer over tid.
+
+
 ## Definisjon av begrep og forkortelser
 Spesifikasjonen benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
 
@@ -92,11 +101,7 @@ sequenceDiagram
 		"pid": {
 			"value": "22046557946",
 			"system_oid": "2.16.578.1.12.4.1.4.1" //F-Nummer
-		},
-		"structural_role": {
-			"value": "Licensed Health Care Providers",
-			"system_oid": "oid-code"
-		},
+		}
 	},
 	"patient_relationship": {
 		"functional_role": {
@@ -111,11 +116,11 @@ sequenceDiagram
 			"legal_entity": {
 				"name": "Juridisk Enhet AS",
 				"org_id": "1231232132",
-				"system_oid": "kode for enhetsregisteret"
+				"system_oid": "2.16.578.1.12.4.1.4.101"
 			},
 			"point_of_care": {
 				"org_id": "123123123",
-				"system_oid": "kode for enhetsregisteret"
+				"system_oid": "2.16.578.1.12.4.1.4.101"
 			},
 			"facility_type": {
 				"value": "Hospital",
