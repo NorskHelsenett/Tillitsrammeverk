@@ -210,22 +210,22 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Informasjon | Beskrivelse | Informasjonskilde | Påkrevd | Status |
-| --- | --- | --- | --- | --- |
-| "pid" | Fødselsnummer fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "authorization" | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "licence" | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Informasjon          | Beskrivelse | Informasjonskilde | Påkrevd | Status |
+|----------------------| --- | --- | --- | --- |
+| "pid"                | Fødselsnummer fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "hpr_nr"             | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "authorization"      | Helsepersonellets autorissjoner, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "licence"            | Helsepersonellets lisenser, dersom de finnes | HelseID | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "functional_role"    | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "legal_entity_id" | Den dataansvarlige virksomhetens org.nr | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
-| "legal_entity_name" | Den dataansvarlige virksomhetens navn | Konsumentens EPJ | **Ja** |<span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "point_of_care_id" | Behandlingsstedets org.nr., dersom det er relevant | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "legal_entity_id"    | Den dataansvarlige virksomhetens org.nr | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</style> |
+| "legal_entity_name"  | Den dataansvarlige virksomhetens navn | Konsumentens EPJ | **Ja** |<span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "point_of_care_id"   | Behandlingsstedets org.nr., dersom det er relevant | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "point_of_care_name" | Behandlingsstedets navn, dersom det er relevant | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "facility_type" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |<span style="color: red; font-weight: bold;">Under behandling</span> |
-| "purpose_of_use" | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "locality"           | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |<span style="color: red; font-weight: bold;">Under behandling</span> |
+| "purpose_of_use"     | Helsepersonellets formåle med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "patient_id"         | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 
 #### 3.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
@@ -643,7 +643,7 @@ Full modell - valgfrie elementer er tatt med
 		"location": {
 			"text": "Indremedisinsk avdeling"
 		},
-		"facility_type": {
+		"healthcare_service": {
 			"code": "S03",
 			"text": "Indremedisin",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
@@ -745,7 +745,7 @@ Vi ønsker å takk Erik Vegler Broen ved Oslo Kommune, Trond Elde ved DIPS, +++ 
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"assigner": "https://www.skatteetaten.no"
 		},
-		"facility_type": {
+		"healthcare_service": {
 			"code": "KX17",
 			"text": "Fastlege, liste uten fast lege",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
@@ -798,7 +798,7 @@ Vi ønsker å takk Erik Vegler Broen ved Oslo Kommune, Trond Elde ved DIPS, +++ 
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"assigner": "https://www.skatteetaten.no"
 		},
-		"facility_type": {
+		"healthcare_service": {
 			"code": "KP01",
 			"text": "Legetjeneste ved sykehjem",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
