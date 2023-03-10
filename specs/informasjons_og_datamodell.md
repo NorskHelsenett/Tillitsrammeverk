@@ -198,12 +198,11 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | "clinical_speciality" | Helsepersonellets kliniske spesialitet | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - Konsumentens EPJ for §9 samarbeid og multi-tenancy system<br>- HelseID for single-tenancy/on-premise system | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "facility_type" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |<span style="color: red; font-weight: bold;">Under behandling</span> |
 | "care_type" | Angir hvilken tjeneste virksomheten skal levere for den aktuelle pasienten. | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-
 
 #### 3.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
@@ -603,50 +602,57 @@ Full modell - valgfrie elementer er tatt med
 ````JSON
 {
 	"practicioner": {
-		"pid":{
-			"value": "xxxxxx34794",
-			"name": "Lege Legesen",
-			"oid": "2.16.578.1.12.4.1.4.1"
+		"pid": {
+			"value": "04056600324",
+			"name": "Magnar Koman",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"professional_license": {
-			"hpr_nr": "xxxxxxxxx",
-			"oid": "x.x.x.x.x.x."
+		"hpr_nr": {
+			"value": "9144900",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"care_relationship": {
-		"functional_role": {
-			"code": "2211",
-			"oid": "STYRK-08"
-		},
 		"clinical_speciality": {
-			"value": "419772000",
-			"oid": ""
+			"code": "190",
+			"text": "Indremedisin",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.7426",
+			"assigner": "https://www.helsedirektoratet.no/"
 		},
 		"legal_entity": {
-			"id": "921592761",
-			"name": "Lege Leif Lagesen",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "993467049",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF",
+			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
-			"id": "123456789",
-			"name": "Det beste legekontoret i byen AS",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "974589095",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"facility_type":{
-			"text": "helsetjenestetype",
-			"value": "05",
-			"oid": ""
+		"location": {
+			"text": "Indremedisinsk avdeling"
 		},
-		"locality": "Helsehjelpgata 1 0001 Valderborg",
-		"purpose_of_use": {
-			"Text": "beskrivelse",
-			"code": "TREAT",
-			"oid": ""
+		"healthcare_service": {
+			"code": "S03",
+			"text": "Indremedisin",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"patient": {
-		"value": "xxxxxx95164",
-		"oid": "2.16.578.1.12.4.1.4.1"
+		"id": "13116900216",
+		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+		"assigner": "https://www.skatteetaten.no"
 	}
 }
 ````
@@ -698,46 +704,54 @@ Vi ønsker å takke Michal Cermak, Trond Elde, Eva Tone Fosse, Helge Bjertnæs, 
 
 
 #### Eksempel #1 - Fastlege ber om tilgang til dokument
-I dette eksempelet har en fastlege ...
-
 
 ##### JSON
 
 ```JSON
 {
 	"practicioner": {
-		"pid":{
-			"value": "xxxxxx34794",
-			"oid_system": "2.16.578.1.12.4.1.4.1"
+		"pid": {
+			"value": "20086600138",
+			"name": "August September",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"professional_license": {
-			"hpr_nr": "xxxxxxxxx",
-			"oid": "xxxxxxxxxx"
+		"hpr_nr": {
+			"value": "9144897",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"care_relationship": {
-		"functional_role": {
-			"value": "2211",
-			"system_oid": ""
-		},
 		"legal_entity": {
-			"id": "921592761",
-			"name": "Lege Leif Lagesen",
-			"system_oid": "2.16.578.1.12.4.1.4.101"
+			"id": "100100673",
+			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
+			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"facility_type":{
-			"value": "05",
-			"system_oid": ""
+		"point_of_care": {
+			"id": "100100673",
+			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
-		"locality": "Helsehjelpgata 1 0001 Valderborg",
-		"purpose_of_use": {
-			"value": "TREAT",
-			"system_oid": ""
+		"healthcare_service": {
+			"code": "KX17",
+			"text": "Fastlege, liste uten fast lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"patient": {
-		"value": "xxxxxx95164",
-		"oid_system": "2.16.578.1.12.4.1.4.1"
+		"id": "13116900216",
+		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+		"assigner": "https://www.skatteetaten.no"
 	}
 }
 ```
@@ -746,34 +760,46 @@ I dette eksempelet har en fastlege ...
 
 #### Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
 
-I dette eksempelet har...
-
-##### JSON
-Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
-
 ```JSON
 {
 	"practicioner": {
-		"pid":{
-			"value": "xxxxxx34794",
-			"oid": "2.16.578.1.12.4.1.4.1"
+		"pid": {
+			"value": "03117000205",
+			"name": "Rita Lin",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"assigner": "https://www.skatteetaten.no"
 		},
+		"hpr_nr": {
+			"value": "9144900",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
+		}
 	},
 	"care_relationship": {
-		"functional_role": {
-			"code": "2226",
-			"oid": ""
-		},
 		"legal_entity": {
-			"id": "921592761",
-			"name": "Helsearbeider Helge Helsefyr",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "997506499",
+			"name": "OSLO KOMMUNE HELSEETATEN",
+			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
-			"id": "123456789",
-			"point_of_care_name": "Det beste sykehjemmet i landet",
-			"oid": "2.16.578.1.12.4.1.4.101"
+			"id": "875300342",
+			"name": "MADSERUDHJEMMET",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"assigner": "https://www.skatteetaten.no"
 		},
+		"healthcare_service": {
+			"code": "KP01",
+			"text": "Legetjeneste ved sykehjem",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
+			"assigner": "https://www.helsedirektoratet.no/"
+    },
 		"facility_type":{
 			"code": "KP02",
 			"oid": "8663"
@@ -791,11 +817,15 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 		}
 	},
 	"patient": {
-		"value": "xxxxxx95164",
-		"oid": "2.16.578.1.12.4.1.4.1"
+		"id": "13116900216",
+		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+		"assigner": "https://www.skatteetaten.no"
 	}
 }
 ```
+
+##### JSON
+Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 
 ##### SAML
 
