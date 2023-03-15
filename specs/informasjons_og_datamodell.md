@@ -255,11 +255,21 @@ Attributtet "pid" i entitet Helsepersonell er en forkortelse for "personal ident
 "pid":{
 	"value": "xxxxxx34794",
 	"name": "Lege Legesen",
-	"oid_system": "2.16.578.1.12.4.1.4.1"
+	"system": "2.16.578.1.12.4.1.4.1",
+	"authority": "www.brreg.no"
 }
 ````
 
 ##### 4.2.5.3 Informasjon om helsepersonellet fra Helsepersonellregisteret
+
+###### "professional_licence" - overordnet struktur for attributter fra HPR
+
+````JSON
+"professional_license": {
+	"hpr_nr": { 8<...>8 },
+	"authorization": { 8<...>8 }
+}
+````
 
 ###### "hpr_nr": Helsepersonellnummer
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
@@ -281,13 +291,13 @@ Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseo
 ###### "hpr_nr": Helsepersonellets gjeldende autorisasjon - JSON format
 ````JSON
 "hpr_nr": {
-	"value": "9144900",
+	"id": "9144900",
 	"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-	"assigner": "https://www.helsedirektoratet.no/"
+	"authority": "https://www.helsedirektoratet.no/"
 },
 ````
 
-###### "authorization": Helsepersonellnummer
+###### "authorization": Helsepersonellets gjeldende autorisasjon
 Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet.
 
 Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på helseopplysninger. Attributtet kan derfor ikke være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har en eller flere gyldige autorisasjoner.
@@ -312,16 +322,6 @@ Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på hels
 	"text": "Lege",
 	"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
 	"assigner": "https://www.helsedirektoratet.no/"
-}
-````
-
-
-###### Helsepersonellregister - Atributter JSON format
-
-````JSON
-"professional_license": {
-	"hpr_nr": "xxxxxxxxx",
-	"oid": "xx.xx.xx.xx"
 }
 ````
 
@@ -364,7 +364,8 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 "legal_entity": {
 	"id": "921592761",
 	"name": "Lege Leif Lagesen ENK",
-	"oid": "2.16.578.1.12.4.1.4.101"
+	"system": "2.16.578.1.12.4.1.4.101",
+	"authority": "www.brreg.no"
 }
 ```` 
 
@@ -402,7 +403,8 @@ Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor he
 "point_of_care": {
 	"id": "123456789",
 	"name": "Det beste legekontoret i byen AS",
-	"system_oid": "2.16.578.1.12.4.1.4.101"
+	"system": "2.16.578.1.12.4.1.4.101",
+	"authority": "www.brreg.no"
 }
 ````
 
@@ -438,7 +440,8 @@ Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres v
 "healthcare_service":{
 	"text": "Sykepleietjeneste",
 	"code": "KP02",
-	"system_oid": "8663"
+	"system": "8663",
+	"assigner": "www.helsedirektoratet.no"
 }
 ````
 
@@ -465,7 +468,7 @@ Attributtet "care_type" beskriver tjenesten som virksomheten skal tilby til pasi
      "code": "15",
      "text": "Helsetjenester i hjemmet",
      "system": "urn:oid:x.x.x.x.x.9151",
-     "assigner": "volven.no"
+     "assigner": "https://www.helsedirektoratet.no/"
 }
 ````
 
@@ -479,7 +482,7 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 | Attributt: | "locality" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:environment:locality" |
 | Obligatorisk:| **Ja** |
-| Data type: | String |
+| Data type: | Fritekst |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | ingen |
@@ -497,7 +500,10 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 ###### Fysisk sted - Attributter JSON format
 
 ````JSON
-"locality": "Helsehjelpgata 4, 0001 Valderborg"
+"locality": {
+	"type": "ALPHANUMERIC",
+	"value": "Helsehjelpgata 4, 0001 Valderborg"
+}
 
 ````
 
@@ -530,10 +536,11 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 
 ````JSON
 "purpose_of_use": {
-	"value": "TREAT",
-	"system_oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+	"code": "TREAT",
+	"text": "Behandling",
+	"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+	"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
 }
-
 ````
 
 ##### "purpose_of_use_details": detaljert beskrivelse av formålet med behandlingen av personopplysninger
@@ -565,9 +572,11 @@ Basert på HSØ sitt attributt "purpose_local"
 ###### Detaljert beskrivelse av formålet med behandlingen av personopplysninger - Attributter JSON format
 
 ````JSON
-"purpose_of_use": {
-	"value": "TREAT",
-	"system_oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+"purpose_of_use_details": {
+	"code": "?",
+	"text": "?",
+	"system": "?",
+	"assigner": "?"
 }
 
 ````
@@ -594,12 +603,10 @@ Basert på HSØ sitt attributt "purpose_local"
 
 ````JSON
 "patient": {
-	"id":{
-		"value": "05076600324",
-		"name": "Kognar Maman",
-		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-		"assigner": "https://www.skatteetaten.no"
-	}
+	"id": "05076600324",
+	"name": "Kognar Maman",
+	"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+	"authority": "https://www.skatteetaten.no"
 }
 ````
 
@@ -610,13 +617,13 @@ Full modell - valgfrie elementer er tatt med
 {
 	"practicioner": {
 		"pid": {
-			"value": "04056600324",
+			"id": "04056600324",
 			"name": "Magnar Koman",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"assigner": "https://www.skatteetaten.no"
+			"authority": "https://www.skatteetaten.no"
 		},
 		"hpr_nr": {
-			"value": "9144900",
+			"id": "9144900",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
 			"assigner": "https://www.helsedirektoratet.no/"
 		},
@@ -631,16 +638,17 @@ Full modell - valgfrie elementer er tatt med
 		"legal_entity": {
 			"id": "993467049",
 			"name": "OSLO UNIVERSITETSSYKEHUS HF",
-			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"assigner": "https://www.skatteetaten.no"
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"authority": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
 			"id": "974589095",
 			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"assigner": "https://www.skatteetaten.no"
+			"authority": "https://www.skatteetaten.no"
 		},
 		"location": {
+			"type": "ALPHANUMERIC",
 			"text": "Indremedisinsk avdeling"
 		},
 		"healthcare_service": {
@@ -653,7 +661,7 @@ Full modell - valgfrie elementer er tatt med
 	"patient": {
 		"id": "13116900216",
 		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-		"assigner": "https://www.skatteetaten.no"
+		"authority": "https://www.skatteetaten.no"
 	}
 }
 ````
@@ -715,35 +723,37 @@ I dette eksempelet har en fastlege ...
 {
 	"practicioner": {
 		"pid": {
-			"value": "20086600138",
+			"id": "20086600138",
 			"name": "August September",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"assigner": "https://www.skatteetaten.no"
+			"authority": "https://www.skatteetaten.no"
 		},
-		"hpr_nr": {
-			"value": "9144897",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-			"assigner": "https://www.helsedirektoratet.no/"
-		},
-		"authorization": {
-			"code": "LE",
-			"text": "Lege",
-			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-			"assigner": "https://www.helsedirektoratet.no/"
+		"professional_license": {
+			"hpr_nr": {
+				"id": "9144897",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+				"authority": "https://www.helsedirektoratet.no/"
+			},
+			"authorization": {
+				"code": "LE",
+				"text": "Lege",
+				"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+				"assigner": "https://www.helsedirektoratet.no/"
+			}
 		}
 	},
 	"care_relationship": {
 		"legal_entity": {
 			"id": "100100673",
 			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
-			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"assigner": "https://www.skatteetaten.no"
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"authority": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
 			"id": "100100673",
 			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"assigner": "https://www.skatteetaten.no"
+			"authority": "https://www.skatteetaten.no"
 		},
 		"healthcare_service": {
 			"code": "KX17",
@@ -755,7 +765,7 @@ I dette eksempelet har en fastlege ...
 	"patient": {
 		"id": "13116900216",
 		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-		"assigner": "https://www.skatteetaten.no"
+		"authority": "https://www.skatteetaten.no"
 	}
 }
 ```
@@ -773,47 +783,53 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 {
 	"practicioner": {
 		"pid": {
-			"value": "03117000205",
+			"id": "03117000205",
 			"name": "Rita Lin",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"assigner": "https://www.skatteetaten.no"
+			"authority": "https://www.skatteetaten.no"
 		},
-		"hpr_nr": {
-			"value": "9144900",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-			"assigner": "https://www.helsedirektoratet.no/"
-		},
-		"authorization": {
-			"code": "LE",
-			"text": "Lege",
-			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-			"assigner": "https://www.helsedirektoratet.no/"
+		"professional_license": {
+			"hpr_nr": {
+				"id": "9144900",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+				"authority": "https://www.helsedirektoratet.no/"
+			},
+			"authorization": {
+				"code": "LE",
+				"text": "Lege",
+				"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+				"assigner": "https://www.helsedirektoratet.no/"
+			}
 		}
 	},
 	"care_relationship": {
 		"legal_entity": {
 			"id": "997506499",
 			"name": "OSLO KOMMUNE HELSEETATEN",
-			"oid": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"assigner": "https://www.skatteetaten.no"
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"authority": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
 			"id": "875300342",
 			"name": "MADSERUDHJEMMET",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"assigner": "https://www.skatteetaten.no"
+			"authority": "https://www.skatteetaten.no"
 		},
 		"healthcare_service": {
 			"code": "KP01",
 			"text": "Legetjeneste ved sykehjem",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
-			"assigner": "https://www.helsedirektoratet.no/"
-    },
+			"assigner": "https://www.helsedirektoratet.no/",    
 		"facility_type":{
 			"code": "KP02",
-			"oid": "8663"
+			"text": "",
+			"system": "8663",
+			"authority": "https://www.helsedirektoratet.no"
 		},
-		"locality": "Helsehjelpgata 4 0001 Valderborg",
+		"locality": {
+			"type": "ALPHANUMERIC",
+			"value" :"Helsehjelpgata 4 0001 Valderborg",
+		},
 		"care_type": {
 			"code": "15",
 			"text": "Helsetjenester i hjemmet",
@@ -822,13 +838,15 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 		},
 		"purpose_of_use": {
 			"code": "COC",
-			"oid": "urn:oid:2.16.840.1.113883.1.11.20448"
+			"text": "",
+			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+			"assigner": "HL7"
 		}
 	},
 	"patient": {
 		"id": "13116900216",
 		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-		"assigner": "https://www.skatteetaten.no"
+		"authority": "https://www.skatteetaten.no"
 	}
 }
 ```
