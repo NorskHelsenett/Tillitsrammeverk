@@ -94,14 +94,12 @@ I delingssammenheng består helsepersonellets digitale identitet også av inform
 Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at helsepersonell bare skal gis tilgang til helseopplysninger dersom det foreligger et tjenstlig behov og at opplysningene er relevant og nødvendig i behandlingen av pasienten. Det er helsepersonellet og konsumentens ansvar å sørge for at tilgangen til helseopplysningene er i henhold til loven, men den utleverende part har likevel behov for overført informasjon som beskriver bakgrunnen for forespørselen om helseopplysninger for å tilfredsstille lovkrav knyttet til dokumentasjon og å utføre tilgangskontroll. 
 
 Informasjonen som beskriver helsepersonellets behandlerrelasjon til sin pasient består av følgende informasjon:
-* Helsepersonellets rolle i sin behandling av pasienten
 * Helsevirksomhet og behandlingssted
 * Helsetjenestetype ved behandlingssted
 * Formålet med behandlingen av helseopplysninger
 
 #### 4.1.3 Pasientens identitet
-Det er en selvfølge at pasienten må identifiseres ved deling av helseopplysninger. Det er ikke nødvendig å overføre annen informasjon om pasienten enn en unik identifikator.
-
+Pasienten må identifiseres ved deling av helseopplysninger. Det er ikke nødvendig å overføre annen informasjon om pasienten enn en unik identifikator.
 
 #### 4.1.4 Oppsummert informasjonsmodell
 
@@ -110,16 +108,22 @@ Det er en selvfølge at pasienten må identifiseres ved deling av helseopplysnin
 title: Informasjonsmodell
 ---
 classDiagram
-	Helsepersonell --* Behandlerrelasjon
-	Behandlerrelasjon --* Pasient
+	Helsepersonell -- Behandlerrelasjon
+	Behandlerrelasjon -- Pasient
+
     class Helsepersonell{
-	    +Object Identitet
+		- Helsepersonellet fødselsnummer og navn
+		- Helsepersonellets formelle autorisasjon
     }
     class Behandlerrelasjon{
-		+Object KontekstuellInformasjon
+		- Den dataansvarlige virksomheten
+		- Ved hvilket behandlingssted befinner helsepersonellet seg
+		- Helsetjenestetypen som ytes ved behandlingsstedet
+		- Formålet med behandlingen av helseopplysningene
+		- Detaljert beskrivelse av behandlingsstedet (f.eks. avdeling)
     }
     class Pasient{
-    		+Object PasientIdentifikator
+		- Hvem er pasienten
     }
 
 ```
@@ -147,49 +151,27 @@ title: Datamodell
 classDiagram
 
 	Helsepersonell -- Behandlerrelasjon
-	Helsepersonell o-- IdentityAttribute
-	Behandlerrelasjon o-- IdentityAttribute
-	Behandlerrelasjon o-- PurposeOfUse
-	Behandlerrelasjon o-- Organization
-	Organization o-- LegalEntity
-	Organization o-- IdentityAttribute
-	PurposeOfUse --|> IdentityAttribute
 	Behandlerrelasjon -- Pasient
 
 	class Helsepersonell{
-		+IdentityAttribute name
-		+IdentityAttribute pid
-		+String hpr_nr
+		- "name"
+		- "pid"
+		- "hpr_nr"
+		- "authorization"
 	}
 		
 	class Behandlerrelasjon{
-		+IdentityAttribute functionalRole
-		+IdentityAttribute clinicalSpeciality
-		+Organization healthCareInstitution
-		+PurposeOfUse purposeOfUse
+		- "legal_entity"
+		- "point_of_care"
+		- "purpose_of_use"
+		- "purpose_of_use_details"
+		- "care_type"
+		- "health_care_service"
 	}
 	
 	class Pasient{
-		+String pid
-	}
-	
-	class IdentityAttribute{
-		+String value
-		+String oid_system
-		+bool isOptional		
+		- "pid"
 	}	
-	
-	class LegalEntity{
-		+String id
-		+String name		
-	}
-	class Organization{
-		+LegalEntity legalEntity
-		+LegalEntity pointOfCare
-		+IdentityAttribute facility
-		+String locality
-	}
-	
 		
 ```
 
@@ -202,8 +184,8 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | --- | --- | --- | --- | --- |
 | "pid" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| "functional_role" | Helsepersonellets funksjonelle rolle hos virksomheten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - Konsumentens EPJ for §9 samarbeid og multi-tenancy system<br>- HelseID for single-tenancy/on-premise system | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "authorization" | Helsepersonellets autorisasjon, dersom den finnes | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | "care_type" | Angir hvilken tjeneste virksomheten skal levere for den aktuelle pasienten. | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
@@ -214,7 +196,29 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 #### 4.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
-I forbindelse med EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. Vi har tatt utgangspunkt i denne datamodellen når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet, men har tilpasset den til våre behov.
+I forbindelse med realiseringen av EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. 
+
+Vi har valgt å ikke tilnærme oss datamodellen hos EHDSI når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet. Grunnen til at vi har valgt en annen retning er en antagelse om at programvaren som skal benyttes for å konsumere helseopplysninger ikke har informasjonen som benyttes i EHDSI sin datamodell lett tilgjengelig.
+
+Noen attributter som er definert i denne spesifikasjonen har et visst overlapp med datamodellen i EHDSI. Dette er angitt i venstre kolonne i tabellen under.
+
+#### 4.2.4.1 Attributter i tokens i EHDSI
+
+| | Attributt | Beskrivelse |
+| --- | --- |--- |
+|   | "homeCommunityId" | ID of the Home Community |
+|   | "npi" | National Provider Identifier |
+| <span style="color: green; font-weight: bold;">X</span> | "subject-id" | Helsepersonellets fulle navn |
+|   | "role" | Helsepersonellets "strukturelle rolle" |
+|   | "functional-role" | Helsepersonellets "funksjonelle rolle" |
+|   | "clinical-speciality" | Helsepersonellets kliniske spesialitet |
+| <span style="color: green; font-weight: bold;">X</span> | "permission" | Helsepersonellets formelle rettigheter |
+|   | "on-behalf-of" | Delegert tilgang (for fysiske personer uten autorisasjoner) |
+| <span style="color: green; font-weight: bold;">X</span> | "organization" | Helsevirksomhetens navn |
+| <span style="color: green; font-weight: bold;">X</span> | "organization-id" | Helsevirksomhetens unike identifikator |
+|   | "healthcare-facility-type" | Type helsevirksomhet |
+| <span style="color: green; font-weight: bold;">X</span> | "purposeofuse" | Formålet med behandlingen av helseopplysninger |
+| <span style="color: green; font-weight: bold;">X</span> | "locality" | Behandlingsstedets navn | 
 
 
 #### 4.2.5 Kategori: Helsepersonellet
@@ -269,20 +273,48 @@ Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseo
 | Informasjonselement | Unik identifikator for helsepersonellet knyttet opp til formelle autorisasjoner eller lisenser |
 | Attributt EHDSI: | N/A (?) |
 | Obligatorisk: | **Nei** |
-| Data type: | String |
+| Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
-
-###### Helsepersonellets funksjonelle rolle - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
+###### "hpr_nr": Helsepersonellets gjeldende autorisasjon - JSON format
+````JSON
+"hpr_nr": {
+	"value": "9144900",
+	"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+	"assigner": "https://www.helsedirektoratet.no/"
+},
 ````
+
+###### "authorization": Helsepersonellnummer
+Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet.
+
+Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på helseopplysninger. Attributtet kan derfor ikke være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har en eller flere gyldige autorisasjoner.
+ 
+|   |   |
+| ---| ---|
+| Attributt: | "authorization" |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Den gjeldende autorisasjonen for helsepersonellet i behandlingen av pasienten  |
+| Attributt EHDSI: | N/A (?) |
+| Obligatorisk: | **Nei** |
+| Data type: | Objekt |
+| Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
+| Informasjonskilde: | Konsumentens EPJ |
+| Kodeverk: | 2.16.578.1.12.4.1.1.9060 |
+
+
+###### "authorization": Helsepersonellets gjeldende autorisasjon - JSON format
+````JSON
+"authorization": {
+	"code": "LE",
+	"text": "Lege",
+	"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+	"assigner": "https://www.helsedirektoratet.no/"
+}
+````
+
 
 ###### Helsepersonellregister - Atributter JSON format
 
@@ -294,41 +326,7 @@ Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseo
 ````
 
 #### 4.2.6 Kategori: Behandlerrelasjon
-Helsepersonellets behandlerrelasjon til pasientent angis ved hans rolle, spesialitet, virksomhet hvor han yter helsehjelp, behandlingssted, helsetjenestetype og en angivelse av formålet med behandlingen av helseopplysningene.
-
-##### 4.2.6.1 "functional_role": Helsepersonellets funksjonelle rolle
-Attributtet "functional_role" representerer helsepersonellets rolle hos virksomheten i hans behandling av pasienten, og angis av kode fra STYRK-08.
-
-|   |   |
-| ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| Informasjonselement | Yrkesklassifisering av helsepersonellet i organisasjonen.<br/>Basert på den internasjonale standarden ISCO-08 |
-| Attributt: | "functional_role" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:functional-role" |
-| Obligatorisk: | **Ja** |
-| Data type: | String |
-| Autoritativ kilde: | Konsumenten - helsepersonellets rolle hos virksomheten |
-| Informasjonskilde: | Konsumentens EPJ/HR system |
-| Kodeverk: | STYRK-08 (ISCO-08) |
-| Gyldige verdier: | Helsefaglige koder (må avklares - subsett av STYRK-08) |
-
-###### Helsepersonellets funksjonelle rolle - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
-
-###### Helsepersonellets funksjonelle rolle - Attributter JSON format
-````JSON
-"functional_role": {
-	"Text": "Lege", 
-	"value": "2211",
-	"oid": "STYRK-08"
-}
-```` 
+Helsepersonellets behandlerrelasjon til pasientent angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 ##### "legal_entity": den dataansvarlige virksomheten 
 Attributtet "legal_entity" identifiserer den dataansvarlige hvor helsepersonellet yter helsehjelp.
@@ -347,7 +345,7 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 | Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | §9/multi tenancy: Konsumentens journalsystem<br>single-tenancy: Utledes av HelseID  |
+| Informasjonskilde: | - §9/multi tenancy: Konsumentens journalsystem<br>- Single-tenancy: Utledes av HelseID  |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 
 
@@ -503,7 +501,6 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 
 ````
 
-
 ##### "purpose_of_use": formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlingen av personopplysninger.
 
@@ -575,7 +572,7 @@ Basert på HSØ sitt attributt "purpose_local"
 
 ````
 
-#### 4.2.7 Kategori: Pasient - "practicioner"
+#### 4.2.7 Kategori: Pasient - "patient_id"
 ##### "patient_id": Unik identifikator for pasienten
 
 | Attributt | |
@@ -631,12 +628,6 @@ Full modell - valgfrie elementer er tatt med
 		}
 	},
 	"care_relationship": {
-		"clinical_speciality": {
-			"code": "190",
-			"text": "Indremedisin",
-			"system": "urn:oid:2.16.578.1.12.4.1.1.7426",
-			"assigner": "https://www.helsedirektoratet.no/"
-		},
 		"legal_entity": {
 			"id": "993467049",
 			"name": "OSLO UNIVERSITETSSYKEHUS HF",
@@ -800,10 +791,6 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 		}
 	},
 	"care_relationship": {
-		"functional_role": {
-			"code": "2226",
-			"oid": ""
-		},
 		"legal_entity": {
 			"id": "997506499",
 			"name": "OSLO KOMMUNE HELSEETATEN",
