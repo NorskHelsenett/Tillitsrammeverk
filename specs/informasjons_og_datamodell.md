@@ -194,7 +194,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> |
 
-#### 4.2.4 Relasjon til eHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
+#### 4.2.4 Relasjon til EHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
 I forbindelse med realiseringen av EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. 
 
@@ -819,7 +819,8 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 			"code": "KP01",
 			"text": "Legetjeneste ved sykehjem",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
-			"assigner": "https://www.helsedirektoratet.no/",    
+			"assigner": "https://www.helsedirektoratet.no/",   
+		}, 
 		"facility_type":{
 			"code": "KP02",
 			"text": "",
