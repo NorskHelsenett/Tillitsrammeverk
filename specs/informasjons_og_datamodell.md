@@ -84,9 +84,9 @@ Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tr
 
 
 #### 4.1.1 Helsepersonellets Identitet
-Helsepersonellets grunnleggende identitet består av informasjon som sjelden endres, slik som personens navn og fødselsnummer, i tillegg til helsepersonellets offentlige godkjenninger.
+Helsepersonellets grunnleggende identitet består av informasjon som sjelden endres, slik som personens navn og fødselsnummer. I yrkessammenheng består også helsepersonellets identitet i tillegg av eventuelle offentlige godkjenninger og rettigheter.
 
-Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person. Identiteten vil benyttes i forbindelse med tilgangskontroll, slik som kontroll av evt. sperrer, samt logging. 
+Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person. Identiteten vil benyttes i forbindelse med tilgangskontroll, slik som kontroll av hvorvidt pasienten har sperret for utlevering av helseopplysninger til helsepersonellet, logging og oppfølging av funn i logganalyse og for informasjon til pasienten. 
 
 #### 4.1.2 Helsepersonellets behandlerrelasjon til sin pasient
 I delingssammenheng består helsepersonellets digitale identitet også av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets behandlerrelasjon til pasienten.
@@ -180,7 +180,7 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | |
+| Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
 | "pid" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
