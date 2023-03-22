@@ -134,12 +134,7 @@ Informasjonsmodellen skal overføres fra konsument til datakilde i form av attri
 #### 4.2.1 Prinsipper for datamodellen 
 Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandle med hverandre ved at man benytter samme språk for å uttrykke informasjonen som beskriver helsepersonellet og konteksten som helsepersonellet befinner seg i når han ber om tilgang til helseopplysningene. Den skisserte datamodellen legger til rette for en viss grad av dynamikk ved å angi hvilket kodeverk eller lister over gyldige verdier som er benyttet i datasettet.
 
-Datamodellen skal brukes i sikkerhetsbilletter som skal behandles av mange aktører og i mange systemer. Aktørene som mottar og behandler sikkerhetsbillettene må ha svært høy tillit til at informasjonen er trygg. Det skal være usannsynlig at datamodellen kan inneholde data som kan brukes til sikkerhetsangrep via sikkerhetsbilletter.
-
-> TODO: Informasjonen i datamodellen skal være sporbar slik at vi ivaretar prinsippet om uavviselighet… 
-
-> TODO: mer her om tillitsnivå/sikkerhetsnivå/identiteter osv.. Hvem er den autoritative kilden til informasjonen osv..
-
+Datamodellen skal overføres til og behandles av mange aktører og i mange systemer. Mottakeren av informasjonen må ha høy tillit til at informasjonen er korrekt og trygg.
 
 
 #### 4.2.2 Oversikt over attributter i datamodellen 
@@ -241,13 +236,6 @@ Attributtet "pid" i entitet Helsepersonell er en forkortelse for "personal ident
 | Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 
-###### Identifikator for Helsepersonellet - Attributt SAML format
-
-````XML
-<saml:Attribute Name="2.16.578.1.12.4.1.4.1">
-	<saml:AttributeValue xsi:type="xs:string">xxxxxx34794</saml:AttributeValue>
-</saml:Attribute>
-````
 
 ###### Identifikator for Helsepersonellet - Attributt JSON format
 
@@ -349,15 +337,6 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 
 
-###### Den dataansvarlige virksomheten - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
-
 ###### Den dataansvarlige virksomheten - Attributter JSON format
 
 ````JSON
@@ -388,15 +367,6 @@ Attributtet er obligatorisk. Dersom verdiene for "legal_entity" og "point_of_car
 
 Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
 
-###### Behandlingssted - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
-
 ###### Behandlingssted - Attributter JSON format
 
 ````JSON
@@ -425,14 +395,6 @@ Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres v
 | oid code: | volven: 8627<br/>volven: 8662<br/>volven: 8663<br/>volven: 8664<br/>volven: 8665<br/>volven: 8666 |
 | Gyldige verdier:| ? |
 
-###### "healthcare_service" - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
 
 ###### "healthcare_service" - Attributter JSON format
 
@@ -490,13 +452,6 @@ Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter ell
 
 ###### Fysisk sted - Attributter SAML format
 
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
-
 ###### Fysisk sted - Attributter JSON format
 
 ````JSON
@@ -523,14 +478,6 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448<br/> HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
 | Gyldige verdier:| TREAT, <br/>ETREAT,<br/>... |
 
-###### Formålet med behandlingen av personopplysninger - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
 
 ###### Formålet med behandlingen av personopplysninger - Attributter JSON format
 
@@ -560,14 +507,6 @@ Basert på HSØ sitt attributt "purpose_local"
 | Kodeverk: | ? (HSØ?) |
 | Gyldige verdier:|  |
 
-###### Detaljert beskrivelse av formålet med behandlingen av personopplysninger - Attributter SAML format
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
 
 ###### Detaljert beskrivelse av formålet med behandlingen av personopplysninger - Attributter JSON format
 
@@ -591,13 +530,6 @@ Basert på HSØ sitt attributt "purpose_local"
 | Attributt: | "patient" |
 | Attributt EHDSI: | |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
-
-````XML
-<AttributeStatement>
-<saml:Attribute>
-??
-</saml:Attribute>
-````
 
 ###### Pasientens identifikator - Attributter JSON format
 
@@ -666,15 +598,8 @@ Full modell - valgfrie elementer er tatt med
 }
 ````
 
-## 6. SAML profil for datamodell
-
-````xml
-
-```` 
-
-
-## 7. Sikkerhets- og personvernshensyn
-### 7.1 Cybersikkerhet
+## 6. Sikkerhets- og personvernshensyn
+### 6.1 Cybersikkerhet
 Både egenprodusert og tredjeparts programvarekomponenter som brukes til datalagring samt behandling og presentasjon av informasjonen i datamodellen kan inneholde svakheter som lar en angriper utnytte data som overføres mellom partene til å utføre forskjellige typer angrep på innsiden av en organisasjon.
 
 Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og behandles av forskjellige typer programvare. Sikkerhetsangrep som utføres i forbindelse med datalagring er svært vanlig, og utgjør en generell sikkerhetsrisiko som kan begrenses ved at verdier som overføres kan valideres og kontrolleres.
@@ -682,11 +607,11 @@ Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og beh
 Informasjonen i datamodellen vil blant annet benyttes til å utføre analyse av logger, og vil kunne bli vist til sluttbrukere i forskjellige applikasjoner. Dette åpner for angrep mot sårbarheter i programvare, som f.eks. misbruk av makroer eller XSS angrep i nettlesere. Sannsynligheten for denne typen sikkerhetsangrep bør begrenses ved at verdier som overføres kan valideres og kontrolleres.
 
 
-### 7.2 Personvern
+### 6.2 Personvern
 
 Datamodellen legger til rette for en utlevering av personopplysninger, herunder helseopplysninger, som en behandling av en særlig kategori av personopplysninger, gjennom å sammenstille opplysninger om helsepersonellet, pasientens identifikasjonsnummer, opplysninger om virksomheten der helsehjelpen utføres, formålet med tilgangen til helseopplysninger og relasjonen mellom helsepersonellet og pasienten, for å autentisere tilgang til gitte helseopplysninger.
 
-#### 7.2.1 Tap av personopplysninger
+#### 62.1 Tap av personopplysninger
 Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere personopplysninger som utleveres mellom tekniske tjenester som benyttes av virksomheter ved deling av helseopplysninger.
 Tap av personopplysninger kan oppstå mellom flere parter i verdikjeden:
 
@@ -696,13 +621,13 @@ Tap av personopplysninger kan oppstå mellom flere parter i verdikjeden:
 
 For å sikre mot potensielt tap av personopplysninger bør det vurderes å etablere tiltak for å ivareta konfidensialiteten.
 
-#### 7.2.2 Overvåkning av ansatte i andre virksomheter
+#### 6.2.2 Overvåkning av ansatte i andre virksomheter
 Datamodellen innebærer en utlevering av opplysninger om helsepersonellets arbeidsforhold. Disse opplysningene utleveres til andre virksomheter enn den virksomheten helsepersonellet er ansatt hos eller yter helsehjelp på vegne av. Det legges derfor til rette for at opplysninger kan benyttes til å monitorere helsepersonell i andre virksomheter. Dataansvarlige må følgelig være bevisste begrensningene i formålet med behandlingen av personopplysninger og eventuelt vurdere risiko knyttet til behandling av personopplysninger utover dette formålet.
 
-#### 7.2.3 Vurdering av personvernkonsevenser
+#### 6.2.3 Vurdering av personvernkonsevenser
 For å ivareta rettighetene og frihetene til pasienten og helsepersonellet som registrerte, bør dataansvarlig virksomhet vurdere hvorvidt behandlingen av personopplysninger medfører høy risiko for at de registrertes rettigheter og friheter ikke ivaretas.
 
-#### 7.2.4 Forutsetninger for behandling av personopplysninger med utgangspunkt i datamodellen
+#### 6.2.4 Forutsetninger for behandling av personopplysninger med utgangspunkt i datamodellen
 Med utgangspunkt i at datamodellen legger til rette for en utlevering av personopplysninger, herunder helseopplysninger, som en behandling av en særlig kategori av personopplysninger, vil det forutsettes at behandlingen skjer i tråd med prinsipper for behandling av personopplysninger. Personvernkonsekvensene ved tap av personopplysninger eller utilsiktet tilgang vil være store, og behandlingen vil følgelig måtte innebære et særlig fokus på misbruk gjennom behandling av opplysningene til andre formål og helsepersonellets dokumenterte tjenstlige behov for tilgang til gitte helseopplysninger
  
 ## 8. Anerkjennelse av bidragsytere til spesifikasjonen
@@ -769,8 +694,6 @@ I dette eksempelet har en fastlege ...
 	}
 }
 ```
-
-##### SAML
 
 #### 9.2 Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
 
@@ -852,15 +775,12 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 }
 ```
 
-##### SAML
 
 #### 9.3 Eksempel #3 - HP i foretak ber om tilgang til dokument
 ##### JSON
-##### SAML
 
 #### 9.4 Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege
 ##### JSON
-##### SAML
 
 ## 10. Normative referanser 
 
