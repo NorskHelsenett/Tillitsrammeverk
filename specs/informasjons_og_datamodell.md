@@ -25,15 +25,14 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 	3.1 Informasjonsmodell<br/>
 	3.2 Datamodell<br/>
 5. Json profil for datamodell
-6. SAML profil for datamodell
-7. Sikkerhets- og personvernshensyn<br/>
+6. Sikkerhets- og personvernshensyn<br/>
 	4.1 Cybersikkerhet<br/>
 	4.2 Personvern 
-8. Anerkjennelse av bidragsytere til spesifikasjonen
-9. Eksempler på bruk av datamodell<br/>
+7. Anerkjennelse av bidragsytere til spesifikasjonen
+8. Eksempler på bruk av datamodell<br/>
 	6.1 JSON eksempel<br/>
 	6.2 SAML eksempel<br/>
-10. Normative referanser 
+9. Normative referanser 
 
 
 ## 1. Innledning 
@@ -177,16 +176,16 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
-| "pid" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
+| "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
 | "authorization" | Helsepersonellets autorisasjon, dersom den finnes | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
 | "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
 | "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
 | "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring og informasjon til pasienten? |
-| "care_type" | Angir hvilken tjeneste virksomheten skal levere for den aktuelle pasienten. | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> | Loggkontroll og informasjon til pasienten |
-| "locality" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Ja** |<span style="color: red; font-weight: bold;">Under behandling</span> | Informasjon til pasienten |
 | "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
-| "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: red; font-weight: bold;">Under behandling</span> | Loggkontroll |
+| "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
+| "decicion_ref" | Referanse til lokal tilgangsbeslutning | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
 | "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> | Tilgangsstyring |
 
 #### 4.2.4 Relasjon til EHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
@@ -195,7 +194,12 @@ I forbindelse med realiseringen av EU regulativet EHDS er det definert en datamo
 
 Vi har valgt å ikke tilnærme oss datamodellen hos EHDSI når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet. Grunnen til at vi har valgt en annen retning er en antagelse om at programvaren som skal benyttes for å konsumere helseopplysninger ikke har informasjonen som benyttes i EHDSI sin datamodell lett tilgjengelig.
 
-Noen attributter som er definert i denne spesifikasjonen har et visst overlapp med datamodellen i EHDSI. Dette er angitt i venstre kolonne i tabellen under.
+Noen attributter som er definert i denne spesifikasjonen har et visst overlapp med datamodellen i EHDSI. Dette er angitt i venstre kolonne i tabellen under. EHDSI definerer et minstekrav til attributtene som skal overføres, men tillater flere attributter som ikke er definert av spesifikasjonene.
+
+EHDSI definerer tre SAML Assertions, som holder på forskjellige kategorier av informasjon:
+* SAML Assertion for identitetsattributter som beskriver helsepersonellet
+* SAML Assertion for identitetsattributter som beskriver pårørende
+* SAML Assertion for identitetsattributter som beskriver pasienten
 
 #### 4.2.4.1 Attributter i tokens i EHDSI
 
@@ -214,19 +218,19 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 |   | "healthcare-facility-type" | Type helsevirksomhet |
 | <span style="color: green; font-weight: bold;">X</span> | "purposeofuse" | Formålet med behandlingen av helseopplysninger |
 | <span style="color: green; font-weight: bold;">X</span> | "locality" | Behandlingsstedets navn | 
-
+| <span style="color: green; font-weight: bold;">X</span> | "resource-id" | Pasientens fødelsenummer | 
 
 #### 4.2.5 Kategori: Helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
 
-##### 4.2.5.1 Identifikator for helsepersonellet som "fysisk person"
-Attributtet "pid" i entitet Helsepersonell er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
+##### 4.2.5.1 "subject": Identifikator for helsepersonellet som "fysisk person"
+Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
 
 |   |   |
 | ---| ---|
-| Attributt: | "pid" |
+| Attributt: | "subject" |
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Unik identifikator og navn på helsepersonellet |
 | Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id" |
@@ -237,10 +241,10 @@ Attributtet "pid" i entitet Helsepersonell er en forkortelse for "personal ident
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 
 
-###### Identifikator for Helsepersonellet - Attributt JSON format
+###### "subject" - Attributt JSON format
 
 ````JSON
-"pid":{
+"subject":{
 	"value": "xxxxxx34794",
 	"name": "Lege Legesen",
 	"system": "2.16.578.1.12.4.1.4.1",
@@ -248,9 +252,9 @@ Attributtet "pid" i entitet Helsepersonell er en forkortelse for "personal ident
 }
 ````
 
-##### 4.2.5.3 Informasjon om helsepersonellet fra Helsepersonellregisteret
+##### 4.2.5.3 "professional_licence" - Informasjon om helsepersonellet fra Helsepersonellregisteret
 
-###### "professional_licence" - overordnet struktur for attributter fra HPR
+###### "professional_licence" - overordnet struktur for attributter fra HPR i JSON
 
 ````JSON
 "professional_license": {
@@ -312,6 +316,25 @@ Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på hels
 	"assigner": "https://www.helsedirektoratet.no/"
 }
 ````
+
+###### "professional_licence" - JSON struktur med "hpr_nr" og "authorization"
+
+````JSON
+"professional_license": {
+	"hpr_nr": {
+		"id": "9144900",
+		"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+		"authority": "https://www.helsedirektoratet.no/"
+	},
+	"authorization": {
+		"code": "LE",
+		"text": "Lege",
+		"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+		"assigner": "https://www.helsedirektoratet.no/"
+	}
+}	
+````
+
 
 #### 4.2.6 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
@@ -378,6 +401,42 @@ Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor he
 }
 ````
 
+##### "department": Avdeling/organisasjonsenhet
+Attributtet "department" angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
+Eks: Oslo kommune helseetaten(?) - sykehjem - men ikke department
+Eks: Oslo kommune - Skolehelsetjenesten - skole
+Kan ha lokale identifikatorer - men må angi et system og assigner (f.eks. Oslo kommune)
+
+
+|   |   |
+| ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
+| Attributt: | "department" |
+| Attributt EHDSI: | N/A |
+| Obligatorisk:| **Nei** |
+| Data type: | Object |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Kodeverk: | RESH |
+| Gyldige verdier: | N/A |
+
+kun alfanumeriske tegn (f.eks. regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]+)")
+
+
+
+###### "department" - Attributter JSON format
+
+````JSON
+"department": {
+        "id": "resh:121313", 
+        "system": "resh:x.x.x.x.x.x.x",
+        "name": "UNN ....",
+        "authority": "",
+    },
+
+````
+
 ##### "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres ved virksomheten som helsepersonellet jobber for.
 
@@ -396,6 +455,7 @@ Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres v
 | Gyldige verdier:| ? |
 
 
+
 ###### "healthcare_service" - Attributter JSON format
 
 ````JSON
@@ -405,61 +465,6 @@ Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres v
 	"system": "8663",
 	"assigner": "www.helsedirektoratet.no"
 }
-````
-
-##### "care_type": type tjeneste som pasienten skal motta hos virksomheten
-Attributtet "care_type" beskriver tjenesten som virksomheten skal tilby til pasienten basert på et enkeltvedtak.
-
-|   |   |
-| ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
-| Attributt: | "care_type" |
-| Attributt EHDSI: | N/A |
-| Obligatorisk: | **Nei** |
-| Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
-| Data type: | String |
-| Kodeverk: | urn:oid:x.x.x.x.x.9151<br>https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151 |
-| Gyldige verdier:| Alle verdier i 9151? |
-
-###### "care_type" - JSON format
-
-````JSON
-"care_type": {
-     "code": "15",
-     "text": "Helsetjenester i hjemmet",
-     "system": "urn:oid:x.x.x.x.x.9151",
-     "assigner": "https://www.helsedirektoratet.no/"
-}
-````
-
-##### "locality": Fysisk sted
-Attributtet "locality" angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
-
-|   |   |
-| ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
-| Attributt: | "locality" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:environment:locality" |
-| Obligatorisk:| **Ja** |
-| Data type: | Fritekst |
-| Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | ingen |
-| Gyldige verdier: | kun alfanumeriske tegn (regex: "^[a-zA-Z0-9_]*$") |
-
-###### Fysisk sted - Attributter SAML format
-
-###### Fysisk sted - Attributter JSON format
-
-````JSON
-"locality": {
-	"type": "ALPHANUMERIC",
-	"value": "Helsehjelpgata 4, 0001 Valderborg"
-}
-
 ````
 
 ##### "purpose_of_use": formålet med behandlingen av personopplysninger
@@ -474,12 +479,12 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Data type: | String |
+| Data type: | Object |
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448<br/> HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
 | Gyldige verdier:| TREAT, <br/>ETREAT,<br/>... |
 
 
-###### Formålet med behandlingen av personopplysninger - Attributter JSON format
+###### "purpose_of_use" - JSON format
 
 ````JSON
 "purpose_of_use": {
@@ -490,34 +495,62 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 }
 ````
 
-##### "purpose_of_use_details": detaljert beskrivelse av formålet med behandlingen av personopplysninger
-Attributtet "purpose_of_use_details" gir en detaljert beskrivelse av det overordnede formålet med behandlingen av personopplysninger.
-Basert på HSØ sitt attributt "purpose_local"
+##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
+Attributtet "care_type" beskriver tjenesten som virksomheten skal tilby til pasienten.
+Kan f.eks være basert på et enkeltvedtak hos kommunen
+Peker på lokal tilgangsbeslutning i DIPS
 
 |   |   |
 | ---| ---|
 | Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| Informasjonselement | Beskrivelse av hvorfor helsepersonellet trenger helseopplysningene  |
-| Attributt: | "purpose_of_use_details" |
+| Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
+| Attributt: | "care_type" |
 | Attributt EHDSI: | N/A |
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Data type: | String |
-| Kodeverk: | ? (HSØ?) |
-| Gyldige verdier:|  |
+| Data type: | Object |
+| Kodeverk: | urn:oid:x.x.x.x.x.9151<br>https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151<br/>https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html |
+| Gyldige verdier:| N/A |
 
-
-###### Detaljert beskrivelse av formålet med behandlingen av personopplysninger - Attributter JSON format
+###### "purpose_of_use_details" - JSON format
 
 ````JSON
 "purpose_of_use_details": {
-	"code": "?",
-	"text": "?",
-	"system": "?",
-	"assigner": "?"
-}
+	"code": "15",
+	"text": "Helsetjenester i hjemmet",
+	"system": "urn:oid:x.x.x.x.x.9151",
+	"assigner": "https://www.helsedirektoratet.no/"
+},
+````
 
+
+##### "decicion_ref": ekstern referanse til lokal tilgangsbeslutning
+Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten.
+Her ligger det et behov for å informere hp om at dette vil vises til sluttbruker
+
+|   |   |
+| ---| ---|
+| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
+| Attributt: | "decicion_ref" |
+| Attributt EHDSI: | N/A |
+| Obligatorisk: | **Nei** |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Data type: | Object |
+| Kodeverk: | N/A |
+| Gyldige verdier:|  |
+
+
+###### "decicion_ref" - Attributter JSON format
+
+````JSON
+    "decicion_ref": {
+        "ref_id" : "id til lokal tilgangsbeslutning", 
+        "description": { 8<...>8 }, /* autogenerert i EPJ */
+        "user_reason": "Tekst lagt inn av bruker.."
+    }
 ````
 
 #### 4.2.7 Kategori: Pasient - "patient_id"
@@ -531,7 +564,7 @@ Basert på HSØ sitt attributt "purpose_local"
 | Attributt EHDSI: | |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
-###### Pasientens identifikator - Attributter JSON format
+###### "patient_id" - Attributter JSON format
 
 ````JSON
 "patient": {
