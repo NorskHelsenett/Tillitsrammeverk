@@ -178,7 +178,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | --- | --- | --- | --- | --- | --- |
 | "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "authorization" | Helsepersonellets autorisasjon, dersom den finnes | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
+| "authorization" | Helsepersonellets autorisasjon, dersom den finnes | HelseID<br/>Kjernerjournal | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
 | "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
 | "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
 | "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
@@ -192,14 +192,16 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 I forbindelse med realiseringen av EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. 
 
-Vi har valgt å ikke tilnærme oss datamodellen hos EHDSI når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet. Grunnen til at vi har valgt en annen retning er en antagelse om at programvaren som skal benyttes for å konsumere helseopplysninger ikke har informasjonen som benyttes i EHDSI sin datamodell lett tilgjengelig.
-
-Noen attributter som er definert i denne spesifikasjonen har et visst overlapp med datamodellen i EHDSI. Dette er angitt i venstre kolonne i tabellen under. EHDSI definerer et minstekrav til attributtene som skal overføres, men tillater flere attributter som ikke er definert av spesifikasjonene.
-
 EHDSI definerer tre SAML Assertions, som holder på forskjellige kategorier av informasjon:
 * SAML Assertion for identitetsattributter som beskriver helsepersonellet
 * SAML Assertion for identitetsattributter som beskriver pårørende
 * SAML Assertion for identitetsattributter som beskriver pasienten
+
+Vi har valgt å ikke tilnærme oss datamodellen hos EHDSI når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet. Grunnen til at vi har valgt en annen retning er en antagelse om at programvaren som skal benyttes for å konsumere helseopplysninger ikke har informasjonen som benyttes i EHDSI sin datamodell lett tilgjengelig.
+
+Noen attributter som er definert i denne spesifikasjonen har et visst overlapp med datamodellen i EHDSI. Dette er angitt i venstre kolonne i tabellen under. EHDSI definerer et minstekrav til attributtene som skal overføres, men tillater flere attributter som ikke er definert av spesifikasjonene.
+
+
 
 #### 4.2.4.1 Attributter i tokens i EHDSI
 
@@ -227,6 +229,8 @@ Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt
 
 ##### 4.2.5.1 "subject": Identifikator for helsepersonellet som "fysisk person"
 Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
+Denne er nødvendig for loggkontroll, sporbarhet og innsyn til innbygger. 
+Det er bare navn som skal vises til innbygger.
 
 |   |   |
 | ---| ---|
@@ -248,7 +252,7 @@ Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal i
 	"value": "xxxxxx34794",
 	"name": "Lege Legesen",
 	"system": "2.16.578.1.12.4.1.4.1",
-	"authority": "www.brreg.no"
+	"authority": "www.skatteetaten.no" /* forvalter folkeregisteret - står i SAML token i dag */
 }
 ````
 
@@ -267,6 +271,9 @@ Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal i
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
 
 Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseopplysninger. Derfor kan ikke attributtet være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
+
+Er nødvendig for å slå opp i helsepersonellregisteret, og for å undersøke hvorvidt det foreligger sperringer hos kilden og Kjernejournal.
+HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer etter vellykket pålogging.
  
 |   |   |
 | ---| ---|
@@ -277,7 +284,7 @@ Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseo
 | Obligatorisk: | **Nei** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Informasjonskilde: | HelseID, basert på oppslag mot HPR etter vellykket pålogging av helsepersonell. |
+| Informasjonskilde: | Helsepersonellregisteret |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
 ###### "hpr_nr": Helsepersonellets gjeldende autorisasjon - JSON format
@@ -293,6 +300,10 @@ Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseo
 Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet.
 
 Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på helseopplysninger. Attributtet kan derfor ikke være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har en eller flere gyldige autorisasjoner.
+
+Formålet med attributtet er loggkontroll og eventuell tilgangsstyring. Dersom noen dokumenter krever en autorisasjon vil dette attributtet måtte benyttes til dette. Ved at dette attributtet er tilgjengelig legger vi til rette for at tilgangsstyring kan utføres.
+
+I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er ønskelig at det er den autorisasjonen som "benyttes" i tilgangsforespørselen som formidles.
  
 |   |   |
 | ---| ---|
@@ -303,7 +314,7 @@ Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på hels
 | Obligatorisk: | **Nei** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Informasjonskilde: | Konsumentens EPJ |
+| Informasjonskilde: | Kjernejournal |
 | Kodeverk: | 2.16.578.1.12.4.1.1.9060 |
 
 
@@ -340,7 +351,10 @@ Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på hels
 Helsepersonellets behandlerrelasjon til pasientent angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 ##### "legal_entity": den dataansvarlige virksomheten 
-Attributtet "legal_entity" identifiserer den dataansvarlige hvor helsepersonellet yter helsehjelp.
+Attributtet "legal_entity" identifiserer den dataansvarlige for helseopplysningene som behandles i journalsystemet som brukes av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
+
+Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forb. med signerte bruksvilkår (medlem i helsenett, helseid, kj)
+Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
 
 Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
 
@@ -373,8 +387,22 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 
 ##### "point_of_care": Behandlingssted
 
-Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp.<br>
-Attributtet er obligatorisk. Dersom verdiene for "legal_entity" og "point_of_care" er like skal den gjentas i begge attributter.
+Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp,
+og skal peke på en virksomhet i enhetsregisteret.
+<br>
+Attributtet er obligatorisk, men dersom verdiene for "legal_entity" og "point_of_care" er like verdien gjentas i begge attributter.
+
+Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
+
+Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care: 
+**Spesialisthelsetjenesten**
+* legal_enitity: "nordlandssykehuset hf" 
+* point_of_care: "nordlandssykehuset somatikk gravdal"
+
+**Kommune**
+* legal_entity: "Oslo Kommune helseetaten"
+* point_of_care: "Legevakten storgata"
+
 
 |   |   |
 | ---| ---|
@@ -388,8 +416,6 @@ Attributtet er obligatorisk. Dersom verdiene for "legal_entity" og "point_of_car
 | Informasjonskilde: | Konsumentens journalsystem |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 
-Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor helsepersonellet yter helsehjelp.
-
 ###### Behandlingssted - Attributter JSON format
 
 ````JSON
@@ -402,10 +428,16 @@ Attributtet "point_of_care_name" inneholder navnet på behandlingsstedet hvor he
 ````
 
 ##### "department": Avdeling/organisasjonsenhet
-Attributtet "department" angir fysisk sted/avdeling hvor helsepersonellet yter eller administrerer helsehjelp.
-Eks: Oslo kommune helseetaten(?) - sykehjem - men ikke department
-Eks: Oslo kommune - Skolehelsetjenesten - skole
-Kan ha lokale identifikatorer - men må angi et system og assigner (f.eks. Oslo kommune)
+Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
+Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
+
+Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
+
+I kommunal sektor vil det være relevant å bruke attributtet "department" for å angi aktuell skole i skolehelsetjenestenm mens det i sykehjemskontekst ikke er relevant å angi avdeling.
+
+Dersom konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet må de fremdeles angi system og assigner. I slike tilfeller vil den juridiske enheten være "assigner".
+
+Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgangen til helseopplysninger til innbygger.
 
 
 |   |   |
@@ -414,14 +446,15 @@ Kan ha lokale identifikatorer - men må angi et system og assigner (f.eks. Oslo 
 | Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
 | Attributt: | "department" |
 | Attributt EHDSI: | N/A |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk:| **Nei** |
 | Data type: | Object |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | RESH |
+| Kodeverk: | RESH/Enhetsregisteret |
 | Gyldige verdier: | N/A |
 
-kun alfanumeriske tegn (f.eks. regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]+)")
+
 
 
 
@@ -434,11 +467,12 @@ kun alfanumeriske tegn (f.eks. regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z
         "name": "UNN ....",
         "authority": "",
     },
-
 ````
 
 ##### "healthcare_service": Helsetjenestetype
-Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres ved virksomheten som helsepersonellet jobber for.
+Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
+
+Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
 |   |   |
 | ---| ---|
@@ -450,9 +484,8 @@ Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres v
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | Volven  |
-| oid code: | volven: 8627<br/>volven: 8662<br/>volven: 8663<br/>volven: 8664<br/>volven: 8665<br/>volven: 8666 |
-| Gyldige verdier:| ? |
+| Kodeverk: | [Tjenestetyper innen spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8627)<br/>[Tjenestetyper for spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666) |
+| Gyldige verdier:| N/A |
 
 
 
@@ -468,7 +501,7 @@ Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres v
 ````
 
 ##### "purpose_of_use": formålet med behandlingen av personopplysninger
-Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlingen av personopplysninger.
+Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
 
 |   |   |
 | ---| ---|
@@ -480,8 +513,8 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
-| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448<br/> HL7 - https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
-| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>... |
+| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
+| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC<br/>++ |
 
 
 ###### "purpose_of_use" - JSON format
@@ -496,21 +529,29 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet med behandlinge
 ````
 
 ##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
-Attributtet "care_type" beskriver tjenesten som virksomheten skal tilby til pasienten.
-Kan f.eks være basert på et enkeltvedtak hos kommunen
-Peker på lokal tilgangsbeslutning i DIPS
+Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Altså, en oppsummering av tilgangsbeslutningen i lokalt system.
+
+Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
+
+Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
+
+Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for tilgjengeliggjøringen for bruk i loggkontroll samt som informasjon til innbygger.
+
+For kommune vil denne være gitt av: .....
+I spesialist vil denne være gitt av beslutningsmal.
+
 
 |   |   |
 | ---| ---|
 | Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
-| Attributt: | "care_type" |
+| Attributt: | "purpose_of_use_details" |
 | Attributt EHDSI: | N/A |
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
-| Kodeverk: | urn:oid:x.x.x.x.x.9151<br>https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151<br/>https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html |
+| Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
 | Gyldige verdier:| N/A |
 
 ###### "purpose_of_use_details" - JSON format
@@ -526,8 +567,13 @@ Peker på lokal tilgangsbeslutning i DIPS
 
 
 ##### "decicion_ref": ekstern referanse til lokal tilgangsbeslutning
-Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten.
-Her ligger det et behov for å informere hp om at dette vil vises til sluttbruker
+Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten. Formålet med dette attributtet er at kilden skal være i stand til å referere til en lokal beslutning hos konsumenten ved behov for oppfølging etter en logganalyse.
+
+Helsepersonellet må bli informert om at denne informasjonen vil vises til pasienten.
+
+Verdien "user_reason" skal kun inneholde alfanumeriske tegn, samt utvalgte spesialtegn.
+Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]+)"
+
 
 |   |   |
 | ---| ---|
@@ -555,6 +601,8 @@ Her ligger det et behov for å informere hp om at dette vil vises til sluttbruke
 
 #### 4.2.7 Kategori: Pasient - "patient_id"
 ##### "patient_id": Unik identifikator for pasienten
+
+Attributtet er til behandling av NHN - ROS/DIPA
 
 | Attributt | |
 | --- | --- |
@@ -612,15 +660,34 @@ Full modell - valgfrie elementer er tatt med
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.skatteetaten.no"
 		},
-		"location": {
-			"type": "ALPHANUMERIC",
-			"text": "Indremedisinsk avdeling"
-		},
 		"healthcare_service": {
 			"code": "S03",
 			"text": "Indremedisin",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
 			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"department": {
+			"id": "resh:121313", 
+			"system": "resh:x.x.x.x.x.x.x",
+			"name": "Avdeling ved Sykehus",
+			"authority": "RESH",
+    	},
+		"purpose_of_use": {
+			"code": "TREAT",
+			"text": "Behandling",
+			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+			"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+		},
+		"purpose_of_use_details": {
+			"code": "15",
+			"text": "Helsetjenester i hjemmet",
+			"system": "urn:oid:x.x.x.x.x.9151",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"decicion_ref": {
+			"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
+			"description": { 8<...>8 }, /* autogenerert i EPJ */
+			"user_reason": "Tekst lagt inn av bruker.."
 		}
 	},
 	"patient": {
@@ -644,7 +711,7 @@ Informasjonen i datamodellen vil blant annet benyttes til å utføre analyse av 
 
 Datamodellen legger til rette for en utlevering av personopplysninger, herunder helseopplysninger, som en behandling av en særlig kategori av personopplysninger, gjennom å sammenstille opplysninger om helsepersonellet, pasientens identifikasjonsnummer, opplysninger om virksomheten der helsehjelpen utføres, formålet med tilgangen til helseopplysninger og relasjonen mellom helsepersonellet og pasienten, for å autentisere tilgang til gitte helseopplysninger.
 
-#### 62.1 Tap av personopplysninger
+#### 6.2.1 Tap av personopplysninger
 Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere personopplysninger som utleveres mellom tekniske tjenester som benyttes av virksomheter ved deling av helseopplysninger.
 Tap av personopplysninger kan oppstå mellom flere parter i verdikjeden:
 
@@ -663,15 +730,15 @@ For å ivareta rettighetene og frihetene til pasienten og helsepersonellet som r
 #### 6.2.4 Forutsetninger for behandling av personopplysninger med utgangspunkt i datamodellen
 Med utgangspunkt i at datamodellen legger til rette for en utlevering av personopplysninger, herunder helseopplysninger, som en behandling av en særlig kategori av personopplysninger, vil det forutsettes at behandlingen skjer i tråd med prinsipper for behandling av personopplysninger. Personvernkonsekvensene ved tap av personopplysninger eller utilsiktet tilgang vil være store, og behandlingen vil følgelig måtte innebære et særlig fokus på misbruk gjennom behandling av opplysningene til andre formål og helsepersonellets dokumenterte tjenstlige behov for tilgang til gitte helseopplysninger
  
-## 8. Anerkjennelse av bidragsytere til spesifikasjonen
+## 7. Anerkjennelse av bidragsytere til spesifikasjonen
 Teamet som har hatt ansvaret for denne spesifikasjonen har bestått av Morten Stensøy (HNIKT), Richard Husevåg (HSØ), Sverre Martin Jensen (Oslo Kommune), Erik Vegler Broen (Oslo Kommune - Origo), Simone Vandeberg (NHN), Steinar Noem (NHN).
 
-Vi ønsker å takke Michal Cermak, Trond Elde, Eva Tone Fosse, Helge Bjertnæs, Øyvind Kvennås for verdifulle bidrag i utviklingen av spesifikasjonen.
+Vi ønsker å takke Michal Cermak, Trond Elde, Eva Tone Fosse, Asefeh Johnsen, Helge Bjertnæs og Øyvind Kvennås for verdifulle bidrag i utviklingen av spesifikasjonen.
 
-## 9. Eksempler på bruk av datamodell
+## 8. Eksempler på bruk av datamodell
 
 
-#### 9.1 Eksempel #1 - Fastlege ber om tilgang til dokument
+#### 8.1 Eksempel #1 - Fastlege ber om tilgang til dokument
 I dette eksempelet har en fastlege ...
 
 
@@ -728,7 +795,7 @@ I dette eksempelet har en fastlege ...
 }
 ```
 
-#### 9.2 Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
+#### 8.2 Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
 
 I dette eksempelet har...
 
@@ -783,21 +850,17 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 			"system": "8663",
 			"authority": "https://www.helsedirektoratet.no"
 		},
-		"locality": {
-			"type": "ALPHANUMERIC",
-			"value" :"Helsehjelpgata 4 0001 Valderborg",
-		},
-		"care_type": {
-			"code": "15",
-			"text": "Helsetjenester i hjemmet",
-			"system": "urn:oid:x.x.x.x.x.9151",
-			"assigner": "volven.no"
-		},
 		"purpose_of_use": {
 			"code": "COC",
 			"text": "",
 			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
 			"assigner": "HL7"
+		},
+		"purpose_of_use_details": {
+			"code": "15",
+			"text": "Helsetjenester i hjemmet",
+			"system": "urn:oid:x.x.x.x.x.9151",
+			"assigner": "volven.no"
 		}
 	},
 	"patient": {
@@ -809,17 +872,16 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 ```
 
 
-#### 9.3 Eksempel #3 - HP i foretak ber om tilgang til dokument
+#### 8.3 Eksempel #3 - HP i foretak ber om tilgang til dokument
 ##### JSON
 
-#### 9.4 Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege
+#### 8.4 Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege
 ##### JSON
 
-## 10. Normative referanser 
+## 9. Normative referanser 
 
 Normative referanser spesifiserer dokumenter som må leses for å forstå eller implementere datamodellen, eller teknologi som må være på plass for å kunne implementere teknologien. 
 
-* Styrk-08
 * SNOMED-CT
 * ASTM
 * Volven
