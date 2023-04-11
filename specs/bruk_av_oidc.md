@@ -214,6 +214,7 @@ Et Request Object SKAL overføres som et form parameter i en POST request.
 ### 4.1.2. Forspørsel om tilgang til flere API-er
 Tjenester som inngår i tillitsmodellen krever at Access Tokens ment for dem ikke skal kunne brukes for å få tilgang andre API-er. I praksis innebærer dette at claimet "aud" (audience) ikke kan ha mer enn en verdi og at denne verdien peker til det aktuelle API-et. *Audience* er navnet som identifiserer API-et i HelseID
 
+[//]: # (Link til https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences krever innlogging og er ikke åpen: )
 HelseID gjør det enkelt for klienter å hente ett Access Token per tjeneste ved å tilby mekanismen [Resource Indicators](https://www.rfc-editor.org/rfc/rfc8707). Bruk av Resource indikators [er beskrevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/481755152/Requesting+multiple+access+tokens+with+single+audiences).
 
 
@@ -223,7 +224,7 @@ Figuren under viser hvilke kontroller HelseID gjør når en klient forespør bru
 ```mermaid
 flowchart TD
   Error[Vis feilmelding]
-  Param{Kontroll av standard protokollparamtere}
+  Param{Kontroll av standard protokollparametre}
   S[Autentiseringsforspørsel fra Klient] --> Param
   Param-- Ugyldig --> Error 
   Param-- Ok --->RO{Er Request Object brukt}
@@ -234,7 +235,7 @@ flowchart TD
 
 ```
 ### 4.2.1. Kontroll av standard protokollparametre i HelseID
-Når en forespørsel om brukeautentisering mottas av HelseID, gjøres det først en kontroll av protokollparametre i henhold til OpenID Connect og sikkerhetsprofilen til HelseID. Dette inkluderer, men er ikke begrenset til:
+Når en forespørsel om brukerautentisering mottas av HelseID, gjøres det først en kontroll av protokollparametre i henhold til OpenID Connect og sikkerhetsprofilen til HelseID. Dette inkluderer, men er ikke begrenset til:
 
   * Sjekk av at klienten er registrert og aktivert i HelseID
   * Sjekk av at klienten bare forspør API-er og annen informasjon som den har tilgang til
@@ -288,7 +289,7 @@ HelseID forventer å få informasjon fra IDP om identitet til bruker, sikkerhets
 
 Dersom dette feiler, vil sluttbrukeren se en feilmelding i sin nettleser.
 
-Dersom kontrollene er ok, vil HelseID peristere informasjonen fra IDP for bruk ved generering av tokens.
+Dersom kontrollene er ok, vil HelseID persistere informasjonen fra IDP for bruk ved generering av tokens.
 
 ## 4.4. Håndtering av resultat av brukerautentisering i klient (mellom steg 5 og 6)
 Når klienten mottar resultatet fra brukerautentiseringen fra HelseID, skal dette benyttes for å hente Identity-, Refresh- og Access Tokens. Dette gjøres i henhold i OpenID Connect og HelseID sin sikkerhetsprofil.
@@ -329,7 +330,7 @@ flowchart
   Param-- Ok --->CA{Autentiser klient - Client Assertion}
   CA-- Ugyldig -->Error
   CA-- Ok --> AD
-  AD-- Ja -->V_AD{Kontroller Authorization DetailsD\nSe 'Validering av authorization_details i Client Assertion eller Request Object'}
+  AD-- Ja -->V_AD{Kontroller Authorization Details\nSe 'Validering av authorization_details i Client Assertion eller Request Object'}
   AD-- Nei --> Tokens 
   V_AD-- Ugyldig --> Error
 
@@ -337,7 +338,7 @@ flowchart
 ### 4.6.1. Kontroll av standard protokollparametre
 I forbindelse med forspørsel om token etter brukerautentisering utføres kontroll av følgende parameter:
 * grant_type (authorization_code eller refresh_token)
-* client_id. Klientn må være godkjent for tillitsrammeverket.
+* client_id. Klienten må være godkjent for tillitsrammeverket.
 * code_verifier (pkce, valideres opp i mot verdi som ble sendt til authorization-endepunktet)
 * code (gyldig og ikke utgått på tid) 
 ELLER
