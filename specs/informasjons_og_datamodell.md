@@ -174,19 +174,19 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
-| --- | --- | --- | --- | --- | --- |
-| "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
-| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "authorization" | Helsepersonellets autorisasjon, dersom den finnes | HelseID<br/>Kjernerjournal | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
-| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
-| "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
-| "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring og informasjon til pasienten? |
-| "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
-| "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
-| "decicion_ref" | Referanse til lokal tilgangsbeslutning | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
-| "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> | Tilgangsstyring |
+| Attributt                              | Beskrivelse                                                                                       | Informasjonskilde | Påkrevd | Status | Formål |
+|----------------------------------------|---------------------------------------------------------------------------------------------------| --- | --- | --- | --- |
+| "practicioner:subject"                 | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
+| "practicioner:hpr_nr"                  | Helsepersonellets HPR-nummer, dersom det finnes                                                   | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "practicioner:authorization"           | Helsepersonellets autorisasjon, dersom den finnes                                                 | HelseID<br/>Kjernerjournal | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
+| "care_relation:legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
+| "care_relation:point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "care_relation:department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
+| "care_relation:healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring og informasjon til pasienten? |
+| "care_relation:purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
+| "care_relation:purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
+| "care_relation:decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
+| "patient:patient_id"                   | Unik identifikator for pasienten                                                                  | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> | Tilgangsstyring |
 
 #### 4.2.4 Relasjon til EHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
@@ -222,7 +222,7 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | <span style="color: green; font-weight: bold;">X</span> | "locality" | Behandlingsstedets navn | 
 | <span style="color: green; font-weight: bold;">X</span> | "resource-id" | Pasientens fødelsenummer | 
 
-#### 4.2.5 Kategori: Helsepersonellet
+#### 4.2.5 "practitioner": Helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
@@ -256,16 +256,7 @@ Det er bare navn som skal vises til innbygger.
 }
 ````
 
-##### 4.2.5.3 "professional_licence" - Informasjon om helsepersonellet fra Helsepersonellregisteret
-
-###### "professional_licence" - overordnet struktur for attributter fra HPR i JSON
-
-````JSON
-"professional_license": {
-	"hpr_nr": { 8<...>8 },
-	"authorization": { 8<...>8 }
-}
-````
+##### 4.2.5.2 "hpr_nr" og "authorization" - Informasjon om helsepersonellet fra Helsepersonellregisteret
 
 ###### "hpr_nr": Helsepersonellnummer
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
@@ -328,26 +319,7 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 }
 ````
 
-###### "professional_licence" - JSON struktur med "hpr_nr" og "authorization"
-
-````JSON
-"professional_license": {
-	"hpr_nr": {
-		"id": "9144900",
-		"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-		"authority": "https://www.helsedirektoratet.no/"
-	},
-	"authorization": {
-		"code": "LE",
-		"text": "Lege",
-		"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-		"assigner": "https://www.helsedirektoratet.no/"
-	}
-}	
-````
-
-
-#### 4.2.6 Kategori: Behandlerrelasjon
+#### 4.2.6 "care_relation": Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 ##### "legal_entity": den dataansvarlige virksomheten 
@@ -380,7 +352,7 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 "legal_entity": {
 	"id": "921592761",
 	"name": "Lege Leif Lagesen ENK",
-	"system": "2.16.578.1.12.4.1.4.101",
+	"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 	"authority": "www.brreg.no"
 }
 ```` 
@@ -395,13 +367,14 @@ Attributtet er obligatorisk, men dersom verdiene for "legal_entity" og "point_of
 Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
 
 Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care: 
+
 **Spesialisthelsetjenesten**
-* legal_enitity: "nordlandssykehuset hf" 
-* point_of_care: "nordlandssykehuset somatikk gravdal"
+* legal_enitity: "Nordlandssykehuset hf" 
+* point_of_care: "Nordlandssykehuset somatikk gravdal"
 
 **Kommune**
 * legal_entity: "Oslo Kommune helseetaten"
-* point_of_care: "Legevakten storgata"
+* point_of_care: "Legevakten Storgata"
 
 
 |   |   |
@@ -476,7 +449,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "healthcare_service" |
 | Attributt EHDSI: | N/A |
@@ -495,7 +468,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 "healthcare_service":{
 	"text": "Sykepleietjeneste",
 	"code": "KP02",
-	"system": "8663",
+	"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
 	"assigner": "www.helsedirektoratet.no"
 }
 ````
@@ -543,7 +516,7 @@ I spesialist vil denne være gitt av beslutningsmal.
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Attributt: | "purpose_of_use_details" |
 | Attributt EHDSI: | N/A |
@@ -566,7 +539,7 @@ I spesialist vil denne være gitt av beslutningsmal.
 ````
 
 
-##### "decicion_ref": ekstern referanse til lokal tilgangsbeslutning
+##### "decision_ref": ekstern referanse til lokal tilgangsbeslutning
 Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten. Formålet med dette attributtet er at kilden skal være i stand til å referere til en lokal beslutning hos konsumenten ved behov for oppfølging etter en logganalyse.
 
 Helsepersonellet må bli informert om at denne informasjonen vil vises til pasienten.
@@ -577,9 +550,9 @@ Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
-| Attributt: | "decicion_ref" |
+| Attributt: | "decision_ref" |
 | Attributt EHDSI: | N/A |
 | Obligatorisk: | **Nei** |
 | Autoritativ kilde: | Konsument |
@@ -589,17 +562,18 @@ Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]
 | Gyldige verdier:|  |
 
 
-###### "decicion_ref" - Attributter JSON format
+###### "decision_ref" - Attributter JSON format
 
 ````JSON
-    "decicion_ref": {
-        "ref_id" : "id til lokal tilgangsbeslutning", 
-        "description": { 8<...>8 }, /* autogenerert i EPJ */
-        "user_reason": "Tekst lagt inn av bruker.."
+    "decision_ref" : {
+		"ref_id" :  8<...>8 }, /*"id til lokal tilgangsbeslutning", unik for konsument og autogenerert i EPJ */,
+		"description": "Legekonsultasjon",
+		"user_reason": "Tekst lagt inn av bruker.."
     }
 ````
 
-#### 4.2.7 Kategori: Pasient - "patient_id"
+#### 4.2.7 Kategori: Pasient - Pasienten
+
 ##### "patient_id": Unik identifikator for pasienten
 
 Attributtet er til behandling av NHN - ROS/DIPA
@@ -615,7 +589,7 @@ Attributtet er til behandling av NHN - ROS/DIPA
 ###### "patient_id" - Attributter JSON format
 
 ````JSON
-"patient": {
+"patient_id": {
 	"id": "05076600324",
 	"name": "Kognar Maman",
 	"system": "urn:oid:2.16.578.1.12.4.1.4.1",
@@ -667,11 +641,11 @@ Full modell - valgfrie elementer er tatt med
 			"assigner": "https://www.helsedirektoratet.no/"
 		},
 		"department": {
-			"id": "resh:121313", 
+			"id": "resh:121313",
 			"system": "resh:x.x.x.x.x.x.x",
 			"name": "Avdeling ved Sykehus",
-			"authority": "RESH",
-    	},
+			"authority": "RESH"
+		},
 		"purpose_of_use": {
 			"code": "TREAT",
 			"text": "Behandling",
@@ -684,16 +658,22 @@ Full modell - valgfrie elementer er tatt med
 			"system": "urn:oid:x.x.x.x.x.9151",
 			"assigner": "https://www.helsedirektoratet.no/"
 		},
-		"decicion_ref": {
-			"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
-			"description": { 8<...>8 }, /* autogenerert i EPJ */
+		"decision_ref": {
+			"ref_id": {
+				8<...>8
+			},
+			/* autogenerert i EPJ */
+			"description": "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]"
 			"user_reason": "Tekst lagt inn av bruker.."
 		}
 	},
 	"patient": {
-		"id": "13116900216",
-		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-		"authority": "https://www.skatteetaten.no"
+		"patient_id": {
+			"id": "05076600324",
+			"name": "Kognar Maman",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"authority": "https://www.skatteetaten.no"
+		}
 	}
 }
 ````
@@ -739,7 +719,7 @@ Vi ønsker å takke Michal Cermak, Trond Elde, Eva Tone Fosse, Asefeh Johnsen, H
 
 
 #### 8.1 Eksempel #1 - Fastlege ber om tilgang til dokument
-I dette eksempelet har en fastlege ...
+Eksempelet hvor en fastlege er konsument
 
 
 ##### JSON
@@ -753,18 +733,16 @@ I dette eksempelet har en fastlege ...
 			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 			"authority": "https://www.skatteetaten.no"
 		},
-		"professional_license": {
-			"hpr_nr": {
-				"id": "9144897",
-				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-				"authority": "https://www.helsedirektoratet.no/"
-			},
-			"authorization": {
-				"code": "LE",
-				"text": "Lege",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-				"assigner": "https://www.helsedirektoratet.no/"
-			}
+		"hpr_nr": {
+			"id": "9144897",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"authority": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"care_relationship": {
@@ -788,9 +766,12 @@ I dette eksempelet har en fastlege ...
 		}
 	},
 	"patient": {
-		"id": "13116900216",
-		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-		"authority": "https://www.skatteetaten.no"
+		"patient_id": {
+			"id": "05076600324",
+			"name": "Kognar Maman",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"authority": "https://www.skatteetaten.no"
+		}
 	}
 }
 ```
@@ -800,7 +781,6 @@ I dette eksempelet har en fastlege ...
 I dette eksempelet har...
 
 ##### JSON
-Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 
 ```JSON
 {
@@ -811,18 +791,16 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 			"authority": "https://www.skatteetaten.no"
 		},
-		"professional_license": {
-			"hpr_nr": {
-				"id": "9144900",
-				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-				"authority": "https://www.helsedirektoratet.no/"
-			},
-			"authorization": {
-				"code": "LE",
-				"text": "Lege",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-				"assigner": "https://www.helsedirektoratet.no/"
-			}
+		"hpr_nr": {
+			"id": "9144900",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"authority": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
 		}
 	},
 	"care_relationship": {
@@ -843,12 +821,6 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 			"text": "Legetjeneste ved sykehjem",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
 			"assigner": "https://www.helsedirektoratet.no/",   
-		}, 
-		"facility_type":{
-			"code": "KP02",
-			"text": "",
-			"system": "8663",
-			"authority": "https://www.helsedirektoratet.no"
 		},
 		"purpose_of_use": {
 			"code": "COC",
@@ -859,14 +831,17 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 		"purpose_of_use_details": {
 			"code": "15",
 			"text": "Helsetjenester i hjemmet",
-			"system": "urn:oid:x.x.x.x.x.9151",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9151",
 			"assigner": "volven.no"
 		}
 	},
 	"patient": {
-		"id": "13116900216",
-		"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-		"authority": "https://www.skatteetaten.no"
+		"patient_id": {
+			"id": "05076600324",
+			"name": "Kognar Maman",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"authority": "https://www.skatteetaten.no"
+		}
 	}
 }
 ```
