@@ -267,6 +267,10 @@ HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer ette
 ###### "authorization": Helsepersonellets gjeldende autorisasjon
 Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet.
 
+| :warning:               | Intern kommentar fra team dok.deling |
+|--------------------------|:------------------------|
+| "authorization"           | Denne informasjonselement brukes i kontekst som "funksjonell rolle" og bør derfor ikke blandes med formelt opnådd utdanning som ble godkjent og registrert av Helsedirektoratet. Semantisk blanding av betydninger (ref. "fastlege"). "Styrk-08" bør brukes etterhvert (ref EHDS), men gjerne komplementert med "Volven-9060" der det ikke kan gjennomføres på nåværende tidspunkt |
+
 Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på helseopplysninger. Attributtet kan derfor ikke være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har en eller flere gyldige autorisasjoner.
 
 Formålet med attributtet er loggkontroll og eventuell tilgangsstyring. Dersom noen dokumenter krever en autorisasjon vil dette attributtet måtte benyttes til dette. Ved at dette attributtet er tilgjengelig legger vi til rette for at tilgangsstyring kan utføres.
@@ -359,6 +363,10 @@ Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonelle
 og skal peke på en virksomhet i enhetsregisteret.
 <br>
 Attributtet er obligatorisk, men dersom verdiene for "legal_entity" og "point_of_care" er like verdien gjentas i begge attributter.
+
+| :warning:               | Intern kommentar fra team dok.deling |
+|--------------------------|:------------------------|
+| "point_of_care"           | Informasjonselement bør være den som pasienten gjenkjenner igjen, som f.eks. "Legevakt på Hamar" i stedet for "Hamar kommune". Bør ikke settes absolutt krav til knytting til enhetsregister men støttes ellers |
 
 Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
 
