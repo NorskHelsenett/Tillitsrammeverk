@@ -12,6 +12,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
 | -0 | Utkast | 24.05.2023 |
+| -1 | Input fra team dokumentdeling | 25.05.2023 |
 
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til dokumentdeling i kjernejournal.
@@ -24,7 +25,7 @@ Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et 
 4. 
 
 ## 1. Innledning 
-For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til helseopplysninger som ligger lagret hos andre virksomheter enn den virksomheten hvor de yter helsehjelp. Lovverket vårt sier at helsevirksomheter er pliktig til å dele helseopplysninger med alt helsepersonell så fremt de har et tjenstlig behov og at opplysningene er relevante og nødvendige i helsepersonellets behandling av pasienten.
+For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til relevante helseopplysninger som ligger lagret hos andre virksomheter enn den virksomheten hvor de yter helsehjelp. Lovverket i Norge sier at helsevirksomheter er pliktig til å dele helseopplysninger med alt helsepersonell så fremt de har et tjenstlig behov og at opplysningene er relevante og nødvendige i helsepersonellets behandling av pasienten (hpl §45).
 
 Kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte.
 
@@ -79,6 +80,8 @@ Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at
 
 # Datamodell for detaljert autorisasjonsinformasjon
 
+Modellen som er presentert her må ses på som en "alfa-versjon" av datamodellen. Den er ikke nødvendigvis testet i praksis og læring må til for å se verdien av informasjonen i verdikjeden. Norsk helsenett, spesielt teamet ved dokumentdelingsproduktet kan IKKE stille seg bak behovet for alle disse informasjons elementer (ref. kommentar under tabellen).
+
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
 | "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
@@ -87,6 +90,8 @@ Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at
 | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
 | "decicion_ref" | Referanse til lokal tilgangsbeslutning | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
 
+
+
 #### 4.2.6 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
@@ -94,6 +99,10 @@ Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten 
 ##### "department": Avdeling/organisasjonsenhet
 Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
+
+| :warning:                | Intern kommentar fra team dok.deling | Modenhet |
+|--------------------------|:------------------------|-----|
+| "department"             | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtiden | Lav |
 
 Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
 
@@ -136,6 +145,10 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 ##### "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
+| :warning:               | Intern kommentar fra team dok.deling | Modenhet |
+|--------------------------|:------------------------|-----|
+| "healthcare_service"     | Utydelig kardinalitet for dette informasjonselementet. En helsevirksomhet yter gjerne flere typer av helsehjelp. Gitt at det blir kun maks 1 tjeneste som kan knyttes til aktøren, kan formålet endre seg etter Aut&Aut? Denne kan brukes aktivt i NHNs tjenesten for dok.deling. | Lav |
+
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
 |   |   |
@@ -167,6 +180,11 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 ##### "purpose_of_use": formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
 
+| :warning:               | Intern kommentar fra team dok.deling | Modenhet |
+|--------------------------|:------------------------|-----|
+| "purpose_of_use"         | ingen kommentar | Høy |
+
+
 |   |   |
 | ---| ---|
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
@@ -194,6 +212,11 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 
 ##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
+
+| :warning:               | Intern kommentar fra team dok.deling | Modenhet |
+|--------------------------|:------------------------|-----|
+| "purpose_of_use_details" | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtidige versjoner | Lav |
+
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
 
@@ -232,6 +255,10 @@ I spesialist vil denne være gitt av beslutningsmal.
 
 ##### "decicion_ref": ekstern referanse til lokal tilgangsbeslutning
 Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten. Formålet med dette attributtet er at kilden skal være i stand til å referere til en lokal beslutning hos konsumenten ved behov for oppfølging etter en logganalyse.
+
+| :warning:               | Intern kommentar fra team dok.deling | Modenhet |
+|--------------------------|:------------------------|-----|
+| "decision_ref"           | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som et informasjonselement som potensielt blir tatt ut i fremtidige versjoner. | Lav |
 
 Helsepersonellet må bli informert om at denne informasjonen vil vises til pasienten.
 
