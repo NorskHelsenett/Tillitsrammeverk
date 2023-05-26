@@ -1,4 +1,4 @@
-# Profil for bruk av Rich Authorization Requests (authorization_details) i HelseID
+# Profil for bruk av Rich Authorization Requests (authorization_details) i HelseID for bruk av journaldokumenter i Kjernejournal
 
 # TODO
 HelseID tar en gjennomgang av spesifikasjonen og flytter ut det som skal i den overliggende spesifikasjonen som beskriver bruk av HelseID for Dokumentdeling i Kjernejournal..
@@ -9,9 +9,9 @@ HelseID tar en gjennomgang av spesifikasjonen og flytter ut det som skal i den o
 
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| -0 | Utkast | 17.02.2023 |
+| 0.1 | Utkast | 26.05.2023 |
 
-Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
+Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til dokumentdeling via Kjernejournal for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
 
 Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 
@@ -37,36 +37,15 @@ Spesifikasjonen benytter begreper og terminologi som er definert i følgende spe
 ## Innholdsfortegnelse
 
 ## 1. Innledning
-Denne spesifikasjonen definerer et JSON format som skal benyttes til å overføre informasjon om grunnlaget for tilgangen som er gitt i helsepersonellets lokale EPJ system til den som deler helseopplysningene. Informasjonen som denne strukturen skal inneholde er definert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
+Denne spesifikasjonen definerer et JSON-format som skal benyttes til å overføre informasjon om grunnlaget for tilgangen som er gitt i helsepersonellets lokale EPJ-system til den som deler helseopplysningene. Informasjonen som denne strukturen skal inneholde er definert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md). TODO: oppdater når begge dokumenter er klare.
 
-Denne spesifikasjonen er en del av et spesifikasjonssett som inngår i tillitsrammeverket for deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren, og skal sees i sammenheng med de andre spesifikasjonene.
-
-Ved deling av helseopplysninger på tvers av helsevirksomhetene i sektoren har virksomheten som deler informasjon en plikt til å etterleve krav i både norm for informasjonssikkerhet og i lovverket. For å tilfredsstille disse kravene har aktører i sektoren samlet seg rundt en modell som beskriver hvordan aktørene kan bygge tilstrekkelig tillit til at delingen skjer innenfor rammene til loven. 
-
-Tillitsmodellen realiseres i et tillitsrammeverk som beskriver konkrete krav til aktørene som skal dele helseopplysninger, og som peker på konkrete tillitsbyggende tjenester som skal benyttes i forbindelse med delingen. I tillitsrammeverket fordeles oppgaver knyttet til tilgangsstyring ved at konsumenten forplikter seg til å utføre tilgangsstyring og tilgangskontroll på vegne av den som deler helseopplysningene. Virksomheten som deler helseopplysningene skal være trygg på at helsepersonellet har et tjenstlig behov, og at helseopplysningene er relevant og nødvendig i behandlingen av pasienten.
-
-Selv om konsumenten skal utføre tilgangsstyring på vegne av den som deler helseopplysningene trenger datakilden informasjon som beskriver grunnlaget for tilgangen slik at de kan utføre ytterligere tilgangsstyring, logging og for å gi informasjon om tilgangen til pasienten. Informasjonen om den lokale tilgangen må overføres fra konsumenten til datakilden, og skal formatteres i henhold til denne spesifikasjonen.
-
-
-### 1.1 Transport av informasjon om lokal tilgang via HelseID
-I tillitsrammeverket stilles det krav til bruk av HelseID for innlogging av helsepersonell for å få tilgang til tjenestene som skal dele helseopplysninger.
-Informasjonen som er spesifisert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md) utgjør helsepersonellets digitale identitet i jobbsammenheng, og er naturlige attributter  i brukersesjoner som oppstår i HelseID.
-
-HelseID etablerer et tillitsforhold til den kjørende klienten (programvaren som konsumerer tjenesten).
-Tjenestene som krever bruk av HelseID må ha høy tillit til sine konsumenter.
-
+Denne spesifikasjonen er en del av et spesifikasjonssett som baserer seg på tillitsrammeverket for deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren, og skal sees i sammenheng med de andre spesifikasjonene.
 
 ## 2. Beskrivelse av konsept
-Når en klient gjør en tilgangsforespørsel til HelseID må den legge ved informasjon som beskriver helsepersonellets grunnlag for tilgang i sitt lokale system. Dersom helsepersonellet er autentisert og klient har rett på tilgang til den forespurte tjenesten, vil HelseID utstede et Access Token som inneholder attributtene som klienten overførte.
+Når en klient gjør en tilgangsforespørsel til HelseID, må den legge ved informasjon som beskriver helsepersonellets grunnlag for tilgang i sitt lokale system. Dersom helsepersonellet er autentisert og klient har rett på tilgang til den forespurte tjenesten, vil HelseID utstede et Access Token som inneholder attributtene som klienten overførte.
 
-Tilliten til denne informasjonen hviler på kravene i tillitsrammeverket, samt det tekniske tillitsforholdet som HelseID etablerer til journalsystemet på vegne av tjenesten som skal konsumeres.
-
-Informasjonen som beskriver den lokale tilgangen skal overføres til HelseID ved bruk av mekanismen [Rich Authorization Request](https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html)(RAR), hvor attributtene MÅ uttrykkes i henhold til den gjeldende [datamodellen](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md) og formatteres i henhold til denne spesifikasjonen.
-
-Protokollen som HelseID er bygget på definerer en enkel tilgangsstyringsmekanisme som lar klienter be om tilgang til en gitt ressurs hos en tjeneste. Ved å bruke denne mekanismen kan Access Tokens begrenses til å bare gjelde for en gitt ressurs. 
-Klienten benytter parameteret "scope" for å angi hviken ressurs den ønsker tilgang til ved en tilgangsforespørsel, og HelseID utsteder Access Tokens som begrenses til denne ressursen dersom klienten har rett til å få tilgang.
-
-Denne tilgangsstyringsmekanismen fungerer godt til enkle formål, men er ikke tilstrekkelig for å støtte mer avanserte behov, som tilgang til helseopplysninger.
+Informasjonen som beskriver den lokale tilgangen, skal overføres til HelseID ved bruk av mekanismen [Rich Authorization Request](https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html) (RAR), hvor attributtene MÅ uttrykkes i henhold til den gjeldende [datamodellen](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md) og formatteres i henhold til denne spesifikasjonen.
+TODO: endre lenken når den er klar.
 
 RAR innfører et nytt parameter til protokollen, som heter "authorization_details", som lar klienter uttrykke fingranulerte autorisasjonskrav i tilgangsforespørselen ved bruk av JSON. Informasjonen i "authorization_details" kan benyttes av HelseID og tjenesten som deler helseopplysninger til å begrense tilgang og for å tilfredsstille krav til logging.
 
@@ -102,19 +81,8 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 	"type": "dokumentdeling_kj",
 	"actions": ["read"],
 	"locations": "https://kj.nhn.no/",
-	"trust_framework":{ //rar-struktur for dokumentdeling: hva skal barnet hete?
-		"version": "1.0",
-		"organization":{
-			"legal_entity": {
-				"name": "Juridisk Enhet AS",
-				"org_id": "1231232132",
-				"system_oid": "2.16.578.1.12.4.1.4.101"
-			},
-			"point_of_care": {
-				"org_id": "123123123",
-				"system_oid": "2.16.578.1.12.4.1.4.101"
-			},
-		},
+	"trust_framework":{ 
+		{…}
 	},
 	"kj_dokumentdeling": { //rar-struktur for dokumentdeling: hva skal barnet hete?
 		"version": "1.0",
@@ -158,6 +126,7 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 ### 3.3 Overføring av authorization_details strukturen
 Authorization_details strukturen som er definert i denne spesifikasjonen skal overføres til HelseID i forespørsler om tilgang til tjenester eller APIer som deler helseopplysninger, og danner grunnlaget for tilgangen som blir gitt i HelseID.
 
+TODO: avgjør hva som skal stå her:
 Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet. Se [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av dokumenter i Kjernejournal](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md) for en detaljert beskrivelse av hvordan HelseID skal brukes.
 
 #### 3.3.1 Via authorization endepunktet - authorization_details i RO
@@ -170,6 +139,7 @@ Når authorization_details strukturen overføres som parameter i token endepunkt
 
 ## 4. Sikkerhets- og personvernshensyn
 
+TODO: vurder hvor dette skal vises/puttes:
 ### Sikkerhetshensyn
 Peke til https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html#name-security-considerations
 Beskriv valgte tiltak som forhindrer deler av problemet..
