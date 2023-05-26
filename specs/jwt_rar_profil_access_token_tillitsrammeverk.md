@@ -1,5 +1,8 @@
 # Profil for bruk av Rich Authorization Requests (authorization_details) i HelseID
 
+# TODO
+HelseID tar en gjennomgang av spesifikasjonen og flytter ut det som skal i den overliggende spesifikasjonen som beskriver bruk av HelseID for Dokumentdeling i Kjernejournal..
+
 ## Sammendrag
 
 ## Dokumentets status
@@ -86,32 +89,21 @@ sequenceDiagram
 
 ## 3. Spesifikasjon
 ### 3.1 Avvik fra standard
-- vi reflekterer ikke "authorization_details" i access token
-- kan brukes mot token-endepunktet for å endre grant (hmmm...)
+1. vi reflekterer ikke "authorization_details" i access token
+2. kan også brukes mot token-endepunktet (via client-assertion) for å endre grant (hmmm...) - risikovurdes
 - annet...?
 
-### 3.2 JSON Struktur
+Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å bruke client-assertion dersom leverandørene er misfornøyd med standard flyt.
 
+### 3.2 JSON Struktur
+#### TODO: legg inn reelle attributter fra datamodellen for dokumentdeling
 ```JSON
 "authorization_details":{
-	"type": "medical_records",
+	"type": "dokumentdeling_kj",
 	"actions": ["read"],
 	"locations": "https://kj.nhn.no/",
-	"practicioner": {
-		"pid": {
-			"value": "22046557946",
-			"system_oid": "2.16.578.1.12.4.1.4.1" //F-Nummer
-		}
-	},
-	"patient_relationship": {
-		"functional_role": {
-			"value": "2212",
-			"system_oid": "STYRK-08"
-		},
-		"clinical_speciality": {
-			"value": "xxxx",
-			"system_oid": "2.16.840.1.113883.3.88.12.80.72" //SNOMED
-		},
+	"trust_framework":{ //rar-struktur for dokumentdeling: hva skal barnet hete?
+		"version": "1.0",
 		"organization":{
 			"legal_entity": {
 				"name": "Juridisk Enhet AS",
@@ -122,23 +114,40 @@ sequenceDiagram
 				"org_id": "123123123",
 				"system_oid": "2.16.578.1.12.4.1.4.101"
 			},
-			"facility_type": {
-				"value": "Hospital",
-				"system_oid": "1.3.6.1.4.1.12559.11.10.1.3.2.2.2"//eHealth DSI
-			},
-			"locality": {
-				"value": "Sengepost X" //policy - kun alfanumeriske tegn "^[a-zA-Z0-9_]*$"
-			}
 		},
-		"purpose_of_use": {
-			"value": "TREAT",
-			"system_oid": "urn:oid:2.16.840.1.113883.1.11.20448"
-		}
 	},
-	"patient":{
-		"identifier": {
-			"value": "21981298231",
-			"system_oid": "2.16.578.1.12.4.1.4.2" //D-nummer
+	"kj_dokumentdeling": { //rar-struktur for dokumentdeling: hva skal barnet hete?
+		"version": "1.0",
+		"care_relationship": {
+			"healthcare_service": {
+				"code": "S03",
+				"text": "Indremedisin",
+				"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+				"assigner": "https://www.helsedirektoratet.no/"
+			},
+			"department": {
+				"id": "resh:121313", 
+				"system": "resh:x.x.x.x.x.x.x",
+				"name": "Avdeling ved Sykehus",
+				"authority": "RESH",
+			},
+			"purpose_of_use": {
+				"code": "TREAT",
+				"text": "Behandling",
+				"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+				"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+			},
+			"purpose_of_use_details": {
+				"code": "15",
+				"text": "Helsetjenester i hjemmet",
+				"system": "urn:oid:x.x.x.x.x.9151",
+				"assigner": "https://www.helsedirektoratet.no/"
+			},
+			"decicion_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
+				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
+				"description": { 8<...>8 }, /* autogenerert i EPJ */
+				"user_reason": "Tekst lagt inn av bruker.."
+			}
 		}
 	}
 }
@@ -149,13 +158,14 @@ sequenceDiagram
 ### 3.3 Overføring av authorization_details strukturen
 Authorization_details strukturen som er definert i denne spesifikasjonen skal overføres til HelseID i forespørsler om tilgang til tjenester eller APIer som deler helseopplysninger, og danner grunnlaget for tilgangen som blir gitt i HelseID.
 
-Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet. Se [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md) for en detaljert beskrivelse av hvordan HelseID skal brukes.
+Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet. Se [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av dokumenter i Kjernejournal](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md) for en detaljert beskrivelse av hvordan HelseID skal brukes.
 
 #### 3.3.1 Via authorization endepunktet - authorization_details i RO
 Når authorization_details strukturen overføres som parameter i authorization endepunktet MÅ den inngå som parameter i et Request Object, som beskrevet i [OpenID Connect spesifikasjonen](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests) og iht [gjeldende krav til bruk av Request Object i HelseID](https://lenke.no).
 
 #### 3.3.2 I token endepunktet - authorization_details i client_assertion
 Når authorization_details strukturen overføres som parameter i token endepunktet MÅ den inngå som parameter i Client Assertion, som beskrevet i [OAuth Assertion Framework](https://www.rfc-editor.org/rfc/rfc7521) iht [gjeldende krav til klientautentisering i HelseID](https://lenke.no).
+
 
 
 ## 4. Sikkerhets- og personvernshensyn

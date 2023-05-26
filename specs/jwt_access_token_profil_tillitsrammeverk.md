@@ -99,7 +99,7 @@ Elementet "trusted_claims" utgjør toppnivået for innholdet som beskriver grunn
 | "claims" | Påstander hvor tilliten er basert på det angitte tillitsrammeverket |
 
 ````JSON
-"trust_framework":{
+"trust_framework_claims":{
 	"trust_framework": { ... },
 	"claims": { ... }
 }
@@ -161,7 +161,7 @@ Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på av
 			"name": "Helsevirksomheten AS",
 			"oid": "2.16.578.1.12.4.1.4.101"
 		},
-		"date": "14.02.2023"
+		"date": "14.02.2023",
 		"id": "10001",
 		"granting_body": {
 			"id": "987654321",
@@ -197,9 +197,6 @@ _*Eksempel på JSON strukturen:*_
 		8<...>8
 	},
 	"care_relationship": {
-		8<...>8	
-	},
-	"patient": {
 		8<...>8	
 	},
 	"system": {
@@ -238,6 +235,51 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 }
 ````
 
+# API Spesifikke claims
+
+````JSON
+{
+	"authorization_details":{
+		"type": "dokumentdeling_kj",
+		"actions": ["read"],
+		"locations": "https://kj.nhn.no/",
+		"kj_dokumentdeling": { //rar-struktur for dokumentdeling: hva skal barnet hete?
+			"version": "1.0",
+			"care_relationship": {
+				"healthcare_service": {
+					"code": "S03",
+					"text": "Indremedisin",
+					"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+					"assigner": "https://www.helsedirektoratet.no/"
+				},
+				"department": {
+					"id": "resh:121313", 
+					"system": "resh:x.x.x.x.x.x.x",
+					"name": "Avdeling ved Sykehus",
+					"authority": "RESH",
+				},
+				"purpose_of_use": {
+					"code": "TREAT",
+					"text": "Behandling",
+					"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+					"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+				},
+				"purpose_of_use_details": {
+					"code": "15",
+					"text": "Helsetjenester i hjemmet",
+					"system": "urn:oid:x.x.x.x.x.9151",
+					"assigner": "https://www.helsedirektoratet.no/"
+				},
+				"decision_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
+					"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
+					"description": { 8<...>8 }, /* autogenerert i EPJ */
+					"user_reason": "Tekst lagt inn av bruker.."
+				}
+			}
+		}
+	}
+}
+````
 
 
 ## 4. Sikkerhets- og personvernshensyn

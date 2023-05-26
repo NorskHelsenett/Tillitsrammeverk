@@ -51,12 +51,10 @@ Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles tillitsmode
 
 Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene. Den første anvendelsen av tillitsrammeverket, inklusivt denne spesifikasjonen, skjer i forbindelse med etablering av nasjonal dokumentdeling i Kjernejournal.
 
-NHN som tillitsanker sørger for følgende:
-* Virksomheten er en helsevirksomhet
-* Helsevirksomheten er medlem av helsenettet (har akseptert vilkår)
-* Virksomheten har akseptert vilkår for bruk av tjenestene den bruker
+NHN som tillitsanker sørger for å  virksomheten er en helsevirksomhet som er medlem av helsenettet, og at virksomheten har akseptert vilkår for bruk av tjenestene den konsumerer.
+
 * Dersom forespørselen kommer fra en databehandler som handler på vegne av helsevirksomheten vil tillitsankeret kontrollere følgende:
-	* Helsevirksomheten har eksplisitt delegert representasjonsrett til sin databehandler
+	* At helsevirksomheten har eksplisitt delegert representasjonsrett til sin databehandler
 	* Databehandler har akseptert vilkår for å inngå i økosystemet (helsenettet)
 * Programvaren er registert hos NHN
 * Programvaren har rett til å bruke tjenesten
