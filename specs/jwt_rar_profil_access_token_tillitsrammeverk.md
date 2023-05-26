@@ -1,9 +1,8 @@
-# Profil for bruk av Rich Authorization Requests (authorization_details) i HelseID
-
-# TODO
-HelseID tar en gjennomgang av spesifikasjonen og flytter ut det som skal i den overliggende spesifikasjonen som beskriver bruk av HelseID for Dokumentdeling i Kjernejournal..
+# JWT profil for å beskrive grunnlaget for tilgang til helseopplysninger innad i Helsenettet
 
 ## Sammendrag
+Denne spesifikasjonen definerer et JSON element med en tilhørende struktur som skal brukes for å formidle informasjon om helsepersonell ved bruk av protokollene OpenID Connect og OAuth 2.0. Tiltroen til informasjonen som ligger i JSON elementet i bygger på tillitsrammeverket for deling av helseopplysninger i Helsenettet.
+
 
 ## Dokumentets status
 
@@ -15,167 +14,305 @@ Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et 
 
 Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 
-
-## Definisjon av begrep og forkortelser
-Spesifikasjonen benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
-
-| Begrep | Definisjon |
-| --- | --- |
-| API | Application Programming Interface |
-| HTTP | Hyper Text Transfer Protocol |
-| REST | Representational State Transfer |
-| OIDC | [OpenID Connect  Core](https://openid.net/specs/openid-connect-core-1_0.html) |
-| OAuth 2.0 | [The OAuth 2.0 Authorization Framework](https://www.ietf.org/rfc/rfc6749.txt) |
-| RP | Relying Party |
-| Klient | Som i "client" i Client-Server modell |
-| RAR | [Rich Authorization Requests](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-rar) |
-| JWT | |
-| JOSE | |
-
-
-
 ## Innholdsfortegnelse
 
-## 1. Innledning
-Denne spesifikasjonen definerer et JSON format som skal benyttes til å overføre informasjon om grunnlaget for tilgangen som er gitt i helsepersonellets lokale EPJ system til den som deler helseopplysningene. Informasjonen som denne strukturen skal inneholde er definert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
+## 1. Introduksjon
+Å lage et tydelig skille mellom informasjon som inngår i tillitsrammeverket og informasjon som ligger utenfor tillitsrammeverket forhindrer at aktørene i samhandlingen benytter informasjon som ikke inngår i tillitsrammeverket til tilgangsstyring og dokumentasjon.
 
-Denne spesifikasjonen er en del av et spesifikasjonssett som inngår i tillitsrammeverket for deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren, og skal sees i sammenheng med de andre spesifikasjonene.
+Norsk Helsenett har derfor spesifisert en JWT struktur som er tilpasset behovene i forbindelse med deling av helseopplysninger. Strukturen skal inneholde nødvendig informasjon for å tilfredsstille sikkerhetsmessige og lovpålagte krav knyttet til tilgangskontroll, logging og pasientens behov for informasjon om tilganger som er gitt til hans helseopplysninger.
 
-Ved deling av helseopplysninger på tvers av helsevirksomhetene i sektoren har virksomheten som deler informasjon en plikt til å etterleve krav i både norm for informasjonssikkerhet og i lovverket. For å tilfredsstille disse kravene har aktører i sektoren samlet seg rundt en modell som beskriver hvordan aktørene kan bygge tilstrekkelig tillit til at delingen skjer innenfor rammene til loven. 
+Denne strukturen skal benyttes i ID Tokens og Access Tokens som utstedes av HelseID, men kan også benyttes for å strukturere informasjon i userinfo endepunktet i HelseID. 
+ 
 
-Tillitsmodellen realiseres i et tillitsrammeverk som beskriver konkrete krav til aktørene som skal dele helseopplysninger, og som peker på konkrete tillitsbyggende tjenester som skal benyttes i forbindelse med delingen. I tillitsrammeverket fordeles oppgaver knyttet til tilgangsstyring ved at konsumenten forplikter seg til å utføre tilgangsstyring og tilgangskontroll på vegne av den som deler helseopplysningene. Virksomheten som deler helseopplysningene skal være trygg på at helsepersonellet har et tjenstlig behov, og at helseopplysningene er relevant og nødvendig i behandlingen av pasienten.
+## 2. Spesifikasjonens struktur
+Spesifikasjonen definerer en JSON struktur som skal benyttes for å beskrive grunnlaget for tilgang til helseopplysninger. Attributter i JSON strukturen som inneholder informasjon kalles "claims" (påstander).
 
-Selv om konsumenten skal utføre tilgangsstyring på vegne av den som deler helseopplysningene trenger datakilden informasjon som beskriver grunnlaget for tilgangen slik at de kan utføre ytterligere tilgangsstyring, logging og for å gi informasjon om tilgangen til pasienten. Informasjonen om den lokale tilgangen må overføres fra konsumenten til datakilden, og skal formatteres i henhold til denne spesifikasjonen.
+Spesifikasjonen tar først for seg det øverste nivået i JSON strukturen, og tar deretter for seg de underliggende strukturene for hvert overordnede element.
+
+### Claims i spesifikasjonen
+Et claim er et navn-verdi par, hvor verdien kan være en datatype eller et objekt. Et objekt kan være en JSON-struktur eller et JSON-array.
+
+````JSON
+Datatype:
+"tekstverdi": "Tekst"
+"tallverdi": 1234
+
+Vi benytter "_" for å skille mellom ord i navngivingen av claims.
+
+Objekt:
+"claim_navn": { "claim-navn2": "claim-verdi2"}
+"claim_navn": ["element1", "element2"]
+````
 
 
-### 1.1 Transport av informasjon om lokal tilgang via HelseID
-I tillitsrammeverket stilles det krav til bruk av HelseID for innlogging av helsepersonell for å få tilgang til tjenestene som skal dele helseopplysninger.
-Informasjonen som er spesifisert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md) utgjør helsepersonellets digitale identitet i jobbsammenheng, og er naturlige attributter  i brukersesjoner som oppstår i HelseID.
 
-HelseID etablerer et tillitsforhold til den kjørende klienten (programvaren som konsumerer tjenesten).
-Tjenestene som krever bruk av HelseID må ha høy tillit til sine konsumenter.
+### Generiske strukturer 
+#### Fleksibilitet i JSON strukturen
+Spesifikasjonen legger opp til dynamikk i hvordan informasjonen uttrykkes. Dette lar oss uttrykke metainformasjon om påstandene i en mer konsis form.
+
+````JSON
+"claim_name": {
+	"claim1": "verdi",
+	"claim2": "metainformasjon"
+	"claim3": "metainformasjon"
+}
+````
 
 
-## 2. Beskrivelse av konsept
-Når en klient gjør en tilgangsforespørsel til HelseID må den legge ved informasjon som beskriver helsepersonellets grunnlag for tilgang i sitt lokale system. Dersom helsepersonellet er autentisert og klient har rett på tilgang til den forespurte tjenesten, vil HelseID utstede et Access Token som inneholder attributtene som klienten overførte.
+#### Elementer som beskriver virksomheter
+Spesifikasjonen definerer flere claims som beskriver virksomheter. Disse attributtene følger samme struktur
 
-Tilliten til denne informasjonen hviler på kravene i tillitsrammeverket, samt det tekniske tillitsforholdet som HelseID etablerer til journalsystemet på vegne av tjenesten som skal konsumeres.
+````JSON
+"juridisk_enhet": {
+	"id": "1234",
+	"name": "Virksomheten AS",
+	"oid": "2.16.578.1.12.4.1.4.101"
+}
+````
 
-Informasjonen som beskriver den lokale tilgangen skal overføres til HelseID ved bruk av mekanismen [Rich Authorization Request](https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html)(RAR), hvor attributtene MÅ uttrykkes i henhold til den gjeldende [datamodellen](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md) og formatteres i henhold til denne spesifikasjonen.
+#### Kodeverk
+Mange av verdiene i informasjons- og datamodellen skal være basert på gyldige verdier angitt av kodeverk eller hvitelister. Denne spesifikasjonen definerer en struktur for hvordan verdier basert på kodeverk eller hvitelister skal struktureres.
 
-Protokollen som HelseID er bygget på definerer en enkel tilgangsstyringsmekanisme som lar klienter be om tilgang til en gitt ressurs hos en tjeneste. Ved å bruke denne mekanismen kan Access Tokens begrenses til å bare gjelde for en gitt ressurs. 
-Klienten benytter parameteret "scope" for å angi hviken ressurs den ønsker tilgang til ved en tilgangsforespørsel, og HelseID utsteder Access Tokens som begrenses til denne ressursen dersom klienten har rett til å få tilgang.
+````JSON
+Eksempel på verdi basert på kodeverk:
+"claim_name": {
+	"code": "1234",
+	"text": "",
+	"oid_system": "x.x.x.x.x.x.x.x.x.x",
 
-Denne tilgangsstyringsmekanismen fungerer godt til enkle formål, men er ikke tilstrekkelig for å støtte mer avanserte behov, som tilgang til helseopplysninger.
 
-RAR innfører et nytt parameter til protokollen, som heter "authorization_details", som lar klienter uttrykke fingranulerte autorisasjonskrav i tilgangsforespørselen ved bruk av JSON. Informasjonen i "authorization_details" kan benyttes av HelseID og tjenesten som deler helseopplysninger til å begrense tilgang og for å tilfredsstille krav til logging.
+Eksempel på verdi basert på hviteliste:
+"claim_name": {
+	"code": "1234",
+	"text": "",
+	"classification_system": "egennavn"
+}
+````
 
-```mermaid
-sequenceDiagram
-	Klient->>Klient: Autentiserer helsepersonell
-	Klient->>Klient: Autoriserer tilgang til pasient
-	Klient->>Klient: Uttrykker autorisasjon iht datamodell
-	Klient->>Klient: Pakker inn i "authorization_details" struktur
-	Klient->>HelseID: Tilgangsforespørsel m. authorization_details parameter
-	HelseID->>HelseID: Kontroll av tilgangsforespørsel
-	HelseID->>HelseID: Tilgangskontroll basert på info i authorization_details
-	HelseID->>HelseID: Genererer Access Token m. info fra authorization_details
-	HelseID->>Klient: Overfører Access Token
-	Klient->>API/Tjeneste: Forespørsel med Access Token i http header
-	API/Tjeneste->>API/Tjeneste: Kontroll av Access Token
-	API/Tjeneste->>API/Tjeneste: Tilgangskontroll basert på info i authorization_details
+## 3. Spesifikasjon av strukturen i "trusted_claims" elementet
 
-```
+Elementet "trusted_claims" utgjør toppnivået for innholdet som beskriver grunnlaget for utlevering av helseopplysninger. Elementet er et enkeltstående objekt som består av to claims med underliggende strukturer: 
 
-## 3. Spesifikasjon
-### 3.1 Avvik fra standard
-1. vi reflekterer ikke "authorization_details" i access token
-2. kan også brukes mot token-endepunktet (via client-assertion) for å endre grant (hmmm...) - risikovurdes
-- annet...?
+| Claim type | Beskrivelse |
+| --- | ---| 
+| "trust_framework" | Informasjon om tillitsrammeverket som beskriver tilliten man kan ha til påstandene i "claims" objektet. |
+| "claims" | Påstander hvor tilliten er basert på det angitte tillitsrammeverket |
 
-Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å bruke client-assertion dersom leverandørene er misfornøyd med standard flyt.
+````JSON
+"trust_framework_claims":{
+	"trust_framework": { ... },
+	"claims": { ... }
+}
+````
 
-### 3.2 JSON Struktur
-#### TODO: legg inn reelle attributter fra datamodellen for dokumentdeling
-```JSON
-"authorization_details":{
-	"type": "dokumentdeling_kj",
-	"actions": ["read"],
-	"locations": "https://kj.nhn.no/",
-	"trust_framework":{ //rar-struktur for dokumentdeling: hva skal barnet hete?
+De underliggende elementene som blir spesifisert videre i dette dokumentet deles opp i egne spesifikasjoner som skal benyttes for å beskrive formålet ved utlevering/deling av helseopplysninger.
+
+### 3.1 Spesifikasjon av strukturen i elementet "trust_framework"
+Denne strukturen beskriver tillitsrammeverket som ligger til grunn for tilliten som mottakeren kan ha til informasjonen som ligger i "claims" strukturen. Elementet "trust_framework" er et enkeltstående objekt som består av to underliggende strukturer.
+
+| Claim type | Beskrivelse |
+| --- | --- | 
+| "framework" | Verdi som angir versjon av tillitrammeverk | 
+| "agreement" | Struktur som beskriver hvilken avtale/kontrakt som ligger til grunn for tillitsforholdet. <br>Kilde: NHN MIN/Tillitsanker| 
+
+````JSON
+"trust_framework":{
+    "framework": "eksempel",
+	"agreement": {
+		8<...>8
+	}
+}
+````
+
+
+#### 3.1.1 Spesifikasjon av elementet "framework"
+"framework" elementet har en tekstlig verdi som angir hvilken versjon av tillitsrammeverket som var i bruk når strukturen ble opprettet av HelseID.
+
+>"nhn_high" indikerer at tillitsrammeverket er tilpasset deling av helseopplysninger i behandlingsrettede helseregistre
+
+
+````JSON
+"trust_framework":{
+	"framework": "nhn_high",
+	8< … >8
+}
+````
+
+
+#### 3.1.2 Spesifikasjon av strukturen "agreement"
+Elementet "agreement" er ett enkeltstående objekt som inneholder informasjon om vilkårene for bruk av tjenesten. Objektet er en JSON struktur.
+Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på avtalen som "agreement" elementet refererer til.
+
+| Claim | Verdi | 
+| --- | --- | -- |
+| "version" | Versjonsnummer for avtalen | 
+| "legal_entity" | Informasjon om den juridiske enheten som inngikk avtale/aksepterte vilkår |
+| "date" | Dato når vilkår ble akseptert/inngått avtale | 
+| "id" | Løpenummer for den aktuelle avtalen/identifikator | 
+| "granting_body" | Informasjon om den juridiske enheten som det ble inngått avtale med |
+
+````JSON
+"trust_framework":{
+    8< .... >8
+	"agreement": {
 		"version": "1.0",
-		"organization":{
-			"legal_entity": {
-				"name": "Juridisk Enhet AS",
-				"org_id": "1231232132",
-				"system_oid": "2.16.578.1.12.4.1.4.101"
-			},
-			"point_of_care": {
-				"org_id": "123123123",
-				"system_oid": "2.16.578.1.12.4.1.4.101"
-			},
+		"legal_entity": {
+			"id": "123456789",
+			"name": "Helsevirksomheten AS",
+			"oid": "2.16.578.1.12.4.1.4.101"
 		},
+		"date": "14.02.2023",
+		"id": "10001",
+		"granting_body": {
+			"id": "987654321",
+			"name": "Norsk Helsenett SF",
+			"oid": "2.16.578.1.12.4.1.4.101"
+		}
+	}
+}
+````
+
+### 3.2	Spesifikasjon av strukturen i "claims" elementet
+Claims elementet er ett enkeltstående objekt som består av fire attributter med underliggende strukturer.
+
+Attributtene som ligger i "claims" elementet er:
+* "practicioner"
+* "care_relationship"
+* "patient"
+* "system"
+
+
+
+| Claim | Beskrivelse |
+| --- | --- |
+| "practitioner" | Informasjon om helsepersonellet<br><br> Kilde: HPR, Konsument (klient/IdP) |
+| "care_relationship" | Informasjon om helsepersonellets relasjon til pasienten |
+| "patient" | Informasjon om pasienten |
+| "system" | Informasjon om systemet som ber om tilgang til et API på vegne av helsepersonellet <br><br>Kilde: Konsument eller Databehandler – må være forhåndsregistrert i NHN sin database |
+
+_*Eksempel på JSON strukturen:*_
+````JSON
+{
+	"practicioner":{
+		8<...>8
 	},
-	"kj_dokumentdeling": { //rar-struktur for dokumentdeling: hva skal barnet hete?
-		"version": "1.0",
-		"care_relationship": {
-			"healthcare_service": {
-				"code": "S03",
-				"text": "Indremedisin",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
-				"assigner": "https://www.helsedirektoratet.no/"
-			},
-			"department": {
-				"id": "resh:121313", 
-				"system": "resh:x.x.x.x.x.x.x",
-				"name": "Avdeling ved Sykehus",
-				"authority": "RESH",
-			},
-			"purpose_of_use": {
-				"code": "TREAT",
-				"text": "Behandling",
-				"system": "urn:oid:2.16.840.1.113883.1.11.20448",
-				"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
-			},
-			"purpose_of_use_details": {
-				"code": "15",
-				"text": "Helsetjenester i hjemmet",
-				"system": "urn:oid:x.x.x.x.x.9151",
-				"assigner": "https://www.helsedirektoratet.no/"
-			},
-			"decicion_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
-				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
-				"description": { 8<...>8 }, /* autogenerert i EPJ */
-				"user_reason": "Tekst lagt inn av bruker.."
+	"care_relationship": {
+		8<...>8	
+	},
+	"system": {
+		8<...>8
+	}
+}
+````
+
+#### 4.3.1 Spesifikasjon av "practitioner", "care_relationship" og "patient" elementene
+
+> (*) JSON strukturen som inneholder "practitioner", "care_relationship" og "patient" elementene  hoveddelen av denne strukturen er beskrevet i spesifikasjonen [Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), hvor JSON strukturen for denne informasjonen er definert. 
+
+Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesifikasjonen av [informasjons- og datamodell](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
+
+
+
+#### 4.3.4 Spesifikasjon av "system" elementet
+
+| Claim | Beskrivelse |
+| --- | --- |
+| "system_identifier" | Identifikator som unikt identifiserer det kjørende systemet som helsepersonellet benytter innad i føderasjonen |
+| "software_identifier" | Identifikator som unikt identifiserer programvaren som det kjørende systemet benytter innad i føderasjonen |
+| "software_name" | Navn på programvare som det kjørende systemet benytter innad i føderasjonen |
+| "operated_by" | Struktur som beskriver hvilken virksomhet som har det operative ansvaret for systemet (databehandler). |
+| "on_authority_of" | Dersom virksomheten er en databehandler som har fått det operative ansvaret for systemet fra en helsevirksomhet blir dette beskrevet i denne strukturen |
+
+
+##### Eksempel på "system" object uten verdier
+````JSON
+{
+    "system":{
+        "system_identifier": "[value]",
+        "software_identifier": "[value]",
+        "software_name": "[value]",
+        "operated_by": {[object]}
+}
+````
+
+# API Spesifikke claims
+
+````JSON
+{
+	"authorization_details":{
+		"type": "dokumentdeling_kj",
+		"actions": ["read"],
+		"locations": "https://kj.nhn.no/",
+		"kj_dokumentdeling": { //rar-struktur for dokumentdeling: hva skal barnet hete?
+			"version": "1.0",
+			"care_relationship": {
+				"healthcare_service": {
+					"code": "S03",
+					"text": "Indremedisin",
+					"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+					"assigner": "https://www.helsedirektoratet.no/"
+				},
+				"department": {
+					"id": "resh:121313", 
+					"system": "resh:x.x.x.x.x.x.x",
+					"name": "Avdeling ved Sykehus",
+					"authority": "RESH",
+				},
+				"purpose_of_use": {
+					"code": "TREAT",
+					"text": "Behandling",
+					"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+					"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+				},
+				"purpose_of_use_details": {
+					"code": "15",
+					"text": "Helsetjenester i hjemmet",
+					"system": "urn:oid:x.x.x.x.x.9151",
+					"assigner": "https://www.helsedirektoratet.no/"
+				},
+				"decision_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
+					"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
+					"description": { 8<...>8 }, /* autogenerert i EPJ */
+					"user_reason": "Tekst lagt inn av bruker.."
+				}
 			}
 		}
 	}
 }
-
-```
-
-
-### 3.3 Overføring av authorization_details strukturen
-Authorization_details strukturen som er definert i denne spesifikasjonen skal overføres til HelseID i forespørsler om tilgang til tjenester eller APIer som deler helseopplysninger, og danner grunnlaget for tilgangen som blir gitt i HelseID.
-
-Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet. Se [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av dokumenter i Kjernejournal](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md) for en detaljert beskrivelse av hvordan HelseID skal brukes.
-
-#### 3.3.1 Via authorization endepunktet - authorization_details i RO
-Når authorization_details strukturen overføres som parameter i authorization endepunktet MÅ den inngå som parameter i et Request Object, som beskrevet i [OpenID Connect spesifikasjonen](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests) og iht [gjeldende krav til bruk av Request Object i HelseID](https://lenke.no).
-
-#### 3.3.2 I token endepunktet - authorization_details i client_assertion
-Når authorization_details strukturen overføres som parameter i token endepunktet MÅ den inngå som parameter i Client Assertion, som beskrevet i [OAuth Assertion Framework](https://www.rfc-editor.org/rfc/rfc7521) iht [gjeldende krav til klientautentisering i HelseID](https://lenke.no).
-
+````
 
 
 ## 4. Sikkerhets- og personvernshensyn
 
-### Sikkerhetshensyn
-Peke til https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html#name-security-considerations
-Beskriv valgte tiltak som forhindrer deler av problemet..
-Beskriv ytterligere tiltak som må vurderes av klient/server/HelseID
+### 4.1 Sikkerhetshensyn
 
-### Personvernshensyn
-Peke til https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html#name-privacy-considerations
-Beskriv valgte tiltak som forhindrer deler av problemet
-Beskriv ytterligere tiltak som må vurderes av klient/server/HelseID
+#### 4.1.1 Tyveri og misbruk av tokens
+>TODO: beskrivelse
+
+
+#### 4.1.2 Manglende validering av Access Token hos tjenesten
+>TODO: beskrivelse
+
+#### 4.1.3 Feilkonfigurering av behandling av Access Token
+>TODO: beskrivelse
+
+### 4.2 Personvernshensyn
+#### 4.2.1 Lekkasje av sensitive personopplysninger
+Datamodellen vil bli benyttet til å overføre sensitive personopplysninger om helsepersonellet og helsepersonellets relasjon til sin pasient. Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere sensitiv personinformasjon som overføres mellom de tekniske tjenestene som benyttes ved deling av helseopplysninger. Lekkasje av PII kan oppstå mellom flere parter i verdikjeden:
+
+mellom konsument og autorisasjonsserver/IdP
+mellom konsument og informasjonstjeneste
+mellom informasjonstjeneste og datagrensesnitt
+For å sikre oss mot potensiell lekkasje av PII bør det vurderes å innføre tiltak for å ivareta konfidensialiteten.
+
+#### 4.2.2 Mangelfull informasjon om personvernskonsevenser
+Ettersom informasjon i Access Tokens kan bli lagret hos mange aktører og brukt til å informere pasitenten om tilgangen til pasientens helseopplysninger er det en risiko for at både pasienten og helsepersonellet mottar mangelfull informasjon om potensielle personvernskonsekvenser ved overføringen av personopplysningene.
+
+#### 4.2.3 Misbruk av data
+Datamodellen beskriver behandlerrelasjonen som helsepersonellet har til sin pasient, og kan være sensitiv. Det er en risiko for at denne informasjonen misbrukes av en eller flere parter som mottar verdiene i datasettet.
+
+#### 4.2.4 Overvåkning av ansatte i andre virksomheter
+Datamodellen inneholder en del informasjon som beskriver helsepersonells arbeidsforhold. Denne informasjonen overføres til andre virksomheter enn den virksomheten den ansatte yter helsehjelp hos. Det er en risiko for at denne informasjonen kan benyttes for å overvåke helsepersonell i andre virksomheter.
+
+#### 4.2.5 Urettmessig tilegnelse av helseopplysninger
+Det er en risiko for at helsepersonellet som ber om tilgang til helseopplysninger ikke har et tjenstlig behov, og at opplysningene ikke er relevante og nødvendige i behandlingen av pasienten.
