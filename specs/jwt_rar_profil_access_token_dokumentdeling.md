@@ -77,15 +77,17 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 ### 3.2 JSON Struktur
 #### TODO: legg inn reelle attributter fra datamodellen for dokumentdeling
 ```JSON
-"authorization_details":{
-	"type": "dokumentdeling_kj",
-	"actions": ["read"],
-	"locations": "https://kj.nhn.no/",
-	"trust_framework":{ 
-		{…}
-	},
-	"kj_dokumentdeling": { //rar-struktur for dokumentdeling: hva skal barnet hete?
+"authorization_details":[
+{
+
+},
+{
+	"type": "nhn:dokumentdeling",
+	"nhn:dokumentdeling": {
 		"version": "1.0",
+		"trust_framework_claims": {
+
+		},
 		"care_relationship": {
 			"healthcare_service": {
 				"code": "S03",
@@ -118,7 +120,9 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 			}
 		}
 	}
-}
+},
+{…}
+]
 
 ```
 
