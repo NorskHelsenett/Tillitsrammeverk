@@ -109,7 +109,6 @@ Attributtet blir kun validert hvis det er til stede i forespørselen.
     "assigner": "www.helsedirektoratet.no"
 }
 ````
-
 Enkel validering på bakgrunn av kodeverk
 
 ###### "purpose_of_use" - JSON format
@@ -122,7 +121,6 @@ Enkel validering på bakgrunn av kodeverk
     "assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
 }
 ````
-
 Enkel validering på bakgrunn av kodeverk
 
 ###### "purpose_of_use_details" - JSON format
@@ -135,7 +133,6 @@ Enkel validering på bakgrunn av kodeverk
     "assigner": "https://www.helsedirektoratet.no/"
 }
 ````
-
 Enkel validering på bakgrunn av kodeverk
 
 Attributtet blir kun validert hvis det er til stede i forespørselen.
@@ -147,5 +144,6 @@ Attributtet blir kun validert hvis det er til stede i forespørselen.
     "ref_id" : "id til lokal tilgangsbeslutning", 
 }
 ````
-Tillater kun tall, bokstaver og tegnene _-. Maks lengde 64 tegn.  ???  
+Tillater kun tall, bokstaver og tegnene _-. 
+Maks lengde 64 tegn.
 Attributtet blir kun validert hvis det er til stede i forespørselen.

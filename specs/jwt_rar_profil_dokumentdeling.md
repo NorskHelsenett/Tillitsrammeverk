@@ -81,62 +81,32 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 {
 	{
 		"type": "nhn:trust_framework",
+		"version": "1.0", // hvis utelatt, blir dette versjon 1.0
 		"value": {
-			"framework": "nhn_high",
-			"version": "1.0",
-			"agreement": {
-				"version": "1.0",
-				"legal_entity": {
-					"id": "123456789",
-					"name": "Helsevirksomheten AS",
-					"oid": "2.16.578.1.12.4.1.4.101"
-				},
-				"date": "14.02.2023",
-				"id": "10001",
-				"granting_body": {
-					"id": "987654321",
-					"name": "Norsk Helsenett SF",
-					"oid": "2.16.578.1.12.4.1.4.101"
-				}
-			},
 			"practicioner": {
 				"professional_license": {
-					"hpr_nr": {
-						"id": "9144900",
-						"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-						"authority": "https://www.helsedirektoratet.no/"
-					},
-					"authorization": {
-						"code": "LE",
-						"text": "Lege",
-						"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-						"assigner": "https://www.helsedirektoratet.no/"
-					}
+					"hpr_nr": "9144900",
+					"authorization": "LE",
 				},
 			}
 			"care_relationship": {
 				"legal_entity": {
 					"id": "993467049",
 					"name": "OSLO UNIVERSITETSSYKEHUS HF",
-					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-					"authority": "https://www.skatteetaten.no"
 				},
 				"point_of_care": {
 					"id": "974589095",
 					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-					"authority": "https://www.skatteetaten.no"
 				}
 			}
 		}
 	},
 	{
 		"type": "nhn:dokumentdeling",
+		"version": "1.0",				
 		"value": {
-			"version": "1.0",				
 			"healthcare_service": {
 				"code": "S03",
-				"text": "Indremedisin",
 				"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
 				"assigner": "https://www.helsedirektoratet.no/"
 			},
@@ -148,21 +118,20 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 			},
 			"purpose_of_use": {
 				"code": "TREAT",
-				"text": "Behandling",
 				"system": "urn:oid:2.16.840.1.113883.1.11.20448",
 				"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
 			},
 			"purpose_of_use_details": {
 				"code": "15",
-				"text": "Helsetjenester i hjemmet",
 				"system": "urn:oid:x.x.x.x.x.9151",
 				"assigner": "https://www.helsedirektoratet.no/"
 			},
-			"decicion_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
+			"decision_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
 				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]", // alfanumerisk verdi, guid?
 			}			
 		}
-	}
+	},
+	{…}  // Eksisterende strukturer som viser for eksempel organisasjonsnummer [TODO: referanse til dok.]
 ]
 
 ```
