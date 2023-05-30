@@ -103,6 +103,7 @@ Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskriv
 | :warning:                | Intern kommentar fra team dok.deling | Modenhet |
 |--------------------------|:------------------------|-----|
 | "department"             | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtiden | Lav |
+|                          | Bruk av kodeverket blir rent informativt og bør ikke brukes til tilgangsstyring, gitt at organisering på tvers av primær-/spesialisthelsetjenesten er ulikt, gjelder også organisering på tvers av selve spesialisthelsetjenesten, men kan fungere internt i samme virksomhet slik at dok.deling ikke gir tilgang til mer pasientdokumentasjon enn man får via egen EPJ. ||
 
 Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
 
@@ -148,6 +149,7 @@ Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/y
 | :warning:               | Intern kommentar fra team dok.deling | Modenhet |
 |--------------------------|:------------------------|-----|
 | "healthcare_service"     | Utydelig kardinalitet for dette informasjonselementet. En helsevirksomhet yter gjerne flere typer av helsehjelp. Gitt at det blir kun maks 1 tjeneste som kan knyttes til aktøren, kan formålet endre seg etter Aut&Aut? Denne kan brukes aktivt i NHNs tjenesten for dok.deling. | Lav |
+|                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder | |
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
@@ -182,7 +184,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 
 | :warning:               | Intern kommentar fra team dok.deling | Modenhet |
 |--------------------------|:------------------------|-----|
-| "purpose_of_use"         | ingen kommentar | Høy |
+| "purpose_of_use"         | ingen kommentar, valueset bør begrenses til utvalgte verdier | Høy |
 
 
 |   |   |
@@ -294,6 +296,8 @@ Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]
 ##### "patient_id": Unik identifikator for pasienten
 
 Attributtet er til behandling av NHN - ROS/DIPA
+
+**Kommentar fra dok.deling: Vi må huske på at modellen som diskuteres skal være samme for XUA og JWT. Dersom STS velger å ikke ha dette informasjonselementet så kan den fortsatt være aktuel for XUA (SAML) som vil ha det.**
 
 | Attributt | |
 | --- | --- |
