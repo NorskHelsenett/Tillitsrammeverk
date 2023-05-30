@@ -76,12 +76,15 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 
 ### 3.2 JSON Struktur
 #### TODO: legg inn reelle attributter fra datamodellen for dokumentdeling
+
+Merk av navngivning ikke er ferdig ennå, her blir det endringer.  
+
 ```JSON
 "authorization_details":[
 {
 	{
 		"type": "nhn:trust_framework:parameters",
-		"version": "1.0", // hvis utelatt, blir dette versjon 1.0
+		"version": "0.1", // hvis utelatt, blir dette versjon 1.0
 		"value": {
 			"practicioner": {
 				"professional_license": {
@@ -103,7 +106,7 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 	},
 	{
 		"type": "nhn:dokumentdeling:parameters",
-		"version": "1.0",				
+		"version": "0.1",				
 		"value": {
 			"healthcare_service": {
 				"code": "S03",
