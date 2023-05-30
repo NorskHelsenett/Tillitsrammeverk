@@ -80,7 +80,7 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 "authorization_details":[
 {
 	{
-		"type": "nhn:trust_framework",
+		"type": "nhn:trust_framework:parameters",
 		"version": "1.0", // hvis utelatt, blir dette versjon 1.0
 		"value": {
 			"practicioner": {
@@ -102,36 +102,59 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 		}
 	},
 	{
-		"type": "nhn:dokumentdeling",
+		"type": "nhn:dokumentdeling:parameters",
 		"version": "1.0",				
 		"value": {
 			"healthcare_service": {
 				"code": "S03",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
-				"assigner": "https://www.helsedirektoratet.no/"
+				"system": "urn:oid:2.16.578.1.12.4.1.1.8655"
 			},
 			"department": {
-				"id": "resh:121313", 
-				"system": "resh:x.x.x.x.x.x.x",
+				"id": "121313", 
+				"system": "oid:x.x.x.x.x.x.x",
 				"name": "Avdeling ved Sykehus",
-				"authority": "RESH",
 			},
 			"purpose_of_use": {
 				"code": "TREAT",
-				"system": "urn:oid:2.16.840.1.113883.1.11.20448",
-				"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+				"system": "urn:oid:2.16.840.1.113883.1.11.20448"
 			},
 			"purpose_of_use_details": {
 				"code": "15",
-				"system": "urn:oid:x.x.x.x.x.9151",
-				"assigner": "https://www.helsedirektoratet.no/"
+				"system": "urn:oid:x.x.x.x.x.9151"
 			},
-			"decision_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
-				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]", // alfanumerisk verdi, guid?
+			"decision_ref": {
+				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
 			}			
 		}
 	},
-	{…}  // Eksisterende strukturer som viser for eksempel organisasjonsnummer [TODO: referanse til dok.]
+	// Andre elementer:
+	{
+		"type" : "helseid_authorization" ,
+		"practitioner_role" : { 
+			"organization" : { 
+				"identify" : {
+					"system" : "urn: oid: 2.16.578.1.12.4.1.2.101" ,
+					"type" : "ENH" ,
+					"value" : "[orgnummer]"
+				}
+			}
+		}
+	},
+	{
+		"type": "helseid://claims/external/amk-context",
+    	"value": 
+    	{ 
+      		"foo":
+      		[
+        		{
+					"bar": "role1"
+				}, 
+        		{
+					"bar": "role2"
+				}
+      		]
+    	}
+	}
 ]
 
 ```
