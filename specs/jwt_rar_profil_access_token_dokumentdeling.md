@@ -79,16 +79,61 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 ```JSON
 "authorization_details":[
 {
-
-},
-{
-	"type": "nhn:dokumentdeling",
-	"nhn:dokumentdeling": {
-		"version": "1.0",
-		"trust_framework_claims": {
-
-		},
-		"care_relationship": {
+	{
+		"type": "nhn:trust_framework",
+		"value": {
+			"framework": "nhn_high",
+			"version": "1.0",
+			"agreement": {
+				"version": "1.0",
+				"legal_entity": {
+					"id": "123456789",
+					"name": "Helsevirksomheten AS",
+					"oid": "2.16.578.1.12.4.1.4.101"
+				},
+				"date": "14.02.2023",
+				"id": "10001",
+				"granting_body": {
+					"id": "987654321",
+					"name": "Norsk Helsenett SF",
+					"oid": "2.16.578.1.12.4.1.4.101"
+				}
+			},
+			"practicioner": {
+				"professional_license": {
+					"hpr_nr": {
+						"id": "9144900",
+						"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+						"authority": "https://www.helsedirektoratet.no/"
+					},
+					"authorization": {
+						"code": "LE",
+						"text": "Lege",
+						"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+						"assigner": "https://www.helsedirektoratet.no/"
+					}
+				},
+			}
+			"care_relationship": {
+				"legal_entity": {
+					"id": "993467049",
+					"name": "OSLO UNIVERSITETSSYKEHUS HF",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+					"authority": "https://www.skatteetaten.no"
+				},
+				"point_of_care": {
+					"id": "974589095",
+					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+					"authority": "https://www.skatteetaten.no"
+				}
+			}
+		}
+	},
+	{
+		"type": "nhn:dokumentdeling",
+		"value": {
+			"version": "1.0",				
 			"healthcare_service": {
 				"code": "S03",
 				"text": "Indremedisin",
@@ -114,14 +159,10 @@ Konklusjon: vi spesifiserer "standard flyt" - men åpner for at det er mulig å 
 				"assigner": "https://www.helsedirektoratet.no/"
 			},
 			"decicion_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
-				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
-				"description": { 8<...>8 }, /* autogenerert i EPJ */
-				"user_reason": "Tekst lagt inn av bruker.."
-			}
+				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]", // alfanumerisk verdi, guid?
+			}			
 		}
 	}
-},
-{…}
 ]
 
 ```
