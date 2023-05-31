@@ -208,7 +208,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
 | :warning:                | Intern kommentar fra team dok.deling | Modenhet |
-|-------------------- -----|:------------------------|-----|
+|-------------------------|:------------------------|-----|
 | "purpose_of_use_details" | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtidige versjoner | Lav |
 
 
