@@ -150,7 +150,10 @@ SKAL | Følge HelseID sikkerhetsprofil for IDP-er
 Dette avsnittet beskriver i større detalj bruksmønsteret for å dele helseopplysninger mellom fagsystemer og API-er.
 
 Klient ber om autentisering av den fysiske personen ved bruk av normal flyt iht. protokoll, men med følgende presiseringer: 
-* Klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i [her](#overføre-informasjon-om-grunnlaget-for-tilgang-fra-klient) med mekanismen Request Objects 
+* Klient skal enten
+  * Overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet [her](#overføre-informasjon-om-grunnlaget-for-tilgang-fra-klient) med mekanismen Request Objects 
+* Eller
+  * Overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av token-endepunktet med mekanismen `client_assertion`
 
 * Request Object skal overføres til HelseID som et FORM parameter.
 
@@ -416,7 +419,8 @@ Klienten skal bruke Refresh Tokens i følgende tilfeller:
 
 Refresh Tokens brukes som spesifisert i [rfc6749](https://www.rfc-editor.org/rfc/rfc6749#section-1.5), og i sikkerhetsprofilen til HelseID.
 
-# 5. Sikkerhetsvurderinger **_TODO_**
+# 5. Sikkerhetsvurderinger
+<!--- todo-->
 HelseID krever sikkerhetsprofilen FAPI 2.0 (lenke til vår versjon av profilen)
 Pek til Security BCP og Trusselmodell
 
