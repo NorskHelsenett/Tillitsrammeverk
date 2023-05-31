@@ -190,14 +190,8 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
-| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC<br/>++ |
+| Gyldige verdier:| TREAT //Behandling,  <br/>ETREAT  //Nødtilgang,<br/>COC  //Administrativ tilgang<br/> |
 
-````
-"purpose_of_use_valueset":
-	"TREAT": "TREATMENT",  // Behandling
-	"ETREAT": "EMERGENCY", // Nødtilgang
-	"COC": "COORDINATION OF CARE" // Administrativ tilgang
-````
 
 ###### "purpose_of_use" - JSON format
 
@@ -213,8 +207,8 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 ##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
-| :warning:               | Intern kommentar fra team dok.deling | Modenhet |
-|--------------------------|:------------------------|-----|
+| :warning:                | Intern kommentar fra team dok.deling | Modenhet |
+|-------------------- -----|:------------------------|-----|
 | "purpose_of_use_details" | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtidige versjoner | Lav |
 
 
@@ -253,34 +247,38 @@ I spesialist vil denne være gitt av beslutningsmal.
 ````
 
 
-##### "decicion_ref": ekstern referanse til lokal tilgangsbeslutning
-Attributtet er en referanse til systemet som har initiert traffikken. Denne referanse skal referere gjerne til en lokal beslutning som kan benyttes ved å identifere forespørsel på et senere tidspunkt. Referansen skal sikre sporbarhet mellom systemene, slik at konsumenter og kilder av opplysninger har tilgang til felles identifikator
+##### "tracing_ref": referanse til systemet som initierte forespørselen
+Attributtet er en referanse til det systemet som har initiert traffikken. Denne referanse kan gjerne referere til en lokal beslutning som ble benyttet ved å identifere forespørselen på et senere tidspunkt. Referansen skal sikre sporbarhet på tvers mellom systemene, slik at konsumenter og kilder av opplysninger har tilgang til felles identifikator. Hver forespørsel som initieres av konsumentens system skal ha en unik identifikator.
+
+Målet med å bruke elementet er også å kunne begrense gyldighet av selve tokenet som utveksles slik at den ikke skal kunne gjenbrukes på et senere tidspunkt.
+
+Systemet må sørge for å angi denne informasjon til kilden av helseopplysninger ved å øverføring og samtidig ta vare på denne identifikator for senere anledning.
 
 ~~Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten. Formålet med dette attributtet er at kilden skal være i stand til å referere til en lokal beslutning hos konsumenten ved behov for oppfølging etter en logganalyse.~~
 
 | :warning:                | Intern kommentar fra team dok.deling | Modenhet |
 |--------------------------|:------------------------|-----|
-| "decision_ref"           | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som et informasjonselement som potensielt blir tatt ut i fremtidige versjoner. | Lav |
+| "tracing_ref"            |   | Lav |
 
 
 |   |   |
 | ---| ---|
 | Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
-| Attributt: | "decicion_ref" |
+| Informasjonselement | Ekstern referanse til opprinnelse av forespørselen  |
+| Attributt: | "tracing_ref" |
 | Attributt EHDSI: | N/A |
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | GUID |
 | Kodeverk: | N/A |
-| Gyldige verdier:|  |
+| Gyldige verdier:| regex = “^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$”  |
 
 
-###### "decicion_ref" - Attributter JSON format
+###### "tracing_ref" - Attributter JSON format
 
 ````JSON
-    "decicion_ref": {
+    "tracing_ref": {
         "ref_id" : "id til lokal tilgangsbeslutning", 
     }
 ````
