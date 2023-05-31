@@ -212,15 +212,11 @@ Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglen
 |-------------------------|:------------------------|
 | "purpose_of_use_details" | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtidige versjoner |
 
-
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
 
 Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
 
 Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for tilgjengeliggjøringen for bruk i loggkontroll samt som informasjon til innbygger.
-
-For kommune vil denne være gitt av: .....
-I spesialist vil denne være gitt av beslutningsmal.
 
 
 |   |   |
