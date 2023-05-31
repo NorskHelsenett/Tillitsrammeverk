@@ -30,7 +30,7 @@ For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til rel
 
 Kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte.
 
-I dokumentdeling i kjernejournal legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring til helseopplysninger på vegne av dokumentkilden. Til tross for at den konsumerende virksomheten er forpliktet til å kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger likevel behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil benyttes til flere formål:
+I dokumentdeling gjennom kjernejournal-portal legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring til helseopplysninger på vegne av dokumentkilden. Til tross for at den konsumerende virksomheten er forpliktet til å kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger likevel behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil benyttes til flere formål:
 
 1. å utføre ytterligere tilgangskontroll
 2. lovpålagt logging av tilgangen for å avdekke urettmessig tilegnelse av helseopplysninger
@@ -47,10 +47,7 @@ Denne spesifikasjonen definerer et felles språk som skal benyttes til å uttryk
 |  |  |
 
 ## 3. Bakgrunn for spesifikasjonen
-**TODO: Denne teksten bør endres slik at fokuset ligger på dokumentdeling - ikke tillitsmodell og tillitsrammeverk**
-Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles tillitsmodell som skisserer tillitsgrunnlaget for å dele helseopplysninger mellom helsepersonell på tvers av virksomhetene i sektoren.
-
-Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene. Den første anvendelsen av tillitsrammeverket, inklusivt denne spesifikasjonen, skjer i forbindelse med etablering av nasjonal dokumentdeling i Kjernejournal.
+Grunnlaget som presenteres i denne spesifikasjonen er samling av identifiserte attributter som anses som nødvendige for å kunne tilby tjenesten til helsepersonell i Norge. Opprinnelig målet med spesifikasjon var å tilnærme seg den europeiske spesifikasjonen av datamodellen som benyttes for utveskling av helseopplysninger på tvers av landesgrenser i Europa. Representanter fra norsk helsesektor som deltok i spesifiseringsrunde vurderte at norsk behov er litt annerledes enn den europeiske og at det er andre attributter som skal utveskles. Bakgrunnen for datamodellen skal være å tilfredstille nødvendig behov for identifisering av helsepersonell og virksomheten som denne personen representerer, samt med å overføre nødvendig informasjon om grunnlaget for tilgjengliggjøring av pasientens helseopplysnigner.
 
 ## 4. Spesifikasjon
 Spesifikasjonen inneholder en informasjonsmodell som beskriver hvilken informasjon som skal overføres mellom aktørene, hva denne informasjonen beskriver, og hvorfor den skal overføres.
