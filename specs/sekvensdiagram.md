@@ -25,7 +25,7 @@ sequenceDiagram
   EPJ->>KJP: POST /helseindikator/ (accesstoken + body)
   KJP-->>EPJ: pasientstatus + ticket(pasientens nin)
   HP->>EPJ: Åpner KJP
-  EPJ->>HelseID: Authorize kall (dpop + authorization details + client_assertion)
+  EPJ->>HelseID: Authorize kall (authorization details + client_assertion)
   HelseID-->>EPJ: Code
   EPJ->>HelseID: /Token (Code#1)
   HelseID-->>EPJ: Access Token
