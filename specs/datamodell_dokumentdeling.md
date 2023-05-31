@@ -81,11 +81,11 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
-| "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
-| "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring og informasjon til pasienten? |
-| "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
-| "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
-| "tracing_ref" | Referanse til opprinnelsen av forespørsel | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
+| "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Informasjon til pasienten |
+| "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
+| "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
+| "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
+| "tracing_ref" | Referanse til opprinnelsen av forespørsel | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes SAML</span> | Loggkontroll |
 
 
 
@@ -152,7 +152,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: red; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "healthcare_service" |
 | Attributt EHDSI: | N/A |
@@ -224,15 +224,15 @@ I spesialist vil denne være gitt av beslutningsmal.
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: red; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Attributt: | "purpose_of_use_details" |
 | Attributt EHDSI: | N/A |
-| Obligatorisk: | **Ja** |
+| Obligatorisk: | **Nei** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
-| Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
+| Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [Volven - Tjenestetype i helse- og omsorgstjenesten](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norge - CareRelation](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
 | Gyldige verdier:| N/A |
 
 ###### "purpose_of_use_details" - JSON format
@@ -263,7 +263,7 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: red; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Ekstern referanse til opprinnelse av forespørselen  |
 | Attributt: | "tracing_ref" |
 | Attributt EHDSI: | N/A |
@@ -292,11 +292,11 @@ Attributtet er til behandling av NHN - ROS/DIPA
 
 | Attributt | |
 | --- | --- |
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
+| Status: | <span style="color: red; font-weight: bold;">Inkluderes i SAML-sikkerhetsbiletten</span> |
 | Informasjonselement | Unik identifikator for pasienten som helsepersonellet ber om helseopplysninger for |
 | Attributt: | "patient" |
 | Attributt EHDSI: | |
-| Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
+| Fødselsnummer | Pasientens identifikator fra Folkeregisteret |
 
 ###### "patient_id" - Attributter JSON format
 
