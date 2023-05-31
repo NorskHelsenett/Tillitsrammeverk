@@ -47,7 +47,7 @@ Denne spesifikasjonen definerer et felles språk som skal benyttes til å uttryk
 |  |  |
 
 ## 3. Bakgrunn for spesifikasjonen
-Grunnlaget som presenteres i denne spesifikasjonen er samling av identifiserte attributter som anses som nødvendige for å kunne tilby dokumentdelings tjenesten til helsepersonell i Norge. Opprinnelig målet med spesifikasjonen var å tilnærme seg den europeiske spesifikasjonen av datamodellen som benyttes for utveskling av helseopplysninger på tvers av landesgrenser i Europa. Representanter fra norsk helsesektor som deltok i spesifiseringsrunde vurderte at norsk behov er litt annerledes enn den europeiske og at det er andre attributter som skal utveskles. Bakgrunnen for datamodellen skal være å tilfredstille nødvendig behov for identifisering av helsepersonell og virksomheten som denne personen representerer, samt med å overføre nødvendig informasjon om grunnlaget for tilgjengliggjøring av pasientens helseopplysnigner. Primær formål med attributtene i datamodellen er å tilfredstille de juridiske krav som stilles til utveksling av helseopplysnigner.
+Grunnlaget som presenteres i denne spesifikasjonen er samling av identifiserte attributter som anses som nødvendige for å kunne tilby dokumentdelings tjenesten til helsepersonell i Norge. Opprinnelig målet med spesifikasjonen var å tilnærme seg den europeiske spesifikasjonen av datamodellen som benyttes for utveskling av helseopplysninger på tvers av landesgrenser i Europa (ref. EHDS). Representanter fra norsk helsesektor som deltok i spesifiseringsrunde vurderte at norsk behov er litt annerledes enn den europeiske og at det er andre attributter som skal utveskles. Bakgrunnen for datamodellen skal være å tilfredstille nødvendig behov for identifisering av helsepersonell og virksomheten som denne personen representerer, samt med å overføre nødvendig informasjon om grunnlaget for tilgjengliggjøring av pasientens helseopplysnigner. Primær formål med attributtene i datamodellen er å tilfredstille de juridiske krav som stilles til utveksling av helseopplysnigner.
 
 ## 4. Spesifikasjon
 Spesifikasjonen inneholder en informasjonsmodell som beskriver hvilken informasjon som skal overføres mellom aktørene, hva denne informasjonen beskriver, og hvorfor den skal overføres.
@@ -77,7 +77,7 @@ Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at
 
 # Datamodell for detaljert autorisasjonsinformasjon
 
-Modellen som er presentert her må ses på som en "alfa-versjon" av datamodellen. Den er ikke nødvendigvis testet i praksis og læring må til for å se verdien av informasjonen i verdikjeden. Norsk helsenett, spesielt teamet ved dokumentdelingsproduktet kan IKKE stille seg bak behovet for alle disse informasjons elementer (ref. kommentar under tabellen).
+Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" av datamodellen. Den er ikke nødvendigvis testet i praksis og læring må til for å se verdien av informasjonen i verdikjeden. Norsk helsenett, spesielt teamet ved dokumentdelingsproduktet kan IKKE stille seg bak behovet for alle disse informasjons elementer (ref. kommentar under tabellen).
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
@@ -100,7 +100,7 @@ Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskriv
 | :warning:                | Intern kommentar fra team dok.deling | Modenhet |
 |--------------------------|:------------------------|-----|
 | "department"             | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtiden | Lav |
-|                          | Bruk av kodeverket blir rent informativt og bør ikke brukes til tilgangsstyring, gitt at organisering på tvers av primær-/spesialisthelsetjenesten er ulikt, gjelder også organisering på tvers av selve spesialisthelsetjenesten, men kan fungere internt i samme virksomhet slik at dok.deling ikke gir tilgang til mer pasientdokumentasjon enn man får via egen EPJ. ||
+|                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn ||
 
 Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
 
@@ -122,7 +122,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | Data type: | Object |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | RESH/Enhetsregisteret |
+| Kodeverk: | RESH/Enhetsregisteret [????] |
 | Gyldige verdier: | N/A |
 
 
