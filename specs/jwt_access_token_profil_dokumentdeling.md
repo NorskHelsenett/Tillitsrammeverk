@@ -78,8 +78,13 @@ Elementet "trusted_claims" utgjør toppnivået for innholdet som beskriver grunn
 
 TODO: finn et godt navn!
 ````JSON
-"kj_dokumentdeling_claims":{
-	"claims": { ... }
+"authorization_details":{
+	"type": "kj_dokumendeling",
+	"actions": ["read_document", "read_documentlist"],
+	"locations": ["kj.nhn.no"],
+	"claim1": { ... },
+	"claim2": { ... },
+	"claim3: "",
 }
 ````
 
