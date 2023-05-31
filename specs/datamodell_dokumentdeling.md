@@ -341,7 +341,7 @@ Full modell - valgfrie elementer er tatt med
 			"system": "urn:oid:x.x.x.x.x.9151",
 			"assigner": "https://www.helsedirektoratet.no/"
 		},
-		"decicion_ref": {
+		"tracing_ref": {
 			"ref_id" : "[id til lokal kjente identifikator som blir en ekstern referanse for kilden]",
 		}
 	},
