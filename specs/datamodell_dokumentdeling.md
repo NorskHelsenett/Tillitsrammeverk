@@ -248,7 +248,7 @@ I spesialist vil denne være gitt av beslutningsmal.
 
 
 ##### "tracing_ref": referanse til systemet som initierte forespørselen
-Attributtet er en referanse til det systemet som har initiert traffikken. Denne referanse kan gjerne referere til en lokal beslutning som ble benyttet ved å identifere forespørselen på et senere tidspunkt. Referansen skal sikre sporbarhet på tvers mellom systemene, slik at konsumenter og kilder av opplysninger har tilgang til felles identifikator. Hver forespørsel som initieres av konsumentens system skal ha en unik identifikator.
+Attributtet er en referanse til det systemet som har initiert traffikken. Denne referanse kan gjerne referere til en lokal beslutning som ble benyttet ved å identifere forespørselen på et senere tidspunkt. Referansen skal sikre sporbarhet på tvers mellom systemene, slik at konsumenter og kilder av opplysninger har tilgang til felles identifikator. Hver forespørsel som initieres av konsumentens system skal ha en unik identifikator som følger sesjonen og relatert pasient kontekst.
 
 Målet med å bruke elementet er også å kunne begrense gyldighet av selve tokenet som utveksles slik at den ikke skal kunne gjenbrukes på et senere tidspunkt.
 
