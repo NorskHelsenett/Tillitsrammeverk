@@ -85,7 +85,8 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 | "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
 | "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
 | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
-| "tracing_ref" | Referanse til opprinnelsen av forespørsel | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes SAML</span> | Loggkontroll |
+| "tracing_ref" | Referanse til opprinnelsen av forespørsel | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
+| "patient_id" | Unik identifikator for pasienten | Kjernejournal | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes SAML</span> | Loggkontroll |
 
 
 
@@ -97,10 +98,10 @@ Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten 
 Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
 
-| :warning:                | Intern kommentar fra team dok.deling | Modenhet |
-|--------------------------|:------------------------|-----|
+| :warning:                | Intern kommentar fra team dok.deling |
+|--------------------------|:------------------------|
 | "department"             | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtiden | Lav |
-|                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn ||
+|                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn |
 
 Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
 
@@ -117,6 +118,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
 | Attributt: | "department" |
 | Attributt EHDSI: | N/A |
+| Modenhet | Lav |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk:| **Nei** |
 | Data type: | Object |
@@ -124,9 +126,6 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | RESH/Enhetsregisteret [????] |
 | Gyldige verdier: | N/A |
-
-
-
 
 
 ###### "department" - Attributter JSON format
@@ -143,10 +142,10 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 ##### "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
-| :warning:               | Intern kommentar fra team dok.deling | Modenhet |
-|--------------------------|:------------------------|-----|
-| "healthcare_service"     | Utydelig kardinalitet for dette informasjonselementet. En helsevirksomhet yter gjerne flere typer av helsehjelp. Gitt at det blir kun maks 1 tjeneste som kan knyttes til aktøren, kan formålet endre seg etter Aut&Aut? Denne kan brukes aktivt i NHNs tjenesten for dok.deling. | Lav |
-|                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder | |
+| :warning:               | Intern kommentar fra team dok.deling |
+|--------------------------|:------------------------|
+| "healthcare_service"     | Utydelig kardinalitet for dette informasjonselementet. En helsevirksomhet yter gjerne flere typer av helsehjelp. Gitt at det blir kun maks 1 tjeneste som kan knyttes til aktøren, kan formålet endre seg etter Aut&Aut? Denne kan brukes aktivt i NHNs tjenesten for dok.deling. | 
+|                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder |
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
@@ -156,6 +155,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "healthcare_service" |
 | Attributt EHDSI: | N/A |
+| Modenhet | Lav |
 | Obligatorisk: | **Ja** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
@@ -185,6 +185,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 | Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
 | Attributt: | "purpose_of_use" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:purposeofuse" |
+| Modenhet | Høy |
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -207,9 +208,9 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 ##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
-| :warning:                | Intern kommentar fra team dok.deling | Modenhet |
-|-------------------------|:------------------------|-----|
-| "purpose_of_use_details" | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtidige versjoner | Lav |
+| :warning:                | Intern kommentar fra team dok.deling |
+|-------------------------|:------------------------|
+| "purpose_of_use_details" | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtidige versjoner |
 
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
@@ -228,11 +229,12 @@ I spesialist vil denne være gitt av beslutningsmal.
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Attributt: | "purpose_of_use_details" |
 | Attributt EHDSI: | N/A |
+| Modenhet | Lav |
 | Obligatorisk: | **Nei** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
-| Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [Volven - Tjenestetype i helse- og omsorgstjenesten](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norge - CareRelation](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
+| Kodeverk: | <pre>Kommunehelsetjeneste:		urn:oid:2.16.578.1.12.4.1.1.9151 			[Volven - Tjenestetype i helse- og omsorgstjenesten](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:	urn:AuditEventHL7Norway/CodeSystem/carerelation		[HL7 Norge - CareRelation](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) </pre> |
 | Gyldige verdier:| N/A |
 
 ###### "purpose_of_use_details" - JSON format
@@ -254,11 +256,6 @@ Målet med å bruke elementet er også å kunne begrense gyldighet av selve toke
 
 Systemet må sørge for å angi denne informasjon til kilden av helseopplysninger ved å øverføring og samtidig ta vare på denne identifikator for senere anledning.
 
-~~Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten. Formålet med dette attributtet er at kilden skal være i stand til å referere til en lokal beslutning hos konsumenten ved behov for oppfølging etter en logganalyse.~~
-
-| :warning:                | Intern kommentar fra team dok.deling | Modenhet |
-|--------------------------|:------------------------|-----|
-| "tracing_ref"            |   | Lav |
 
 
 |   |   |
@@ -267,6 +264,7 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
 | Informasjonselement | Ekstern referanse til opprinnelse av forespørselen  |
 | Attributt: | "tracing_ref" |
 | Attributt EHDSI: | N/A |
+| Modenhet | Lav |
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -285,10 +283,10 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
 
 #### 4.2.7 Kategori: Pasient - "patient_id"
 ##### "patient_id": Unik identifikator for pasienten
+Unik identifikator for pasienten skal være med i sikkerhetsbilletten, slik at kilden kan bekrefte at informasjon som etterspørres er i tråd med det som helsepersonell ble autorisert for.
 
-Attributtet er til behandling av NHN - ROS/DIPA
+Attributtet er til behandling av NHN når det gjelder bruk av pasientidentifikator i JWT - ROS/DIPA
 
-**Kommentar fra dok.deling: Vi må huske på at modellen som diskuteres skal være felles for XUA og JWT. Dersom STS velger å ikke ha dette informasjonselementet i JWT så kan den fortsatt være aktuell for XUA (SAML) som vil inkludere det.**
 
 | Attributt | |
 | --- | --- |
