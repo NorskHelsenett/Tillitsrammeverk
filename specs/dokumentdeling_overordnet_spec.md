@@ -112,7 +112,7 @@ end
 ## 4. Spesifikasjon
 Dette er hva leverandøren må utvikle
 
-## pkt: 2, 3 og 5 i sekvensdiagrammet: Hent token og kall helseindikator
+## Punkt 2, 3 og 5 i sekvensdiagrammet: Hent token og kall helseindikator
 
 For å få utlevert en ticket til bruk i Kjernejournal portal, må leverandøren be om et Access Token fra HelseID, og bruke dette tokenet i et POST-kall mot /helseindikator-endepunktet i KJ.
 
@@ -126,15 +126,15 @@ Punkt 5: [Integrasjonen til Kjernejournal (helseindikator) er beskrevet her.](ht
 
 Punkt 6: Utfall: EPJ har fått utlevert en 'ticket' fra Kjernejournal.
 
-## pkt 8 og 9 - Authorize kall til HelseID
+## Punkt 8 og 9 - Authorize kall til HelseID
 
-Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert jwt som inneholder et JSON-element som inneholder 
+Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert jwt (i Request Object) som inneholder et JSON-element som inneholder 
  * [Claims som beskriver parametre for bruk av Tillitsrammeverket](lenke_til_jwt_rar_profil_tillitsrammeverket)
  * [Claims som beskriver parametre for Dokumentdeling](lenke_til_jwt_rar_profil_tillitsrammeverket)
 
 Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
 
-## (Team A&A) pkt 10, 11 og 26 - kalle token-endepunktet
+## Punkt 10, 11 og 26 - kalle token-endepunktet
 
 For å få utlevert et Access token som gir tilgang til pasientopplysninger/dokumentdeling gjennom Kjernejournal portal, må EPJ bruke `code_1` som grant mot token-endepunktet i HelseID.
 
