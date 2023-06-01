@@ -81,7 +81,7 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
-| ~~"department"~~| ~~Avdeling/org.enhet hvor helsepersonellet yter helsehjelp~~ | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Informasjon til pasienten |
+| ~~"department"~~| ~~Avdeling/org.enhet hvor helsepersonellet yter helsehjelp~~ | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Fjernes</span> | Informasjon til pasienten |
 | "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
 | "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
 | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
