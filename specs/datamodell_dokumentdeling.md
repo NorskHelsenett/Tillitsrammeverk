@@ -98,11 +98,6 @@ Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten 
 Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
 
-| :warning:                | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
-|--------------------------|:------------------------|
-| "department"             | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Norsk helsenett kan ikke stå ansvarlig for evt. avvik mellom faktisk organisering og hva som er registrert i autorative registre (RESH). Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. | Lav |
-|                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn |
-
 Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
 
 I kommunal sektor vil det være relevant å bruke attributtet "department" for å angi aktuell skole i skolehelsetjenestenm mens det i sykehjemskontekst ikke er relevant å angi avdeling.
@@ -127,6 +122,10 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | Kodeverk: | RESH/Enhetsregisteret [????] |
 | Gyldige verdier: | N/A |
 
+| :warning:                | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
+|--------------------------|:------------------------|
+| "department"             | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Norsk helsenett kan ikke stå ansvarlig for evt. avvik mellom faktisk organisering og hva som er registrert i autorative registre (RESH). Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. | Lav |
+|                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn |
 
 ###### "department" - Attributter JSON format
 
@@ -141,11 +140,6 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 
 ##### "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
-
-| :warning:               | Intern kommentar fra team dok.deling |
-|--------------------------|:------------------------|
-| "healthcare_service"     | Utydelig kardinalitet for dette informasjonselementet. En helsevirksomhet yter gjerne flere typer av helsehjelp. Gitt at det blir kun maks 1 tjeneste som kan knyttes til aktøren, kan formålet endre seg etter Aut&Aut? Denne kan brukes aktivt i NHNs tjenesten for dok.deling. | 
-|                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder |
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
@@ -163,7 +157,10 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | Kodeverk: | [Tjenestetyper innen spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8627)<br/>[Tjenestetyper for spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666) |
 | Gyldige verdier:| N/A |
 
-
+| :warning:               | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
+|--------------------------|:------------------------|
+| "healthcare_service"     | Konsumenten kan oppgi flere tjenestetyper dersom det er relevant ift pasienten som behandles. Dette elementet kan potensielt benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. | 
+|                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder |
 
 ###### "healthcare_service" - Attributter JSON format
 
@@ -208,10 +205,6 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 ##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
-| :warning:                | Intern kommentar fra team dok.deling |
-|-------------------------|:------------------------|
-| "purpose_of_use_details" | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtidige versjoner |
-
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
 
 Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
@@ -232,6 +225,10 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 | Data type: | Object |
 | Kodeverk: | <pre>Kommunehelsetjeneste:		urn:oid:2.16.578.1.12.4.1.1.9151 			[Volven - Tjenestetype i helse- og omsorgstjenesten](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:	urn:AuditEventHL7Norway/CodeSystem/carerelation		[HL7 Norge - CareRelation](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) </pre> |
 | Gyldige verdier:| N/A |
+
+| :warning:                | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
+|-------------------------|:------------------------|
+| "purpose_of_use_details" | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. |
 
 ###### "purpose_of_use_details" - JSON format
 
