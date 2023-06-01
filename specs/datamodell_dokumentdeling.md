@@ -94,7 +94,7 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 
-##### "department": Avdeling/organisasjonsenhet
+##### Attributt "department": Avdeling/organisasjonsenhet
 Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
 
@@ -138,7 +138,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
     },
 ````
 
-##### "healthcare_service": Helsetjenestetype
+##### Attributt "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
@@ -173,7 +173,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 }
 ````
 
-##### "purpose_of_use": formålet med behandlingen av personopplysninger
+##### Attributt "purpose_of_use": formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
 
 |   |   |
@@ -202,7 +202,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 }
 ````
 
-##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
+##### Attributt "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
@@ -242,7 +242,7 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 ````
 
 
-##### "tracing_ref": referanse til systemet som initierte forespørselen
+##### Attributt "tracing_ref": referanse til systemet som initierte forespørselen
 Attributtet er en referanse til det systemet som har initiert traffikken. Denne referanse kan gjerne referere til en lokal beslutning som ble benyttet ved å identifere forespørselen på et senere tidspunkt. Referansen skal sikre sporbarhet på tvers mellom systemene, slik at konsumenter og kilder av opplysninger har tilgang til felles identifikator. Hver forespørsel som initieres av konsumentens system skal ha en unik identifikator som følger sesjonen og relatert pasient kontekst.
 
 Målet med å bruke elementet er også å kunne begrense gyldighet av selve tokenet som utveksles slik at den ikke skal kunne gjenbrukes på et senere tidspunkt.
@@ -275,7 +275,7 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
 ````
 
 #### 4.2.7 Kategori: Pasient - "patient_id"
-##### "patient_id": Unik identifikator for pasienten
+##### Attributt "patient_id": Unik identifikator for pasienten
 Unik identifikator for pasienten skal være med i sikkerhetsbilletten, slik at kilden kan bekrefte at informasjon som etterspørres er i tråd med det som helsepersonell ble autorisert for.
 
 Attributtet er til behandling av NHN når det gjelder bruk av pasientidentifikator i JWT - ROS/DIPA
