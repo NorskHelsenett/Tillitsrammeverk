@@ -1,9 +1,20 @@
 # Overordnet spesifikasjon for tilgangskontroll i dokumentdeling i KJ
+
+## Sammendrag
+
 Målgruppe: EPJ leverandører og konsumenter
 
 To ulike tilnærminger til å autentisere sluttbruker:
 1. HP logger seg inn i EPJ via HelseID (og får SSO til KJ)
 2. HP logger seg inn via HelseID når HP åpner KJ-Portal og det ikke er en aktiv sesjon i HelseID
+
+## Dokumentets status
+
+## Innholdsfortegnelse
+
+## Innledning
+
+## Beskrivelse av konsept
 
 ## Sekvensdiagram for leverandør
 Diagrammet er forenklet og fokuserer på leverandørens oppgaver og ansvar i forbindelse med integrasjon..
