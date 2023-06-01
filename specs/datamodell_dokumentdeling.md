@@ -1,7 +1,7 @@
-# Informasjons- og datamodell for dokumentdeling i kjernejournal
+# Informasjons- og datamodell for pasientens journaldokumenter (tidligere: dokumentdeling) gjennom Kjernejournal sin portalløsning
 
 ## Sammendrag
-Denne spesifikasjonen definerer en informasjons- og datamodell som skal benyttes for å uttrykke informasjon om helsepersonellets grunnlag for tilgang til pasientens helseopplysninger ved dokumentdeling i Kjernejournal.
+Denne spesifikasjonen definerer en informasjons- og datamodell som skal benyttes for å uttrykke informasjon om helsepersonellets grunnlag for tilgang til helseopplysninger ved oppslag i pasientens delte journaldokumenter gjennom Kjernejournal sin portalløsning.
 Modellen skal benyttes ved utstedelse av sikkerhetsbilletter i ulikt format som f.eks. SAML Assertions og JWT.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverk for deling av helseopplysninger i helse og omsorgssektoren.
 
@@ -12,10 +12,10 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
 | -0 | Utkast | 24.05.2023 |
-| -1 | Input fra team dokumentdeling | 25.05.2023 |
+| -1 | Input fra produktteametteam | 25.05.2023 |
 
 
-Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til dokumentdeling i kjernejournal.
+Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til oppslagg i pasientens delte journaldokumenter gjennom kjernejournal-portal.
 
 ## Innholdsfortegnelse
 1. Innledning 
@@ -30,7 +30,7 @@ For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til rel
 
 Kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte.
 
-I dokumentdeling gjennom kjernejournal-portal legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring til helseopplysninger på vegne av dokumentkilden. Til tross for at den konsumerende virksomheten er forpliktet til å kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger likevel behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil benyttes til flere formål:
+I tjenesten for oppslagg i pasientens journaldokumenter gjennom kjernejournal-portal legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring til helseopplysninger på vegne av dokumentkilden. Til tross for at den konsumerende virksomheten er forpliktet til å kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger likevel behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil benyttes til flere formål:
 
 1. å utføre ytterligere tilgangskontroll
 2. lovpålagt logging av tilgangen for å avdekke urettmessig tilegnelse av helseopplysninger
@@ -57,7 +57,7 @@ Spesifikasjonen beskriver også hvilke konkrete attributter som skal brukes for 
 Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil også implementeres i relevante nasjonale ehelseløsninger og tillitstjenester.
 
 ### 4.1 Informasjonsmodell
-I dokumentdeling består helsepersonellets digitale identitet av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets behandlerrelasjon til pasienten.
+Tjenesten baserer seg på bruk av helsepersonellets digitale identitet av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets behandlerrelasjon til pasienten.
 Modellen skal, i utgangspunktet, være felles for JWT og XUA.
 
 Informasjonen som skal overføres fra konsument til datakilde beskriver behandlerrelasjonen som helsepersonellet har til sin pasient.
@@ -77,7 +77,7 @@ Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at
 
 # Datamodell for detaljert autorisasjonsinformasjon
 
-Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" av datamodellen. Den er ikke nødvendigvis testet i praksis og læring må til for å se verdien av informasjonen i verdikjeden. Norsk helsenett, spesielt teamet ved dokumentdelingsproduktet kan IKKE stille seg bak behovet for alle disse informasjons elementer (ref. kommentar under tabellen).
+Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" av datamodellen. Den er ikke nødvendigvis testet i praksis og læring må til for å se verdien av informasjonen i verdikjeden. Norsk helsenett, spesielt produktteamet med ansvar for nasjonal tjeneste som gir tilgang til oppslagg i pasientens delte journaldokumenter kan IKKE stille seg bak behovet for alle disse informasjons elementer (ref. kommentar under tabellen).
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
@@ -122,7 +122,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | Kodeverk: | RESH/Enhetsregisteret [????] |
 | Gyldige verdier: | N/A |
 
-| :warning:                | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
+| :warning:                | Kommentar ved tilgang til NHNs tjeneste for oppslag i pasientens journaldokumenter |
 |--------------------------|:------------------------|
 | "department"             | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Norsk helsenett kan ikke stå ansvarlig for evt. avvik mellom faktisk organisering og hva som er registrert i autorative registre (RESH). Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. | Lav |
 |                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn |
@@ -157,7 +157,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | Kodeverk: | [Tjenestetyper innen spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8627)<br/>[Tjenestetyper for spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666) |
 | Gyldige verdier:| N/A |
 
-| :warning:               | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
+| :warning:               | Kommentar ved tilgang til NHNs tjeneste for oppslag i pasientens journaldokumenter |
 |--------------------------|:------------------------|
 | "healthcare_service"     | Konsumenten kan oppgi flere tjenestetyper dersom det er relevant ift pasienten som behandles. Dette elementet kan potensielt benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. | 
 |                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder |
@@ -226,7 +226,7 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 | Kodeverk: | <pre>Kommunehelsetjeneste:		urn:oid:2.16.578.1.12.4.1.1.9151 			[Volven - Tjenestetype i helse- og omsorgstjenesten](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:	urn:AuditEventHL7Norway/CodeSystem/carerelation		[HL7 Norge - CareRelation](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) </pre> |
 | Gyldige verdier:| N/A |
 
-| :warning:                | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
+| :warning:                | Kommentar ved tilgang til NHNs tjeneste for oppslag i pasientens journaldokumenter |
 |-------------------------|:------------------------|
 | "purpose_of_use_details" | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. |
 
