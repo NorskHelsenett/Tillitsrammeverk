@@ -101,35 +101,19 @@ Ved forespørsel til HelseID for å få tilgang til helseopplysninger, er det n�
 
 ### 4.1 JSON-strukturen som beskriver parametrene for Tillitsrammeverket
 
-Dette elemenetet inneholder 3 claims som beskrevet under:
+Dette elemenetet inneholder 4 claims som beskrevet under:
 
 | Claim type | Beskrivelse |
 | --- | --- | 
 | `type` | Verdi som angir at elementet beskriver tillitsrammeverket. Verdien må være satt som  `nhn:trust_framework:parameters` | 
 | `version` | Verdi som angir versjon av tillitrammeverk. Kan utelates; i så fall vil versjonen settes til `1.0`. | 
-| `value` | En struktur som inneholder informasjon om helsepersonellet og helsepersonellets relasjon til pasienten | 
+| `practitioner` | Informasjon om helsepersonellet<br><br> Kilde: HPR, Konsument (klient/IdP) |
+| `care_relationship` | Informasjon om helsepersonellets relasjon til pasienten |
 
 ````JSON
 {
 	"type": "nhn:trust_framework:parameters",
 	"version": "0.1",
-	"value": {…}
-}
-````
-
-
-### 4.2	Spesifikasjon av strukturen i «value»-elementet
-`value`-elementet er et enkeltstående objekt som består av to attributter med underliggende strukturer.
-
-
-| Claim type | Beskrivelse |
-| --- | --- | 
-| `practitioner` | Informasjon om helsepersonellet<br><br> Kilde: HPR, Konsument (klient/IdP) |
-| `care_relationship` | Informasjon om helsepersonellets relasjon til pasienten |
-
-_*Eksempel på JSON strukturen:*_
-````JSON
-{
 	"practicioner":{
 		…
 	},
@@ -141,9 +125,9 @@ _*Eksempel på JSON strukturen:*_
 
 #### Spesifikasjon av «practitioner»- og «care_relationship»-elementene
 
-> (*) JSON-strukturen som inneholder "practitioner" og "care_relationship" elementene  hoveddelen av denne strukturen er beskrevet i spesifikasjonen [Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), hvor JSON strukturen for denne informasjonen er definert. 
+> (*) JSON-strukturen som inneholder "practitioner" og "care_relationship" elementene i denne strukturen er beskrevet i spesifikasjonen [Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), hvor JSON strukturen for denne informasjonen er definert. 
 
-Semantikken for elementene `practitioner` og `care_relationship` er beskrevt i spesifikasjonen av [informasjons- og datamodell](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
+Semantikken for elementene `practitioner` og `care_relationship` er beskrevet i spesifikasjonen av [informasjons- og datamodell](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
 
 
 ## 5. Claims som beskriver parametre for bruk av Tillitsrammeverket
@@ -155,22 +139,20 @@ JSON-dokumentet under beskriver hvordan en struktur som gjør bruk av Tillitsram
 	{
 		"type": "nhn:trust_framework:parameters",
 		"version": "0.1",
-		"value": {
-			"practicioner": {
-				"professional_license": {
-					"hpr_nr": "9144900",
-					"authorization": "LE",
-				},
-			}
-			"care_relationship": {
-				"legal_entity": {
-					"id": "993467049",
-					"name": "OSLO UNIVERSITETSSYKEHUS HF",
-				},
-				"point_of_care": {
-					"id": "974589095",
-					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-				}
+		"practicioner": {
+			"professional_license": {
+				"hpr_nr": "9144900",
+				"authorization": "LE",
+			},
+		}
+		"care_relationship": {
+			"legal_entity": {
+				"id": "993467049",
+				"name": "OSLO UNIVERSITETSSYKEHUS HF",
+			},
+			"point_of_care": {
+				"id": "974589095",
+				"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
 			}
 		}
 	},
