@@ -130,12 +130,12 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 ###### "department" - Attributter JSON format
 
 ````JSON
-"department": {
-        "id": "resh:121313", 
-        "system": "resh:x.x.x.x.x.x.x",
-        "name": "UNN ....",
-        "authority": "",
-    },
+//"department": {
+//        "id": "resh:121313", 
+//        "system": "resh:x.x.x.x.x.x.x",
+//        "name": "UNN ....",
+//        "authority": "",
+//},
 ````
 
 ##### Attributt "healthcare_service": Helsetjenestetype
@@ -314,12 +314,12 @@ Full modell - valgfrie elementer er tatt med
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
 			"assigner": "https://www.helsedirektoratet.no/"
 		},
-		"department": {
-			"id": "resh:121313", 
-			"system": "resh:x.x.x.x.x.x.x",
-			"name": "Avdeling ved Sykehus",
-			"authority": "RESH",
-    	},
+		//"department": {
+		//	"id": "resh:121313", 
+		//	"system": "resh:x.x.x.x.x.x.x",
+		//	"name": "Avdeling ved Sykehus",
+		//	"authority": "RESH",
+    		//},
 		"purpose_of_use": {
 			"code": "TREAT",
 			"text": "Behandling",
