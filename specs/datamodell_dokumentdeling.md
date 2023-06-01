@@ -98,9 +98,9 @@ Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten 
 Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
 
-| :warning:                | Intern kommentar fra team dok.deling |
+| :warning:                | Kommentar ved tilgang til NHNs tjeneste for dokumentdeling |
 |--------------------------|:------------------------|
-| "department"             | Dette elementet har ingen verdi for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet ønskes av representanter fra sektoren og derfor kan ikke Norsk helsenett stå ansvarlig for evt. mangler ute i sektoren. Må ses som en informasjonselement som evt. blir tatt ut i fremtiden | Lav |
+| "department"             | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Norsk helsenett kan ikke stå ansvarlig for evt. avvik mellom faktisk organisering og hva som er registrert i autorative registre (RESH). Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. | Lav |
 |                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn |
 
 Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
