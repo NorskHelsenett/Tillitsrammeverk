@@ -37,7 +37,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 ## 1. Innledning 
 Når et helsepersonell har besluttet at opplysninger søkes opp og innhentes digitalt har både kilden til opplysningene og konsumenten behov for å kunne legge til grunn at dette var riktig forespørsel, dette fremgår av lovpålagte forpliktelser som påhviler helsevirksomheten.
 
-NHN som tillitsanker formidler informasjon, datamodellen definerer hvordan denne informasjonen skal uttrykkes.
+Denne spesifikasjonen definerer hvordan informasjon om grunnlaget helsepersonellet har for å få tilgang til helseopplysninger i form av en informasjons- og datamodellen. NHN som tillitsanker skal både fremstille og videreformidle denne informasjonen fra konsument til datakilde på en trygg og sikker måte.  
 
 
 ## 2. Ordliste
@@ -51,7 +51,7 @@ Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles tillitsmode
 
 Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene. Den første anvendelsen av tillitsrammeverket, inklusivt denne spesifikasjonen, skjer i forbindelse med etablering av nasjonal dokumentdeling i Kjernejournal.
 
-NHN som tillitsanker sørger for å  virksomheten er en helsevirksomhet som er medlem av helsenettet, og at virksomheten har akseptert vilkår for bruk av tjenestene den konsumerer.
+NHN som tillitsanker sørger for å sannsynliggjøre at virksomheten er en helsevirksomhet som er medlem av helsenettet, og at virksomheten har akseptert vilkår for bruk av tjenestene den konsumerer.
 
 * Dersom forespørselen kommer fra en databehandler som handler på vegne av helsevirksomheten vil tillitsankeret kontrollere følgende:
 	* At helsevirksomheten har eksplisitt delegert representasjonsrett til sin databehandler
@@ -68,12 +68,12 @@ Informasjonsmodellen som spesifiseres i dette dokumentet beskriver hva de enkelt
 
 Spesifikasjonen beskriver også en datamodell som består av  konkrete attributter som skal brukes for å overføre informasjonen, og hvilke kodeverk og verdier som er gyldige for attributtene.
 
-Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil også implementeres i relevante nasjonale ehelseløsninger og tillitstjenester.
+Denne Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil også implementeres i relevante nasjonale ehelseløsninger og tillitstjenester.
 
 Datamodellen skal benyttes til flere formål:
-* for tilgangsstyring og tilgangskontroll i nasjonale ehelseløsninger, dokumentkilder og i API
-* til logging og sporbarhet
-* for å tilfredsstille pasientens rettigheter
+1. for tilgangsstyring og tilgangskontroll i nasjonale ehelseløsninger, dokumentkilder og i API
+2. til logging og sporbarhet hos aktørene som deler helseopplysninger
+3. for å gjøre pasienten i stand til å benytte sine rettigheter
 
 ### 4.1 Informasjonsmodell
 
@@ -90,7 +90,7 @@ Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tr
 2. Informasjon som identifiserer fagsystemet som helsepersonellet benytter hos helsevirksomheten
 3. Informasjon som identifiserer helsepersonellet som yter helsehjelp til sin pasient
 
-Sannsynliggjør at det foreligger et tjenstlig behov hos konsumenten. 
+Denne informasjonen bidrar til å sannsynliggjøre at det foreligger et behandlingsgrunnlag og et tjenstlig behov hos konsumenten. 
 
 #### 4.1.2 Helsevirksomhetens identitet
 Å vite hvem den dataansvarlige er.. 
@@ -106,7 +106,7 @@ Alle system som behandler og lagrer helseopplysninger er lovregulert av pasientj
 #### 4.1.1 Helsepersonellets Identitet
 Helsepersonellets grunnleggende identitet består av informasjon som sjelden endres, slik som personens navn og fødselsnummer. I yrkessammenheng består også helsepersonellets identitet i tillegg av eventuelle offentlige godkjenninger og rettigheter.
 
-Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person. Identiteten vil benyttes i forbindelse med tilgangskontroll, slik som kontroll av hvorvidt pasienten har sperret for utlevering av helseopplysninger til helsepersonellet, logging og oppfølging av funn i logganalyse og for informasjon til pasienten. 
+Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person. Identiteten vil benyttes i forbindelse med tilgangskontroll (f.eks. sperring), logging, logganalyse og oppfølging av funn i logganalyse og å gjøre det mulig for pasienten å benytte seg av sine rettigheter. 
 
 
 #### 4.1.4 Oppsummert informasjonsmodell
@@ -140,7 +140,7 @@ Attributtene kan ha NHN eller konsumenten som informasjonskilde.
 #### 4.2.1 Prinsipper for datamodellen 
 Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandle med hverandre ved at man benytter samme språk for å uttrykke informasjonen som beskriver helsepersonellet og konteksten som helsepersonellet befinner seg i når han ber om tilgang til helseopplysningene. Den skisserte datamodellen legger til rette for en viss grad av dynamikk ved å angi hvilket kodeverk eller lister over gyldige verdier som er benyttet i datasettet.
 
-Datamodellen skal overføres til og behandles av mange aktører og i mange systemer. Mottakeren av informasjonen må ha høy tillit til at informasjonen er korrekt og trygg.
+Datamodellen skal overføres mellom og behandles av mange aktører og i mange systemer. Mottakeren av informasjonen må ha høy tiltro til at informasjonen er korrekt.
 
 
 #### 4.2.2 Oversikt over attributter i datamodellen 
@@ -160,17 +160,16 @@ classDiagram
 	}
 		
 	class Fagsystem{
-		- "system_identifier": "[value]",
-        - "software_identifier": "[value]",
-        - "software_name": "[value]",
-        - "operated_by": {[object]}
+		- "system_identifier": "value",
+        - "software_identifier": "value",
+        - "operated_by": {object}
 	}
 	
 	class Helsepersonell{
-		- "subject": {[object]}
-		- "pid": "[value]"
-		- "hpr_nr": "[value]"
-		- "authorization": {[object]}
+		- "subject": {object}
+		- "pid": "value"
+		- "hpr_nr": "value"
+		- "authorization": {object}
 	}	
 		
 ```
@@ -180,22 +179,23 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
+| Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Formål |
 | --- | --- | --- | --- | --- | --- |
-| "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
-| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "authorization" | Helsepersonellets autorisasjon, dersom den finnes | HelseID<br/>Kjernerjournal | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
-| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
-| "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | Loggkontroll og sporbarhet |
+| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "professional_licence" | Helsepersonellets autorisasjon, dersom den finnes | HelseID<br/>Kjernerjournal | **Nei** | Tilgangsstyring |
+| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | Loggkontroll og sporbarhet og informasjon til pasienten |
+| "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | Loggkontroll, sporbarhet og informasjon til pasienten |
 
-#### 4.2.5 Kategori: Helsepersonellet
+#### 4.2.4 Kategori: Helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
 
-##### 4.2.5.1 "subject": Identifikator for helsepersonellet som "fysisk person"
-Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
-Denne er nødvendig for loggkontroll, sporbarhet og innsyn til innbygger. 
+##### 4.2.4.1 "subject": Identifikator for helsepersonellet som "fysisk person"
+Attributtet "subject" er et objekt som identifiserer en fysisk person. Attributtet består av helsepersonellets navn og fødselsnummer.
+
+Attributtet skal brukes til loggkontroll, sporbarhet og innsyn til innbygger.
 Det er bare navn som skal vises til innbygger.
 
 |   |   |
@@ -205,7 +205,7 @@ Det er bare navn som skal vises til innbygger.
 | Informasjonselement | Unik identifikator og navn på helsepersonellet |
 | Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id" |
 | Obligatorisk: | **Ja** |
-| Data type: | String |
+| Data type: | Objekt |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
 | Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
@@ -319,7 +319,7 @@ Attributter som beskriver virksomheten hvor helsepersonellet yter helsehjelp.
 ##### "legal_entity": den dataansvarlige virksomheten 
 Attributtet "legal_entity" identifiserer den dataansvarlige for helseopplysningene som behandles i journalsystemet som brukes av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
 
-Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forb. med signerte bruksvilkår (medlem i helsenett, helseid, kj)
+Den juridiske enheten eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forb. med signerte bruksvilkår (medlem i helsenett, helseid, kj)
 Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
 
 Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.

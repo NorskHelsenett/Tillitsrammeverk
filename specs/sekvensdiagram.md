@@ -78,10 +78,11 @@ end
 # Spesifikasjon
 Dette er hva leverandøren må utvikle
 
-## pkt: 2, 3 og 5 Hent token og kall helseindikator
+## pkt: 2, 3 og 5 i sekvensdiagrammet: Hent token og kall helseindikator
 1. Innledende tekst
-2. Lenke til spesifikasjon: 
+
 [Integrasjonen er beskrevet her](https://kjernejournal.atlassian.net/wiki/spaces/KJERNEJOURDOK1/pages/786989408/Integration+Guide+Kjernejournal+REST+API+using+HelseID+as+authenticator)
+
 
 
 ## (Team A&A) pkt 8 - Authorize kall til HelseID
@@ -99,24 +100,62 @@ Dette er hva leverandøren må utvikle
 3. Eksempel på HTTP
 
 ## (Team Kollektivet) pkt 12 - Kall til KJP-API/api/Session/create
-* kort beskrivelse
-* eksempel på POST request
-* eksempel på Response
+Opprett session ved å sende inn ticket og en hashet nonce, med Access token som Authorization Header
+```http request
+POST /api/Session/create/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkE4...u_UjgeTxzxI2g
+
+{"nonce": <sha256(nonce)>, "ticket": "ca2gveFcW%2BdZ..."}
+```
+
+I respons får man opprettet en http session, og får en engangs-kode i svar som bruks ved åpning av Kjernejournal Portal
+```http request
+200 OK
+Content-Type: application/json
+Set-Cookie: <session-cookie>
+
+{"code": "edfda05c-dbe7-44..."}
+```
 
 ## (Team Kollektivet) pkt 14 - hentpasient.html
 * kort beskrivelse (enda tryggere)
 * eksempel på GET request
 
 ## (Team Kollektivet) pkt: xxxx - api/Session/refresh
-* kort beskrivelse
-* eksempel på POST request
-* eksempel på response (200 OK, ved feil 401/403/500??)
+
+Før Access Token går ut på dato, må oppdatert token sendes til refresh-endepunktet. 
+Authorization header skal inneholde det nye tokenet, og Cookie-header må være satt til samme session man fikk tilbake i createSession-kallet. Dette kallet har ingen body
+```http request
+POST /api/Sesson/refresh
+Cookie: <session-cookie>
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkE4...u_ca2gveFc
+
+```
+
+Eksempel på vellykket respons er 200 OK, og `true` i response body
+```http request
+200 OK
+Content-Type: application/json
+
+true
+```
 
 ## (Team Kollektivet) pkt: xxxx - api/Session/end (sessionid)
-* kort beskrivelse
-* eksempel på POST request
-* eksempel på response (200 OK, ved feil 401/403/500??)
 
+For å avslutte session sendes et Session/end kall med tom body, og uten noe Auth Header, men med Session-cookie-header satt
+```http request
+POST /api/Session/end
+Cookie: <session-cookie>
+
+```
+
+Eksempel på vellykket response er en http 200 respons med `true` som body:
+```http request
+200 OK
+
+true
+```
 
 ## Fullt sekvensdiagram
 ````mermaid
