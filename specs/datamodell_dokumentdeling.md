@@ -81,7 +81,7 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
-| ~~"department"~~| ~~Avdeling/org.enhet hvor helsepersonellet yter helsehjelp~~ | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Informasjon til pasienten |
+| ~~"department"~~| ~~Avdeling/org.enhet hvor helsepersonellet yter helsehjelp~~ | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Fjernes</span> | Informasjon til pasienten |
 | "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
 | "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
 | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
@@ -130,12 +130,12 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 ###### "department" - Attributter JSON format
 
 ````JSON
-"department": {
-        "id": "resh:121313", 
-        "system": "resh:x.x.x.x.x.x.x",
-        "name": "UNN ....",
-        "authority": "",
-    },
+//"department": {
+//        "id": "resh:121313", 
+//        "system": "resh:x.x.x.x.x.x.x",
+//        "name": "UNN ....",
+//        "authority": "",
+//},
 ````
 
 ##### Attributt "healthcare_service": Helsetjenestetype
@@ -314,12 +314,12 @@ Full modell - valgfrie elementer er tatt med
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
 			"assigner": "https://www.helsedirektoratet.no/"
 		},
-		"department": {
-			"id": "resh:121313", 
-			"system": "resh:x.x.x.x.x.x.x",
-			"name": "Avdeling ved Sykehus",
-			"authority": "RESH",
-    	},
+		//"department": {
+		//	"id": "resh:121313", 
+		//	"system": "resh:x.x.x.x.x.x.x",
+		//	"name": "Avdeling ved Sykehus",
+		//	"authority": "RESH",
+    		//},
 		"purpose_of_use": {
 			"code": "TREAT",
 			"text": "Behandling",
