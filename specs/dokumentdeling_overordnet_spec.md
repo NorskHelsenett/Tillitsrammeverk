@@ -1,11 +1,43 @@
-# Overordnet spesifikasjon for tilgangskontroll i dokumentdeling i KJ
+# Overordnet spesifikasjon av tilgangskontroll i dokumentdeling i KJ
+
+## Sammendrag
+
 Målgruppe: EPJ leverandører og konsumenter
 
 To ulike tilnærminger til å autentisere sluttbruker:
 1. HP logger seg inn i EPJ via HelseID (og får SSO til KJ)
 2. HP logger seg inn via HelseID når HP åpner KJ-Portal og det ikke er en aktiv sesjon i HelseID
 
-## Sekvensdiagram for leverandør
+## Dokumentets status
+| Versjon | Dokumentets status | dato |
+| --- | --- | --- |
+| 0.1 | Utkast | 31.02.2023 |
+
+Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
+
+## Innholdsfortegnelse
+1. [Innledning](#1-innledning)
+2. [Beskrivelse av tilgangsstyring for dokumentdeling i Kjernejournal](#2.-Beskrivelse-av-tilgangsstyring-for-dokumentdeling-i-Kjernejournal)
+3. [Sekvensdiagram som beskriver meldingsflyt](#3.-Sekvensdiagram-som-beskriver-meldingsflyt)
+4. [Spesifikasjon](#4.-Spesifikasjon)
+5. [Sikkerhets- og personvernhensyn](#5-sikkerhets--og-personvernshensyn)
+
+## 1. Innledning
+Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal
+
+## 2. Beskrivelse av tilgangsstyring for dokumentdeling i Kjernejournal
+Integrasjon med kjernejournal
+Basert på lokal tilgang.
+Informasjon må overføres via HelseID
+NHN fyller på med info
+
+- Opprette sesjon i Kjernejournal: helseindikator
+- logge inn bruker
+- håndtere sesjon
+
+Kjernejournal håndterer kommunikasjon med dokumentkildene.
+
+## 3. Sekvensdiagram som beskriver meldingsflyt
 Diagrammet er forenklet og fokuserer på leverandørens oppgaver og ansvar i forbindelse med integrasjon..
 
 ````mermaid
@@ -75,7 +107,7 @@ sequenceDiagram
 end 
 ````
 
-# Spesifikasjon
+## 4. Spesifikasjon
 Dette er hva leverandøren må utvikle
 
 ## pkt: 2, 3 og 5 i sekvensdiagrammet: Hent token og kall helseindikator
