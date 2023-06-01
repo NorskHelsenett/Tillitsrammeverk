@@ -81,7 +81,7 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
-| "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Informasjon til pasienten |
+| ~~"department"~~| ~~Avdeling/org.enhet hvor helsepersonellet yter helsehjelp~~ | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Informasjon til pasienten |
 | "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
 | "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
 | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
@@ -94,18 +94,17 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 
-##### Attributt "department": Avdeling/organisasjonsenhet
-Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
+##### ~~Attributt "department": Avdeling/organisasjonsenhet~~
+~~Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
-
+<br/>
 Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
-
+<br/>
 I kommunal sektor vil det være relevant å bruke attributtet "department" for å angi aktuell skole i skolehelsetjenestenm mens det i sykehjemskontekst ikke er relevant å angi avdeling.
-
+<br/>
 Dersom konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet må de fremdeles angi system og assigner. I slike tilfeller vil den juridiske enheten være "assigner".
-
-Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgangen til helseopplysninger til innbygger.
-
+<br/>
+Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgangen til helseopplysninger til innbygger.~~
 
 |   |   |
 | ---| ---|
@@ -121,6 +120,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | RESH/Enhetsregisteret [????] |
 | Gyldige verdier: | N/A |
+
 
 | :warning:                | Kommentar ved tilgang til NHNs tjeneste for oppslag i pasientens journaldokumenter |
 |--------------------------|:------------------------|
