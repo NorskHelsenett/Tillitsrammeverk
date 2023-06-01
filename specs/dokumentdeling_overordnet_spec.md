@@ -57,9 +57,9 @@ sequenceDiagram
   EPJ->>KJP: POST /helseindikator/ (accesstoken + body)
   KJP-->>EPJ: pasientstatus + ticket(pasientens nin)
   HP->>EPJ: Åpner KJP
-  EPJ->>HelseID: Authorize kall (client_assertion)
+  EPJ->>HelseID: Authorize kall
   HelseID-->>EPJ: code_1
-  EPJ->>HelseID: /Token (authorization_details + code_1)
+  EPJ->>HelseID: /Token (client_assertion + authorization_details + code_1)
   HelseID-->>EPJ: Access Token
   EPJ->>KJP: POST KJ-API/session/create (authorization: Access Token, body: ticket + sha256(nonce))
   KJP-->>EPJ: code_2
@@ -126,7 +126,7 @@ Punkt 6: Utfall: EPJ har fått utlevert en 'ticket' fra Kjernejournal.
 
 ## pkt 8 og 9 - Authorize kall til HelseID
 
-Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). Det trengs en [`client_assertion`](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID) for å kunne aksessere denne siden.
+Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). 
 
 Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
 
