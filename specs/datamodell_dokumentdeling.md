@@ -81,12 +81,12 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
-| ~~"department"~~| ~~Avdeling/org.enhet hvor helsepersonellet yter helsehjelp~~ | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Fjernes</span> | Informasjon til pasienten |
+| ~~"department"~~| ~~Avdeling/org.enhet hvor helsepersonellet yter helsehjelp~~ | Konsumentens EPJ | **Nei** |<span style="color: red; font-weight: bold;">Fjernes</span> | Informasjon til pasienten |
 | "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
 | "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
 | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
 | "tracing_ref" | Referanse til opprinnelsen av forespørsel | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
-| "patient_id" | Unik identifikator for pasienten | Kjernejournal | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes SAML</span> | Loggkontroll |
+| "patient_id" | Unik identifikator for pasienten | Kjernejournal | **Ja** | <span style="color: orange; font-weight: bold;">Inkluderes SAML</span> | Loggkontroll |
 
 
 
@@ -108,7 +108,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Status: | <span style="color: red; font-weight: bold;">Fjernes</span> |
 | Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
 | Attributt: | "department" |
 | Attributt EHDSI: | N/A |
@@ -145,7 +145,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Inkluderes</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "healthcare_service" |
 | Attributt EHDSI: | N/A |
@@ -214,7 +214,7 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Inkluderes</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Attributt: | "purpose_of_use_details" |
 | Attributt EHDSI: | N/A |
@@ -253,7 +253,7 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: red; font-weight: bold;">Inkluderes</span> |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Ekstern referanse til opprinnelse av forespørselen  |
 | Attributt: | "tracing_ref" |
 | Attributt EHDSI: | N/A |
@@ -283,7 +283,7 @@ Attributtet er til behandling av NHN når det gjelder bruk av pasientidentifikat
 
 | Attributt | |
 | --- | --- |
-| Status: | <span style="color: red; font-weight: bold;">Inkluderes i SAML-sikkerhetsbiletten</span> |
+| Status: | <span style="color: orange; font-weight: bold;">Inkluderes i SAML-sikkerhetsbiletten</span> |
 | Informasjonselement | Unik identifikator for pasienten som helsepersonellet ber om helseopplysninger for |
 | Attributt: | "patient" |
 | Attributt EHDSI: | |
