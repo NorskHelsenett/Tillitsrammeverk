@@ -18,11 +18,11 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til oppslagg i pasientens delte journaldokumenter gjennom kjernejournal-portal.
 
 ## Innholdsfortegnelse
-1. Innledning 
-2. Ordliste
-3. Bakgrunn for spesifikasjonen
-4. Spesifikasjon av datamodell
-5. JSON profil for datamodell
+1. [Innledning](#1-innledning)
+2. [Ordliste](#2-ordliste)
+3. [Bakgrunn for spesifikasjonen](#3-bakgrunn-for-spesifikasjonen)
+4. [Spesifikasjon av datamodell](#4-spesifikasjon)
+5. [Sammensatt JSON profil for datamodell](#5-json-profil-for-datamodell)
 
 
 ## 1. Innledning 
@@ -68,14 +68,13 @@ _**TODO: peke til informasjonsmodell i tillitsrammeverket - og beskriv kort hva 
 2. Typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet behandler sin pasient
 3. Helsepersonellets formål med helseopplysningene
 
-
 Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at helsepersonell bare skal gis tilgang til helseopplysninger dersom det foreligger et tjenstlig behov og at opplysningene er relevant og nødvendig i behandlingen av pasienten. Det er helsepersonellet og konsumentens ansvar å sørge for at tilgangen til helseopplysningene er i henhold til loven, men den utleverende part har likevel behov for overført informasjon som beskriver bakgrunnen for forespørselen om helseopplysninger for å tilfredsstille lovkrav knyttet til dokumentasjon og å utføre tilgangskontroll. 
 
 - Databehandler (juridisk enhet)
 - Behandlingssted
 
 
-# Datamodell for detaljert autorisasjonsinformasjon
+### 4.2 Datamodell for detaljert autorisasjonsinformasjon
 
 Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" av datamodellen. Den er ikke nødvendigvis testet i praksis og læring må til for å se verdien av informasjonen i verdikjeden. Norsk helsenett, spesielt produktteamet med ansvar for nasjonal tjeneste som gir tilgang til oppslagg i pasientens delte journaldokumenter kan IKKE stille seg bak behovet for alle disse informasjons elementer (ref. kommentar under tabellen).
 
@@ -90,11 +89,11 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 
 
 
-#### 4.2.6 Kategori: Behandlerrelasjon
+### 4.3 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 
-##### ~~Attributt "department": Avdeling/organisasjonsenhet~~
+#### 4.3.1 ~~Attributt "department": Avdeling/organisasjonsenhet~~
 ~~Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
 <br/>
@@ -127,7 +126,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | "department"             | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Norsk helsenett kan ikke stå ansvarlig for evt. avvik mellom faktisk organisering og hva som er registrert i autorative registre (RESH). Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. | Lav |
 |                          | Det kan være problematisk med å referere til RESH-registeret siden den ikke er alltid oppdatert i tråd med siste organisasjonsendringer. I praksis vil dette medføre at det kan være avvikk mellom det som er sannhet og det som står registert i systemer. Det kan antas at dette vil medføre behov for å overføre fritekst, noe som ikke er ønskelig av sikkerhets hensyn |
 
-###### "department" - Attributter JSON format
+###### Attributter JSON format "department"
 
 ````JSON
 //"department": {
@@ -138,7 +137,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 //},
 ````
 
-##### Attributt "healthcare_service": Helsetjenestetype
+#### 4.3.2 Attributt "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
@@ -162,7 +161,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | "healthcare_service"     | Konsumenten kan oppgi flere tjenestetyper dersom det er relevant ift pasienten som behandles. Dette elementet kan potensielt benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. | 
 |                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder |
 
-###### "healthcare_service" - Attributter JSON format
+###### JSON format for "healthcare_service"
 
 ````JSON
 "healthcare_service":{
@@ -173,7 +172,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 }
 ````
 
-##### Attributt "purpose_of_use": formålet med behandlingen av personopplysninger
+#### 4.3.3 Attributt "purpose_of_use": formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
 
 |   |   |
@@ -191,7 +190,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 | Gyldige verdier:| TREAT //Behandling,  <br/>ETREAT  //Nødtilgang,<br/>COC  //Administrativ tilgang<br/> |
 
 
-###### "purpose_of_use" - JSON format
+###### JSON format for "purpose_of_use"
 
 ````JSON
 "purpose_of_use": {
@@ -202,7 +201,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 }
 ````
 
-##### Attributt "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
+#### 4.3.4 Attributt "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
@@ -230,7 +229,7 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 |-------------------------|:------------------------|
 | "purpose_of_use_details" | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. |
 
-###### "purpose_of_use_details" - JSON format
+###### JSON format for "purpose_of_use_details"
 
 ````JSON
 "purpose_of_use_details": {
@@ -242,7 +241,7 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 ````
 
 
-##### Attributt "tracing_ref": referanse til systemet som initierte forespørselen
+#### 4.3.5 Attributt "tracing_ref": referanse til systemet som initierte forespørselen
 Attributtet er en referanse til det systemet som har initiert traffikken. Denne referanse kan gjerne referere til en lokal beslutning som ble benyttet ved å identifere forespørselen på et senere tidspunkt. Referansen skal sikre sporbarhet på tvers mellom systemene, slik at konsumenter og kilder av opplysninger har tilgang til felles identifikator. Hver forespørsel som initieres av konsumentens system skal ha en unik identifikator som følger sesjonen og relatert pasient kontekst.
 
 Målet med å bruke elementet er også å kunne begrense gyldighet av selve tokenet som utveksles slik at den ikke skal kunne gjenbrukes på et senere tidspunkt.
@@ -266,7 +265,7 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
 | Gyldige verdier:| regex = “^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$”  |
 
 
-###### "tracing_ref" - Attributter JSON format
+###### Attributter JSON format for "tracing_ref"
 
 ````JSON
     "tracing_ref": {
@@ -274,11 +273,15 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
     }
 ````
 
-#### 4.2.7 Kategori: Pasient - "patient_id"
-##### Attributt "patient_id": Unik identifikator for pasienten
+### 4.4 Kategori: Pasient
+Det skal finnes relasjon til pasienten som dette forespørsel omhandler. I spesifikasjon.
+
+Bruk av pasientkontekstrelasjoer er til behandling av NHN når det gjelder bruk av pasientidentifikator i JWT - ROS/DIPA
+
+#### 4.4.1 Attributt "patient_id": Unik identifikator for pasienten
 Unik identifikator for pasienten skal være med i sikkerhetsbilletten, slik at kilden kan bekrefte at informasjon som etterspørres er i tråd med det som helsepersonell ble autorisert for.
 
-Attributtet er til behandling av NHN når det gjelder bruk av pasientidentifikator i JWT - ROS/DIPA
+
 
 
 | Attributt | |
