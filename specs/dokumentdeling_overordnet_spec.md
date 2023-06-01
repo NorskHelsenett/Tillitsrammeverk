@@ -40,6 +40,8 @@ Kjernejournal håndterer kommunikasjon med dokumentkildene.
 ## 3. Sekvensdiagram som beskriver meldingsflyt
 Diagrammet er forenklet og fokuserer på leverandørens oppgaver og ansvar i forbindelse med integrasjon..
 
+I diagrammet under er det fokus på bruk av REST-grensesnitt mot HelseID ved autentisering av virksomheten (maskin-maskin). Denne har ikke direkte sammenheng med brukerpålogging som også kan benytte HelseID ved innlogging til KJ-portal. Alternativet til maskin-maskin autentisering er bruk av sertifikater og SOAP-basert innhenting av verdier via helseindikator-tjenesten.
+
 ````mermaid
 sequenceDiagram 
   autonumber
