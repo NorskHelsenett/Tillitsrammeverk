@@ -11,7 +11,7 @@ To ulike tilnærminger til å autentisere sluttbruker:
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| 0.1 | Utkast | 31.02.2023 |
+| 1 | Utkast | 01.06.2023 |
 
 Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
@@ -23,7 +23,7 @@ Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 5. [Sikkerhets- og personvernhensyn](#5-sikkerhets--og-personvernshensyn)
 
 ## 1. Innledning
-Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal
+Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal 
 
 ## 2. Beskrivelse av tilgangsstyring for dokumentdeling i Kjernejournal
 Integrasjon med kjernejournal
@@ -208,78 +208,4 @@ Eksempel på vellykket response er en http 200 respons med `true` som body:
 true
 ```
 
-## Fullt sekvensdiagram
-````mermaid
-sequenceDiagram 
-  autonumber
-  title Beskrivelse av ....
-  actor HP as Helsepersonell
-  participant EPJ
-  participant HelseID
-  participant KJP
-  participant XCA
-  participant Dokumentkilde
 
-  HP->>EPJ: Velger pasient
-  EPJ->>EPJ: generer_assertion(virksomhet, pasientid)
-  EPJ->>HelseID: getToken(assertion)
-  HelseID-->>EPJ: Access Token
-  EPJ->>KJP: POST /helseindikator/ (accesstoken + body)
-  KJP-->>EPJ: pasientstatus + ticket(pasientens nin)
-  HP->>EPJ: Åpner KJP
-  EPJ->>HelseID: Authorize kall (request_object inkludert authorization_details)
-  HelseID-->>EPJ: Code
-  EPJ->>HelseID: /Token (Code#1)
-  HelseID-->>EPJ: Access Token
-  EPJ->>KJP: POST KJ-API/session/create (authorization: Access Token, body: ticket + sha256(nonce))
-  KJP-->>EPJ: Code#2
-  EPJ->>KJP: GET hentpasient.html?otc=Code#2&nonce=nonce
-  KJP-->>KJP: hent access token og ticket(code, nonce)
-  HP->>KJP: Åpner fanen journaldokumenter
-  KJP->>HelseID: hent SAML token (access token + nin)
-  HelseID-->>KJP: SAML token
-  KJP->>XCA: Hent referanseliste (SAML token)
-  loop hente fra alle dokumentkilder
-  XCA->>Dokumentkilde: Hent referanseliste (SAML token)
-  Dokumentkilde-->>Dokumentkilde: Valider SAML token
-  Dokumentkilde-->XCA: referanseliste (m metadata)
-  end
-  XCA-->>XCA: sammenstiller referanselister til felles oversikt
-  XCA-->>KJP: sammenstilt referanseliste
-  KJP-->>HP: Viser referanseliste
-  HP->>KJP: Åpner et journaldokument
-  KJP->>XCA: Hent dokument (referanse + SAML token)
-  XCA->>Dokumentkilde: Hent dokument (referanse + SAML token)
-  Dokumentkilde-->>Dokumentkilde: validerer SAML token
-  Dokumentkilde-->>XCA: dokument
-  XCA-->>KJP: dokument
-  KJP-->>HP: vise dokument 
-
-  critical sjekk gyldighet på access token
-
-    option Access token er utløpt
-        EPJ->>HelseID: POST token (refresh grant)
-        HelseID-->>EPJ: Access Token
-        EPJ->>KJP: POST KJ-API/session/refresh (access token) 
-        KJP-->>EPJ: HTTP 200 (OK)
-    
-    option Access token er gyldig
-        EPJ->>EPJ: schedule refresh
-  end
-
-  critical helsepersonell bytter pasient
-  option session er aktiv
-    EPJ->>KJP: POST KJ-API/session/end (sessionid)
-  end
-  
-  critical brukersesjon i EPJ timer ut
-  option session er aktiv
-    EPJ->>KJP: POST KJ-API/session/end (sessionid)
-  end
-
-  critical brukeren lukker EPJ system
-  option session er aktiv
-    EPJ->>KJP: POST KJ-API/session/end (sessionid)
-
-end 
-````

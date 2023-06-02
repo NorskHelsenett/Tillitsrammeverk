@@ -13,6 +13,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 | --- | --- | --- |
 | -0 | Utkast | 24.05.2023 |
 | -1 | Input fra produktteametteam | 25.05.2023 |
+| -2 | Versjon klar til sektor input | 02.06.2023 |
 
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til oppslagg i pasientens delte journaldokumenter gjennom kjernejournal-portal.
