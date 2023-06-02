@@ -38,18 +38,18 @@ RAR innfører et nytt parameter til protokollen, som heter "authorization_detail
 
 ```mermaid
 sequenceDiagram
-	Klient->>Klient: Autentiserer helsepersonell
-	Klient->>Klient: Autoriserer tilgang til pasient
-	Klient->>Klient: Uttrykker autorisasjon iht datamodell
-	Klient->>Klient: Pakker inn tilstrekkelig informasjon 'authorization_details'-struktur
-	Klient->>HelseID: Tilgangsforespørsel med 'authorization_details'-parameter
-	HelseID->>HelseID: Kontroll/validering av tilgangsforespørselen
-	HelseID->>HelseID: Tilgangskontroll basert på info i 'authorization_details'-parameteret
-	HelseID->>HelseID: Genererer et Access Token med info fra 'authorization_details'
-	HelseID->>Klient: Overfører Access Token
-	Klient->>API/Tjeneste: Forespørsel med Access Token i http-header
-	API/Tjeneste->>API/Tjeneste: Kontroll av Access Token
-	API/Tjeneste->>API/Tjeneste: Tilgangskontroll basert på info i 'authorization_details'
+    Klient->>Klient: Autentiserer helsepersonell
+    Klient->>Klient: Autoriserer tilgang til pasient
+    Klient->>Klient: Uttrykker autorisasjon iht datamodell
+    Klient->>Klient: Pakker inn tilstrekkelig informasjon 'authorization_details'-struktur
+    Klient->>HelseID: Tilgangsforespørsel med 'authorization_details'-parameter
+    HelseID->>HelseID: Kontroll/validering av tilgangsforespørselen
+    HelseID->>HelseID: Tilgangskontroll basert på info i 'authorization_details'-parameteret
+    HelseID->>HelseID: Genererer et Access Token med info fra 'authorization_details'
+    HelseID->>Klient: Overfører Access Token
+    Klient->>API/Tjeneste: Forespørsel med Access Token i http-header
+    API/Tjeneste->>API/Tjeneste: Kontroll av Access Token
+    API/Tjeneste->>API/Tjeneste: Tilgangskontroll basert på info i 'authorization_details'
 
 ```
 
@@ -68,7 +68,7 @@ Vi benytter "_" for å skille mellom ord i navngivingen av claims.
 
 Objekt:
 "claim_navn": { 
-	"claim_navn2": "claim-verdi2"
+    "claim_navn2": "claim-verdi2"
 },
 "claim_navn": [ "element1", "element2" ]
 ````
@@ -78,9 +78,9 @@ Spesifikasjonen legger opp til dynamikk med tanke på hvordan informasjonen uttr
 
 ````JSON
 "claim_name": {
-	"claim1": "verdi",
-	"claim2": "metainformasjon"
-	"claim3": "metainformasjon"
+    "claim1": "verdi",
+    "claim2": "metainformasjon"
+    "claim3": "metainformasjon"
 }
 ````
 
@@ -89,8 +89,8 @@ Mange av verdiene i informasjons- og datamodellen vil være basert på gyldige v
 
 ````JSON
 "claim_name": {
-	"code": "1234",
-	"system": "oid:x.x.x.x.x.x.x.x.x.x",
+    "code": "1234",
+    "system": "oid:x.x.x.x.x.x.x.x.x.x",
 
 ````
 
@@ -112,14 +112,14 @@ Dette elemenetet inneholder 4 claims som beskrevet under:
 
 ````JSON
 {
-	"type": "nhn:trust_framework:parameters",
-	"version": "0.1",
-	"practicioner":{
-		…
-	},
-	"care_relationship": {
-		…	
-	}
+    "type": "nhn:trust_framework:parameters",
+    "version": "0.1",
+    "practicioner":{
+        …
+    },
+    "care_relationship": {
+        …	
+    }
 }
 ````
 
@@ -136,30 +136,30 @@ JSON-dokumentet under beskriver hvordan en struktur som gjør bruk av Tillitsram
 
 ````JSON
 "authorization_details":[
-	{
-		"type": "nhn:trust_framework:parameters",
-		"version": "0.1",
-		"practicioner": {
-			"professional_license": {
-				"hpr_nr": "9144900",
-				"authorization": "LE",
-			},
-		}
-		"care_relationship": {
-			"legal_entity": {
-				"id": "993467049",
-				"name": "OSLO UNIVERSITETSSYKEHUS HF",
-			},
-			"point_of_care": {
-				"id": "974589095",
-				"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-			}
-		}
-	},
-	{
-		…
-		// API-spesifikke claims kan opprettes her, for eksempel parametre for Dokumentdeling
-	}
+    {
+        "type": "nhn:trust_framework:parameters",
+        "version": "0.1",
+        "practicioner": {
+            "professional_license": {
+                "hpr_nr": "9144900",
+                "authorization": "LE",
+            },
+        }
+        "care_relationship": {
+            "legal_entity": {
+                "id": "993467049",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF",
+            },
+            "point_of_care": {
+                "id": "974589095",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+            }
+        }
+    },
+    {
+        …
+        // API-spesifikke claims kan opprettes her, for eksempel parametre for Dokumentdeling
+    }
 ]
 ````
 ### 5.1 Overføring av «authorization_details»-strukturen
