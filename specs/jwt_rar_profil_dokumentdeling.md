@@ -33,53 +33,37 @@ Ved forespørsel til HelseID for å få tilgang til helseopplysninger, er det n�
 
 ### 2.1 JSON-strukturen som beskriver parametrene for Dokumentdeling
 
-Dette elemenetet inneholder 3 claims som beskrevet under:
-
-| Claim type | Beskrivelse |
-| --- | --- | 
-| `type` | Verdi som angir at elementet beskriver tillitsrammeverket. Verdien må være satt som  `nhn:dokumentdeling:parameters` | 
-| `version` | Verdi som angir versjon av tillitrammeverk. Kan utelates; i så fall vil versjonen settes til `1.0`. | 
-| `value` | En struktur som inneholder informasjon om helsepersonellet og helsepersonellets relasjon til pasienten | 
-
-````JSON
-{
-	"type": "nhn:dokumentdeling:parameters",
-	"version": "0.1",
-	"value": {…}
-}
-````
-
-
-### 2.2	Spesifikasjon av strukturen i «value»-elementet
-`value`-elementet er et enkeltstående objekt som består av to attributter med underliggende strukturer.
-
+Dette elemenetet inneholder claims som beskrevet under:
 
 | Claim type | Beskrivelse | Obligatorisk |
 | --- | --- | --- |
+| `type` | Verdi som angir at elementet beskriver tillitsrammeverket. Verdien må være satt som  `nhn:dokumentdeling:parameters` | **Ja** |
+| `version` | Verdi som angir versjon av tillitrammeverk. Kan utelates; i så fall vil versjonen settes til `1.0`. |  **Nei** |
 | `department` | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp.</br> Kodeverk: RESH/Enhetsregisteret. [TODO: sett URN] | **Nei** |
 | `healthcare_service` | Helsetjenestetyper som leveres ved virksomheten. </br> Kodeverk: <br/>[Tjenestetyper innen spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8627)<br/>[Tjenestetyper for spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666)| **Ja** |
 | `purpose_of_use` | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) </br>Kodeverk: urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) | **Ja** |
 | `purpose_of_use_details` | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) </br>Kodeverk:</br>Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) | **Ja** |
 | `tracing_ref` | Referanse til opprinnelsen av forespørsel  | **Ja** |
 
-_*Eksempel på JSON strukturen:*_
 ````JSON
 {
-	"department": {
-		…
-	},
-	"healthcare_service": {
-		…
-	},
-	"purpose_of_use": {
-		…
-	},
-	"purpose_of_use_details": {
-		…
-	},
-	"tracing_ref": {
-		…
-	}	
+    "type": "nhn:dokumentdeling:parameters",
+    "version": "0.1",
+    "department": {
+        …
+    },
+    "healthcare_service": {
+        …
+    },
+    "purpose_of_use": {
+        …
+    },
+    "purpose_of_use_details": {
+        …
+    },
+    "tracing_ref": {
+        …
+    }	
 }
 ````
 
@@ -91,82 +75,78 @@ Merk av navngivning av attributteme ikke er ferdig ennå; det vil komme endringe
 
 ```JSON
 "authorization_details":[
-	{
-		"type": "nhn:trust_framework:parameters",
-		"version": "0.1",
-		"value": {
-			"practicioner": {
-				"professional_license": {
-					"hpr_nr": "9144900",
-					"authorization": "LE",
-				},
-			}
-			"care_relationship": {
-				"legal_entity": {
-					"id": "993467049",
-					"name": "OSLO UNIVERSITETSSYKEHUS HF",
-				},
-				"point_of_care": {
-					"id": "974589095",
-					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-				}
-			}
+    {
+        "type": "nhn:trust_framework:parameters",
+        "version": "0.1",
+        "practicioner": {
+            "professional_license": {
+                "hpr_nr": "9144900",
+                "authorization": "LE",
+            },
+        }
+        "care_relationship": {
+            "legal_entity": {
+                "id": "993467049",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF",
+            },
+            "point_of_care": {
+                "id": "974589095",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+            }
+        }
+    },
+    {
+        "type": "nhn:dokumentdeling:parameters",
+        "version": "0.1",				
+        "department": {
+            "id": "121313", 
+            "system": "oid:x.x.x.x.x.x.x",
+            "name": "Avdeling ved Sykehus",
+        },
+        "healthcare_service": {
+            "code": "S03",
+            "system": "urn:oid:2.16.578.1.12.4.1.1.8655"
+        },
+        "purpose_of_use": {
+            "code": "TREAT",
+            "system": "urn:oid:2.16.840.1.113883.1.11.20448"
+        },
+        "purpose_of_use_details": {
+            "code": "15",
+            "system": "urn:oid:x.x.x.x.x.9151"
+        },
+        "tracing_ref": {
+            "ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
+        }			
+    },
+    // Andre elementer:
+    {
+        "type" : "helseid_authorization" ,
+        "practitioner_role" : { 
+            "organization" : { 
+                "identify" : {
+                    "system" : "urn: oid: 2.16.578.1.12.4.1.2.101" ,
+                    "type" : "ENH" ,
+                    "value" : "[orgnummer]"
 		}
-	},
-	{
-		"type": "nhn:dokumentdeling:parameters",
-		"version": "0.1",				
-		"value": {
-			"department": {
-				"id": "121313", 
-				"system": "oid:x.x.x.x.x.x.x",
-				"name": "Avdeling ved Sykehus",
-			},
-			"healthcare_service": {
-				"code": "S03",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.8655"
-			},
-			"purpose_of_use": {
-				"code": "TREAT",
-				"system": "urn:oid:2.16.840.1.113883.1.11.20448"
-			},
-			"purpose_of_use_details": {
-				"code": "15",
-				"system": "urn:oid:x.x.x.x.x.9151"
-			},
-			"tracing_ref": {
-				"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
-			}			
-		}
-	},
-	// Andre elementer:
-	{
-		"type" : "helseid_authorization" ,
-		"practitioner_role" : { 
-			"organization" : { 
-				"identify" : {
-					"system" : "urn: oid: 2.16.578.1.12.4.1.2.101" ,
-					"type" : "ENH" ,
-					"value" : "[orgnummer]"
-				}
-			}
-		}
-	},
-	{
-		"type": "helseid://claims/external/amk-context",
-    	"value": 
+            }
+        }
+    },
+    {
+        "type": "helseid://claims/external/amk-context",
+        "value": 
     	{ 
-      		"foo":
-      		[
-        		{
-					"bar": "role1"
-				}, 
-        		{
-					"bar": "role2"
-				}
-      		]
+            "foo":
+            [
+                {
+                    "bar": "role1"
+                }, 
+                {
+                    "bar": "role2"
+                }
+            ]
     	}
-	}
+    }
 ]
 
 ```
