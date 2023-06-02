@@ -11,7 +11,7 @@ To ulike tilnærminger til å autentisere sluttbruker:
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| 1 | Utkast | 01.06.2023 |
+| 1 | Utkast | xx.06.2023 |
 
 Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
@@ -112,7 +112,7 @@ end
 ## 4. Spesifikasjon
 Dette er hva leverandøren må utvikle
 
-## Punkt 2, 3 og 5 i sekvensdiagrammet: Hent token og kall helseindikator
+### 4.1 Hent token og kall helseindikator (steg 2, 3 og 5 i sekvensdiagrammet)
 
 For å få utlevert en ticket til bruk i Kjernejournal portal, må leverandøren be om et Access Token fra HelseID, og bruke dette tokenet i et POST-kall mot /helseindikator-endepunktet i KJ.
 
@@ -126,7 +126,7 @@ Punkt 5: [Integrasjonen til Kjernejournal (helseindikator) er beskrevet her.](ht
 
 Punkt 6: Utfall: EPJ har fått utlevert en 'ticket' fra Kjernejournal.
 
-## Punkt 8 og 9 - Authorize kall til HelseID
+### 4.2 Autentiser helsepersonellet via HelseID (steg 8 og 9 i sekvensdiagrammet) 
 
 Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert jwt (i Request Object) som inneholder et JSON-element som inneholder 
  * [Claims som beskriver parametre for bruk av Tillitsrammeverket](lenke_til_jwt_rar_profil_tillitsrammeverket)
@@ -134,7 +134,7 @@ Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som 
 
 Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
 
-## Punkt 10, 11 og 26 - kalle token-endepunktet
+## 4.3 Hent Access Token fra HelseID (steg 10, 11 og 26 i sekvensdiagrammet)
 
 For å få utlevert et Access token som gir tilgang til pasientopplysninger/dokumentdeling gjennom Kjernejournal portal, må EPJ bruke `code_1` som grant mot token-endepunktet i HelseID.
 
@@ -149,7 +149,8 @@ Punkt 11: token-endepunktet i HelseID gir tilbake en response som inneholdler
 
 Punkt 26 og 27: Accesstokenet vil ha en begrenset levetid. Hvis det løper ut, må EPJ kalle token-endepunktet i HelseID med et Refresh Token for å få utvekslet et nytt Access Token.
 
-## (Team Kollektivet) pkt 12 - Kall til KJP-API/api/Session/create
+## 4.4 Opprett brukersesjon i Kjernejournal Portal (steg 12 i sekvensdiagrammet) 
+Kall til KJP-API/api/Session/create
 Opprett session ved å sende inn ticket og en hashet nonce, med Access token som Authorization Header.
 
 ```http request
@@ -169,14 +170,20 @@ Set-Cookie: <session-cookie>
 {"code": "edfda05c-dbe7-44..."}
 ```
 
-## (Team Kollektivet) pkt 14 - hentpasient.html
+## Vis pasient i Kjernejournal Portal (steg 14 i sekvensdiagrammet) 
+- hentpasient.html
 * kort beskrivelse (enda tryggere)
 * eksempel på GET request
 
-## (Team Kollektivet) pkt: xxxx - api/Session/refresh
+## 4.5 Sesjonshåndtering i Kjernejournal Portal
+
+### 4.5.1 Hold sesjonen i live
+pkt: xxxx - api/Session/refresh
 
 Før Access Token går ut på dato, må oppdatert token sendes til refresh-endepunktet. 
-Authorization header skal inneholde det nye tokenet, og Cookie-header må være satt til samme session man fikk tilbake i createSession-kallet. Dette kallet har ingen body
+Authorization header skal inneholde det nye tokenet, og Cookie-header må være satt til samme session man fikk tilbake i createSession-kallet. Dette kallet har ingen body.
+
+Eksempel på gyldig HTTP request:
 ```http request
 POST /api/Sesson/refresh
 Cookie: <session-cookie>
@@ -191,8 +198,8 @@ Content-Type: application/json
 
 true
 ```
-
-## (Team Kollektivet) pkt: xxxx - api/Session/end (sessionid)
+### 4.5.1 Avslutt brukersesjon
+pkt: xxxx - api/Session/end (sessionid)
 
 For å avslutte session sendes et Session/end kall med tom body, og uten noe Auth Header, men med Session-cookie-header satt
 ```http request
