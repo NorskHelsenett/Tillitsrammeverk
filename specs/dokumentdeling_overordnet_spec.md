@@ -11,7 +11,7 @@ To ulike tilnærminger til å autentisere sluttbruker:
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| 0.1 | Utkast | 31.02.2023 |
+| 1 | Utkast | 01.06.2023 |
 
 Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
@@ -23,7 +23,7 @@ Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 5. [Sikkerhets- og personvernhensyn](#5-sikkerhets--og-personvernshensyn)
 
 ## 1. Innledning
-Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal
+Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal 
 
 ## 2. Beskrivelse av tilgangsstyring for dokumentdeling i Kjernejournal
 Integrasjon med kjernejournal
