@@ -128,9 +128,12 @@ Punkt 6: Utfall: EPJ har fått utlevert en 'ticket' fra Kjernejournal.
 
 ### 4.2 Autentiser helsepersonellet via HelseID (steg 8 og 9 i sekvensdiagrammet) 
 
-Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert jwt (i Request Object) som inneholder et JSON-element som inneholder 
+Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert [JWT](https://datatracker.ietf.org/doc/html/rfc7519) (i Request Object) som inneholder et JSON-element (`authorization_details`) som inneholder 
  * [Claims som beskriver parametre for bruk av Tillitsrammeverket](jwt_rar_profil_tillitsrammeverk.md)
  * [Claims som beskriver parametre for Dokumentdeling](jwt_rar_profil_dokumentdeling.md)
+
+
+*(Alternativt til dette kan EPJ bruke kallet til token-endepunktet i punkt 10 for å sende inn en signert JWT. Innholdet i denne JWT vil være likt det som beskrives overfor.)*
 
 Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
 
@@ -138,7 +141,7 @@ Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
 
 For å få utlevert et Access token som gir tilgang til pasientopplysninger/dokumentdeling gjennom Kjernejournal portal, må EPJ bruke `code_1` som grant mot token-endepunktet i HelseID.
 
-EPJ må også generere en `client_assertion` som er signert med EPJ sin privatnøkkel. [Dette er beskevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID).
+EPJ må også generere en `client_assertion` som er signert med EPJ sin privatnøkkel. [Dette er beskrevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID).
 
 Punkt 10: EPJ sender et POST-kall til token-endepunktet i HelseID som inneholder en `client_assertion` med de relevante parametrene.
 

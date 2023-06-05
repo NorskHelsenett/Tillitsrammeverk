@@ -14,7 +14,7 @@ Tillitsmodellen inneholder følgende attributter:
 
 JSON-strukturen valideres ut fra `type`-claimet, og/eller versjonsnummeret.
 
-Mangel av påkrevde attributter i kallet til HelseID gir `invalid_request`.
+Mangel av påkrevde attributter og/eller ugyldige parametre (se under) i kallet til HelseID gir feilkoden `invalid_authorization_details `, som beskrevet i [RFC 9396](https://www.rfc-editor.org/rfc/rfc9396#name-authorization-error-respons).
 
 
 ###### `professional_license`-attributtets JSON-format
@@ -64,7 +64,7 @@ Verdiene `id` og `name` sjekkes mot Enhetsregisteret
 
 JSON-strukturen valideres ut fra `type`-claimet, og/eller versjonsnummeret.
 
-Mangel av påkrevde attributter gir `invalid_request`.
+Mangel av påkrevde attributter og/eller ugyldige parametre (se under) i kallet til HelseID gir feilkoden `invalid_authorization_details `, som beskrevet i [RFC 9396](https://www.rfc-editor.org/rfc/rfc9396#name-authorization-error-respons).
 
 
 ###### `healthcare_service`-attributtets JSON-format
