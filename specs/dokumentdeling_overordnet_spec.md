@@ -174,6 +174,7 @@ Set-Cookie: <session-cookie>
 ```
 
 ## Vis pasient i Kjernejournal Portal (steg 14 i sekvensdiagrammet) 
+
 For å åpne Kjernejournal Portal sender man i dag en http GET request til hentpasient.html med query-parameter _**'ticket'**_.
 
 _eksempel på dagens GET request_:
