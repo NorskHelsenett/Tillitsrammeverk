@@ -36,6 +36,7 @@ HelseID validerer at `authorization` matcher en autorisasjon som stemmer overens
 "legal_entity": {
     "id": "921592761",
     "name": "Lege Leif Lagesen ENK",
+    "system": "oid:2.16.578.1.12.4.1.4.101"    
 }
 ```` 
 
@@ -47,6 +48,7 @@ Verdiene `id` og `name` sjekkes mot Enhetsregisteret.
 "point_of_care": {
     "id": "123456789",
     "name": "Det beste legekontoret i byen AS",
+    "system": "oid:2.16.578.1.12.4.1.4.101"    
 }
 ````
 
@@ -72,7 +74,8 @@ Mangel av påkrevde attributter og/eller ugyldige parametre (se under) i kallet 
 ````JSON
 "healthcare_service":{
     "text": "Sykepleietjeneste",
-    "code": "KP02",}
+    "code": "KP02"
+}
 ````
 * Enkel validering på bakgrunn av kodeverk
 
@@ -81,7 +84,7 @@ Mangel av påkrevde attributter og/eller ugyldige parametre (se under) i kallet 
 ````JSON
 "purpose_of_use": {
     "code": "TREAT",
-    "text": "Behandling",
+    "text": "Behandling"
 }
 ````
 * Enkel validering på bakgrunn av kodeverk
@@ -91,7 +94,7 @@ Mangel av påkrevde attributter og/eller ugyldige parametre (se under) i kallet 
 ````JSON
 "purpose_of_use_details": {
     "code": "15",
-    "text": "Helsetjenester i hjemmet",
+    "text": "Helsetjenester i hjemmet"
 }
 ````
 * Enkel validering på bakgrunn av kodeverk
@@ -101,7 +104,7 @@ Mangel av påkrevde attributter og/eller ugyldige parametre (se under) i kallet 
 
 ````JSON
 "decicion_ref": {
-    "ref_id" : "id til lokal tilgangsbeslutning", 
+    "ref_id" : "id til lokal tilgangsbeslutning"
 }
 ````
 * Tillater kun tall, bokstaver og tegnene _-. 
