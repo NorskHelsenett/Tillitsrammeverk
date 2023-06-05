@@ -85,13 +85,15 @@ Spesifikasjonen legger opp til dynamikk med tanke på hvordan informasjonen uttr
 ````
 
 #### Kodeverk
-Mange av verdiene i informasjons- og datamodellen vil være basert på gyldige verdier angitt av kodeverk. Eksempelet under viser en struktur for hvordan verdier basert på kodeverk skal struktureres:
+Mange av verdiene i informasjons- og datamodellen vil være basert på gyldige verdier angitt i ett eller flere kodeverk.
+
+Når kodeverk skal spesifiseres, vil claimet `system` brukes som en indikator for hvilket kodeverk som skal brukes. Innholdet i dette claimet vil være i et [OID-format](https://en.wikipedia.org/wiki/Object_identifier):
 
 ````JSON
 "claim_name": {
-    "code": "1234",
+    "claim1": "verdi1",
+    "claim2": "verdi2",
     "system": "oid:x.x.x.x.x.x.x.x.x.x",
-
 ````
 
 ## 4. Spesifikasjon av strukturen i nhn:trust_framework:parameters-elementet
@@ -149,10 +151,12 @@ JSON-dokumentet under beskriver hvordan en struktur som gjør bruk av Tillitsram
             "legal_entity": {
                 "id": "993467049",
                 "name": "OSLO UNIVERSITETSSYKEHUS HF",
+                "system": "oid:2.16.578.1.12.4.1.4.101"
             },
             "point_of_care": {
                 "id": "974589095",
                 "name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+                "system": "oid:2.16.578.1.12.4.1.4.101"
             }
         }
     },
