@@ -23,7 +23,7 @@ Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 5. [Sikkerhets- og personvernhensyn](#5-sikkerhets--og-personvernshensyn)
 
 ## 1. Innledning
-Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal 
+Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal skal den konsumerende virksomheten utføre påkrevd tilgangsstyring og tilgangskontroll av helsepersonellet slik at dokumentkilden kan være trygg på at helsepersonellet har tjenstlig behov for innsyn i de registrerte opplysningene om pasienten.  
 
 ## 2. Beskrivelse av tilgangsstyring for dokumentdeling i Kjernejournal
 Integrasjon med kjernejournal
@@ -174,9 +174,27 @@ Set-Cookie: <session-cookie>
 ```
 
 ## Vis pasient i Kjernejournal Portal (steg 14 i sekvensdiagrammet) 
-- hentpasient.html
-* kort beskrivelse (enda tryggere)
-* eksempel på GET request
+For å åpne Kjernejournal Portal sender man i dag en http GET request til hentpasient.html med query-parameter _**'ticket'**_.
+
+_eksempel på dagens GET request_:
+````http request
+hentpasient.html?ticket=cEm8C75JImbZD03VfFI6gsQ%2Bf3gJ%2FGK1jjWtbsyca7TeUVq4rvmMjp%2BraBDOBO%2F.  
+````
+
+Denne spesifikasjonen beskriver en ny innloggingsflyt hvor parameteret _**ticket**_ overføres til Kjernejournal via et API. Denne medlingsflyten er beskrevet  i sekvensdiagrammet over i pkt 12 (api/Session/create).
+
+Kjernejournal vil motta ticket og Access token fra dette APIet. For å gi tilgang trenger Kjernejournal koden EPJ fikk i retur fra api/Session/create sammen med nonce-verdien man sendte en hash av som en del av body.  Disse verdiene legges på som query params i hentpasient-urlen.
+
+Koden legges i query param som heter otc (one time code), og nonce-verdien heter nonce. 
+ 
+
+Eksempel på request:  
+
+```http request
+
+GET /hpp-webapp/hentpasient.html?otc=968abbad-7192-4a66-8063-b21b639635a9&nonce=ukyT8vC9KZ1q2qZgt6d2Y_Wr7O9dOUyvTgBEOAAaGrE
+
+```
 
 ## 4.5 Sesjonshåndtering i Kjernejournal Portal
 
