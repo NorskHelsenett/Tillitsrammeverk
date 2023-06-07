@@ -145,18 +145,19 @@ Datamodellen skal overføres mellom og behandles av mange aktører og i mange sy
 
 #### 4.2.2 Oversikt over attributter i datamodellen 
 
-```mermaid
+````mermaid
 ---
 title: Datamodell
 ---
+
 classDiagram
 
 	Helsevirksomhet -- Fagsystem
 	Fagsystem -- Helsepersonell
 
 	class Helsevirksomhet{
-		"legal_entity": {},
-		"point_of_care": {},
+		- "legal_entity": {},
+		- "point_of_care": {},
 	}
 		
 	class Fagsystem{
@@ -172,7 +173,7 @@ classDiagram
 		- "authorization": {object}
 	}	
 		
-```
+````
 
 #### 4.2.3 Oppsummering av påkrevd eller valgfri informasjon
 Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.
@@ -180,7 +181,7 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Formål |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | 
 | "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | Loggkontroll og sporbarhet |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | Loggkontroll, sporbarhet og informasjon til pasienten |
 | "professional_licence" | Helsepersonellets autorisasjon, dersom den finnes | HelseID<br/>Kjernerjournal | **Nei** | Tilgangsstyring |
