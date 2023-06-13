@@ -145,35 +145,34 @@ Datamodellen skal overføres mellom og behandles av mange aktører og i mange sy
 
 #### 4.2.2 Oversikt over attributter i datamodellen 
 
-````mermaid
+```mermaid
 ---
 title: Datamodell
 ---
-
 classDiagram
 
 	Helsevirksomhet -- Fagsystem
 	Fagsystem -- Helsepersonell
 
 	class Helsevirksomhet{
-		- "legal_entity": {},
-		- "point_of_care": {},
+		- "legal_entity"
+		- "point_of_care"
 	}
 		
 	class Fagsystem{
-		- "system_identifier": "value",
-        - "software_identifier": "value",
-        - "operated_by": {object}
+		- "system_identifier"
+        - "software_identifier"
+        - "operated_by"
 	}
 	
 	class Helsepersonell{
-		- "subject": {object}
-		- "pid": "value"
-		- "hpr_nr": "value"
-		- "authorization": {object}
+		- "subject"
+		- "pid"
+		- "hpr_nr"
+		- "authorization"
 	}	
 		
-````
+```
 
 #### 4.2.3 Oppsummering av påkrevd eller valgfri informasjon
 Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.

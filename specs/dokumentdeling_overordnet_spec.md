@@ -23,9 +23,12 @@ Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 5. [Sikkerhets- og personvernhensyn](#5-sikkerhets--og-personvernshensyn)
 
 ## 1. Innledning
-Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal skal den konsumerende virksomheten utføre påkrevd tilgangsstyring og tilgangskontroll av helsepersonellet slik at dokumentkilden kan være trygg på at helsepersonellet har tjenstlig behov for innsyn i de registrerte opplysningene om pasienten.  
+
+Beskrive spesifikasjonen, og formålet med spesifikasjonen 
 
 ## 2. Beskrivelse av tilgangsstyring for dokumentdeling i Kjernejournal
+Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal skal den konsumerende virksomheten ha utført påkrevd tilgangsstyring og tilgangskontroll av helsepersonellet slik at dokumentkilden kan være trygg på at helsepersonellet har tjenstlig behov for innsyn i de registrerte opplysningene om pasienten.
+
 Integrasjon med kjernejournal
 Basert på lokal tilgang.
 Informasjon må overføres via HelseID
@@ -38,9 +41,11 @@ NHN fyller på med info
 Kjernejournal håndterer kommunikasjon med dokumentkildene.
 
 ## 3. Sekvensdiagram som beskriver meldingsflyt
-Diagrammet er forenklet og fokuserer på leverandørens oppgaver og ansvar i forbindelse med integrasjon..
+Dette sekvensdiagrammet beskriver leverandørens oppgaver og ansvar i forbindelse med integrasjon, og inneholder ikke en beskrivelse av meldingsflyt videre i verdikjeden.
 
-I diagrammet under er det fokus på bruk av REST-grensesnitt mot HelseID ved autentisering av virksomheten (maskin-maskin). Denne har ikke direkte sammenheng med brukerpålogging som også kan benytte HelseID ved innlogging til KJ-portal. Alternativet til maskin-maskin autentisering er bruk av sertifikater og SOAP-basert innhenting av verdier via helseindikator-tjenesten.
+I diagrammet under vises bruk av REST-grensesnitt mot HelseID ved autentisering av virksomheten (maskin-maskin). Det er også mulig å benytte brukerpålogging i HelseID ved innlogging til KJ-portal, men denne flyten er ikke vist i denne spesifikasjonen.
+
+Denne metoden skiller seg fra den eldre løsningen hvor EPJ må bruke sertifikater og SOAP-basert innhenting av verdier via helseindikator-tjenesten.
 
 ````mermaid
 sequenceDiagram 
@@ -110,7 +115,7 @@ end
 ````
 
 ## 4. Spesifikasjon
-Dette er hva leverandøren må utvikle
+Denne spesifikasjonen beskriver den overordnede flyten som vises i sekvensdiagrammet over i større detalj.
 
 ### 4.1 Hent token og kall helseindikator (steg 2, 3 og 5 i sekvensdiagrammet)
 
@@ -132,25 +137,32 @@ Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som 
  * [Claims som beskriver parametre for bruk av Tillitsrammeverket](jwt_rar_profil_tillitsrammeverk.md)
  * [Claims som beskriver parametre for Dokumentdeling](jwt_rar_profil_dokumentdeling.md)
 
-
 *(Alternativt til dette kan EPJ bruke kallet til token-endepunktet i punkt 10 for å sende inn en signert JWT. Innholdet i denne JWT vil være likt det som beskrives overfor.)*
 
 Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
 
 ## 4.3 Hent Access Token fra HelseID (steg 10, 11 og 26 i sekvensdiagrammet)
-
 For å få utlevert et Access token som gir tilgang til pasientopplysninger/dokumentdeling gjennom Kjernejournal portal, må EPJ bruke `code_1` som grant mot token-endepunktet i HelseID.
 
 EPJ må også generere en `client_assertion` som er signert med EPJ sin privatnøkkel. [Dette er beskrevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID).
 
-Punkt 10: EPJ sender et POST-kall til token-endepunktet i HelseID som inneholder en `client_assertion` med de relevante parametrene.
+### 4.3.1 Be om Access Token fra HelseID
+##### Steg 10 i sekvensdiagrammet
+EPJ sender et POST-kall til token-endepunktet i HelseID som inneholder en `client_assertion` med de relevante parametrene.
 
-Punkt 11: token-endepunktet i HelseID gir tilbake en response som inneholdler 
+#### 4.3.2 Motta Access Token fra HelseID
+##### Steg 11 i sekvensdiagrammet
+Token-endepunktet i HelseID gir tilbake en response som inneholdler 
  * et Access Token, som kan brukes i kallet til KJP-API
  * et Refresh Token, som kan brukes til å be om et nytt Access Token
  * metadata: utløpstidspunkt, m.m.
 
-Punkt 26 og 27: Accesstokenet vil ha en begrenset levetid. Hvis det løper ut, må EPJ kalle token-endepunktet i HelseID med et Refresh Token for å få utvekslet et nytt Access Token.
+#### Håndtering av Access Token livssyklys (steg 26 og 27 i sekvensdiagrammet)
+Accesstokenet vil ha en begrenset levetid. 
+
+##### (Beskriv hvordan man sjekker levetid)
+
+Hvis det løper ut, må EPJ kalle token-endepunktet i HelseID med et Refresh Token for å få utvekslet et nytt Access Token.
 
 ## 4.4 Opprett brukersesjon i Kjernejournal Portal (steg 12 i sekvensdiagrammet) 
 Kall til KJP-API/api/Session/create
@@ -173,23 +185,18 @@ Set-Cookie: <session-cookie>
 {"code": "edfda05c-dbe7-44..."}
 ```
 
-## Vis pasient i Kjernejournal Portal (steg 14 i sekvensdiagrammet) 
+## 4.5 Vis pasient i Kjernejournal Portal (steg 14 i sekvensdiagrammet) 
 
-For å åpne Kjernejournal Portal sender man i dag en http GET request til hentpasient.html med query-parameter _**'ticket'**_.
+Denne spesifikasjonen beskriver en ny innloggingsflyt som fører til at parameteret _**ticket**_ fjernes som request parameter fra _hentpasient.html_, og i stedet overføres til Kjernejournal via et API. Denne medlingsflyten vises i steg 12 (api/Session/create) i sekvensdiagrammet over,  og er beskrevet i 4.4 i denne spesifikasjonen.
 
-_eksempel på dagens GET request_:
-````http request
-hentpasient.html?ticket=cEm8C75JImbZD03VfFI6gsQ%2Bf3gJ%2FGK1jjWtbsyca7TeUVq4rvmMjp%2BraBDOBO%2F.  
-````
+Kjernejournal vil motta ticket og Access token fra det nye APIet. For å gi tilgang til _hentpasient.html_ trenger Kjernejournal koden som EPJ fikk i retur fra api/Session/create sammen med en hash av nonce-verdien som ble sendt i body.
+Disse verdiene overføres som query parametre i GET requestens url.
 
-Denne spesifikasjonen beskriver en ny innloggingsflyt hvor parameteret _**ticket**_ overføres til Kjernejournal via et API. Denne medlingsflyten er beskrevet  i sekvensdiagrammet over i pkt 12 (api/Session/create).
+Den nye innloggingsflyten innfører to nye parametre i http meldingen, verdien til disse parametrene skal være:
+* otc: koden som EPJ mottok i http response fra kall til _api/Session/create_.
+* nonce: nonce verdien som ble overført i kallet til _KJP-API/api/Session/create_ i klartekst.
 
-Kjernejournal vil motta ticket og Access token fra dette APIet. For å gi tilgang trenger Kjernejournal koden EPJ fikk i retur fra api/Session/create sammen med nonce-verdien man sendte en hash av som en del av body.  Disse verdiene legges på som query params i hentpasient-urlen.
-
-Koden legges i query param som heter otc (one time code), og nonce-verdien heter nonce. 
- 
-
-Eksempel på request:  
+### Eksempel på http request til KJP-API/api/Session/create:
 
 ```http request
 
@@ -212,8 +219,7 @@ Cookie: <session-cookie>
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkE4...u_ca2gveFc
 
 ```
-
-Eksempel på vellykket respons er 200 OK, og `true` i response body
+Dersom forespørelsen om oppfriskning av sesjonen er vellykket vil serveren gi HTTP Status Code 200 OK, og `true` i response body
 ```http request
 200 OK
 Content-Type: application/json
