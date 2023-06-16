@@ -137,8 +137,6 @@ Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som 
  * [Claims som beskriver parametre for bruk av Tillitsrammeverket](jwt_rar_profil_tillitsrammeverk.md)
  * [Claims som beskriver parametre for Dokumentdeling](jwt_rar_profil_dokumentdeling.md)
 
-*(Alternativt til dette kan EPJ bruke kallet til token-endepunktet i punkt 10 for å sende inn en signert JWT. Innholdet i denne JWT vil være likt det som beskrives overfor.)*
-
 Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
 
 ## 4.3 Hent Access Token fra HelseID (steg 10, 11 og 26 i sekvensdiagrammet)
