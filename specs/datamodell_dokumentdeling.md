@@ -19,45 +19,21 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til oppslagg i pasientens delte journaldokumenter gjennom kjernejournal-portal.
 
 ## Innholdsfortegnelse
-1. [Innledning](#1-innledning)
-2. [Ordliste](#2-ordliste)
-3. [Bakgrunn for spesifikasjonen](#3-bakgrunn-for-spesifikasjonen)
-4. [Spesifikasjon av datamodell](#4-spesifikasjon)
-5. [Sammensatt JSON profil for datamodell](#5-json-profil-for-datamodell)
+1. [Bakgrunn for spesifikasjonen](#3-bakgrunn-for-spesifikasjonen)
+2. [Spesifikasjon av datamodell](#4-spesifikasjon)
+3. [Sammensatt JSON profil for datamodell](#5-json-profil-for-datamodell)
 
-
-## 1. Innledning 
-For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til relevante helseopplysninger som ligger lagret hos andre virksomheter enn den virksomheten hvor de yter helsehjelp. Lovverket i Norge sier at helsevirksomheter er pliktig til å dele helseopplysninger med alt helsepersonell så fremt de har et tjenstlig behov og at opplysningene er relevante og nødvendige i helsepersonellets behandling av pasienten (hpl §45).
-
-Kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte.
-
-I tjenesten for oppslagg i pasientens journaldokumenter gjennom kjernejournal-portal legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring til helseopplysninger på vegne av dokumentkilden. Til tross for at den konsumerende virksomheten er forpliktet til å kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger likevel behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil benyttes til flere formål:
-
-1. å utføre ytterligere tilgangskontroll
-2. lovpålagt logging av tilgangen for å avdekke urettmessig tilegnelse av helseopplysninger
-3. å støtte opp under innbyggers rettigheter
-
-På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter er det nødvendig at konsumentene og dokumentkildene samler seg om et felles språk for å uttrykke grunnlaget for tilgang slik at aktørene kan forstå hverandre. Et felles språk vil også bidra til å kommunisere på en konsistent måte til innbygger.
-
-Denne spesifikasjonen definerer et felles språk som skal benyttes til å uttrykke helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt. Spesifikasjonen definerer en informasjonsmodell, datamodell og kodeverk som skal implementeres i programvare som benyttes av helsepersonell når de yter helsehjelp til sin pasient.
-
-## 2. Ordliste
- 
-|  Begrep | Definisjon  |
-| --- | --- |
-|  |  |
-
-## 3. Bakgrunn for spesifikasjonen
+## 1. Bakgrunn for spesifikasjonen
 Grunnlaget som presenteres i denne spesifikasjonen er samling av identifiserte attributter som anses som nødvendige for å kunne tilby dokumentdelings tjenesten til helsepersonell i Norge. Opprinnelig målet med spesifikasjonen var å tilnærme seg den europeiske spesifikasjonen av datamodellen som benyttes for utveskling av helseopplysninger på tvers av landesgrenser i Europa (ref. EHDS). Representanter fra norsk helsesektor som deltok i spesifiseringsrunde vurderte at norsk behov er litt annerledes enn den europeiske og at det er andre attributter som skal utveskles. Bakgrunnen for datamodellen skal være å tilfredstille nødvendig behov for identifisering av helsepersonell og virksomheten som denne personen representerer, samt med å overføre nødvendig informasjon om grunnlaget for tilgjengliggjøring av pasientens helseopplysnigner. Primær formål med attributtene i datamodellen er å tilfredstille de juridiske krav som stilles til utveksling av helseopplysnigner.
 
-## 4. Spesifikasjon
+## 2. Spesifikasjon
 Spesifikasjonen inneholder en informasjonsmodell som beskriver hvilken informasjon som skal overføres mellom aktørene, hva denne informasjonen beskriver, og hvorfor den skal overføres.
 
 Spesifikasjonen beskriver også hvilke konkrete attributter som skal brukes for å beskrive informasjonsmodellen i form av en datamodell. Datamodellen angir hvilke kodeverk og verdier som er gyldige for de ulike attributtene.
 
 Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil også implementeres i relevante nasjonale ehelseløsninger og tillitstjenester.
 
-### 4.1 Informasjonsmodell
+### 2.1 Informasjonsmodell
 Tjenesten baserer seg på bruk av helsepersonellets digitale identitet av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets behandlerrelasjon til pasienten.
 Modellen skal, i utgangspunktet, være felles for JWT og XUA.
 
@@ -75,7 +51,7 @@ Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at
 - Behandlingssted
 
 
-### 4.2 Datamodell for detaljert autorisasjonsinformasjon
+### 2.2 Datamodell for detaljert autorisasjonsinformasjon
 
 Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" av datamodellen. Den er ikke nødvendigvis testet i praksis og læring må til for å se verdien av informasjonen i verdikjeden. Norsk helsenett, spesielt produktteamet med ansvar for nasjonal tjeneste som gir tilgang til oppslagg i pasientens delte journaldokumenter kan IKKE stille seg bak behovet for alle disse informasjons elementer (ref. kommentar under tabellen).
 
@@ -90,11 +66,11 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 
 
 
-### 4.3 Kategori: Behandlerrelasjon
+### 2.3 Kategori: Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasienten angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 
-#### 4.3.1 ~~Attributt "department": Avdeling/organisasjonsenhet~~
+#### 2.3.1 ~~Attributt "department": Avdeling/organisasjonsenhet~~
 ~~Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
 Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
 <br/>
@@ -138,7 +114,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 //},
 ````
 
-#### 4.3.2 Attributt "healthcare_service": Helsetjenestetype
+#### 2.3.2 Attributt "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
@@ -173,7 +149,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 }
 ````
 
-#### 4.3.3 Attributt "purpose_of_use": formålet med behandlingen av personopplysninger
+#### 2.3.3 Attributt "purpose_of_use": formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
 
 |   |   |
@@ -202,7 +178,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 }
 ````
 
-#### 4.3.4 Attributt "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
+#### 2.3.4 Attributt "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
@@ -242,7 +218,7 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 ````
 
 
-#### 4.3.5 Attributt "tracing_ref": referanse til systemet som initierte forespørselen
+#### 2.3.5 Attributt "tracing_ref": referanse til systemet som initierte forespørselen
 Attributtet er en referanse til det systemet som har initiert traffikken. Denne referanse kan gjerne referere til en lokal beslutning som ble benyttet ved å identifere forespørselen på et senere tidspunkt. Referansen skal sikre sporbarhet på tvers mellom systemene, slik at konsumenter og kilder av opplysninger har tilgang til felles identifikator. Hver forespørsel som initieres av konsumentens system skal ha en unik identifikator som følger sesjonen og relatert pasient kontekst.
 
 Målet med å bruke elementet er også å kunne begrense gyldighet av selve tokenet som utveksles slik at den ikke skal kunne gjenbrukes på et senere tidspunkt.
@@ -274,12 +250,12 @@ Systemet må sørge for å angi denne informasjon til kilden av helseopplysninge
     }
 ````
 
-### 4.4 Kategori: Pasient
+### 2.4 Kategori: Pasient
 Det skal finnes relasjon til pasienten som dette forespørsel omhandler. I spesifikasjon.
 
 Bruk av pasientkontekstrelasjoer er til behandling av NHN når det gjelder bruk av pasientidentifikator i JWT - ROS/DIPA
 
-#### 4.4.1 Attributt "patient_id": Unik identifikator for pasienten
+#### 2.4.1 Attributt "patient_id": Unik identifikator for pasienten
 Unik identifikator for pasienten skal være med i sikkerhetsbilletten, slik at kilden kan bekrefte at informasjon som etterspørres er i tråd med det som helsepersonell ble autorisert for.
 
 
@@ -306,7 +282,7 @@ Unik identifikator for pasienten skal være med i sikkerhetsbilletten, slik at k
 
 
 
-## 5. JSON profil for datamodell
+## 3. JSON profil for datamodell
 Full modell - valgfrie elementer er tatt med
 
 ````JSON
