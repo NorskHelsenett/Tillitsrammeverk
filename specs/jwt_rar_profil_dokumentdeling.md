@@ -2,17 +2,17 @@
 
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| 0.1 | Utkast | 2.06.2023 |
+| 1 | Utkast | 20.06.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til dokumentdeling via Kjernejournal for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i Tillitsrammeverket.
 
-Dokumentet er ment for bruk sammen med dokumentet «Spesifikasjon for å beskrive grunnlaget for tilgang til helseopplysninger via HelseID». [lenke]
+Dokumentet er ment for bruk sammen med dokumentet [«Spesifikasjon for å beskrive grunnlaget for tilgang til helseopplysninger via HelseID»](jwt_rar_profil_tillitsrammeverk.md).
 
 Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
 
 ## Definisjon av begrep og forkortelser
-TODO: lenker
+TODO: lenker  
 Spesifikasjonen benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
 
 ## Innholdsfortegnelse
@@ -22,13 +22,13 @@ Spesifikasjonen benytter begreper og terminologi som er definert i følgende spe
 
 
 ## 1. Innledning
-Denne spesifikasjonen definerer et JSON-format som skal benyttes til å overføre informasjon om grunnlaget for tilgangen som er gitt i helsepersonellets lokale EPJ-system til den som deler helseopplysningene. Informasjonen som denne strukturen skal inneholde er definert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md). TODO: oppdater når begge dokumenter er klare.
+Denne spesifikasjonen definerer et JSON-format som skal benyttes til å overføre informasjon om grunnlaget for tilgangen som er gitt i helsepersonellets lokale EPJ-system til den som deler helseopplysningene. Informasjonen som denne strukturen skal inneholde er definert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](datamodell_dokumentdeling.md).
 
 Denne spesifikasjonen er en del av et spesifikasjonssett som baserer seg på tillitsrammeverket for deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren, og må sees i sammenheng med de andre spesifikasjonene.
 
 ## 2. Spesifikasjon av strukturen i «nhn:dokumentdeling:parameters»-elementet
 
-Ved forespørsel til HelseID for å få tilgang til helseopplysninger, er det nødvendig å sende inn en struktur som inneholder informasjon som beskrevet i [datamodellen](https://lenke__til_dokumentdeling_her).
+Ved forespørsel til HelseID for å få tilgang til helseopplysninger, er det nødvendig å sende inn en struktur som inneholder informasjon som beskrevet i [datamodellen](datamodell_dokumentdeling.md).
 
 
 ### 2.1 JSON-strukturen som beskriver parametrene for Dokumentdeling

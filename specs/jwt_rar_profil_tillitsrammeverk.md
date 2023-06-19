@@ -10,7 +10,7 @@ Dokumentet er ment å bli brukt sammen med andre spesifikasjoner, som for eksemp
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
 | 0.1 | Utkast | 31.02.2023 |
-
+| 1 | Utkast | 20.06.2023 |
 Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
 ## Innholdsfortegnelse
@@ -31,10 +31,9 @@ Denne strukturen skal benyttes ved forespørsel til HelseID. Informasjonen fra s
 ## 2. Beskrivelse av konsept
 Når en klient gjør en tilgangsforespørsel til HelseID, må den legge ved informasjon som beskriver helsepersonellets grunnlag for tilgang i sitt lokale system. Dersom helsepersonellet er autentisert og klient har rett på tilgang til den forespurte tjenesten, vil HelseID utstede et Access Token som inneholder attributtene som klienten overførte.
 
-Informasjonen som beskriver den lokale tilgangen, skal overføres til HelseID ved bruk av mekanismen [Rich Authorization Request](https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html) (RAR), hvor attributtene MÅ uttrykkes i henhold til den gjeldende [datamodellen](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md) og formatteres i henhold til denne spesifikasjonen.
-TODO: endre lenken når den er klar.
+Informasjonen som beskriver den lokale tilgangen, skal overføres til HelseID ved bruk av mekanismen [Rich Authorization Request](https://www.ietf.org/archive/id/draft-ietf-oauth-rar-23.html) (RAR), hvor attributtene MÅ uttrykkes i henhold til den gjeldende [datamodellen](datamodell_tillitsmodell.md) og formatteres i henhold til denne spesifikasjonen.
 
-RAR innfører et nytt parameter til protokollen, som heter "authorization_details", som lar klienter uttrykke fingranulerte autorisasjonskrav i tilgangsforespørselen ved bruk av JSON. Informasjonen i "authorization_details" kan benyttes av HelseID og tjenesten som deler helseopplysninger til å begrense tilgang og for å tilfredsstille krav til logging.
+RAR innfører et nytt parameter til OpenID Connect-protokollen, som heter "authorization_details". Dette lar klienter uttrykke fingranulerte autorisasjonskrav i tilgangsforespørselen ved bruk av JSON. Informasjonen i "authorization_details" kan benyttes av HelseID og tjenesten som deler helseopplysninger til å begrense tilgang og for å tilfredsstille krav til logging.
 
 ```mermaid
 sequenceDiagram
@@ -126,10 +125,7 @@ Dette elemenetet inneholder 4 claims som beskrevet under:
 ````
 
 #### Spesifikasjon av «practitioner»- og «care_relationship»-elementene
-
-> (*) JSON-strukturen som inneholder "practitioner" og "care_relationship" elementene i denne strukturen er beskrevet i spesifikasjonen [Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), hvor JSON strukturen for denne informasjonen er definert. 
-
-Semantikken for elementene `practitioner` og `care_relationship` er beskrevet i spesifikasjonen av [informasjons- og datamodell](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
+Semantikken for elementene `practitioner` og `care_relationship` er beskrevet i spesifikasjonen av [informasjons- og datamodell](datamodell_tillitsmodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
 
 
 ## 5. Claims som beskriver parametre for bruk av Tillitsrammeverket
@@ -168,19 +164,12 @@ JSON-dokumentet under beskriver hvordan en struktur som gjør bruk av Tillitsram
 ````
 ### 5.1 Overføring av «authorization_details»-strukturen
 
-*Dette er en oppsummering, detaljene beskrives i dokumentet [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av dokumenter i Kjernejournal](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md).*
+*Dette er en oppsummering, detaljene beskrives i dokumentet [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av dokumenter i Kjernejournal](bruk_av_oidc.md).*
 
 Strukturen `authorization_details` som er beskrevet ovenfor, overføres til HelseID i en forespørsel om tilgang til tjenester eller API-er som deler helseopplysninger. Den danner grunnlaget for tilgangen som blir gitt i HelseID.
- 
-Strukturen kan inngå som parameter i forespørsler til både authorize-endepunktet og token-endepunktet. Se [Profil for bruk av OpenID Connect og OAuth 2.0 i HelseID ved deling av dokumenter i Kjernejournal](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/bruk_av_oidc.md) for en detaljert beskrivelse av hvordan HelseID skal brukes.
 
-#### Via authorization-endepunktet - authorization_details i Request Objects
-Når `authorization_details`-strukturen overføres som parameter i authorization-endepunktet MÅ den inngå som parameter i et Request Object, som beskrevet i [OpenID Connect spesifikasjonen](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests) og iht [gjeldende krav til bruk av Request Object i HelseID](https://lenke.no).
-
-#### I token-endepunktet - authorization_details i client_assertion
-Når `authorization_details`-strukturen overføres som parameter i token-endepunktet MÅ den inngå som parameter i Client Assertion, som beskrevet i [OAuth Assertion Framework](https://www.rfc-editor.org/rfc/rfc7521) iht [gjeldende krav til klientautentisering i HelseID](https://lenke.no).
-
+Når `authorization_details`-strukturen overføres som parameter i authorization-endepunktet MÅ den inngå som parameter i et Request Object, som beskrevet i [OpenID Connect spesifikasjonen](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests).
 
 ## 6. Sikkerhets- og personvernshensyn
 
-Se eget dokument. <!--- lenke -->
+[Se eget dokument.](sikkerhets_og_personvernhensyn.md)
