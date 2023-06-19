@@ -94,7 +94,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 | Data type: | Object |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | RESH/Enhetsregisteret [????] |
+| Kodeverk: | RESH/lokale kodeverk |
 | Gyldige verdier: | N/A |
 
 
