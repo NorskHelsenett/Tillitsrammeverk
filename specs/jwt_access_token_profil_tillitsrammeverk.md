@@ -244,7 +244,7 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 		"sub": "#/%/%/%//%/%(%)",
 		"nhn:tillitsrammeverk": {
 			"version": "0.2",
-			"practicioner": {
+			"practitioner": {
 				"personal_identifier": {
 					"id": "05709992424",
 					"name": "OVERTENKT LAMPEFOT",
