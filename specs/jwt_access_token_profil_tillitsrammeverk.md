@@ -239,12 +239,46 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 
 ````JSON
 {
-	"authorization_details":{
-		"type": "dokumentdeling_kj",
-		"actions": ["read"],
-		"locations": "https://kj.nhn.no/",
-		"kj_dokumentdeling": { //rar-struktur for dokumentdeling: hva skal barnet hete?
-			"version": "1.0",
+	"authorization_details": {
+		"pid" : "12312312323",
+		"sub": "#/%/%/%//%/%(%)",
+		"nhn:tillitsrammeverk": {
+			"version": "0.2",
+			"practicioner": {
+				"personal_identifier": {
+					"id": "05709992424",
+					"name": "OVERTENKT LAMPEFOT",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+					"authority": "https://www.skatteetaten.no"
+				},
+				"professional_license": {
+					"hpr_nr": {
+						"id": "9144900",
+						"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+						"authority": "https://www.helsedirektoratet.no/"
+					},
+					"authorization": {
+						"code": "LE",
+						"text": "Lege",
+						"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+						"assigner": "https://www.helsedirektoratet.no/"
+					}
+				},
+			},
+			"organization": {
+				"legal_entity": {
+					"id": "993467049",
+					"name": "OSLO UNIVERSITETSSYKEHUS HF",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+					"authority": "https://www.skatteetaten.no"
+				},
+				"point_of_care": {
+					"id": "974589095",
+					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+					"authority": "https://www.skatteetaten.no"
+				},		
+			},
 			"care_relationship": {
 				"healthcare_service": {
 					"code": "S03",
@@ -272,11 +306,9 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 				},
 				"decision_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
 					"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
-					"description": { 8<...>8 }, /* autogenerert i EPJ */
-					"user_reason": "Tekst lagt inn av bruker.."
 				}
-			}
-		}
+			},
+		},
 	}
 }
 ````
