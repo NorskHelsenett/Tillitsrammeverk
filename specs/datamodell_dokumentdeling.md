@@ -19,9 +19,9 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til oppslagg i pasientens delte journaldokumenter gjennom kjernejournal-portal.
 
 ## Innholdsfortegnelse
-1. [Bakgrunn for spesifikasjonen](#3-bakgrunn-for-spesifikasjonen)
-2. [Spesifikasjon av datamodell](#4-spesifikasjon)
-3. [Sammensatt JSON profil for datamodell](#5-json-profil-for-datamodell)
+1. [Bakgrunn for spesifikasjonen](#1-bakgrunn-for-spesifikasjonen)
+2. [Spesifikasjon av datamodell](#2-spesifikasjon)
+3. [Sammensatt JSON profil for datamodell](#-json-profil-for-datamodell)
 
 ## 1. Bakgrunn for spesifikasjonen
 Grunnlaget som presenteres i denne spesifikasjonen er samling av identifiserte attributter som anses som nødvendige for å kunne tilby dokumentdelings tjenesten til helsepersonell i Norge. Opprinnelig målet med spesifikasjonen var å tilnærme seg den europeiske spesifikasjonen av datamodellen som benyttes for utveskling av helseopplysninger på tvers av landesgrenser i Europa (ref. EHDS). Representanter fra norsk helsesektor som deltok i spesifiseringsrunde vurderte at norsk behov er litt annerledes enn den europeiske og at det er andre attributter som skal utveskles. Bakgrunnen for datamodellen skal være å tilfredstille nødvendig behov for identifisering av helsepersonell og virksomheten som denne personen representerer, samt med å overføre nødvendig informasjon om grunnlaget for tilgjengliggjøring av pasientens helseopplysnigner. Primær formål med attributtene i datamodellen er å tilfredstille de juridiske krav som stilles til utveksling av helseopplysnigner.
