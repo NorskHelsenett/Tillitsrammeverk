@@ -12,6 +12,7 @@ To ulike tilnærminger til å autentisere sluttbruker:
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
 | 1 | Utkast | xx.06.2023 |
+| 2 | Versjon klar til sektor input | 19.06.2023 |
 
 Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
