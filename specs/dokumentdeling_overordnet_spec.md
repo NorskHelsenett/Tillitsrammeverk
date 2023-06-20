@@ -63,7 +63,7 @@ sequenceDiagram
   EPJ->>EPJ: generer Client Assertion(virksomhet)
   EPJ->>HelseID: POST /token (client_assertion)
   HelseID-->>EPJ: Access Token
-  EPJ->>KJP: POST /helseindikator/ (accesstoken + body)
+  EPJ->>KJP: POST /helseindikator/ (Access Token + body)
   KJP-->>EPJ: pasientstatus + ticket(pasientens fødselsnummer)
   HP->>EPJ: Åpner KJP
   EPJ->>EPJ: generer Request Object (tillitsmodell og dokumentdeling)
