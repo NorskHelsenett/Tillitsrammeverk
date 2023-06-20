@@ -1,14 +1,9 @@
 # Spesifikasjon av tilgangskontroll i dokumentdeling i KJ
 
 ## Sammendrag
+Dette dokumentet er en spesifikasjon av tilgangsstyring for journalsystemer som skal integreres med Kjernejournal Portal for dokumentdeling i andre scenarier enn for fastlegene som allerede har innført dokumentdeling i Kjernejournal Portal.
 
-Målgruppe: EPJ leverandører
-
-**Dette dokumentet beskriver hvordan EPJ integerer med Kjernejournal i andre scenarier enn fastlegenoe.**
-
-HP logger seg inn via HelseID når HP åpner KJ-Portal og det ikke er en aktiv sesjon i HelseID
-
-_beskrive dette bedre_
+Målgruppen for dette dokumentetet er personell hos programvareleverandørene som skal implementere integrasjonen.
 
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
@@ -42,30 +37,59 @@ På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjel
 Denne spesifikasjonen definerer et felles språk som skal benyttes til å uttrykke helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt. Spesifikasjonen definerer en informasjonsmodell, datamodell og kodeverk som skal implementeres i programvare som benyttes av helsepersonell når de yter helsehjelp til sin pasient.
 
 ## 2. Beskrivelse av tilgangsstyring for dokumentdeling i Kjernejournal
-Når et helsepersonell skal få innsyn i helseopplysninger ved bruk av dokumentdeling i Kjernejournal skal den konsumerende virksomheten ha utført påkrevd tilgangsstyring og tilgangskontroll av helsepersonellet slik at dokumentkilden kan være trygg på at helsepersonellet har tjenstlig behov for innsyn i de registrerte opplysningene om pasienten.
+Tilgangsstyring for dokumentdeling i Kjernejournal Portal er basert på en modell tilpasset helsesektoren, hvor partenenes ansvar er tydeliggjort og oppgaver er fordelt i form av et avtalebasert tillitsrammeverk.
+
+Når et helsepersonell gis innsyn til helseopplysninger ved bruk av dokumentdeling i Kjernejournal skal den konsumerende virksomheten på forhånd ha utført påkrevd tilgangsstyring og tilgangskontroll av helsepersonellet slik at dokumentkilden kan være trygg på at helsepersonellet har tjenstlig behov for innsyn i de registrerte opplysningene om pasienten.
 
 Integrasjon med kjernejournal
 Basert på lokal tilgang.
 Informasjon må overføres via HelseID
 NHN fyller på med info
 
-- Opprette sesjon i Kjernejournal: helseindikator
-- logge inn bruker
-- håndtere sesjon
+### 2.1 Attributter tilknyttet tillitsrammeverket
+[lenke til informasjonsmodell for tillitsrammeverk](http://sdfdsaf)
 
-Kjernejournal håndterer kommunikasjon med dokumentkildene.
+### 2.2 Attributter spesifikt for dokumentdeling
+[lenke til informasjonsmodell for dokumentdeling](http://sdfdsaf)
+
+### 2.3 Sekvensdiagram som beskriver systemintegrasjon
+````mermaid
+sequenceDiagram 
+title Beskrivelse av..
+
+actor HP as Helsepersonell
+participant EPJ
+participant HelseID
+participant KJP
+participant Dokumentkilde
+
+HP->>EPJ: Åpner pasientkontekst
+EPJ->>EPJ: Utfører tilgangskontroll
+EPJ-->>HP: Gir tilgang til pasientens helseopplysninger
+HP->>EPJ: Ber om tilgjengelige dokumenter i KJP
+EPJ->>HelseID: Ber om autentisering av HP og tilgang til KJP
+HelseID-->>EPJ: Leverer Access Token
+EPJ->>KJP: Åpne pasient og legger ved Access Token
+KJP->>Dokumentkilde: Hent dokumentoversikt, legger ved Access Token
+Dokumentkilde-->>KJP: Leverer dokumentoversikt
+KJP-->>HP: Viser dokumentoversikt
+HP->>KJP: Hent dokument
+KJP->>Dokumentkilde: Hent dokument
+Dokumentkilde-->>KJP: Leverer dokument
+KJP-->>HP: Leverer dokument
+````
 
 ## 3. Sekvensdiagram som beskriver meldingsflyt
-Dette sekvensdiagrammet beskriver leverandørens oppgaver og ansvar i forbindelse med integrasjon, og inneholder ikke en beskrivelse av meldingsflyt videre i verdikjeden.
+Dette sekvensdiagrammet beskriver meldingsflyt mellom journalsystem, HelseID og KJP for dokumentdeling i Kjernejournal Portal. Sekvensdiagrammet beskriver ikke meldingsflyt mellom tjenester i NHN og dokumentkilden.
 
-I diagrammet under vises bruk av REST-grensesnitt mot HelseID ved autentisering av virksomheten (maskin-maskin). Det er også mulig å benytte brukerpålogging i HelseID ved innlogging til KJ-portal, men denne flyten er ikke vist i denne spesifikasjonen.
+I diagrammet under vises bruk av REST-grensesnitt mot HelseID ved autentisering av virksomheten (maskin-maskin). Spesifikasjonen beskriver ikke direkte brukerpålogging til KJ-portal via HelseID.
 
 Denne metoden skiller seg fra den eldre løsningen hvor EPJ må bruke sertifikater og SOAP-basert innhenting av verdier via helseindikator-tjenesten.
 
 ````mermaid
 sequenceDiagram 
   autonumber
-  title Beskrivelse av ....
+  title Meldingsflyt ved bruk av HelseID og KJP
   actor HP as Helsepersonell
   participant EPJ
   participant HelseID
@@ -123,23 +147,28 @@ end
 ````
 
 ## 4. Spesifikasjon
-Denne spesifikasjonen beskriver den overordnede flyten som vises i sekvensdiagrammet over i større detalj.
+Spesifikasjonen gir en detaljert beskrivelse av meldingsflyten i sekvensdiagrammet over.
 
-Spesifikasjoner knyttet til bruk av samtykkegrunnlag og samtykke bla bla bla...
+Systemene hos NHN som deltar i meldingflyten har ytterligere relevante krav knyttet til integrasjoner mellom journalsystemer og NHN sine systemer. Kravene omfatter blant hvordan pasientidentifikator og samtykkegrunnlag skal overføres fra konsument til NHN.
 
-[Dette er beskevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID). Denne kan enten inkludere en authorization_details-struktur [som beskrevet her](jwt_rar_profil_tillitsrammeverk.md) 
-eller [som beskrevet her (dersom ditt system allerede har integrert med HelseID).](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5636230/Passing+organization+identifier+from+a+client+application+to+HelseID)
+| --- | --- |
+| Bruk av HelseID for Kjernejournal | [Veileder](https://kjernejournal.atlassian.net/wiki/spaces/KJERNEJOURDOK1/pages/786989408/Integration+Guide+Kjernejournal+REST+API+using+HelseID+as+authenticator) |
+| Datamodell for dokumentdeling i HelseID | [RAR i HelseID](jwt_rar_profil_tillitsrammeverk.md) |
 
-[Integrasjonen til Kjernejournal (helseindikator) er beskrevet her.](https://kjernejournal.atlassian.net/wiki/spaces/KJERNEJOURDOK1/pages/786989408/Integration+Guide+Kjernejournal+REST+API+using+HelseID+as+authenticator)
 
 
 ### 4.1 Autentiser helsepersonellet via HelseID (steg 8, 9 og 10 i sekvensdiagrammet) 
+For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert [JWT](https://datatracker.ietf.org/doc/html/rfc7519) som inneholder JSON-elementet _authorization_details_.
 
-Punkt 8 og 9: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert [JWT](https://datatracker.ietf.org/doc/html/rfc7519) (i Request Object) som inneholder et JSON-element (`authorization_details`) som inneholder 
+*Steg 2:* 
+EPJ må samle informasjon I dette kallet må det følge en signert [JWT](https://datatracker.ietf.org/doc/html/rfc7519) som inneholder JSON-elementet _authorization_details_.
+
+JSON-elementet _authorization_details_ skal inneholde: 
  * [Claims som beskriver parametre for bruk av Tillitsrammeverket](jwt_rar_profil_tillitsrammeverk.md)
  * [Claims som beskriver parametre for Dokumentdeling](jwt_rar_profil_dokumentdeling.md)
 
-Punkt 10: authorize-endepunktet i HelseID gir tilbake `authorization code`.
+*Steg 4:* 
+Resultatet av kallet til /authorize endepunktet i HelseID er en _authorization code_ som EPJ tar vare på.
 
 ### 4.2 Hent Access Token fra HelseID (steg 11, 12 og 27 i sekvensdiagrammet)
 For å få utlevert et Access token som gir tilgang til pasientopplysninger/dokumentdeling gjennom Kjernejournal portal, må EPJ bruke `atuhorization code` som grant mot token-endepunktet i HelseID.
