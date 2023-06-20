@@ -78,7 +78,7 @@ HelseID utsteder i dag Access Tokens hvor flere  attributter overlapper med attr
     - det kan være kompliserende å måtte behandle samme verdier fra forskjellige attributter i samme token
 
 Vår konklusjon er at vi på overordnet nivå ønsker å unngå å duplisere informasjon i Access Tokens, og at vi derfor bør fjerne eksisterende attributter som også er definert i datamodellen for "authorization_details".
-- NHN må informere alle systemer som bruker HelseID om eventuell fjerning av eksisterende attributter/claims
+- NHN må informere alle systemer som bruker HelseID om fjerning av eksisterende attributter/claims
     - programvareleverandører og systemleverandører må få en overkommelig tidsfrist
     - attributter som skal fjernes må markeres som "utgående" eller lignende i dokumentasjon så raskt som mulig
 - HelseID beholder eksisterende attributter/claims som er duplisert i "authorization_details" fram til tidsfristen er utløpt

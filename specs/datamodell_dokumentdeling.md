@@ -259,8 +259,6 @@ Bruk av pasientkontekstrelasjoer er til behandling av NHN når det gjelder bruk 
 Unik identifikator for pasienten skal være med i sikkerhetsbilletten, slik at kilden kan bekrefte at informasjon som etterspørres er i tråd med det som helsepersonell ble autorisert for.
 
 
-
-
 | Attributt | |
 | --- | --- |
 | Status: | <span style="color: orange; font-weight: bold;">Inkluderes i SAML-sikkerhetsbiletten</span> |
