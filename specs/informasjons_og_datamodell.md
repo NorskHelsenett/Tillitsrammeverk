@@ -170,7 +170,7 @@ classDiagram
 ```
 
 #### 4.2.3 Oppsummering av påkrevd eller valgfri informasjon
-Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.
+Ikke all informasjon i datamodellen er relevant i alle brukstilfeller, noen informasjonselementer er derfor valgfrie.
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
