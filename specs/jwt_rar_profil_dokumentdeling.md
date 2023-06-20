@@ -7,13 +7,13 @@
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til dokumentdeling via Kjernejournal for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i Tillitsrammeverket.
 
-Dokumentet er ment for bruk sammen med dokumentet «Spesifikasjon for å beskrive grunnlaget for tilgang til helseopplysninger via HelseID». [lenke]
+Dokumentet er ment for bruk sammen med dokumentet [«Spesifikasjon for å beskrive grunnlaget for tilgang til helseopplysninger via HelseID»](jwt_rar_profil_tillitsrammeverk.md).
 
 Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
 
 ## Definisjon av begrep og forkortelser
-TODO: lenker
+TODO: lenker  
 Spesifikasjonen benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
 
 ## Innholdsfortegnelse

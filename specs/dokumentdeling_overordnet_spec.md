@@ -2,11 +2,13 @@
 
 ## Sammendrag
 
-Målgruppe: EPJ leverandører og konsumenter
+Målgruppe: EPJ leverandører
 
-To ulike tilnærminger til å autentisere sluttbruker:
-1. HP logger seg inn i EPJ via HelseID (og får SSO til KJ)
-2. HP logger seg inn via HelseID når HP åpner KJ-Portal og det ikke er en aktiv sesjon i HelseID
+**Dette dokumentet beskriver hvordan EPJ integerer med Kjernejournal i andre scenarier enn fastlegenoe.**
+
+HP logger seg inn via HelseID når HP åpner KJ-Portal og det ikke er en aktiv sesjon i HelseID
+
+_beskrive dette bedre_
 
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
@@ -71,20 +73,21 @@ sequenceDiagram
   participant Dokumentkilde
 
   HP->>EPJ: Velger pasient
-  EPJ->>EPJ: generer_assertion(virksomhet, pasientid)
-  EPJ->>HelseID: getToken(assertion)
+  EPJ->>EPJ: generer Client Assertion(virksomhet)
+  EPJ->>HelseID: POST /token (client_assertion)
   HelseID-->>EPJ: Access Token
-  EPJ->>KJP: POST /helseindikator/ (accesstoken + body)
-  KJP-->>EPJ: pasientstatus + ticket(pasientens nin)
+  EPJ->>KJP: POST /helseindikator/ (Access Token + body)
+  KJP-->>EPJ: pasientstatus + ticket(pasientens fødselsnummer)
   HP->>EPJ: Åpner KJP
-  EPJ->>HelseID: Authorize kall (request_object inkludert authorization_details)
-  HelseID-->>EPJ: code_1
-  EPJ->>HelseID: /Token (code_1)
-  HelseID-->>EPJ: Access Token
+  EPJ->>EPJ: generer Request Object (tillitsmodell og dokumentdeling)
+  EPJ->>HelseID: POST /authorize (request_object)
+  HelseID-->>EPJ: Authorization Code
+  EPJ->>HelseID: /token (authorization code)
+  HelseID-->>EPJ: Access Token, Refresh Token
   EPJ->>KJP: POST KJ-API/session/create (authorization: Access Token, body: ticket + sha256(nonce))
-  KJP-->>EPJ: code_2
-  EPJ->>KJP: GET hentpasient.html?otc=Code_2&nonce=nonce
-  KJP-->>KJP: hent access token og ticket(code_2, nonce)
+  KJP-->>EPJ: code
+  EPJ->>KJP: GET hentpasient.html?otc=code&nonce=nonce
+  KJP-->>KJP: hent access token og ticket(code, nonce)
   HP->>KJP: Åpner fanen journaldokumenter
   KJP->>Dokumentkilde: Hent referanseliste (token)
  
@@ -100,19 +103,17 @@ sequenceDiagram
 
   critical sjekk gyldighet på access token
 
-    option Access token er utløpt
-        EPJ->>HelseID: POST token (refresh grant)
+    option Access Token er utløpt
+        EPJ->>HelseID: POST /token (refresh token grant)
         HelseID-->>EPJ: Access Token
-        EPJ->>KJP: POST KJ-API/session/refresh (access token) 
+        EPJ->>KJP: POST KJ-API/session/refresh (Access Token) 
         KJP-->>EPJ: HTTP 200 (OK)
-    
-    option Access token er gyldig
-        EPJ->>EPJ: schedule refresh
   end
 
   critical helsepersonell bytter pasient
   option session er aktiv
-    EPJ->>KJP: POST KJ-API/session/end (sessionid)
+    EPJ->>KJP: POST KJ-API/session/end (sessionid) EPJ-->>EPJ start ny sesjon
+    EPJ->>EPJ: start ny sesjon mot KJ
   end
   
   critical brukersesjon i EPJ timer ut
@@ -130,11 +131,14 @@ end
 ## 4. Spesifikasjon
 Denne spesifikasjonen beskriver den overordnede flyten som vises i sekvensdiagrammet over i større detalj.
 
+# KAN HELE DETTE KAPITTELET FLYTTES UT AV DOKUMENTET?
+
 ### 4.1 Hent token og kall helseindikator (steg 2, 3 og 5 i sekvensdiagrammet)
 
 For å få utlevert en ticket til bruk i Kjernejournal portal, må leverandøren be om et Access Token fra HelseID, og bruke dette tokenet i et POST-kall mot /helseindikator-endepunktet i KJ.
 
-Punkt 2: generer en `client_assertion` som er signert med EPJ sin privatnøkkel. [Dette er beskevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID).
+Punkt 2: generer en `client_assertion` som er signert med EPJ sin privatnøkkel. [Dette er beskevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID). Denne kan enten inkludere en authorization_details-struktur [som beskrevet her](jwt_rar_profil_tillitsrammeverk.md) 
+eller [som beskrevet her (dersom ditt system allerede har integrert med HelseID).](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5636230/Passing+organization+identifier+from+a+client+application+to+HelseID)
 
 Punkt 3: gjør et kall mot token-endepunktet i HelseID ved bruk av et bibliotek. 
 
@@ -144,21 +148,21 @@ Punkt 5: [Integrasjonen til Kjernejournal (helseindikator) er beskrevet her.](ht
 
 Punkt 6: Utfall: EPJ har fått utlevert en 'ticket' fra Kjernejournal.
 
-### 4.2 Autentiser helsepersonellet via HelseID (steg 8 og 9 i sekvensdiagrammet) 
+### 4.2 Autentiser helsepersonellet via HelseID (steg 8, 9 og 10 i sekvensdiagrammet) 
 
-Punkt 8: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert [JWT](https://datatracker.ietf.org/doc/html/rfc7519) (i Request Object) som inneholder et JSON-element (`authorization_details`) som inneholder 
+Punkt 8 og 9: For å logge på brukeren via HelseID, må EPJ starte en nettleser som sender brukeren til HelseIDs påloggingsside (authorize-endepunktet). I dette kallet må det følge en signert [JWT](https://datatracker.ietf.org/doc/html/rfc7519) (i Request Object) som inneholder et JSON-element (`authorization_details`) som inneholder 
  * [Claims som beskriver parametre for bruk av Tillitsrammeverket](jwt_rar_profil_tillitsrammeverk.md)
  * [Claims som beskriver parametre for Dokumentdeling](jwt_rar_profil_dokumentdeling.md)
 
-Punkt 9: authorize-endepunktet i HelseID gir tilbake `code_1`.
+Punkt 10: authorize-endepunktet i HelseID gir tilbake `authorization code`.
 
-## 4.3 Hent Access Token fra HelseID (steg 10, 11 og 26 i sekvensdiagrammet)
-For å få utlevert et Access token som gir tilgang til pasientopplysninger/dokumentdeling gjennom Kjernejournal portal, må EPJ bruke `code_1` som grant mot token-endepunktet i HelseID.
+### 4.3 Hent Access Token fra HelseID (steg 11, 12 og 27 i sekvensdiagrammet)
+For å få utlevert et Access token som gir tilgang til pasientopplysninger/dokumentdeling gjennom Kjernejournal portal, må EPJ bruke `atuhorization code` som grant mot token-endepunktet i HelseID.
 
 EPJ må også generere en `client_assertion` som er signert med EPJ sin privatnøkkel. [Dette er beskrevet her](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/541229057/Using+client+assertions+for+client+authentication+in+HelseID).
 
 ### 4.3.1 Be om Access Token fra HelseID
-##### Steg 10 i sekvensdiagrammet
+##### Steg 11 i sekvensdiagrammet
 EPJ sender et POST-kall til token-endepunktet i HelseID som inneholder en `client_assertion` med de relevante parametrene.
 
 #### 4.3.2 Motta Access Token fra HelseID
@@ -198,7 +202,7 @@ Set-Cookie: <session-cookie>
 
 ## 4.5 Vis pasient i Kjernejournal Portal (steg 14 i sekvensdiagrammet) 
 
-Denne spesifikasjonen beskriver en ny innloggingsflyt som fører til at parameteret _**ticket**_ fjernes som request parameter fra _hentpasient.html_, og i stedet overføres til Kjernejournal via et API. Denne medlingsflyten vises i steg 12 (api/Session/create) i sekvensdiagrammet over,  og er beskrevet i 4.4 i denne spesifikasjonen.
+Denne spesifikasjonen beskriver en ny innloggingsflyt som fører til at parameteret _**ticket**_ fjernes som request parameter fra _hentpasient.html_, og i stedet overføres til Kjernejournal via et API. Denne medlingsflyten vises i steg 15 (api/Session/create) i sekvensdiagrammet over,  og er beskrevet i 4.4 i denne spesifikasjonen.
 
 Kjernejournal vil motta ticket og Access token fra det nye APIet. For å gi tilgang til _hentpasient.html_ trenger Kjernejournal koden som EPJ fikk i retur fra api/Session/create sammen med en hash av nonce-verdien som ble sendt i body.
 Disse verdiene overføres som query parametre i GET requestens url.
