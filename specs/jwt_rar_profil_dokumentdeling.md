@@ -2,7 +2,8 @@
 
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| 1 | Utkast | 20.06.2023 |
+| 0.1 | Utkast | 2.06.2023 |
+| 0.2| Utkast til sektoren | 19.06.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til dokumentdeling via Kjernejournal for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i Tillitsrammeverket.
 
@@ -22,13 +23,13 @@ Spesifikasjonen benytter begreper og terminologi som er definert i følgende spe
 
 
 ## 1. Innledning
-Denne spesifikasjonen definerer et JSON-format som skal benyttes til å overføre informasjon om grunnlaget for tilgangen som er gitt i helsepersonellets lokale EPJ-system til den som deler helseopplysningene. Informasjonen som denne strukturen skal inneholde er definert i [spesifikasjon av informasjons- og datamodell for beskrivelse av tilgangsgrunnlaget ved deling av helseopplysninger](datamodell_dokumentdeling.md).
+Denne spesifikasjonen definerer et JSON-format som skal benyttes til å overføre informasjon om grunnlaget for tilgangen som er gitt i helsepersonellets lokale EPJ-system til den som deler helseopplysningene. 
 
 Denne spesifikasjonen er en del av et spesifikasjonssett som baserer seg på tillitsrammeverket for deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren, og må sees i sammenheng med de andre spesifikasjonene.
 
 ## 2. Spesifikasjon av strukturen i «nhn:dokumentdeling:parameters»-elementet
 
-Ved forespørsel til HelseID for å få tilgang til helseopplysninger, er det nødvendig å sende inn en struktur som inneholder informasjon som beskrevet i [datamodellen](datamodell_dokumentdeling.md).
+Ved forespørsel til HelseID for å få tilgang til helseopplysninger, er det nødvendig å sende inn en struktur som inneholder informasjon som beskrevet i [datamodellen for oppslag i pasientens journaldokumenter](datamodell_dokumentdeling.md).
 
 
 ### 2.1 JSON-strukturen som beskriver parametrene for Dokumentdeling
