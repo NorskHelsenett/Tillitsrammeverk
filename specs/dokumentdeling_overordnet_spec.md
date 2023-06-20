@@ -47,10 +47,10 @@ Informasjon må overføres via HelseID
 NHN fyller på med info
 
 ### 2.1 Attributter tilknyttet tillitsrammeverket
-[lenke til informasjonsmodell for tillitsrammeverk](http://sdfdsaf)
+[Datamodellmodell for tillitsrammeverket](/specs/datamodell_tillitsmodell.md)
 
 ### 2.2 Attributter spesifikt for dokumentdeling
-[lenke til informasjonsmodell for dokumentdeling](http://sdfdsaf)
+[Datamodellmodell for tillitsrammeverket](/specs/datamodell_dokumentdeling.md)
 
 ### 2.3 Sekvensdiagram som beskriver systemintegrasjon
 ````mermaid
@@ -151,6 +151,7 @@ Spesifikasjonen gir en detaljert beskrivelse av meldingsflyten i sekvensdiagramm
 
 Systemene hos NHN som deltar i meldingflyten har ytterligere relevante krav knyttet til integrasjoner mellom journalsystemer og NHN sine systemer. Kravene omfatter blant hvordan pasientidentifikator og samtykkegrunnlag skal overføres fra konsument til NHN.
 
+| | |
 | --- | --- |
 | Bruk av HelseID for Kjernejournal | [Veileder](https://kjernejournal.atlassian.net/wiki/spaces/KJERNEJOURDOK1/pages/786989408/Integration+Guide+Kjernejournal+REST+API+using+HelseID+as+authenticator) |
 | Datamodell for dokumentdeling i HelseID | [RAR i HelseID](jwt_rar_profil_tillitsrammeverk.md) |
