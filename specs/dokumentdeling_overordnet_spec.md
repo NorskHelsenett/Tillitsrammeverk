@@ -99,7 +99,9 @@ Informasjonen som dekkes av tillitsrammeverket svarer på følgende spørsmål:
 * Hvilken virksomhet har dataansvar for journalsystemet som helsepersonellet benytter?
 * Ved hvilket behandlingssted yter helsepersonellet helsehjelp?
 
-[Spesifikasjon av datamodellmodell for tillitsrammeverket](/specs/datamodell_tillitsmodell.md).
+
+Detaljer om informasjons- og datamodell for tillitsrammeverket finnes [i spesifikasjonen](/specs/datamodell_tillitsmodell.md).
+
 Legg merke til at konsumentens journalsystem er informasjonskilde for to informasjonselementer:
 * Den dataansvarliges identitet (juridisk enhet)
 * Behandlingssted (virksomhet)
