@@ -389,8 +389,8 @@ HTTP POST body må inneholde parametre som angir:
 * samtykkegrunnlag
 * beskyttelse mot tyveri av sesjonskode
 
-#### Kryptering av _pasientidentifikator_
-* legg inn litt tekst om kryptering her
+#### Ivaretagelse av pasientens konfidensialitet
+Det forutsettes at all kommunikasjon mellom EPJ og NHN foregår via kryptert transport.
 
 #### Beskyttelse mot misbruk av sesjon
 HTTP response fra url KJP-API-URL/api/Session/create inneholder en kode som EPJ må benytte for å angi den aktive sesjonen når den ber om tilgang til en gitt pasient (Steg 9.). 
