@@ -141,9 +141,9 @@ sequenceDiagram
   KJP-->>EPJ: code
   EPJ->>KJP: GET hentpasient.html?otc=code&ehr_code_verifier=code_verifier&[ytterligere parametre]
   HP->>KJP: Åpner fanen journaldokumenter
+
   KJP->>Dokumentkilde: Hent referanseliste
- 
-  Dokumentkilde-->KJP: referanseliste
+  Dokumentkilde-->>KJP: referanseliste
  
   KJP-->>HP: Viser referanseliste
   HP->>KJP: Åpner et journaldokument
@@ -385,10 +385,11 @@ sequenceDiagram
 For å opprette en ny brukersesjon må EPJ sende en HTTP POST request til url KJP-API-URL/api/Session/create.
 
 HTTP POST body må inneholde parametre som angir:
-* pasient-id
+* pasientidentifikator
 * samtykkegrunnlag
+* beskyttelse mot tyveri av sesjonskode
 
-#### Kryptering av _pasient-id_
+#### Kryptering av _pasientidentifikator_
 * legg inn litt tekst om kryptering her
 
 #### Beskyttelse mot misbruk av sesjon
@@ -398,10 +399,10 @@ For å beskytte mot tyveri og misbruk av koden krever Kjernejournal Portal en be
 
 Beskrivelse:
 1. EPJ må generere verdien _ehr_code_verifier_, en kryptografisk tilfeldig verdi basert på tegn som er [definert som gyldige i en URI](https://datatracker.ietf.org/doc/html/rfc3986#section-2.3).
-2. EPJ må generere verdien _ehr_code_verifier_ ved følgende metode:
+2. EPJ må generere verdien _ehr_code_challenge_ ved følgende metode:
     * Base64UrlEncode(sha256(ascii(_ehr_code_verifier_)))
 3. I HTTP POST til _KJP-API-URL/api/Session/create_ skal _ehr_code_challenge_ legges ved som parameter i HTTP body.
-4. EPJ må ta vare på _ehr_code_verifier_ for bruk i _steg 9_ 
+4. EPJ må ta vare på _ehr_code_verifier_ for videre bruk i _steg 9_ 
 
 #### Eksempel på HTTP POST request med _ehr_code_challenge_
 I tillegg til andre parametre må EPJ legge ved Access token utstedt fra HelseID i Authorization Header.
@@ -411,7 +412,7 @@ POST /api/Session/create/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkE4...u_UjgeTxzxI2g
 
-{"ehr_code_challenge": <sha256(nonce)>, "patient-id": "ca2gveFcW%2BdZ..."}
+{"ehr_code_challenge": _ehr_code_challenge_, "patient-id": "ca2gveFcW%2BdZ..."}
 ```
 
 ### *Steg 8:* HTTP response fra KJP-API-URL/api/Session/create
@@ -433,7 +434,7 @@ Disse verdiene overføres som query parametre i GET requestens url.
 
 Denne innloggingsflyten innfører to nye parametre i http meldingen, verdien til disse parametrene skal være:
 * code: koden som EPJ mottok i http response fra kall til _KJP-API-URL/api/Session/create_.
-* ehr_code_verifier: nonce verdien som ble overført i kallet til _KJP-API/api/Session/create_ i klartekst.
+* ehr_code_verifier: klartekst versjon av verdien som ble overført i parameteret _ehr_code_challenge_ i kallet til _KJP-API/api/Session/create_.
 
 ### Eksempel på HTTP GET request til /hpp-webapp/hentpasient.html:
 
