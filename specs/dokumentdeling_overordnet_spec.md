@@ -93,7 +93,7 @@ Datamodellen for beskrivelse av grunnlaget for tilgangsbeslutningen i konsumente
 
 #### 2.2.1 Attributter tilknyttet tillitsrammeverket
 Tillitsrammeverket for deling av helseopplysninger omfatter en informasjonsmodell som beskriver et helsepersonells digitale identitet ved en forespørsel om tilgang til helseopplysninger om sin pasient.
-Informasjonen som dekkes av tillitsrammeverket svarer ut følgende spørsmål:
+Informasjonen som dekkes av tillitsrammeverket svarer på følgende spørsmål:
 * Hvem er helsepersonellet?
 * Hvilke formelle autorisasjoner og/eller lisenser har helsepersonellet?
 * Hvilken virksomhet har dataansvar for journalsystemet som helsepersonellet benytter?
@@ -397,7 +397,7 @@ For å beskytte mot tyveri og misbruk av koden krever Kjernejournal Portal en be
 Beskrivelse:
 1. EPJ må generere verdien _ehr_code_verifier_, en kryptografisk tilfeldig verdi basert på tegn som er [definert som gyldige i en URI](https://datatracker.ietf.org/doc/html/rfc3986#section-2.3).
 2. EPJ må generere verdien _ehr_code_verifier_ ved følgende metode:
-  * Base64UrlEncode(SHA256(ASCII(_ehr_code_verifier_)))
+    * Base64UrlEncode(sha256(ascii(_ehr_code_verifier_)))
 3. I HTTP POST til _KJP-API-URL/api/Session/create_ skal _ehr_code_challenge_ legges ved som parameter i HTTP body.
 4. EPJ må ta vare på _ehr_code_verifier_ for bruk i _steg 9_ 
 
