@@ -183,7 +183,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | --- | --- | --- | --- | --- | 
 | "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | Loggkontroll og sporbarhet |
 | "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "professional_licence" | Helsepersonellets autorisasjon, dersom den finnes | HelseID<br/>Kjernerjournal | **Nei** | Tilgangsstyring |
+| "professional_licence" | Helsepersonellets autorisasjon, dersom den finnes | HelseID | **Nei** | Tilgangsstyring |
 | "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | Loggkontroll og sporbarhet og informasjon til pasienten |
 | "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | Loggkontroll, sporbarhet og informasjon til pasienten |
 
