@@ -76,7 +76,7 @@ EPJ->>KJP: Oppretter brukersesjon
 EPJ->>KJP: Åpne pasient og legger ved Access Token
 KJP-->>HP: Viser pasient
 HP->>KJP: Åpne pasientens journaldokumenter
-KJP->>Dokumentkilde: Hent dokumentoversikt, legger ved Access Token
+KJP->>Dokumentkilde: Hent dokumentoversikt, legger ved SAML token
 Dokumentkilde-->>KJP: Leverer dokumentoversikt
 KJP-->>HP: Viser dokumentoversikt
 HP->>KJP: Hent dokument
