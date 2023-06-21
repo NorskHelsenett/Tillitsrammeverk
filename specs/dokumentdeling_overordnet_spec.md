@@ -232,8 +232,10 @@ De enkelte systemene hos NHN som deltar i meldingflyten har ytterligere relevant
 | | |
 | --- | --- |
 | Bruk av HelseID for Kjernejournal | [Veileder](https://kjernejournal.atlassian.net/wiki/spaces/KJERNEJOURDOK1/pages/786989408/Integration+Guide+Kjernejournal+REST+API+using+HelseID+as+authenticator) |
-| Bruk av HelseID | [Veileder](....) |
-
+| Krav til systemleverandører som vil ta i bruk HelseID | [Krav til systemleverandører](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/490930177/HelseID+Client+Requirements) |
+| Nettverksoppsett for bruk av HelseID | [Tekniske krav til kjøretidsmiljø](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5571114/Technical+requirements+for+using+HelseID) |
+| Sikkerhtsprofil for HelseID | [Sikkerhetsprofil for HelseID-klienter](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/128352260/Security+profile+for+clients+using+HelseID) |
+| Teknisk dokumentasjon | [Claims, scopes og endepunkter](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/58916865/Technical+reference) |
 ### 4.1 Autentiser helsepersonellet via HelseID (steg 2, 3 og 4 i sekvensdiagrammet)
 ````mermaid
 sequenceDiagram 
@@ -267,7 +269,7 @@ POST /connect/authorize HTTP/1.1
 
      client_id=122de46c-a7dd-443f-8892-f6e05cb4aa66
      &scope=openid%20profile 8< ... >8
-     &redirect_uri=https://example.com
+     &redirect_uri=https://example.com/callback 
      &response_type=code
      &request=eyJhbGciOiJSUzI1NiIsImtpZ 8< ... >8
      &state=3eI1NiIsImt 8< ... >8
