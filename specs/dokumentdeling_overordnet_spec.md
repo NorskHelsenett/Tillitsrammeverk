@@ -387,10 +387,21 @@ For å opprette en ny brukersesjon må EPJ sende en HTTP POST request til url KJ
 HTTP POST body må inneholde parametre som angir:
 * pasientidentifikator
 * samtykkegrunnlag
-* beskyttelse mot tyveri av sesjonskode
+* parameternavn for beskyttelse mot tyveri av sesjonskode: "ehr_code_challenge"
 
-#### Ivaretagelse av pasientens konfidensialitet
+#### Pasientidentifikator
+Parameternavn: "pasient_id".
+Verdi for pasientidentifikator skal være pasientens fødselsnummer.
+
+*Ivaretagelse av pasientens konfidensialitet*
 Det forutsettes at all kommunikasjon mellom EPJ og NHN foregår via kryptert transport.
+
+
+#### Samtykkegrunnlag
+Parameternavn: : "samtykke_grunnlag".
+
+Verdien som angis for samtykkegrunnlag skal følge samme krav som spesifisert for [helseindikator tjenesten](https://kjernejournal.atlassian.net/wiki/spaces/KJERNEJOURDOK1/pages/786989408/Integration+Guide+Kjernejournal+REST+API+using+HelseID+as+authenticator). 
+
 
 #### Beskyttelse mot misbruk av sesjon
 HTTP response fra url KJP-API-URL/api/Session/create inneholder en kode som EPJ må benytte for å angi den aktive sesjonen når den ber om tilgang til en gitt pasient (Steg 9.). 
@@ -407,12 +418,20 @@ Beskrivelse:
 #### Eksempel på HTTP POST request med _ehr_code_challenge_
 I tillegg til andre parametre må EPJ legge ved Access token utstedt fra HelseID i Authorization Header.
 
+
 ```http request
 POST /api/Session/create/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkE4...u_UjgeTxzxI2g
 
-{"ehr_code_challenge": _ehr_code_challenge_, "patient-id": "ca2gveFcW%2BdZ..."}
+{
+  "ehr_code_challenge": ehr_code_challenge, 
+  "claims": { 
+    "pasient_id": "13116900216", 
+    "samtykke_grunnlag": "HPAKUTT", 
+    "epj_system": "CGM Vision"
+  }
+}  
 ```
 
 ### *Steg 8:* HTTP response fra KJP-API-URL/api/Session/create
