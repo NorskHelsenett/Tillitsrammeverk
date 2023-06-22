@@ -232,8 +232,10 @@ De enkelte systemene hos NHN som deltar i meldingflyten har ytterligere relevant
 | | |
 | --- | --- |
 | Bruk av HelseID for Kjernejournal | [Veileder](https://kjernejournal.atlassian.net/wiki/spaces/KJERNEJOURDOK1/pages/786989408/Integration+Guide+Kjernejournal+REST+API+using+HelseID+as+authenticator) |
-| Bruk av HelseID | [Veileder](....) |
-
+| Krav til systemleverandører som vil ta i bruk HelseID | [Krav til systemleverandører](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/490930177/HelseID+Client+Requirements) |
+| Nettverksoppsett for bruk av HelseID | [Tekniske krav til kjøretidsmiljø](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/5571114/Technical+requirements+for+using+HelseID) |
+| Sikkerhtsprofil for HelseID | [Sikkerhetsprofil for HelseID-klienter](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/128352260/Security+profile+for+clients+using+HelseID) |
+| Teknisk dokumentasjon | [Claims, scopes og endepunkter](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/58916865/Technical+reference) |
 ### 4.1 Autentiser helsepersonellet via HelseID (steg 2, 3 og 4 i sekvensdiagrammet)
 ````mermaid
 sequenceDiagram 
@@ -258,6 +260,24 @@ For å logge på brukeren via HelseID må EPJ åpne en nettleser som sender en f
 HelseID sørger for å autentisere helsepersonellet i henhold til gjeldende retningslinjer i tillitsrammeverket.
 
 #### *Steg 2 og 3:* HTTP POST request til /authorize endepunktet
+
+_*Eksempel på http POST request mot /authorize:*_
+```
+POST /connect/authorize HTTP/1.1
+     Host: helseid-sts.test.nhn.no
+     Content-Type: application/x-www-form-urlencoded
+
+     client_id=122de46c-a7dd-443f-8892-f6e05cb4aa66
+     &scope=openid%20profile 8< ... >8
+     &redirect_uri=https://example.com/callback 
+     &response_type=code
+     &request=eyJhbGciOiJSUzI1NiIsImtpZ 8< ... >8
+     &state=3eI1NiIsImt 8< ... >8
+     &nonce=6382295010326855 8< ... >8
+     &code_challenge=4T7_IIdgSvF1Yfa0Cmkklx 8< ... >8
+     &code_challenge_method=S256
+```
+
 EPJ må samle nødvendig informasjon om helsepersonellet som angitt i følgende spesifikasjoner:
 * [Datamodell for tillitsrammeverk](datamodell_tillitsmodell.md)
 * [Datamodell for dokumentdeling](datamodell_dokumentdeling.md)
@@ -300,15 +320,14 @@ EPJ må autentiseres ved alle kall til _/token_ endepunktet ved bruk av _client-
 
 _*Eksempel på http POST request ved bruk av client_assertion:*_
 ```
-POST /token HTTP/1.1
-     Host: server.example.no
+POST /connect/token HTTP/1.1
+     Host: helseid-sts.test.nhn.no
      Content-Type: application/x-www-form-urlencoded
 
      grant_type=authorization_code
      &code=SplxlOBeZQQYbYS6WxSbIA&
      &code_verifier=bEaL42izcC-o-xBk0K2vuJ6U-y1p9r_wW2dFWIWgjz-
-     &client_assertion_type=urn%3Aietf%3Aparams%3Aoauth
-     %3Aclient-assertion-type%3Asaml2-bearer
+     &client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer
      &client_assertion=PHNhbW 8< ... >8 ZT
 ```
 
