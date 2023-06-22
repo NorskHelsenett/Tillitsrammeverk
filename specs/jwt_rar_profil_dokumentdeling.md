@@ -3,7 +3,7 @@
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
 | 0.1 | Utkast | 2.06.2023 |
-| 0.2| Utkast til sektoren | 19.06.2023 |
+| 0.2 | Utkast til sektoren | 19.06.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til dokumentdeling via Kjernejournal for deling av helseopplysninger i helse- og omsorgssektoren. Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i Tillitsrammeverket.
 
@@ -13,7 +13,6 @@ Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
 
 ## Definisjon av begrep og forkortelser
-TODO: lenker  
 Spesifikasjonen benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
 
 ## Innholdsfortegnelse
@@ -78,7 +77,17 @@ Under vises en JSON-struktur som inneholder både dokumentdeling-strukturen, str
                 "hpr_nr": "9144900",
                 "authorization": "LE",
             },
-        }
+            "legal_entity": {
+                "id": "993467049",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF",
+                "system": "oid:2.16.578.1.12.4.1.4.101"                
+            },
+            "point_of_care": {
+                "id": "974589095",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+                "system": "oid:2.16.578.1.12.4.1.4.101"            
+            }
+        },
         "care_relationship": {
             "legal_entity": {
                 "id": "993467049",
