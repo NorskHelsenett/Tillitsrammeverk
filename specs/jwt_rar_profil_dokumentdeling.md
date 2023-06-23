@@ -77,16 +77,6 @@ Under vises en JSON-struktur som inneholder både dokumentdeling-strukturen, str
                 "hpr_nr": "9144900",
                 "authorization": "LE",
             },
-            "legal_entity": {
-                "id": "993467049",
-                "name": "OSLO UNIVERSITETSSYKEHUS HF",
-                "system": "oid:2.16.578.1.12.4.1.4.101"                
-            },
-            "point_of_care": {
-                "id": "974589095",
-                "name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-                "system": "oid:2.16.578.1.12.4.1.4.101"            
-            }
         },
         "care_relationship": {
             "legal_entity": {
