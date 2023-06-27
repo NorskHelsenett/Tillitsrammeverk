@@ -406,7 +406,7 @@ Full modell - valgfrie elementer er tatt med
 
 ````JSON
 {
-	"practicioner": {
+	"practitioner": {
 		"pid": {
 			"id": "04056600324",
 			"name": "Magnar Koman",
@@ -492,7 +492,7 @@ I dette eksempelet har en fastlege ...
 
 ```JSON
 {
-	"practicioner": {
+	"practitioner": {
 		"pid": {
 			"id": "20086600138",
 			"name": "August September",
@@ -539,7 +539,7 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 
 ```JSON
 {
-	"practicioner": {
+	"practitioner": {
 		"pid": {
 			"id": "03117000205",
 			"name": "Rita Lin",

@@ -176,7 +176,7 @@ Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på av
 Claims elementet er ett enkeltstående objekt som består av fire attributter med underliggende strukturer.
 
 Attributtene som ligger i "claims" elementet er:
-* "practicioner"
+* "practitioner"
 * "care_relationship"
 * "patient"
 * "system"
@@ -193,7 +193,7 @@ Attributtene som ligger i "claims" elementet er:
 _*Eksempel på JSON strukturen:*_
 ````JSON
 {
-	"practicioner":{
+	"practitioner":{
 		8<...>8
 	},
 	"care_relationship": {

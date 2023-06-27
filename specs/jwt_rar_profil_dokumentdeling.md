@@ -72,7 +72,7 @@ Under vises en JSON-struktur som inneholder både dokumentdeling-strukturen, str
     {
         "type": "nhn:trust_framework:parameters",
         "version": "0.1",
-        "practicioner": {
+        "practitioner": {
             "professional_license": {
                 "hpr_nr": "9144900",
                 "authorization": "LE",

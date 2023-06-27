@@ -115,7 +115,7 @@ Dette elemenetet inneholder 4 claims som beskrevet under:
 {
     "type": "nhn:trust_framework:parameters",
     "version": "0.1",
-    "practicioner":{
+    "practitioner":{
         …
     },
     "care_relationship": {
@@ -137,7 +137,7 @@ JSON-dokumentet under beskriver hvordan en struktur som gjør bruk av Tillitsram
     {
         "type": "nhn:trust_framework:parameters",
         "version": "0.1",
-        "practicioner": {
+        "practitioner": {
             "professional_license": {
                 "hpr_nr": "9144900",
                 "authorization": "LE",
