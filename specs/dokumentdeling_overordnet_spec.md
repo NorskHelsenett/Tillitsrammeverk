@@ -22,7 +22,7 @@ Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
 
 ## 1. Innledning 
-Tilgangsstyring for pasientens journaldokumenter gjennom Kjernejournal Portal er basert på en modell tilpasset helsesektoren, hvor partenenes ansvar er tydeliggjort og oppgaver er fordelt i form av et avtalebasert tillitsrammeverk. Den konsumerende virksomheten skal utføre tilgangsstyring til pasientens helseopplysninger på vegne av dokumentkilden.
+Tilgangsstyring for pasientens journaldokumenter gjennom Kjernejournal Portal er basert på en modell tilpasset helsesektoren, hvor partenenes ansvar er tydeliggjort og oppgaver er fordelt i form av et avtalebasert tillitsrammeverk (<I>lenke mangler</I>). Den konsumerende virksomheten skal utføre tilgangsstyring til pasientens helseopplysninger overordnet sett, mens mer detaljert tilgangsstyring gjøres enten av Norsk helsenett for tilganger til funksjoner i Kjernejournal Portal, eller av kilder for tilganger som er spesifikke for informasjonen kilden besitter.
 
 Tillitsrammeverket stiller underliggende krav til tilgangsstyring som alle aktører forplikter seg til å etterleve. I tillegg vil NHN, i sin rolle som tillitsanker for sektoren, tilby tillitstjenester som aktørene skal benytte i delingen.
 
