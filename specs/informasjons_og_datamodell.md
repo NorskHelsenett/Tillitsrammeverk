@@ -40,14 +40,15 @@ For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til hel
 
 Kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte.
 
-I tillitsrammeverket legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring til helseopplysninger på vegne av virksomheten som skal dele helseopplysningene. Til tross for at den konsumerende virksomheten er forpliktet til å kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger likevel behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil benyttes til flere formål:
-* å utføre ytterligere tilgangskontroll
-* lovpålagt logging av tilgangen for å avdekke urettmessig tilegnelse av helseopplysninger
-* å støtte opp under innbyggers rettigheter
+I tillitsrammeverket legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring av helseopplysninger på overordnet nivå (helsepersonellets tilgang til pasienten), mens virksomheten som skal dele helseopplysningene utfører tilgangsstyring til de spesifikke opplysningene som eventuelt deles. Til tross for at den konsumerende virksomheten er forpliktet til å dokumentere og kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger også behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil av virksomheten som deler opplysninger benyttes til flere formål:
+* å utføre spesifikk tilgangskontroll til opplysningene som deles
+* a dokumentere at tilgang er gitt til helsepersonellet, hvilket grunnlag som ble fremsatt for å oppnå tilgangen og hvilke opplysninger det er gitt tilgang til
+* lovpålagt etterfølgende konstroll av tilgangen for å avdekke eventuelle urettmessige tilegnelser av helseopplysninger
+* å støtte opp under innbyggers rettigheter i henhold til ulike lovkrav (pasient- og brukerrettighetsloven, personopplysningsloven og personvernforordningen mm)
 
-På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter er det nødvendig at sektoren samler seg om et felles språk for å uttrykke grunnlaget for tilgang slik at aktørene kan forstå hverandre. Et felles språk vil også bidra til å kommunisere på en konsistent måte til innbygger.
+På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter er det nødvendig at sektoren samler seg om en felles metode for å uttrykke grunnlaget for tilgang, slik at aktørene kan forstå hverandre. En felles metode vil også bidra til å kommunisere på en konsistent måte til innbygger.
 
-Denne spesifikasjonen definerer et felles språk som skal benyttes til å uttrykke helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt.
+Denne spesifikasjonen definerer en felles metode som skal benyttes til å uttrykke helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt.
 Spesifikasjonen definerer en informasjonsmodell, datamodell og kodeverk som skal implementeres i programvare som benyttes av helsepersonell når de yter helsehjelp til sin pasient.
 
 ## 2. Ordliste
@@ -57,9 +58,9 @@ Spesifikasjonen definerer en informasjonsmodell, datamodell og kodeverk som skal
 |  |  |
 
 ## 3. Bakgrunn for spesifikasjonen
-Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles tillitsmodell som skisserer tillitsgrunnlaget for å dele helseopplysninger mellom helsepersonell på tvers av virksomhetene i sektoren.
+Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles tillitsmodell som skisserer tillitsgrunnlaget for å dele helseopplysninger mellom helsepersonell på tvers av virksomhetene i sektoren. Les mer om felles tillitsmodell her: <I>Lenke mangler</I>
 
-Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene. Den første anvendelsen av tillitsrammeverket, og denne spesifikasjonen, er i prosjektet som skal etablere nasjonal dokumentdeling i Kjernejournal.
+Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene (<I>Lenke mangler</I>). Den første anvendelsen av tillitsrammeverket, og denne spesifikasjonen, er utarbeidet for prosjektet som skal etablere nasjonal dokumentdeling via kjernejournal.
 
 
 ## 4. Spesifikasjon
@@ -68,12 +69,12 @@ Spesifikasjonen inneholder en informasjonsmodell som beskriver hvilken informasj
 
 Spesifikasjonen beskriver hvilke konkrete attributter som skal brukes for å beskrive informasjonsmodellen i form av en datamodell, og hvilke kodeverk og verdier som er gyldige for attributtene.
 
-Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil implementeres i relevante nasjonale ehelseløsninger og tillitstjenester.
+Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil implementeres i relevante nasjonale e-helseløsninger og tillitstjenester.
 
 Datamodellen skal benyttes til flere formål:
-* for tilgangsstyring og tilgangskontroll i ehelseløsninger, dokumentkilder og i API
-* til logging
-* for å tilfredsstille pasientens rettigheter
+* for tilgangsstyring og tilgangskontroll i e-helseløsninger, dokumentkilder og i API
+* til dokumentasjon/logging og som grunnlag for en etterfølgende kontroll av tilganger
+* for å tilfredsstille innbyggeres rettigheter
 
 ### 4.1 Informasjonsmodell
 Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tre hovedkategorier:
@@ -83,22 +84,39 @@ Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tr
 
 
 #### 4.1.1 Helsepersonellets Identitet
-Helsepersonellets grunnleggende identitet består av informasjon som sjelden endres, slik som personens navn og fødselsnummer. I yrkessammenheng består også helsepersonellets identitet i tillegg av eventuelle offentlige godkjenninger og rettigheter.
+Helsepersonellets grunnleggende identitet består av informasjon som sjelden endres, slik som personens navn og fødselsnummer. I yrkessammenheng består også helsepersonellets identitet i tillegg av tilhørighet til organisasjon, hvilket arbeidsforhold de opptrer i kraft av, samt eventuelle offentlige godkjenninger og rettigheter personellet har. Avhengig av organisasjonens størrelse og antall arbeidsforhold et gitt personell kan ha innenfor organisasjonen, kan det være nødvendig at både fysisk arbeidssted, detaljert organisasjonstilhørighet og angivelse av roller (stilling og/eller funksjon) som reflekterer hvilket ansvar og hvilke oppgaver personellet har i det aktuelle arbeidsforholdet, kreves for å sikre entydighet om hvilket arbeidsforhold personellet opptrer i kraft av under sin tilgang til personopplysninger i andre virksomheter.
 
-Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person. Identiteten vil benyttes i forbindelse med tilgangskontroll, slik som kontroll av hvorvidt pasienten har sperret for utlevering av helseopplysninger til helsepersonellet, logging og oppfølging av funn i logganalyse og for informasjon til pasienten. 
+Helsepersonellets identitet er nødvendig å overføre fordi vi må kunne knytte en tilgang til helseopplysninger til en gitt person og hvem som er personalansvarlig og/eller eventuelt faglig ansvarlig for personellets tilgang til personopplysninger. Identiteten vil benyttes i forbindelse med tilgangskontroll, slik som kontroll av hvorvidt pasienten har sperret for utlevering av helseopplysninger til helsepersonellet, logging og avklaring av uvanlige mønster funnet ved systematisk logganalyse, samt for informasjon til pasienten om de tilganger som er gitt. Uten at ansvarslinjer for personellets tilganger er entydig dokumentert vil det være risiko for ansvarspulverisering og tidkrevende avklaringer av ansvarslinjer i ettertid, der pasienten i verste fall også er prisgitt samarbeidsvilje fra den oppsøkende virksomheten for å kunne stille rett person til ansvar for eventuelt misbruk av personopplysningene.
+
+Henvendelser fra virksomheter som deler opplysninger til helsepersonellets virksomhet for oppfølging av uvanlige mønster avdekket ved systematisk logganalyse vil presumtivt skje mest effektivt dersom medisinsk-faglig ansvarlig enhet eller personalansvarlig enhet er kjent for virksomheten som deler opplysninger, slik at dette kan oppgis ved henvendelsen eller brukes for å adressere henvendelsen mest mulig presist. Informasjon om roller og så detaljert organisasjonstilhørighet som mulig vil også tilrettelegge for at systematisk logganalyse kan sammenlikne tilgangsmønster mellom helsepersonell som har tilsvarende oppgaver og ansvar fra samme enhet og organisasjon. Det er ikke nødvendig at det benyttes felles kodeverk eller identifikatorer mellom ulike organisasjoner for å oppnå dette, men der dette er felles vil tilføre ytterligere forbedringer for den systematiske logganalysen.
+
+På sikt vil roller som uttrykker funksjonen et helsepersonell utøver (som igjen uttrykker mer spesifikke ansvar og oppgaver personellet har enn stilling ofte gjør) også gi et langt bedre grunnlag under forhåndsvurderingen av hvilke helseopplysninger som kan være relevante og nødvendige for ulike grupper av eksternt og internt personell. Dette forutsetter at det er etablert og tatt i bruk et harmonisert og standardisert kodeverk for å beskrive helsepersonells ulike funksjoner i de ulike organisasjonene.
+
+For pasienter som ønsker å begrense deling av sine opplysninger kan de ulike rollebegrepene være aktuelle kriterier som forvaltningen kan benytte for å begrense tilgang mest mulig presist, for eksempel å kun dele med alle som er autorisert som lege, eller kun dele med personell som har stillingen eller funksjonen overlege, gjerne i kombinasjon med andre informasjonselementer som sikre ytterligere presisjon på begrensningen i tråd med pasientens ønsker.  
+
+Oppsumert trengs følgende informasjon for å beskrive helsepersonellets identitet:
+* Identifikator for helsepersonellet (fødselsnummer/D-nummer/ansattidentifikator)
+* Helsevirksomheten helsepersonellet representerer som er juridisk ansvarlig for personellets aktivitet
+* Helsepersonellets arbeidssted (behandlingsstedet personellet formelt sett tilhører)
+* Eventuelt helsepersonellets detaljerte organisasjonstilhørighet dersom virksomheten er stor nok til at dette er nødvendig
+* Eventuelt formell rolle/stilling helsepersonellet har som entydig avklarer personalansvarslinjen innenfor organisasjonen
+* Eventuelt hvilken funksjon helsepersonellet utøver som kan avklare hvilket ansvar og oppgaver personellet har, samt hvem som er medisinsk-faglig ansvarlig for personellets tilgang til helseopplysninger innenfor organisasjonen 
 
 #### 4.1.2 Helsepersonellets behandlerrelasjon til sin pasient
-I delingssammenheng består helsepersonellets digitale identitet også av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets behandlerrelasjon til pasienten.
+I delingssammenheng består helsepersonellets digitale adgangskort også av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets mer spesifikke behandlerrelasjon til pasienten.
 
-Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at helsepersonell bare skal gis tilgang til helseopplysninger dersom det foreligger et tjenstlig behov og at opplysningene er relevant og nødvendig i behandlingen av pasienten. Det er helsepersonellet og konsumentens ansvar å sørge for at tilgangen til helseopplysningene er i henhold til loven, men den utleverende part har likevel behov for overført informasjon som beskriver bakgrunnen for forespørselen om helseopplysninger for å tilfredsstille lovkrav knyttet til dokumentasjon og å utføre tilgangskontroll. 
+Norsk lov og ytterligere konkretisering i Norm for informasjonssikkerhet sier at helsepersonell bare skal gis tilgang til helseopplysninger dersom det foreligger et tjenstlig behov, og forutsatt at opplysningene er relevante og nødvendige i behandlingen av pasienten. Det er helsepersonellet og virksomheten de opptrer i kraft av sitt ansvar å sørge for at tilgangen til helseopplysningene er i henhold til loven, men den utleverende part har likevel behov for overført informasjon som beskriver bakgrunnen for forespørselen om helseopplysninger for å tilfredsstille lovkrav knyttet til dokumentasjon og å utføre tilgangskontroll på sin side. 
 
 Informasjonen som beskriver helsepersonellets behandlerrelasjon til sin pasient består av følgende informasjon:
-* Helsevirksomhet og behandlingssted
-* Helsetjenestetype ved behandlingssted
-* Formålet med behandlingen av helseopplysninger
+* Formålet med behandlingen av helseopplysninger i form av en overordnet angivelse av grunnlaget for tilgangen og hvilken aktivitet/hendelse som utløser dette spesifikke tilgangsbehovet
+* Eventuell helsetjenestetype/helsehjelpstjeneste som ytes til pasienten i forbindelse med tilgangen
 
-#### 4.1.3 Pasientens identitet
-Pasienten må identifiseres ved deling av helseopplysninger. Det er ikke nødvendig å overføre annen informasjon om pasienten enn en unik identifikator.
+#### 4.1.3 Pasienteninformasjon
+Pasienten må identifiseres ved deling av helseopplysninger for å kunne knytte den dokumenterte behandlerrlasjonen til både pasient og helsepersonell. Dette vil også hindre at helseperonsellet kan få tilgang til opplysninger fra andre pasienter enn den aktuelle uten at det utstedes et nytt digitalt adgangskort. Det er ikke nødvendig å overføre annen informasjon om pasienten enn en unik identifikator, siden navnet og annen folkeregisterinformasjon vil være kjent der det er registrert helseopplysninger som kan deles.
+
+* Identifikator som angir pasientens identitet (fødselsnummer/D-nummer)
+* Eventuelt pasientens behandlingssted og mer detaljert organisasjonstilhørighet for pasienten når størrelsen på virksomheten gjør dette nødvendig
+
 
 #### 4.1.4 Oppsummert informasjonsmodell
 
@@ -113,16 +131,19 @@ classDiagram
     class Helsepersonell{
 		- Helsepersonellet fødselsnummer og navn
 		- Helsepersonellets formelle autorisasjon
+		- Den personalansvarlige og dataansvarlige virksomheten
+		- Hvilket arbeidssted/behandlingssted helsepersonellet tilhører formelt sett
+		- Eventuelt hvilken detaljert organisasjonstilhørighet helsepersonellet har i større organisasjoner
+		- Eventuelt formell rolle/stilling helsepersonellet opptrer i kraft av på vegne av organisasjonen
+		- Eventuell funksjon helsepersonellet har og opptrer i kraft av på vegne av organisasjonen
     }
     class Behandlerrelasjon{
-		- Den dataansvarlige virksomheten
-		- Ved hvilket behandlingssted befinner helsepersonellet seg
-		- Helsetjenestetypen som ytes ved behandlingsstedet
-		- Formålet med behandlingen av helseopplysningene
-		- Detaljert beskrivelse av behandlingsstedet (f.eks. avdeling)
+		- Formålet med og grunnlaget for behandlingen av helseopplysningene
+		- Eventuell helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
     }
     class Pasient{
 		- Hvem er pasienten
+		- Eventuell tilhørighet til behandlingssted og detaljert organisasjonstilhørighet for pasienten
     }
 
 ```
