@@ -248,7 +248,7 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 
 #### 4.2.5 Relasjon til HL7 FHIR datamodell
 
-#### 4.2.5.1 Attributter sammenliknet med HL7 FHIR ([no-basis profiler](https://simplifier.net/hl7norwayno-basis/~resources?category=Profile))
+#### 4.2.5.1 Attributter koblet mot [HL7 FHIR AuditEvent](http://hl7.org/fhir/auditevent.html) (med knytning til [no-basis profiler](https://simplifier.net/hl7norwayno-basis/~resources?category=Profile))
 
 | Attributt | HL7 FHIR ressurs | HL7 FHIR element | HL7 FHIR kriterium/betingelse | Beskrivelse |
 | --- | --- |--- |--- |--- |
@@ -310,6 +310,128 @@ Det er bare navn som skal vises til innbygger.
 	"authority": "www.skatteetaten.no" /* forvalter folkeregisteret - står i SAML token i dag */
 }
 ````
+
+
+##### "legal_entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
+Attributtet "legal_entity" identifiserer den dataansvarlige virksomheten for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
+
+Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår (medlemsskap i helsenett, avtale om tilgang til tjenester som helseid, kjernejournal og aksept av tilhørende bruksvilkår)
+Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
+
+Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
+
+- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal_entity". HelseID kontrollerer at databehandler har rett til å opptre på vegne av helsevirksomheten ved å gjøre oppslag i delegeringer som er utført i Altinn.
+- For single-tenancy/on-premise løsninger vil HelseID utlede helsevirksomhet.
+
+|   |   |
+| ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
+| Attributt: | "legal_entity" |
+| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
+| Obligatorisk: | **Ja** |
+| Data type: | String |
+| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Informasjonskilde: | - §9/multi tenancy: Konsumentens journalsystem<br>- Single-tenancy: Utledes av HelseID  |
+| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
+
+
+###### Den personalansvarlige og dataansvarlige virksomheten - Attributter JSON format
+
+````JSON
+"legal_entity": {
+	"id": "921592761",
+	"name": "Lege Leif Lagesen ENK",
+	"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+	"authority": "www.brreg.no"
+}
+```` 
+
+##### "point_of_care": Arbeidssted (behandlingssted som helsepersonellet tilhører)
+
+Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet formelt sett har sin tilhørighet,
+og skal peke på en virksomhet i enhetsregisteret.
+<br>
+Attributtet er obligatorisk, men verdiene for "legal_entity" og "point_of_care" kan være like der virksomheten kun drives på et geografisk sted og ikke har undervirksomheter.
+
+Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
+
+Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care: 
+
+**Spesialisthelsetjenesten**
+* legal_enitity: "Nordlandssykehuset HF" 
+* point_of_care: "Nordlandssykehuset HF Somatikk - Gravdal"
+
+**Kommune**
+* legal_entity: "Oslo kommune helseetaten"
+* point_of_care: "Oslo kommune helseetaten legevakten Storgata"
+
+
+|   |   |
+| ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
+| Attributt: | "point_of_care" |
+| Attributt EHDSI: | N/A |
+| Obligatorisk: | **JA** |
+| Data type: | String |
+| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Informasjonskilde: | Konsumentens journalsystem |
+| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
+
+###### Arbeidssted/behandlingssted - Attributter JSON format
+
+````JSON
+"point_of_care": {
+	"id": "123456789",
+	"name": "Det beste legekontoret i byen AS",
+	"system": "2.16.578.1.12.4.1.4.101",
+	"authority": "www.brreg.no"
+}
+````
+
+##### "department": Avdeling eller detaljert organisasjonsenhet
+Attributtet "department" angir avdelingen eller helsepersonellets mest detaljerte organisasjonstilhørighet.
+Helsepersonellets virksomhet må selv vurdere hvilket nivå som vil være tilstrekkelig og hensiktsmessig for å beskrive tilhørigheten ovenfor andre virksomheter og sine pasienter.
+
+Attributtet er ikke relevant for virksomheter av mindre størrelse som ikke har et organiasjonshierarki. Det er derfor ikke obligatorisk å legge det ved. 
+
+I kommunal sektor vil det være relevant å bruke attributtet "department" for å angi aktuell skole i skolehelsetjenestenm mens det i sykehjemskontekst kanskje ikke er relevant å angi avdeling eller annen mer spesifikk enhet.
+
+Dersom konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet må de fremdeles angi system og assigner. I slike tilfeller vil den juridiske enheten være "assigner" og en globalt unik identifikator av "system" må være etablert for å sikre at veridene som oppgis alltid vil være entydige når de opptrer sammen med "system".
+
+Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
+
+
+|   |   |
+| ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Fysisk sted/avdeling/organisasjonsenhet som helsepersonellet tilhører |
+| Attributt: | "department" |
+| Attributt EHDSI: | N/A |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
+| Obligatorisk:| **Nei** |
+| Data type: | Object |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Kodeverk: | RESH/Enhetsregisteret |
+| Gyldige verdier: | N/A |
+
+
+
+
+
+###### "department" - Attributter JSON format
+
+````JSON
+"department": {
+        "id": "resh:121313", 
+        "system": "resh:x.x.x.x.x.x.x",
+        "name": "UNN ....",
+        "authority": "",
+    },
+````
+
 
 ##### 4.2.6.2 "hpr_nr" og "authorization" - Informasjon om helsepersonellet fra Helsepersonellregisteret
 
@@ -375,127 +497,7 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 ````
 
 #### 4.2.7 "care_relation": Behandlerrelasjon
-Helsepersonellets behandlerrelasjon til pasientent angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
-
-##### "legal_entity": den dataansvarlige virksomheten 
-Attributtet "legal_entity" identifiserer den dataansvarlige for helseopplysningene som behandles i journalsystemet som brukes av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
-
-Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forb. med signerte bruksvilkår (medlem i helsenett, helseid, kj)
-Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
-
-Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
-
-- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal_entity". HelseID kontrollerer at databehandler har rett til å opptre på vegne av helsevirksomheten ved å gjøre oppslag i delegeringer som er utført i Altinn.
-- For single-tenancy/on-premise løsninger vil HelseID utlede helsevirksomhet.
-
-|   |   |
-| ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
-| Attributt: | "legal_entity" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
-| Obligatorisk: | **Ja** |
-| Data type: | String |
-| Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | - §9/multi tenancy: Konsumentens journalsystem<br>- Single-tenancy: Utledes av HelseID  |
-| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
-
-
-###### Den dataansvarlige virksomheten - Attributter JSON format
-
-````JSON
-"legal_entity": {
-	"id": "921592761",
-	"name": "Lege Leif Lagesen ENK",
-	"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-	"authority": "www.brreg.no"
-}
-```` 
-
-##### "point_of_care": Behandlingssted
-
-Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp,
-og skal peke på en virksomhet i enhetsregisteret.
-<br>
-Attributtet er obligatorisk, men dersom verdiene for "legal_entity" og "point_of_care" er like verdien gjentas i begge attributter.
-
-Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
-
-Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care: 
-
-**Spesialisthelsetjenesten**
-* legal_enitity: "Nordlandssykehuset hf" 
-* point_of_care: "Nordlandssykehuset somatikk gravdal"
-
-**Kommune**
-* legal_entity: "Oslo Kommune helseetaten"
-* point_of_care: "Legevakten Storgata"
-
-
-|   |   |
-| ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
-| Attributt: | "point_of_care" |
-| Attributt EHDSI: | N/A |
-| Obligatorisk: | **JA** |
-| Data type: | String |
-| Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsumentens journalsystem |
-| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
-
-###### Behandlingssted - Attributter JSON format
-
-````JSON
-"point_of_care": {
-	"id": "123456789",
-	"name": "Det beste legekontoret i byen AS",
-	"system": "2.16.578.1.12.4.1.4.101",
-	"authority": "www.brreg.no"
-}
-````
-
-##### "department": Avdeling/organisasjonsenhet
-Attributtet "department" angir avdelingen hvor helsepersonellet yter eller administrerer helsehjelp.
-Konsumenten må vurdere hvilket nivå som vil være tilstrekkelig for å beskrive tilhørigheten på et godt nok nivå.
-
-Attributtet er ikke relevant for alle typer virksomheter. Det er derfor ikke obligatorisk å legge det ved. 
-
-I kommunal sektor vil det være relevant å bruke attributtet "department" for å angi aktuell skole i skolehelsetjenestenm mens det i sykehjemskontekst ikke er relevant å angi avdeling.
-
-Dersom konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet må de fremdeles angi system og assigner. I slike tilfeller vil den juridiske enheten være "assigner".
-
-Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgangen til helseopplysninger til innbygger.
-
-
-|   |   |
-| ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Fysisk sted/avdeling/Organisasjonsenhet hvor helsepersonellet yter helsehjelp |
-| Attributt: | "department" |
-| Attributt EHDSI: | N/A |
-| Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk:| **Nei** |
-| Data type: | Object |
-| Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
-| Kodeverk: | RESH/Enhetsregisteret |
-| Gyldige verdier: | N/A |
-
-
-
-
-
-###### "department" - Attributter JSON format
-
-````JSON
-"department": {
-        "id": "resh:121313", 
-        "system": "resh:x.x.x.x.x.x.x",
-        "name": "UNN ....",
-        "authority": "",
-    },
-````
+Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av formålet med og bakgrunnen for behandlingen av helseopplysningene og eventuelt en helsetjenestetype som ytes til pasienten.
 
 ##### "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
@@ -652,6 +654,83 @@ Attributtet er til behandling av NHN - ROS/DIPA
 }
 ````
 
+##### "point_of_care": Behandlingssted som pasienten mottar behandling fra)
+
+Attributtet "point_of_care" identifiserer behandlingsstedet hvor pasienten mottar behandlingen som er grunnlaget for tilgangen fra,
+og skal peke på en virksomhet i enhetsregisteret.
+<br>
+Attributtet er ikke relevant dersom pasienten behandles utenfor helsepersonellets virksomhet, og det er derfor ikke obligatorisk. Verdien for "point_of_care" kan være lik helsepersonellets "legal_entity" der virksomheten kun drives på et geografisk sted og ikke har undervirksomheter.
+
+
+Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
+
+
+|   |   |
+| ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Virksomheten (underenhet) hvor pasienten behandles |
+| Attributt: | "point_of_care" |
+| Attributt EHDSI: | N/A |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
+| Obligatorisk: | **Nei** |
+| Data type: | String |
+| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Informasjonskilde: | Konsumentens journalsystem |
+| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
+
+###### Behandlingssted for pasient - Attributter JSON format
+
+````JSON
+"point_of_care": {
+	"id": "123456789",
+	"name": "Det beste legekontoret i byen AS",
+	"system": "2.16.578.1.12.4.1.4.101",
+	"authority": "www.brreg.no"
+}
+````
+
+##### "department": Avdeling eller detaljert organisasjonsenhet
+Attributtet "department" angir avdelingen eller den mest detaljerte organisasjonstilhørigheten pasienten har i forbindelse med helsehjelpen som krever tilgang til helseopplysningene i helsepersonellets virksomhet.
+Helsepersonellets virksomhet må selv vurdere hvilket nivå som vil være tilstrekkelig og hensiktsmessig for å beskrive tilhørigheten ovenfor andre virksomheter og sine pasienter.
+
+Attributtet er ikke relevant for virksomheter av mindre størrelse som ikke har et organiasjonshierarki. Det er heller ikke relevant dersom pasienten behandles utenfor helsepersonellets virksomhet. Det er derfor ikke obligatorisk å legge det ved. 
+
+I kommunal sektor vil det være relevant å bruke attributtet "department" for å angi aktuell skole i skolehelsetjenestenm mens det i sykehjemskontekst kanskje ikke er relevant å angi avdeling eller annen mer spesifikk enhet.
+
+Dersom konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet må de fremdeles angi system og assigner. I slike tilfeller vil den juridiske enheten være "assigner" og en globalt unik identifikator av "system" må være etablert for å sikre at veridene som oppgis alltid vil være entydige når de opptrer sammen med "system".
+
+Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
+
+
+|   |   |
+| ---| ---|
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
+| Informasjonselement | Detaljert organisasjonsenhet som pasienten tilhører |
+| Attributt: | "department" |
+| Attributt EHDSI: | N/A |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
+| Obligatorisk:| **Nei** |
+| Data type: | Object |
+| Autoritativ kilde: | Konsument |
+| Informasjonskilde: | Konsumentens EPJ |
+| Kodeverk: | RESH/Enhetsregisteret |
+| Gyldige verdier: | N/A |
+
+
+
+
+
+###### "department" - Attributter JSON format
+
+````JSON
+"department": {
+        "id": "resh:121313", 
+        "system": "resh:x.x.x.x.x.x.x",
+        "name": "UNN ....",
+        "authority": "",
+    },
+````
+
 ## 5. JSON profil for datamodell
 Full modell - valgfrie elementer er tatt med
 
@@ -674,9 +753,7 @@ Full modell - valgfrie elementer er tatt med
 			"text": "Lege",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
 			"assigner": "https://www.helsedirektoratet.no/"
-		}
-	},
-	"care_relationship": {
+		},
 		"legal_entity": {
 			"id": "993467049",
 			"name": "OSLO UNIVERSITETSSYKEHUS HF",
@@ -689,17 +766,19 @@ Full modell - valgfrie elementer er tatt med
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.skatteetaten.no"
 		},
-		"healthcare_service": {
-			"code": "S03",
-			"text": "Indremedisin",
-			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
-			"assigner": "https://www.helsedirektoratet.no/"
-		},
 		"department": {
 			"id": "resh:121313",
 			"system": "resh:x.x.x.x.x.x.x",
 			"name": "Avdeling ved Sykehus",
 			"authority": "RESH"
+		}
+	},
+	"care_relationship": {
+		"healthcare_service": {
+			"code": "S03",
+			"text": "Indremedisin",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+			"assigner": "https://www.helsedirektoratet.no/"
 		},
 		"purpose_of_use": {
 			"code": "TREAT",
@@ -728,6 +807,18 @@ Full modell - valgfrie elementer er tatt med
 			"name": "Kognar Maman",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 			"authority": "https://www.skatteetaten.no"
+		},
+		"point_of_care": {
+			"id": "974589095",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"authority": "https://www.skatteetaten.no"
+		},
+		"department": {
+			"id": "resh:121313",
+			"system": "resh:x.x.x.x.x.x.x",
+			"name": "Avdeling ved Sykehus",
+			"authority": "RESH"
 		}
 	}
 }
@@ -798,21 +889,21 @@ Eksempelet hvor en fastlege er konsument
 			"text": "Lege",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
 			"assigner": "https://www.helsedirektoratet.no/"
-		}
-	},
-	"care_relationship": {
+		},
 		"legal_entity": {
 			"id": "100100673",
 			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.skatteetaten.no"
+			"authority": "https://www.brreg.no"
 		},
 		"point_of_care": {
 			"id": "100100673",
 			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.skatteetaten.no"
-		},
+			"authority": "https://www.brreg.no"
+		}
+	},
+	"care_relationship": {
 		"healthcare_service": {
 			"code": "KX17",
 			"text": "Fastlege, liste uten fast lege",
@@ -833,7 +924,7 @@ Eksempelet hvor en fastlege er konsument
 
 #### 8.2 Eksempel #2 - Ansatt i kommune ber om tilgang til dokument
 
-I dette eksempelet har...
+I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang til et dokument i en annen virksomhet for å planlegge videre oppfølging av en pasient som mottar hjemmehjelpstjenester fra kommunen
 
 ##### JSON
 
@@ -856,21 +947,21 @@ I dette eksempelet har...
 			"text": "Lege",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
 			"assigner": "https://www.helsedirektoratet.no/"
-		}
-	},
-	"care_relationship": {
+		},
 		"legal_entity": {
 			"id": "997506499",
 			"name": "OSLO KOMMUNE HELSEETATEN",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.skatteetaten.no"
+			"authority": "https://www.brreg.no"
 		},
 		"point_of_care": {
 			"id": "875300342",
 			"name": "MADSERUDHJEMMET",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.skatteetaten.no"
-		},
+			"authority": "https://www.brreg.no"
+		}
+	},
+	"care_relationship": {
 		"healthcare_service": {
 			"code": "KP01",
 			"text": "Legetjeneste ved sykehjem",
@@ -902,8 +993,94 @@ I dette eksempelet har...
 ```
 
 
-#### 8.3 Eksempel #3 - HP i foretak ber om tilgang til dokument
+#### 8.3 Eksempel #3 - Helsepersonell i foretak ber om tilgang til dokument
+
+I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet forberede seg på å gi anestesi til en pasient som er inne for en øyeoperasjon ved Ullevål sykehus, og anestesilegen trenger derfor tilgang til å lese dokumenter fra tidligere behandlere i andre virksomheter for å finne ut hvilke virkestoffer som ble brukt under tidligere anestesi som pasienten rapporterer medførte allergiske reaksjoner 
+
 ##### JSON
+
+```JSON
+{
+	"practicioner": {
+		"pid": {
+			"id": "05086900124",
+			"name": "Ben Reddik",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"authority": "https://www.skatteetaten.no"
+		},
+		"hpr_nr": {
+			"id": "222200068",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+			"authority": "https://www.helsedirektoratet.no/"
+		},
+		"authorization": {
+			"code": "LE",
+			"text": "Lege",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+			"assigner": "https://www.helsedirektoratet.no/"
+		},
+		"legal_entity": {
+			"id": "993467049",
+			"name": "Oslo universitetssykehus HF",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"authority": "https://www.brreg.no"
+		},
+		"point_of_care": {
+			"id": "874716782",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"authority": "https://www.brreg.no"
+		},
+		"department": {
+			"id": "705592",
+			"name": "Anestesiologi Seksjon RH",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+			"authority": "https://www.nhn.no"
+		}
+	},
+	"care_relationship": {
+		"healthcare_service": {
+			"code": "300",
+			"text": "Øyesykdommer",
+			"system": "urn:oid:2.16.578.1.12.4.1.1.8451",
+			"assigner": "https://www.helsedirektoratet.no/",   
+		},
+		"purpose_of_use": {
+			"code": "TREAT",
+			"text": "treatment",
+			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+			"assigner": "https://www.hl7.org"
+		},
+		"purpose_of_use_details": {
+			"code": "POLBESOK",
+			"text": "Poliklinisk besøk",
+			"system": "urn:AuditEventHL7Norway/CodeSystem/carerelation",
+			"assigner": "https://www.hl7.no"
+		}
+	},
+	"patient": {
+		"patient_id": {
+			"id": "05076600324",
+			"name": "Kognar Maman",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+			"authority": "https://www.skatteetaten.no"
+		},
+		"point_of_care": {
+			"id": "974589095",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+			"authority": "https://www.brreg.no"
+		},
+		"department": {
+			"id": "109765",
+			"name": "Øye dagkir/pol 1. etasje",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+			"authority": "https://www.nhn.no"
+		}
+	}
+}
+```
+
 
 #### 8.4 Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege
 ##### JSON
