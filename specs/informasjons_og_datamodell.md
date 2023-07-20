@@ -73,7 +73,7 @@ Spesifikasjonen skal benyttes av programvare- og systemleverandører ved impleme
 
 Datamodellen skal benyttes til flere formål:
 * for tilgangsstyring og tilgangskontroll i e-helseløsninger, dokumentkilder og i API
-* til dokumentasjon/logging og som grunnlag for en etterfølgende kontroll av tilganger
+* til dokumentasjon/logging for sporbarhet/etterprøvbarhet og som grunnlag for en etterfølgende kontroll av tilganger
 * for å tilfredsstille innbyggeres rettigheter
 
 ### 4.1 Informasjonsmodell
@@ -99,8 +99,8 @@ Oppsumert trengs følgende informasjon for å beskrive helsepersonellets identit
 * Helsevirksomheten helsepersonellet representerer som er juridisk ansvarlig for personellets aktivitet
 * Helsepersonellets arbeidssted (behandlingsstedet personellet formelt sett tilhører)
 * Eventuelt helsepersonellets detaljerte organisasjonstilhørighet dersom virksomheten er stor nok til at dette er nødvendig
-* Eventuelt formell rolle/stilling helsepersonellet har som entydig avklarer personalansvarslinjen innenfor organisasjonen
-* Eventuelt hvilken funksjon helsepersonellet utøver som kan avklare hvilket ansvar og oppgaver personellet har, samt hvem som er medisinsk-faglig ansvarlig for personellets tilgang til helseopplysninger innenfor organisasjonen 
+* Eventuelt formell rolle/stilling helsepersonellet opptrer i kraft av, og som entydig avklarer personalansvarslinjen innenfor organisasjonen
+* Eventuelt hvilken funksjon helsepersonellet utøver, og som kan avklare hvilket ansvar og oppgaver personellet har, samt hvem som er medisinsk-faglig ansvarlig for personellets tilgang til helseopplysninger innenfor organisasjonen 
 
 #### 4.1.2 Helsepersonellets behandlerrelasjon til sin pasient
 I delingssammenheng består helsepersonellets digitale adgangskort også av informasjon som beskriver hvorfor helsepersonellet har behov for tilgang til pasientens helseopplysninger. Disse informasjonselementene forteller noe om helsepersonellets mer spesifikke behandlerrelasjon til pasienten.
@@ -171,21 +171,24 @@ classDiagram
 	class Helsepersonell{
 		- "name"
 		- "pid"
+		- "legal_entity"
+		- "point_of_care"
+		- "department"
 		- "hpr_nr"
 		- "authorization"
 	}
 		
 	class Behandlerrelasjon{
-		- "legal_entity"
-		- "point_of_care"
 		- "purpose_of_use"
 		- "purpose_of_use_details"
-		- "care_type"
+		- "decision_ref"
 		- "health_care_service"
 	}
 	
 	class Pasient{
 		- "pid"
+		- "point_of_care"
+		- "department"
 	}	
 		
 ```
@@ -197,9 +200,9 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 | Attributt                              | Beskrivelse                                                                                       | Informasjonskilde | Påkrevd | Status | Formål |
 |----------------------------------------|---------------------------------------------------------------------------------------------------| --- | --- | --- | --- |
-| "practicioner:subject"                 | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
-| "practicioner:hpr_nr"                  | Helsepersonellets HPR-nummer, dersom det finnes                                                   | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "practicioner:authorization"           | Helsepersonellets autorisasjon, dersom den finnes                                                 | HelseID<br/>Kjernerjournal | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
+| "practitioner:subject"                 | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
+| "practitioner:hpr_nr"                  | Helsepersonellets HPR-nummer, dersom det finnes                                                   | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "practitioner:authorization"           | Helsepersonellets autorisasjon, dersom den finnes                                                 | HelseID<br/>Kjernerjournal | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
 | "care_relation:legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
 | "care_relation:point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
 | "care_relation:department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
@@ -243,12 +246,43 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | <span style="color: green; font-weight: bold;">X</span> | "locality" | Behandlingsstedets navn | 
 | <span style="color: green; font-weight: bold;">X</span> | "resource-id" | Pasientens fødelsenummer | 
 
-#### 4.2.5 "practitioner": Helsepersonellet
+#### 4.2.5 Relasjon til HL7 FHIR datamodell
+
+#### 4.2.5.1 Attributter sammenliknet med HL7 FHIR ([no-basis profiler](https://simplifier.net/hl7norwayno-basis/~resources?category=Profile))
+
+| Attributt | HL7 FHIR ressurs | HL7 FHIR element | HL7 FHIR kriterium/betingelse | Beskrivelse |
+| --- | --- |--- |--- |--- |
+| practitioner:pid:id | AuditEvent.agent.who:PractitionerRole.practitioner | identifier | identifier:FNR OR identifier:DNR | Helsepersonellets identitet |
+| practitioner:pid:name  | AuditEvent.agent.who:PractitionerRole.practitioner | name |  | Helsepersonellets navn |
+| practitioner:professional_licence:hpr_nr:id  | AuditEvent.agent.who:PractitionerRole.practitioner | identifier | identifier:HPR | Helsepersonellets autorisasjonsnummer i helsepersonellregisteret |
+| practitioner:professional_licence:authorization:code  | AuditEvent.agent.who:PractitionerRole.practitioner | qualification.code.coding:healthPersonellCategory |  | Helsepersonellets formelle autorisasjon (kodeverdi) |
+| practitioner:professional_licence:authorization:text | AuditEvent.agent.who:PractitionerRole.practitioner | qualification.code.text |  | Helsepersonellets formelle autorisasjon (navn) |
+| practitioner:legal_entity:id  | AuditEvent.agent.who:PractitionerRole.organization | identifier:ENH.value | type:organisatoriskNiva.coding.code=2 (HF) OR type:organisatoriskBetegnelse.coding.code=01 (Sykehus) | Helsevirksomhetens unike identifikator (organisasjonsnummer) |
+| practitioner:legal_entity:name | AuditEvent.agent.who:PractitionerRole.organization | name | type:organisatoriskNiva.coding.code=2 (HF) OR type:organisatoriskNiva.coding.code=3 (Institusjon) | Helsevirksomhetens navn |
+| practitioner:point_of_care:id | AuditEvent.agent.who:PractitionerRole.location | managingOrganization:identifier:ENH.value |  | Identifikasjon av helsepersonellets arbeidssted (behandlingsstedet de formelt sett opptrer på vegne av) |
+| practitioner:point_of_care:name  | AuditEvent.agent.who:PractitionerRole.location | managingOrganization:name |  | Navn på helsepersonellets arbeidssted  |
+| practitioner:department:id | AuditEvent.agent.who:PractitionerRole.organization | identifier:RSH.value |  | Identifikasjon av enhet som ugjør helsepersonellets detaljerte organisasjonstilhørighet  |
+| practitioner:department:name | AuditEvent.agent.who:PractitionerRole.organization | name |  | Navn på enhet som utgjør helsepersonellets detaljerte organisasjonstilhørighet | 
+| care_relationship:healthcareservice:code | AuditEvent.encounter.serviceType:Healthcareservice | specialty.coding |  | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:healthcareservice:text | AuditEvent.encounter.serviceType:Healthcareservice | specialty.text |  | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:purpose_of_use:code | AuditEvent | authorization.coding.code |  | Identifikasjon av overordnet formål med tilgangen |
+| care_relationship:purpose_of_use:text | AuditEvent | authorization.coding.display |  | Navn på overordnet formål med tilgangen |
+| care_relationship:purpose_of_use_details:code | AuditEvent | agent.authorization.coding.code |  | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:purpose_of_use_details:text | AuditEvent | agent.authorization.coding.display |  | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:decision_ref:id | AuditEvent | agent.policy |  | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
+| patient:id | AuditEvent.patient | identifier | identifier:FNR OR identifier.DNR | Identifikasjon av pasienten tilgangen gjelder |
+| patient:name | AuditEvent.patient | name |  | Navn på pasienten tilgangen gjelder |
+| patient:point_of_care:id | AuditEvent.encounter:Location | managingOrganization:identifier:ENH.value |  | Identifikasjon av behandlingsstedet som pasienten behandles ved |
+| patient:point_of_care:id | AuditEvent.encounter:Location | managingOrganization:name |  | Navn på behandlingsstedet som pasienten behandles ved |
+| patient:department:id | AuditEvent.encounter:serviceProvider | identifier:RSH.value |  | Identifikasjon av detaljert organisasjonstilhørighet for pasienten |
+| patient:department:name | AuditEvent.encounter:serviceProvider | name |  | Navn på detaljert organisasjonstilhørighet for pasienten |
+
+#### 4.2.6 "practitioner": Helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
 
-##### 4.2.5.1 "subject": Identifikator for helsepersonellet som "fysisk person"
+##### 4.2.6.1 "subject": Identifikator for helsepersonellet som "fysisk person"
 Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
 Denne er nødvendig for loggkontroll, sporbarhet og innsyn til innbygger. 
 Det er bare navn som skal vises til innbygger.
@@ -277,7 +311,7 @@ Det er bare navn som skal vises til innbygger.
 }
 ````
 
-##### 4.2.5.2 "hpr_nr" og "authorization" - Informasjon om helsepersonellet fra Helsepersonellregisteret
+##### 4.2.6.2 "hpr_nr" og "authorization" - Informasjon om helsepersonellet fra Helsepersonellregisteret
 
 ###### "hpr_nr": Helsepersonellnummer
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
@@ -340,7 +374,7 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 }
 ````
 
-#### 4.2.6 "care_relation": Behandlerrelasjon
+#### 4.2.7 "care_relation": Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis av hvilken virksomheten han yter helsehjelp for, ved hvilket behandlingssted helsehjelpen ytes, helsetjenestetype og en beskrivelse av formålet med behandlingen av helseopplysningene.
 
 ##### "legal_entity": den dataansvarlige virksomheten 
@@ -593,7 +627,7 @@ Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]
     }
 ````
 
-#### 4.2.7 Kategori: Pasient - Pasienten
+#### 4.2.8 Kategori: Pasient - Pasienten
 
 ##### "patient_id": Unik identifikator for pasienten
 
