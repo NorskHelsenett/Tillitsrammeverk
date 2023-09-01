@@ -100,10 +100,10 @@ Merk at begrepene RP og klient brukes synonymt i dette dokument.
 - [JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens](https://datatracker.ietf.org/doc/html/rfc9068)
 - [Proof Key for Code Exchange](https://www.rfc-editor.org/rfc/rfc7636)
 - [JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication](https://www.rfc-editor.org/rfc/rfc7523)
+- [OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop) 
 
 ### 3.1.1. Fremtidige krav
-- [OAuth 2.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)
-- [OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop) 
+- [OAuth 2.1](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-09.html)
 - [OAuth 2.0 Pushed Authorization Requests](https://datatracker.ietf.org/doc/html/rfc9126)
 
 ## 3.2. Tillitsrammeverk for deling av helseopplysninger
@@ -157,7 +157,7 @@ Klient ber om autentisering av den fysiske personen ved bruk av normal flyt iht.
 
 * Request Object skal overføres til HelseID som et FORM parameter.
 
-* Det er et krav at et token ikke skal kunne stjeles eller misbrukes. Mekanismene som skal forhindre dette er ikke tilgjengelig i HelseID enda, men når de er på plass skal klienten bruke DPoP for å binde seg krypografisk til Access Tokens.
+* Det er et krav at et token ikke skal kunne stjeles eller misbrukes. For å forhindre dette **skal** klienten bruke DPoP for å binde seg krypografisk til Access Tokens.
 
 * Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
 
@@ -316,7 +316,7 @@ Dette gjøres i henhold til spesifikasjon og sikkerhetsprofil og inkluderer:
 - Bruk av PKCE
 - Bruk av Client Assertion (privat_key_jwt) for klientautentisering
 - Bruk av Resource Indicators for å hente ut API-spesifikke Access Token. 
-- (Fremtidig) Bruk av DPoP
+- Bruk av DPoP
 
 ### 4.5.1. Bruk av PKCE
 Klienten skal bruke PKCE som beskrevet i [rfc7636](https://www.rfc-editor.org/rfc/rfc7636).
@@ -403,11 +403,11 @@ Sammen med Access Token returnerer HelseID et parameter expires_in som forteller
 ## 4.11. Kontroller av Access Token i API
 Et API skal kontrollere ett innkommende Access Token i henhold til [rfc9068] med følgende unntak:
 - Claimet "typ" kan være "jwt", i tillegg til til "at+jwt" og "application/at+jwt".
+- DPoP 
 
 Se også [Guidelines for using JSON Web Tokens](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/284229708/Guidelines+for+using+JSON+Web+Tokens+JWTs) i HelseID sin dokumentasjon for kontroll av claims spesifikke for HelseID.
 
 Et fremtidig krav vil være å også kontrollere at tokenet er sendt av korrekt klient, se **_TODO:_**
-  - DPoP 
   - Validering og bruk av informasjon i token 
   - Revisjonslogging 
 
