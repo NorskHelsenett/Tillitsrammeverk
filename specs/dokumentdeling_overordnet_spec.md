@@ -22,20 +22,20 @@ Spesifikasjonen vil bli versjonert for å støtte endringer over tid.
 
 
 ## 1. Innledning 
-Tilgangsstyring for pasientens journaldokumenter gjennom Kjernejournal Portal er basert på en modell tilpasset helsesektoren, hvor partenenes ansvar er tydeliggjort og oppgaver er fordelt i form av et avtalebasert tillitsrammeverk. Den konsumerende virksomheten skal utføre tilgangsstyring til pasientens helseopplysninger på vegne av dokumentkilden.
+Tilgangsstyring for pasientens journaldokumenter gjennom Kjernejournal Portal er basert på en modell tilpasset helsesektoren, hvor partenenes ansvar er tydeliggjort og oppgaver er fordelt i form av et avtalebasert tillitsrammeverk (<I>lenke mangler</I>). Den konsumerende virksomheten skal utføre tilgangsstyring til pasientens helseopplysninger overordnet sett, mens mer detaljert tilgangsstyring gjøres enten av Norsk helsenett for tilganger til funksjoner i Kjernejournal Portal, eller av kilder for tilganger som er spesifikke for informasjonen kilden besitter.
 
 Tillitsrammeverket stiller underliggende krav til tilgangsstyring som alle aktører forplikter seg til å etterleve. I tillegg vil NHN, i sin rolle som tillitsanker for sektoren, tilby tillitstjenester som aktørene skal benytte i delingen.
 
 NHN sørger for at:
 * helsepersonellet blir autentisert med tilstrekkelig høyt sikkerhetsnivå
-* virksomheten hvor helsepersonellet yter helsehjelp er en helsevirksomhet
+* det kontrolleres at virksomheten hvor helsepersonellet yter helsehjelp er en helsevirksomhet
 * eventuelle databehandlere har rett til å opptre på helsevirksomhetens vegne
 * journalsystemet som helsepersonellet benytter er kjent
 * all utveksling av data mellom NHNs tillitstjenester og konsumentens journalsystem er sikret mot kjente sikkerhetsangrep og misbruk
 
-For å gjøre dokumentkilden i stand til å utføre sine plikter knyttet til ytterligere tilgangsstyring og dokumentasjon av tilgangen må den konsumerende virksomheten overføre informasjon som beskriver grunnlaget for tilgangen. På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter er det nødvendig at konsumentene og dokumentkildene samler seg om et felles språk for å uttrykke grunnlaget for tilgang slik at aktørene kan forstå hverandre. Et felles språk vil også bidra til å kommunisere på en konsistent måte til innbygger.
+For å gjøre dokumentkilden i stand til å utføre sine plikter knyttet til tilgangsstyring og dokumentasjon av tilgangen, må den konsumerende virksomheten overføre informasjon som beskriver grunnlaget for tilgangen. På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter er det nødvendig at konsumentene og dokumentkildene samler seg om en felles måte å uttrykke grunnlaget for tilgang, slik at aktørene kan forstå hverandre. En felles måte bidrar også til å kommunisere på en konsistent måte til innbygger.
 
-Dette dokumentet spesifiserer de tekniske og semantiske kravene til meldingsflyten mellom konsumentens journalsystem og tjenestene HelseID og Kjernejournal Portal.
+Dette dokumentet spesifiserer de tekniske og semantiske kravene til meldingsflyten mellom konsumentens journalsystem og tjenestene HelseID og Kjernejournal Portal, men ikke videre kommunikasjon mot de ulike dokumentkildene.
 
 ## 2. Beskrivelse av tilgangsstyring for pasientens journaldokumenter i Kjernejournal Portal
 Tilgangsstyring og tilgangskontroll for pasientens journaldokumenter i Kjernejournal Portal består av oppgaver som utføres hos alle aktører som er involvert i verdikjeden, og utføres både i en forberedende fase og i kjøretid.
@@ -96,18 +96,18 @@ Tillitsrammeverket for deling av helseopplysninger omfatter en informasjonsmodel
 Informasjonen som dekkes av tillitsrammeverket svarer på følgende spørsmål:
 * Hvem er helsepersonellet?
 * Hvilke formelle autorisasjoner og/eller lisenser har helsepersonellet?
-* Hvilken virksomhet har dataansvar for journalsystemet som helsepersonellet benytter?
-* Ved hvilket behandlingssted yter helsepersonellet helsehjelp?
+* Hvilken virksomhet har dataansvar for personopplysningene som helsepersonellet benytter?
+* Hvilket arbeidssted/behandlingssted tilhører helsepersonellet?
 
 
 Detaljer om informasjons- og datamodell for tillitsrammeverket finnes [i spesifikasjonen](/specs/datamodell_tillitsmodell.md).
 
 Legg merke til at konsumentens journalsystem er informasjonskilde for to informasjonselementer:
 * Den dataansvarliges identitet (juridisk enhet)
-* Behandlingssted (virksomhet)
+* Arbeidssted/behandlingssted (virksomhet)
 
 #### 2.2.2 Attributter for dokumentdeling
-På grunn av den tekniske arkitekturen som er valgt for pasientens journaldokumenter i Kjernejournal Portal er ikke den konsumerende virksomheten i stand til å loggføre tilgangene i henhold til gjeldende regelverk. Derfor må ytterligere informasjon om den lokale tilgangen til dokumentkilden.
+På grunn av den tekniske arkitekturen som er valgt for pasientens journaldokumenter i Kjernejournal Portal er ikke den konsumerende virksomheten i stand til å loggføre tilgangene i henhold til gjeldende regelverk. I tillegg trenger dokumentkildene en tilstrekkelig dokumentasjon av hvorfor de har gitt tilgang til pasientens opplysninger på sin side. Derfor må ytterligere informasjon om bakgrunnen for den lokale tilgangen hos konsumentvirksomheten overføres til dokumentkilden.
 
 For å dekke dette behovet er det definert en datamodell som beskriver ytterligere detaljer ved den lokale tilgangen.
 [Datamodellmodell for beskrivelse av helsepersonellets grunnlag for tilgang i pasientens journaldokumenter](/specs/datamodell_dokumentdeling.md).
