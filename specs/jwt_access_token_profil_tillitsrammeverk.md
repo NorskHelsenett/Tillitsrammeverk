@@ -99,7 +99,7 @@ Elementet "trusted_claims" utgjør toppnivået for innholdet som beskriver grunn
 | "claims" | Påstander hvor tilliten er basert på det angitte tillitsrammeverket |
 
 ````JSON
-"trust_framework":{
+"trust_framework_claims":{
 	"trust_framework": { ... },
 	"claims": { ... }
 }
@@ -161,7 +161,7 @@ Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på av
 			"name": "Helsevirksomheten AS",
 			"oid": "2.16.578.1.12.4.1.4.101"
 		},
-		"date": "14.02.2023"
+		"date": "14.02.2023",
 		"id": "10001",
 		"granting_body": {
 			"id": "987654321",
@@ -176,7 +176,7 @@ Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på av
 Claims elementet er ett enkeltstående objekt som består av fire attributter med underliggende strukturer.
 
 Attributtene som ligger i "claims" elementet er:
-* "practicioner"
+* "practitioner"
 * "care_relationship"
 * "patient"
 * "system"
@@ -193,13 +193,10 @@ Attributtene som ligger i "claims" elementet er:
 _*Eksempel på JSON strukturen:*_
 ````JSON
 {
-	"practicioner":{
+	"practitioner":{
 		8<...>8
 	},
 	"care_relationship": {
-		8<...>8	
-	},
-	"patient": {
 		8<...>8	
 	},
 	"system": {
@@ -238,6 +235,83 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 }
 ````
 
+# API Spesifikke claims
+
+````JSON
+{
+	"authorization_details": {
+		"pid" : "12312312323",
+		"sub": "#/%/%/%//%/%(%)",
+		"nhn:tillitsrammeverk": {
+			"version": "0.2",
+			"practitioner": {
+				"personal_identifier": {
+					"id": "05709992424",
+					"name": "OVERTENKT LAMPEFOT",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+					"authority": "https://www.skatteetaten.no"
+				},
+				"professional_license": {
+					"hpr_nr": {
+						"id": "9144900",
+						"system": "urn:oid:2.16.578.1.12.4.1.4.4",
+						"authority": "https://www.helsedirektoratet.no/"
+					},
+					"authorization": {
+						"code": "LE",
+						"text": "Lege",
+						"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+						"assigner": "https://www.helsedirektoratet.no/"
+					}
+				},
+			},
+			"organization": {
+				"legal_entity": {
+					"id": "993467049",
+					"name": "OSLO UNIVERSITETSSYKEHUS HF",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+					"authority": "https://www.skatteetaten.no"
+				},
+				"point_of_care": {
+					"id": "974589095",
+					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+					"authority": "https://www.skatteetaten.no"
+				},		
+			},
+			"care_relationship": {
+				"healthcare_service": {
+					"code": "S03",
+					"text": "Indremedisin",
+					"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+					"assigner": "https://www.helsedirektoratet.no/"
+				},
+				"department": {
+					"id": "resh:121313", 
+					"system": "resh:x.x.x.x.x.x.x",
+					"name": "Avdeling ved Sykehus",
+					"authority": "RESH",
+				},
+				"purpose_of_use": {
+					"code": "TREAT",
+					"text": "Behandling",
+					"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+					"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+				},
+				"purpose_of_use_details": {
+					"code": "15",
+					"text": "Helsetjenester i hjemmet",
+					"system": "urn:oid:x.x.x.x.x.9151",
+					"assigner": "https://www.helsedirektoratet.no/"
+				},
+				"decision_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
+					"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
+				}
+			},
+		},
+	}
+}
+````
 
 
 ## 4. Sikkerhets- og personvernshensyn

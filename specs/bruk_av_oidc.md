@@ -1,4 +1,4 @@
-<div style="font-size:2.5em;">Bruk av OpenID Connect for deling av helseopplysninger via API</div>
+<div style="font-size:2.5em;">Bruk av HelseID for deling av helseopplysninger via API</div>
 
 Versjon: 0.1
 
@@ -45,6 +45,19 @@ Dato: 14.02.2023
 - [5. Sikkerhetsvurderinger **_TODO_**](#5-sikkerhetsvurderinger-todo)
 
 
+# Datamodell for detaljert autorisasjonsinformasjon
+
+| Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
+| --- | --- | --- | --- | --- | --- |
+| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
+| "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "department" | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
+| "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring og informasjon til pasienten? |
+| "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
+| "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
+| "decicion_ref" | Referanse til lokal tilgangsbeslutning | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
+| "patient_id" | Unik identifikator for pasienten | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> | Tilgangsstyring |
+
 
 # 1. Definisjon av begrep og forkortelser
 Dette dokumentet benytter begreper og terminologi som er definert i følgende spesifikasjoner: [@!RFC6749], [@!RFC6750], [@!RFC7636], [@!OIDC] og ISO29100.
@@ -87,10 +100,10 @@ Merk at begrepene RP og klient brukes synonymt i dette dokument.
 - [JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens](https://datatracker.ietf.org/doc/html/rfc9068)
 - [Proof Key for Code Exchange](https://www.rfc-editor.org/rfc/rfc7636)
 - [JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication](https://www.rfc-editor.org/rfc/rfc7523)
+- [OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop) 
 
 ### 3.1.1. Fremtidige krav
-- [OAuth 2.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)
-- [OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop) 
+- [OAuth 2.1](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-09.html)
 - [OAuth 2.0 Pushed Authorization Requests](https://datatracker.ietf.org/doc/html/rfc9126)
 
 ## 3.2. Tillitsrammeverk for deling av helseopplysninger
@@ -137,11 +150,14 @@ SKAL | Følge HelseID sikkerhetsprofil for IDP-er
 Dette avsnittet beskriver i større detalj bruksmønsteret for å dele helseopplysninger mellom fagsystemer og API-er.
 
 Klient ber om autentisering av den fysiske personen ved bruk av normal flyt iht. protokoll, men med følgende presiseringer: 
-* Klient skal overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet i [her](#overføre-informasjon-om-grunnlaget-for-tilgang-fra-klient) med mekanismen Request Objects 
+* Klient skal enten
+  * Overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av mekanismen Rich Authorization Requests, som beskrevet [her](#overføre-informasjon-om-grunnlaget-for-tilgang-fra-klient) med mekanismen Request Objects 
+* Eller
+  * Overføre informasjon som beskriver bakgrunnen for tilgangsforespørselen ved bruk av token-endepunktet med mekanismen `client_assertion`
 
 * Request Object skal overføres til HelseID som et FORM parameter.
 
-* Det er et krav at et token ikke skal kunne stjeles eller misbrukes. Mekanismene som skal forhindre dette er ikke tilgjengelig i HelseID enda, men når de er på plass skal klienten bruke DPoP for å binde seg krypografisk til Access Tokens.
+* Det er et krav at et token ikke skal kunne stjeles eller misbrukes. For å forhindre dette **skal** klienten bruke DPoP for å binde seg krypografisk til Access Tokens.
 
 * Informasjon som beskriver bakgrunn for tilgangsforespørselen skal følge standarden som er angitt i… (autentiseringsforespørsler) 
 
@@ -301,7 +317,7 @@ Dette gjøres i henhold til spesifikasjon og sikkerhetsprofil og inkluderer:
 - Bruk av PKCE
 - Bruk av Client Assertion (privat_key_jwt) for klientautentisering
 - Bruk av Resource Indicators for å hente ut API-spesifikke Access Token. 
-- (Fremtidig) Bruk av DPoP
+- Bruk av DPoP
 
 ### 4.5.1. Bruk av PKCE
 Klienten skal bruke PKCE som beskrevet i [rfc7636](https://www.rfc-editor.org/rfc/rfc7636).
@@ -388,11 +404,11 @@ Sammen med Access Token returnerer HelseID et parameter expires_in som forteller
 ## 4.11. Kontroller av Access Token i API
 Et API skal kontrollere ett innkommende Access Token i henhold til [rfc9068] med følgende unntak:
 - Claimet "typ" kan være "jwt", i tillegg til til "at+jwt" og "application/at+jwt".
+- DPoP 
 
 Se også [Guidelines for using JSON Web Tokens](https://helseid.atlassian.net/wiki/spaces/HELSEID/pages/284229708/Guidelines+for+using+JSON+Web+Tokens+JWTs) i HelseID sin dokumentasjon for kontroll av claims spesifikke for HelseID.
 
 Et fremtidig krav vil være å også kontrollere at tokenet er sendt av korrekt klient, se **_TODO:_**
-  - DPoP 
   - Validering og bruk av informasjon i token 
   - Revisjonslogging 
 
@@ -404,7 +420,8 @@ Klienten skal bruke Refresh Tokens i følgende tilfeller:
 
 Refresh Tokens brukes som spesifisert i [rfc6749](https://www.rfc-editor.org/rfc/rfc6749#section-1.5), og i sikkerhetsprofilen til HelseID.
 
-# 5. Sikkerhetsvurderinger **_TODO_**
+# 5. Sikkerhetsvurderinger
+<!--- todo-->
 HelseID krever sikkerhetsprofilen FAPI 2.0 (lenke til vår versjon av profilen)
 Pek til Security BCP og Trusselmodell
 
