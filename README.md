@@ -1,3 +1,9 @@
+# <span style="color: red">TIL INFORMASJON! </span>
+# <span style="color: red">VI OMSTRUKTURERER SPESIFIKASJONENE PÅ GITHUB</span>
+For å forenkle arbeidet med spesifikasjoner knyttet til tillitsrammeverk og Pasientens Journaldokumenter har vi startet en omstruktering av spesifikasjonene.
+Dette Github repository'et vil fortsette å være hjemmet til informasjonsmodellen for attestering av helsepersonellets tjenstlige behov.
+
+
 # Tillitsrammeverk
 Repo for spesifikasjoner og annet relevant arbeid med Tillitsrammeverket
 
