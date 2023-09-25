@@ -1,3 +1,9 @@
+# <span style="color: red">TIL INFORMASJON! </span>
+# <span style="color: red">VI OMSTRUKTURERER SPESIFIKASJONENE PÅ GITHUB</span>
+For å forenkle arbeidet med spesifikasjoner knyttet til tillitsrammeverk og Pasientens Journaldokumenter har vi startet en omstruktering av spesifikasjonene.
+Dette Github repository'et vil fortsette å være hjemmet til informasjonsmodellen for attestering av helsepersonellets tjenstlige behov.
+
+
 # Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger
 
 ## Sammendrag
@@ -10,6 +16,7 @@ Denne spesifikasjonen definerer en informasjons- og datamodell som skal brukes f
 | --- | --- | --- |
 | -0 | Utkast | 17.02.2023 |
 | -1 | Utkast | 10.03.2023 |
+| -2 | Utkast | 25.09.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
