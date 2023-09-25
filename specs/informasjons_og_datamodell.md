@@ -743,7 +743,7 @@ Full modell - valgfrie elementer er tatt med
 
 ````JSON
 {
-	"practicioner": {
+	"practitioner": {
 		"pid": {
 			"id": "04056600324",
 			"name": "Magnar Koman",
@@ -879,7 +879,7 @@ Eksempelet hvor en fastlege er konsument
 
 ```JSON
 {
-	"practicioner": {
+	"practitioner": {
 		"pid": {
 			"id": "20086600138",
 			"name": "August September",
@@ -937,7 +937,7 @@ I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang ti
 
 ```JSON
 {
-	"practicioner": {
+	"practitioner": {
 		"pid": {
 			"id": "03117000205",
 			"name": "Rita Lin",
@@ -1008,7 +1008,7 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 
 ```JSON
 {
-	"practicioner": {
+	"practitioner": {
 		"pid": {
 			"id": "05086900124",
 			"name": "Ben Reddik",
