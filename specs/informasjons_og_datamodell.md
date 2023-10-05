@@ -138,21 +138,21 @@ classDiagram
 	Behandlerrelasjon -- Pasient
 
     class Helsepersonell{
-		- Helsepersonellet fødselsnummer og navn
+		- Helsepersonellets fødselsnummer og navn
 		- Helsepersonellets formelle autorisasjon
 		- Den personalansvarlige og dataansvarlige virksomheten
 		- Hvilket arbeidssted/behandlingssted helsepersonellet tilhører formelt sett
-		- Eventuelt hvilken detaljert organisasjonstilhørighet helsepersonellet har i større organisasjoner
-		- Eventuelt formell rolle/stilling helsepersonellet opptrer i kraft av på vegne av organisasjonen
-		- Eventuell funksjon helsepersonellet har og opptrer i kraft av på vegne av organisasjonen
+		- Hvilken detaljert organisasjonstilhørighet helsepersonellet har i større organisasjoner
+		- Formell rolle/stilling helsepersonellet opptrer i kraft av på vegne av organisasjonen
+		- Funksjon helsepersonellet har og opptrer i kraft av på vegne av organisasjonen
     }
     class Behandlerrelasjon{
 		- Formålet med og grunnlaget for behandlingen av helseopplysningene
-		- Eventuell helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
+		- Helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
     }
     class Pasient{
 		- Hvem er pasienten
-		- Eventuell tilhørighet til behandlingssted og detaljert organisasjonstilhørighet for pasienten
+		- Tilhørighet til behandlingssted og detaljert organisasjonstilhørighet for pasienten
     }
 
 ```
@@ -207,19 +207,22 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Attributt                              | Beskrivelse                                                                                       | Informasjonskilde | Påkrevd | Status | Formål |
-|----------------------------------------|---------------------------------------------------------------------------------------------------| --- | --- | --- | --- |
-| "practitioner:subject"                 | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | HelseID | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet |
-| "practitioner:hpr_nr"                  | Helsepersonellets HPR-nummer, dersom det finnes                                                   | HelseID | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "practitioner:authorization"           | Helsepersonellets autorisasjon, dersom den finnes                                                 | HelseID<br/>Kjernerjournal | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
-| "care_relation:legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll og sporbarhet og informasjon til pasienten |
-| "care_relation:point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "care_relation:department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes</span> | Informasjon til pasienten |
-| "care_relation:healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring og informasjon til pasienten? |
-| "care_relation:purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Tilgangsstyring |
-| "care_relation:purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
-| "care_relation:decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes</span> | Loggkontroll |
-| "patient:patient_id"                   | Unik identifikator for pasienten                                                                  | Konsumentens EPJ | **Ja** | <span style="color: red; font-weight: bold;">Under behandling</span> | Tilgangsstyring |
+| Påkrevd | Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde                                                                                        | Formål |
+|---------|---------------|--------------------------|---------------------------------------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- | ------------ | 
+| **Ja**  | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | HelseID                                                                                                  | Loggkontroll og sporbarhet                            |
+| **Nei** | practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | HelseID                                                                                                  | Loggkontroll, sporbarhet og informasjon til pasienten |
+| **Nei** | practitioner  | "authorization"     	 | Helsepersonellets autorisasjon, dersom den finnes                                                 | HelseID<br/>Kjernerjournal                                                                               | Tilgangsstyring |
+| **Ja**  | practitioner  | "legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | Loggkontroll, sporbarhet og informasjon til pasienten |
+| **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsumentens EPJ                                                                                         | Loggkontroll, sporbarhet og informasjon til pasienten |
+| **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsumentens EPJ                                                                                         | Informasjon til pasienten |
+| **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsumentens EPJ                                                                                         | Tilgangsstyring og informasjon til pasienten |
+| **Ja**  | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Kjernejournal, eller<br>Konsumentens EPJ                                                                 | Tilgangsstyring |
+| **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ                                                                                         | Loggkontroll |
+| **Nei** | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsumentens EPJ                                                                                         | Loggkontroll |
+| **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsumentens EPJ                                                                                         | Tilgangsstyring |
+| **Nei** | patient       | "legal_entity"           | Virksomheten som er ansvarlig for pasientens behandling										     | Konsumentens EPJ                                                                                         | Tilgangsstyring |
+| **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsumentens EPJ                                                                                         | Loggkontroll, sporbarhet og informasjon til pasienten |
+| **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsumentens EPJ                                                                                         | Informasjon til pasienten |
 
 #### 4.2.4 Relasjon til EHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
 
@@ -230,7 +233,8 @@ EHDSI definerer tre SAML Assertions, som holder på forskjellige kategorier av i
 * SAML Assertion for identitetsattributter som beskriver pårørende
 * SAML Assertion for identitetsattributter som beskriver pasienten
 
-Vi har valgt å ikke tilnærme oss datamodellen hos EHDSI når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet. Grunnen til at vi har valgt en annen retning er en antagelse om at programvaren som skal benyttes for å konsumere helseopplysninger ikke har informasjonen som benyttes i EHDSI sin datamodell lett tilgjengelig.
+Vi har valgt å ikke tilnærme oss datamodellen hos EHDSI når vi har beskrevet informasjons- og datamodellen som skal benyttes ved deling av helseopplysninger innad i Helsenettet. 
+Grunnen til at vi har valgt en annen retning er en antagelse om at programvaren som skal benyttes for å konsumere helseopplysninger ikke har informasjonen som benyttes i EHDSI sin datamodell lett tilgjengelig.
 
 Noen attributter som er definert i denne spesifikasjonen har et visst overlapp med datamodellen i EHDSI. Dette er angitt i venstre kolonne i tabellen under. EHDSI definerer et minstekrav til attributtene som skal overføres, men tillater flere attributter som ikke er definert av spesifikasjonene.
 
