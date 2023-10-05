@@ -559,6 +559,35 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
 | Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC<br/>++ |
 
+###### Retningslinjer for bruk av av "purpose_of_use"
+**TREAT/treatment**
+Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp som ikke er å regne som akutt. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring.
+
+Eksempler:
+Planlagt legekonsultasjon hos spesialist
+Behandling hos fastlege som ikke faller under øyeblikkelig hjelp
+Oppfølging av behandlingsplan i virksomhet innen primærhelsetjenesten
+
+**ETREAT/Emergency Treatment**
+Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp innen akuttkjeden. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring.
+
+Eksempler:
+Behandling ved akuttmottak på sykehus eller legevakt
+Behandling i ambulanse, via kontakt med AMK eller legevaktsentral
+Øyeblikkelig hjelp hos fastlege
+
+**COC/coordination of care**
+Skal benyttes når forespørsel om tilgang til helsedata ikke skjer i direkte forbindelse med den kliniske utførelsen av helsehjelp. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring.
+
+Eksempler:
+Saksbehandling ved tildeling av kommunale helsetjenester
+
+**BTG/Break the glass**
+Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp og en overstyring av normale tilgangsregler er nødvendig for umiddelbar tilgang. Tilgangsbeslutning hos konsument følger ikke standard regler for tilgangsstyring.
+
+Eksempler:
+Helsepersonell som yter akutt helsehjelp utenfor egen virksomhet
+
 
 ###### "purpose_of_use" - JSON format
 
@@ -617,7 +646,7 @@ Helsepersonellet må bli informert om at denne informasjonen vil vises til pasie
 Verdien "user_reason" skal kun inneholde alfanumeriske tegn, samt utvalgte spesialtegn.
 Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]+)"
 
-Verdien "user_selected" skal være av type _boolean_, som angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger. Dersom helsepersonellet har gitt seg selv tilgang skal verdien være _true_. Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være _false_.   
+Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger. Dersom helsepersonellet har gitt seg selv tilgang skal verdien være _true_. Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være _false_.   
 
 
 |   |   |
