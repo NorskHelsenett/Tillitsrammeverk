@@ -39,7 +39,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 8. Eksempler på bruk av datamodell<br/>
 	6.1 JSON eksempel<br/>
 	6.2 SAML eksempel<br/>
-9. Normative referanser 
+9. Normative referanser
 
 
 ## 1. Innledning 
@@ -617,6 +617,8 @@ Helsepersonellet må bli informert om at denne informasjonen vil vises til pasie
 Verdien "user_reason" skal kun inneholde alfanumeriske tegn, samt utvalgte spesialtegn.
 Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]+)"
 
+Verdien "user_selected" skal være av type _boolean_, som angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger. Dersom helsepersonellet har gitt seg selv tilgang skal verdien være _true_. Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være _false_.   
+
 
 |   |   |
 | ---| ---|
@@ -636,8 +638,9 @@ Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]
 
 ````JSON
     "decision_ref" : {
-		"ref_id" :  8<...>8 }, /*"id til lokal tilgangsbeslutning", unik for konsument og autogenerert i EPJ */,
+		"ref_id" :  "8<.. id til lokal tilgangsbeslutning, unik for konsument og autogenerert i EPJ ..>8" }, 
 		"description": "Legekonsultasjon",
+		"user_selected": false,
 		"user_reason": "Tekst lagt inn av bruker.."
     }
 ````
@@ -807,10 +810,10 @@ Full modell - valgfrie elementer er tatt med
 		},
 		"decision_ref": {
 			"ref_id": {
-				8<...>8
+				"8<..autogenerert i EPJ..>8"
 			},
-			/* autogenerert i EPJ */
-			"description": "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]"
+			"user_selected": true,
+			"description": "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
 			"user_reason": "Tekst lagt inn av bruker.."
 		}
 	},
