@@ -229,12 +229,9 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsumentens EPJ                                                                                         | Loggkontroll, sporbarhet og informasjon til pasienten |
 | **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsumentens EPJ                                                                                         | Informasjon til pasienten |
 
-
-
 #### 4.2.6 "practitioner": Helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
-
 
 ##### 4.2.6.1 "subject": Identifikator for helsepersonellet som "fysisk person"
 Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
@@ -372,18 +369,15 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Gyldige verdier: | N/A |
 
 
-
-
-
 ###### "department" - Attributter JSON format
 
 ````JSON
 "department": {
-        "id": "resh:121313", 
-        "system": "resh:x.x.x.x.x.x.x",
-        "name": "UNN ....",
-        "authority": "",
-    },
+	"id": "705592",
+	"name": "Anestesiologi Seksjon RH",
+	"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+	"authority": "https://www.nhn.no"
+}
 ````
 
 
@@ -543,7 +537,7 @@ Helsepersonell som yter akutt helsehjelp utenfor egen virksomhet
 ````
 
 ##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
-Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Altså, en oppsummering av tilgangsbeslutningen i lokalt system.
+Attributtet "purpose_of_use_details" er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem. Informasjonen i attributtet skal beskrive hvorfor helsepersonellet er gitt tilgang til pasientens helseopplysninger. Beslutningen skal gis etter en vurdering av tilgangsreglene som gjelder for dette helsepersonellet.
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
 
@@ -609,7 +603,7 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 
 ````JSON
     "decision_ref" : {
-		"ref_id" :  "8<.. id til lokal tilgangsbeslutning, unik for konsument og autogenerert i EPJ ..>8" }, 
+		"ref_id":  "8<.. id til lokal tilgangsbeslutning, unik for konsument og autogenerert i EPJ ..>8" , 
 		"description": "Legekonsultasjon",
 		"user_selected": false,
 		"user_reason": "Tekst lagt inn av bruker.."
@@ -705,20 +699,16 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Gyldige verdier: | N/A |
 
 
-
-
-
 ###### "department" - Attributter JSON format
 
 ````JSON
 "department": {
-        "id": "resh:121313", 
-        "system": "resh:x.x.x.x.x.x.x",
-        "name": "UNN ....",
-        "authority": "",
-    },
+	"id": "109765",
+	"name": "Øye dagkir/pol 1. etasje",
+	"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+	"authority": "https://www.nhn.no"
+}
 ````
-
 
 
 ## 5. Sikkerhets- og personvernshensyn
@@ -854,16 +844,16 @@ Full modell - valgfrie elementer er tatt med
 			"authority": "https://www.skatteetaten.no"
 		},
 		"point_of_care": {
-			"id": "974589095",
-			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+			"id": "874716782",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.skatteetaten.no"
+			"authority": "https://www.brreg.no"
 		},
 		"department": {
-			"id": "resh:121313",
-			"system": "resh:x.x.x.x.x.x.x",
-			"name": "Avdeling ved Sykehus",
-			"authority": "RESH"
+			"id": "705592",
+			"name": "Anestesiologi Seksjon RH",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+			"authority": "https://www.nhn.no"
 		}
 	},
 	"care_relationship": {
@@ -908,10 +898,10 @@ Full modell - valgfrie elementer er tatt med
 			"authority": "https://www.skatteetaten.no"
 		},
 		"department": {
-			"id": "resh:121313",
-			"system": "resh:x.x.x.x.x.x.x",
-			"name": "Avdeling ved Sykehus",
-			"authority": "RESH"
+			"id": "109765",
+			"name": "Øye dagkir/pol 1. etasje",
+			"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+			"authority": "https://www.nhn.no"
 		}
 	}
 }
