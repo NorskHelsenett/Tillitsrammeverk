@@ -34,11 +34,11 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 5. Sikkerhets- og personvernshensyn<br/>
 	5.1 Cybersikkerhet<br/>
 	5.2 Personvern 
-6. Vedlegg A - relasjon til andre spesifikasjoner og standarder<br/>
+6. Vedlegg A: relasjon til andre spesifikasjoner og standarder<br/>
 	6.1 Relasjon til EHDSi<br/>
 	6.2 Relasjon til HL7<br/>
-7. Vedlegg B - JSON profil for datamodell
-8. Vedlegg C - Eksempel på bruk av datamodell<br/>
+7. Vedlegg B: JSON profil for datamodell
+8. Vedlegg C: Eksempel på bruk av datamodell<br/>
 	8.1 Fastlege ber om tilgang til dokument<br/>
 	8.2 Ansatt i kommune ber om tilgang til dokument<br/>
 	8.3 Helsepersonell i foretak ber om tilgang til dokument<br/>
@@ -221,9 +221,9 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsumentens EPJ                                                                                         | Loggkontroll, sporbarhet og informasjon til pasienten |
 | **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsumentens EPJ                                                                                         | Informasjon til pasienten |
 | **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsumentens EPJ                                                                                         | Tilgangsstyring og informasjon til pasienten |
-| **Ja**  | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Kjernejournal, eller<br>Konsumentens EPJ                                                                 | Tilgangsstyring |
+| **Nei** | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Kjernejournal, eller<br>Konsumentens EPJ                                                                 | Tilgangsstyring |
 | **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ                                                                                         | Loggkontroll |
-| **Nei** | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsumentens EPJ                                                                                         | Loggkontroll |
+| **Ja**  | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsumentens EPJ                                                                                         | Loggkontroll |
 | **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsumentens EPJ                                                                                         | Tilgangsstyring |
 | **Nei** | patient       | "legal_entity"           | Virksomheten som er ansvarlig for pasientens behandling										     | Konsumentens EPJ                                                                                         | Tilgangsstyring |
 | **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsumentens EPJ                                                                                         | Loggkontroll, sporbarhet og informasjon til pasienten |
@@ -464,7 +464,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "healthcare_service" |
 | Attributt EHDSI: | N/A |
-| Obligatorisk: | **Ja** |
+| Obligatorisk: | **Nei** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -561,7 +561,7 @@ I spesialist vil denne være gitt av beslutningsmal.
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Attributt: | "purpose_of_use_details" |
 | Attributt EHDSI: | N/A |
-| Obligatorisk: | **Ja** |
+| Obligatorisk: | **Nei** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
@@ -597,7 +597,7 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 | Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
 | Attributt: | "decision_ref" |
 | Attributt EHDSI: | N/A |
-| Obligatorisk: | **Nei** |
+| Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
@@ -628,6 +628,7 @@ Attributtet er til behandling av NHN - ROS/DIPA
 | Informasjonselement | Unik identifikator for pasienten som helsepersonellet ber om helseopplysninger for |
 | Attributt: | "patient" |
 | Attributt EHDSI: | |
+| Obligatorisk: | **Ja** |
 | Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
 
 ###### "patient_id" - Attributter JSON format
