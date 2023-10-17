@@ -241,9 +241,8 @@ Det er bare navn som skal vises til innbygger.
 |   |   |
 | ---| ---|
 | Attributt: | "subject" |
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Unik identifikator og navn på helsepersonellet |
-| Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id" |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
@@ -276,10 +275,9 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
 | Attributt: | "legal_entity" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
+| Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
@@ -320,11 +318,10 @@ Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care:
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
 | Attributt: | "point_of_care" |
-| Attributt EHDSI: | N/A |
-| Obligatorisk: | **JA** |
+| Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
+| Avtalemessig påkrevd | **Ja** |
+| Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsumentens journalsystem |
@@ -356,15 +353,13 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Fysisk sted/avdeling/organisasjonsenhet som helsepersonellet tilhører |
 | Attributt: | "department" |
-| Attributt EHDSI: | N/A |
+| Informasjonselement | Fysisk sted/avdeling/organisasjonsenhet som helsepersonellet tilhører |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk:| **Nei** |
 | Data type: | Object |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
+| Informasjonskilde: | Konsumentens journalsystem |
 | Kodeverk: | RESH/Enhetsregisteret |
 | Gyldige verdier: | N/A |
 
@@ -394,14 +389,14 @@ HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer ette
 |   |   |
 | ---| ---|
 | Attributt: | "hpr_nr" |
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Unik identifikator for helsepersonellet knyttet opp til formelle autorisasjoner eller lisenser |
-| Attributt EHDSI: | N/A (?) |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Nei** |
-| Data type: | Objekt |
+| Data type: | Object |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | Helsepersonellregisteret |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
+| Gyldige verdier: | N/A |
 
 ###### "hpr_nr": Helsepersonellets gjeldende autorisasjon - JSON format
 ````JSON
@@ -424,15 +419,14 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 |   |   |
 | ---| ---|
 | Attributt: | "authorization" |
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Den gjeldende autorisasjonen for helsepersonellet i behandlingen av pasienten  |
-| Attributt EHDSI: | N/A (?) |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Nei** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | Kjernejournal |
 | Kodeverk: | 2.16.578.1.12.4.1.1.9060 |
-
+| Gyldige verdier: | N/A |
 
 ###### "authorization": Helsepersonellets gjeldende autorisasjon - JSON format
 ````JSON
@@ -454,14 +448,13 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Attributt: | "healthcare_service" |
-| Attributt EHDSI: | N/A |
+| Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Nei** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
+| Informasjonskilde: | Konsumentens journalsystem |
 | Kodeverk: | [Tjenestetyper innen spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655)<br/>[Tjenestetyper for spesialisthelsetjenesten](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666) |
 | Gyldige verdier:| N/A |
 
@@ -471,8 +464,8 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 
 ````JSON
 "healthcare_service":{
-	"text": "Sykepleietjeneste",
 	"code": "KP02",
+	"text": "Sykepleietjeneste",
 	"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
 	"assigner": "www.helsedirektoratet.no"
 }
@@ -483,10 +476,9 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
 | Attributt: | "purpose_of_use" |
-| Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:purposeofuse" |
+| Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
+| Avtalemessig påkrevd | **Ja** |
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -551,13 +543,12 @@ I spesialist vil denne være gitt av beslutningsmal.
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Attributt: | "purpose_of_use_details" |
-| Attributt EHDSI: | N/A |
+| Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
+| Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Nei** |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
+| Informasjonskilde: | Konsumentens journalsystem |
 | Data type: | Object |
 | Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
 | Gyldige verdier:| N/A |
@@ -587,10 +578,9 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
 | Attributt: | "decision_ref" |
-| Attributt EHDSI: | N/A |
+| Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
+| Avtalemessig påkrevd | **Ja** |
 | Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Informasjonskilde: | Konsumentens EPJ |
@@ -618,12 +608,16 @@ Attributtet er til behandling av NHN - ROS/DIPA
 
 | Attributt | |
 | --- | --- |
-| Status: | <span style="color: red; font-weight: bold;">Under behandling</span> |
-| Informasjonselement | Unik identifikator for pasienten som helsepersonellet ber om helseopplysninger for |
 | Attributt: | "patient" |
-| Attributt EHDSI: | |
+| Informasjonselement | Unik identifikator og navn for pasienten som helsepersonellet ber om helseopplysninger for |
+| Avtalemessig påkrevd | **Ja** |
 | Obligatorisk: | **Ja** |
-| Fødselsnummer | Pasientens fødelsenummer fra folkeregisteret |
+| Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
+| Informasjonskilde: | Konsumentens jornalsystem |
+| Data type: | String |
+| Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
+| Gyldige verdier: |  |
+
 
 ###### "patient_id" - Attributter JSON format
 
@@ -649,16 +643,15 @@ Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informas
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Virksomheten (underenhet) hvor pasienten behandles |
 | Attributt: | "point_of_care" |
-| Attributt EHDSI: | N/A |
+| Informasjonselement | Virksomheten (underenhet) hvor pasienten behandles |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Nei** |
-| Data type: | String |
+| Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsumentens journalsystem |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
+| Gyldige verdier: |  |
 
 ###### Behandlingssted for pasient - Attributter JSON format
 
@@ -666,7 +659,7 @@ Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informas
 "point_of_care": {
 	"id": "123456789",
 	"name": "Det beste legekontoret i byen AS",
-	"system": "2.16.578.1.12.4.1.4.101",
+	"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 	"authority": "www.brreg.no"
 }
 ````
@@ -686,14 +679,12 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 
 |   |   |
 | ---| ---|
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Detaljert organisasjonsenhet som pasienten tilhører |
 | Attributt: | "department" |
-| Attributt EHDSI: | N/A |
+| Informasjonselement | Detaljert organisasjonsenhet som pasienten tilhører |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk:| **Nei** |
 | Data type: | Object |
-| Autoritativ kilde: | Konsument |
+| Autoritativ kilde: | Enhetsregisteret - SSB eller Norsk Helsenett SF |
 | Informasjonskilde: | Konsumentens EPJ |
 | Kodeverk: | RESH/Enhetsregisteret |
 | Gyldige verdier: | N/A |
