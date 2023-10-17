@@ -225,44 +225,52 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ                                                                                         | Loggkontroll |
 | **Ja**  | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsumentens EPJ                                                                                         | Loggkontroll |
 | **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsumentens EPJ                                                                                         | Tilgangsstyring |
-| **Nei** | patient       | "legal_entity"           | Virksomheten som er ansvarlig for pasientens behandling										     | Konsumentens EPJ                                                                                         | Tilgangsstyring |
 | **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsumentens EPJ                                                                                         | Loggkontroll, sporbarhet og informasjon til pasienten |
 | **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsumentens EPJ                                                                                         | Informasjon til pasienten |
 
-#### 4.2.6 "practitioner": Helsepersonellet
-Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
-Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
-##### 4.2.6.1 "subject": Identifikator for helsepersonellet som "fysisk person"
-Attributtet "subject" i entitet Helsepersonell er en forkortelse for "personal identifier", hvor verdien identifiserer en fysisk  person. 
-Denne er nødvendig for loggkontroll, sporbarhet og innsyn til innbygger. 
-Det er bare navn som skal vises til innbygger.
+#### 4.2.4 Informasjonskilder for attestering
+
+```mermaid
+
+
+
+```
+
+### 4.3 Beskrivelse av helsepersonellet: "practitioner"
+Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
+Helsepersonellets identitet beskrives ved bruk av en struktur som består av identifikatorer og verdier fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
+
+#### 4.3.1 "subject": Helsepersonellet som "fysisk person" 
+Attributtet "subject" i entitet practitioner er en representasjon av verdier som beskriver en fysisk  person. 
+Forretningsregel: Denne er nødvendig for loggkontroll, sporbarhet og innsyn til innbygger. 
+Forretningsregel: Det er bare navn som skal vises til innbygger.
 
 |   |   |
 | ---| ---|
 | Attributt: | "subject" |
 | Informasjonselement | Unik identifikator og navn på helsepersonellet |
-| Avtalemessig påkrevd | **Ja, hvis forekommer** |
+| Avtalemessig påkrevd | **Ja** |
 | Obligatorisk: | **Ja** |
-| Data type: | String |
-| Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
+| Data type: | Object |
+| Autoritativ kilde: | www.skatteetaten.no |
 | Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
+| Gyldige verdier: | N/A |
 
-
-###### "subject" - Attributt JSON format
+##### "subject" - JSON format
 
 ````JSON
 "subject":{
-	"value": "xxxxxx34794",
+	"id": "xxxxxx34794",
 	"name": "Lege Legesen",
 	"system": "2.16.578.1.12.4.1.4.1",
-	"authority": "www.skatteetaten.no" /* forvalter folkeregisteret - står i SAML token i dag */
+	"authority": "www.skatteetaten.no" 
 }
 ````
 
 
-##### "legal_entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
+#### 4.3.2 "legal_entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
 Attributtet "legal_entity" identifiserer den dataansvarlige virksomheten for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
 
 Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår (medlemsskap i helsenett, avtale om tilgang til tjenester som helseid, kjernejournal og aksept av tilhørende bruksvilkår)
@@ -280,12 +288,12 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Obligatorisk: | **Ja** |
 | Data type: | String |
-| Autoritativ kilde: | Enhetsregisteret - SSB |
+| Autoritativ kilde: | www.brreg.no |
 | Informasjonskilde: | - §9/multi tenancy: Konsumentens journalsystem<br>- Single-tenancy: Utledes av HelseID  |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
+| Gyldige verdier: | N/A |
 
-
-###### Den personalansvarlige og dataansvarlige virksomheten - Attributter JSON format
+##### Den personalansvarlige og dataansvarlige virksomheten - Attributter JSON format
 
 ````JSON
 "legal_entity": {
@@ -296,7 +304,7 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 }
 ```` 
 
-##### "point_of_care": Arbeidssted (behandlingssted som helsepersonellet tilhører)
+#### 4.3.3 "point_of_care": Arbeidssted (behandlingssted som helsepersonellet tilhører)
 
 Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet formelt sett har sin tilhørighet,
 og skal peke på en virksomhet i enhetsregisteret.
@@ -326,8 +334,9 @@ Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care:
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Informasjonskilde: | Konsumentens journalsystem |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
+| Gyldige verdier: | N/A |
 
-###### Arbeidssted/behandlingssted - Attributter JSON format
+##### Arbeidssted/behandlingssted - Attributter JSON format
 
 ````JSON
 "point_of_care": {
@@ -338,7 +347,7 @@ Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care:
 }
 ````
 
-##### "department": Avdeling eller detaljert organisasjonsenhet
+#### 4.3.4 "department": Avdeling eller detaljert organisasjonsenhet
 Attributtet "department" angir avdelingen eller helsepersonellets mest detaljerte organisasjonstilhørighet.
 Helsepersonellets virksomhet må selv vurdere hvilket nivå som vil være tilstrekkelig og hensiktsmessig for å beskrive tilhørigheten ovenfor andre virksomheter og sine pasienter.
 
@@ -364,7 +373,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Gyldige verdier: | N/A |
 
 
-###### "department" - Attributter JSON format
+##### "department" - Attributter JSON format
 
 ````JSON
 "department": {
@@ -375,10 +384,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 }
 ````
 
-
-##### 4.2.6.2 "hpr_nr" og "authorization" - Informasjon om helsepersonellet fra Helsepersonellregisteret
-
-###### "hpr_nr": Helsepersonellnummer
+#### 4.3.5 "hpr_nr": Helsepersonellnummer
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
 
 Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseopplysninger. Derfor kan ikke attributtet være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
@@ -398,7 +404,7 @@ HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer ette
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 | Gyldige verdier: | N/A |
 
-###### "hpr_nr": Helsepersonellets gjeldende autorisasjon - JSON format
+###### "hpr_nr": Helsepersonellnummer - JSON format
 ````JSON
 "hpr_nr": {
 	"id": "9144900",
@@ -407,7 +413,7 @@ HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer ette
 },
 ````
 
-###### "authorization": Helsepersonellets gjeldende autorisasjon
+#### 4.3.6 "authorization": Helsepersonellets gjeldende autorisasjon
 Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet.
 
 Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på helseopplysninger. Attributtet kan derfor ikke være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har en eller flere gyldige autorisasjoner.
@@ -428,7 +434,7 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 | Kodeverk: | 2.16.578.1.12.4.1.1.9060 |
 | Gyldige verdier: | N/A |
 
-###### "authorization": Helsepersonellets gjeldende autorisasjon - JSON format
+##### "authorization": Helsepersonellets gjeldende autorisasjon - JSON format
 ````JSON
 "authorization": {
 	"code": "LE",
@@ -438,10 +444,10 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 }
 ````
 
-#### 4.2.7 "care_relation": Behandlerrelasjon
+### 4.4 "care_relation": Behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av formålet med og bakgrunnen for behandlingen av helseopplysningene og eventuelt en helsetjenestetype som ytes til pasienten.
 
-##### "healthcare_service": Helsetjenestetype
+#### 4.4.1 "healthcare_service": Helsetjenestetype
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
@@ -460,7 +466,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 
 
 
-###### "healthcare_service" - Attributter JSON format
+##### "healthcare_service" - Attributter JSON format
 
 ````JSON
 "healthcare_service":{
@@ -471,7 +477,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 }
 ````
 
-##### "purpose_of_use": formålet med behandlingen av personopplysninger
+#### 4.4.2 "purpose_of_use": formålet med behandlingen av personopplysninger
 Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
 
 |   |   |
@@ -484,7 +490,7 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 | Informasjonskilde: | Konsumentens EPJ |
 | Data type: | Object |
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
-| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC<br/>BTG |
+| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC,<br/>BTG |
 
 
 ###### Retningslinjer for bruk av verdier "purpose_of_use"
@@ -528,7 +534,7 @@ Helsepersonell som yter akutt helsehjelp utenfor egen virksomhet
 }
 ````
 
-##### "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
+#### 4.4.3 "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
 Attributtet "purpose_of_use_details" er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem. Informasjonen i attributtet skal beskrive hvorfor helsepersonellet er gitt tilgang til pasientens helseopplysninger. Beslutningen skal gis etter en vurdering av tilgangsreglene som gjelder for dette helsepersonellet.
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
@@ -553,7 +559,7 @@ I spesialist vil denne være gitt av beslutningsmal.
 | Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
 | Gyldige verdier:| N/A |
 
-###### "purpose_of_use_details" - JSON format
+##### "purpose_of_use_details" - JSON format
 
 ````JSON
 "purpose_of_use_details": {
@@ -565,7 +571,7 @@ I spesialist vil denne være gitt av beslutningsmal.
 ````
 
 
-##### "decision_ref": ekstern referanse til lokal tilgangsbeslutning
+#### 4.4.4 "decision_ref": ekstern referanse til lokal tilgangsbeslutning
 Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten. Formålet med dette attributtet er at kilden skal være i stand til å referere til en lokal beslutning hos konsumenten ved behov for oppfølging etter en logganalyse.
 
 Helsepersonellet må bli informert om at denne informasjonen vil vises til pasienten.
@@ -589,7 +595,7 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 | Gyldige verdier:|  |
 
 
-###### "decision_ref" - Attributter JSON format
+##### "decision_ref" - Attributter JSON format
 
 ````JSON
     "decision_ref" : {
@@ -600,9 +606,9 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
     }
 ````
 
-#### 4.2.8 Kategori: Pasient - Pasienten
+### 4.5 Kategori: Pasient - Pasienten
 
-##### "patient_id": Unik identifikator for pasienten
+#### 4.5.1 "patient_id": Unik identifikator for pasienten
 
 Attributtet er til behandling av NHN - ROS/DIPA
 
@@ -619,7 +625,7 @@ Attributtet er til behandling av NHN - ROS/DIPA
 | Gyldige verdier: |  |
 
 
-###### "patient_id" - Attributter JSON format
+##### "patient_id" - Attributter JSON format
 
 ````JSON
 "patient_id": {
@@ -630,7 +636,7 @@ Attributtet er til behandling av NHN - ROS/DIPA
 }
 ````
 
-##### "point_of_care": Behandlingssted som pasienten mottar behandling fra)
+#### 4.5.2 "point_of_care": Behandlingssted som pasienten mottar behandling fra)
 
 Attributtet "point_of_care" identifiserer behandlingsstedet hvor pasienten mottar behandlingen som er grunnlaget for tilgangen fra,
 og skal peke på en virksomhet i enhetsregisteret.
@@ -653,7 +659,7 @@ Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informas
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: |  |
 
-###### Behandlingssted for pasient - Attributter JSON format
+##### Behandlingssted for pasient - Attributter JSON format
 
 ````JSON
 "point_of_care": {
@@ -664,7 +670,7 @@ Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informas
 }
 ````
 
-##### "department": Avdeling eller detaljert organisasjonsenhet
+#### 4.5.3 "department": Avdeling eller detaljert organisasjonsenhet
 Attributtet "department" angir avdelingen eller den mest detaljerte organisasjonstilhørigheten pasienten har i forbindelse med helsehjelpen som krever tilgang til helseopplysningene i helsepersonellets virksomhet.
 Helsepersonellets virksomhet må selv vurdere hvilket nivå som vil være tilstrekkelig og hensiktsmessig for å beskrive tilhørigheten ovenfor andre virksomheter og sine pasienter.
 
@@ -690,7 +696,7 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Gyldige verdier: | N/A |
 
 
-###### "department" - Attributter JSON format
+##### "department" - Attributter JSON format
 
 ````JSON
 "department": {
@@ -734,9 +740,6 @@ For å ivareta rettighetene og frihetene til pasienten og helsepersonellet som r
 #### 5.2.4 Forutsetninger for behandling av personopplysninger med utgangspunkt i datamodellen
 Med utgangspunkt i at datamodellen legger til rette for en utlevering av personopplysninger, herunder helseopplysninger, som en behandling av en særlig kategori av personopplysninger, vil det forutsettes at behandlingen skjer i tråd med prinsipper for behandling av personopplysninger. Personvernkonsekvensene ved tap av personopplysninger eller utilsiktet tilgang vil være store, og behandlingen vil følgelig måtte innebære et særlig fokus på misbruk gjennom behandling av opplysningene til andre formål og helsepersonellets dokumenterte tjenstlige behov for tilgang til gitte helseopplysninger
  
-
-
-
 ## 6. Vedlegg A: Relasjon til andre standarder og spesifikasjoner
 
 ### 6.1 Relasjon til EHSDI datamodell og avvik fra EHDSI sine spesifikasjoner
