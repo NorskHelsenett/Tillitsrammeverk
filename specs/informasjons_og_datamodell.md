@@ -31,19 +31,22 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 4. Spesifikasjon<br/>
 	4.1 Informasjonsmodell<br/>
 	4.2 Datamodell<br/>
+	4.3 Beskrivelse av helsepersonellet: "practitioner"<br/>
+	4.4 Beskrivelse av behandlerrelasjon: "care_relation"<br/>
+	4.5 Beskrivelse av pasienten: "patient"<br/>
 5. Sikkerhets- og personvernshensyn<br/>
 	5.1 Cybersikkerhet<br/>
 	5.2 Personvern 
-6. Vedlegg A: relasjon til andre spesifikasjoner og standarder<br/>
-	6.1 Relasjon til EHDSi<br/>
-	6.2 Relasjon til HL7<br/>
+6. Vedlegg A: relasjon til andre standarder og spesifikasjoner<br/>
+	6.1 Relasjon til EHDSi datamodell og avvik fra EHDSI sine spesifikasjoner<br/>
+	6.2 Relasjon til HL7 FHIR datamodell<br/>
 7. Vedlegg B: JSON profil for datamodell
 8. Vedlegg C: Eksempel på bruk av datamodell<br/>
-	8.1 Fastlege ber om tilgang til dokument<br/>
-	8.2 Ansatt i kommune ber om tilgang til dokument<br/>
-	8.3 Helsepersonell i foretak ber om tilgang til dokument<br/>
-	8.3 Legesekretær ber om tilgang til dokument på vegne av lege<br/>
-9. Referanser
+	8.1 Eksempel #1 - Fastlege ber om tilgang til dokument<br/>
+	8.2 Eksempel #2 - Ansatt i kommune ber om tilgang til dokument<br/>
+	8.3 Eksempel #3 - Helsepersonell i foretak ber om tilgang til dokument<br/>
+	8.4 Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege<br/>
+9. Normative referanser
 10. Anerkjennelse av bidragsytere til spesifikasjonen
 
 
