@@ -4,10 +4,10 @@ For å forenkle arbeidet med spesifikasjoner knyttet til tillitsrammeverk og Pas
 Dette Github repository'et vil fortsette å være hjemmet til informasjonsmodellen for attestering av helsepersonellets tjenstlige behov.
 
 
-# Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger
+# Informasjons- og datamodell for attestering av grunnlag for tilgang ved deling av helseopplysninger
 
 ## Sammendrag
-Denne spesifikasjonen definerer en informasjons- og datamodell som skal brukes for å uttrykke et helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren i Norge.
+Denne spesifikasjonen definerer en informasjons- og datamodell som skal brukes for å attestere et helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren i Norge.
 
 
 ## Dokumentets status
@@ -51,20 +51,23 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 
 
 ## 1. Innledning 
+Denne spesifikasjonen definerer et felles språk og metode som skal benyttes til å attestere helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt.
+Spesifikasjonen definerer en informasjonsmodell, datamodell og kodeverk som skal implementeres i programvare som benyttes av helsepersonell når de yter helsehjelp til sin pasient.
+
+På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter må sektoren samle seg om et felles språk og metode for å uttrykke en attestering av grunnlag for tilgang, slik at aktørene kan forstå hverandre. En felles metode vil også bidra til å kommunisere på en konsistent måte til innbygger.
+
 For å gi riktig helsehjelp til riktig tid må helsepersonell ha tilgang til helseopplysninger som ligger lagret hos andre virksomheter enn den virksomheten hvor de yter helsehjelp. Lovverket vårt sier at helsevirksomheter er pliktig til å dele helseopplysninger med alt helsepersonell så fremt de har et tjenstlig behov og at opplysningene er relevante og nødvendige i helsepersonellets behandling av pasienten. 
 
-Kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte.
+De lovpålagte kravene knyttet til tjenstlig behov og opplysningenes relvans og nødvendighet i behandlingen av pasienten medfører at virksomhetene som har dataansvar for helseopplysningene må styre tilgang på en tilfredsstillende måte for å unngå at de deles med uvedkommende.
 
-I tillitsrammeverket legges det opp til en oppgavefordeling knyttet til tilgangsstyring, slik at den konsumerende virksomheten utfører tilgangsstyring av helseopplysninger på overordnet nivå (helsepersonellets tilgang til pasienten), mens virksomheten som skal dele helseopplysningene utfører tilgangsstyring til de spesifikke opplysningene som eventuelt deles. Til tross for at den konsumerende virksomheten er forpliktet til å dokumentere og kontrollere at deres helsepersonell har en gyldig grunn for tilgang til helseopplysninger har virksomheten som deler opplysninger også behov for å motta informasjon som beskriver grunnlaget for tilgangen. Informasjonen som beskriver grunnlaget for delingen vil av virksomheten som deler opplysninger benyttes til flere formål:
+Tillitsrammeverket definererer hvordan oppgaver knyttet til tilgangsstyring skal fordeles mellom partene. Kort oppsummert skal den konsumerende virksomheten utføre en generell tilgangsstyring av helsepersonellets tilgang til pasientens helseopplysninger, mens virksomheten som skal dele helseopplysningene utfører tilgangsstyring til de spesifikke opplysningene som eventuelt deles.
+
+Både virksomheten som er kilden til dokumentene og den konsumerende virksomheten må alltid kontrollere og dokumentere at helsepersonellet har en gyldig grunn til å få tilgang til helseopplysninger til pasientens helseopplysninger. 
+For å få tilgang på tvers av virksomheter må den konsumerende virksomheten attestere at helsepersonell har gyldig grunnlag for tilgangen til helseopplysningene. Attesten må overføres fra konsumenten til dokumentkilden, og kan benyttes til flere formål:
 * å utføre spesifikk tilgangskontroll til opplysningene som deles
 * a dokumentere at tilgang er gitt til helsepersonellet, hvilket grunnlag som ble fremsatt for å oppnå tilgangen og hvilke opplysninger det er gitt tilgang til
-* lovpålagt etterfølgende konstroll av tilgangen for å avdekke eventuelle urettmessige tilegnelser av helseopplysninger
+* lovpålagt etterfølgende kontroll av tilgangen for å avdekke eventuelle urettmessige tilegnelser av helseopplysninger
 * å støtte opp under innbyggers rettigheter i henhold til ulike lovkrav (pasient- og brukerrettighetsloven, personopplysningsloven og personvernforordningen mm)
-
-På grunn av at tilgangsstyring er implementert på forskjellig måte i forskjellige systemer og virksomheter er det nødvendig at sektoren samler seg om en felles metode for å uttrykke grunnlaget for tilgang, slik at aktørene kan forstå hverandre. En felles metode vil også bidra til å kommunisere på en konsistent måte til innbygger.
-
-Denne spesifikasjonen definerer en felles metode som skal benyttes til å uttrykke helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt.
-Spesifikasjonen definerer en informasjonsmodell, datamodell og kodeverk som skal implementeres i programvare som benyttes av helsepersonell når de yter helsehjelp til sin pasient.
 
 ## 2. Ordliste
  
@@ -82,16 +85,11 @@ Denne spesifikasjonen er utarbeidet for Pasientens Journaldokumenter (PJD), som 
 
 ## 4. Spesifikasjon
 
-Spesifikasjonen inneholder en informasjonsmodell som beskriver hvilken informasjon som skal overføres mellom aktørene, hva denne informasjonen beskriver, og hvorfor den skal overføres.
+Spesifikasjonen definerer en informasjonsmodell som beskriver informasjonen som skal inngå i attestering av helsepersonellets grunnlag for tilgang til helseopplysninger samt overføres mellom aktørene. Spesifikasjonen definerer hva denne informasjonen beskriver, og hvorfor den skal overføres.
 
-Spesifikasjonen beskriver hvilke konkrete attributter som skal brukes for å beskrive informasjonsmodellen i form av en datamodell, og hvilke kodeverk og verdier som er gyldige for attributtene.
+Spesifikasjonen beskriver en datamodell som angir hvilke konkrete attributter som skal brukes i attesten, og hvilke kodeverk og verdier som er gyldige for hvert attributt.
 
-Spesifikasjonen skal benyttes av programvare- og systemleverandører ved implementasjon av programvare som skal brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil implementeres i relevante nasjonale e-helseløsninger og tillitstjenester.
-
-Datamodellen skal benyttes til flere formål:
-* for tilgangsstyring og tilgangskontroll i e-helseløsninger, dokumentkilder og i API
-* til dokumentasjon/logging for sporbarhet/etterprøvbarhet og som grunnlag for en etterfølgende kontroll av tilganger
-* for å tilfredsstille innbyggeres rettigheter
+Spesifikasjonen skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil også implementeres i relevante nasjonale e-helseløsninger og tillitstjenester.
 
 ### 4.1 Informasjonsmodell
 Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tre hovedkategorier:
