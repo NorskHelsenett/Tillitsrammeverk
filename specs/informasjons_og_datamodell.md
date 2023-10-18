@@ -9,6 +9,9 @@ Dette Github repository'et vil fortsette å være hjemmet til informasjonsmodell
 ## Sammendrag
 Denne spesifikasjonen definerer en informasjons- og datamodell som skal brukes for å attestere et helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger på tvers av helsevirksomheter i helse- og omsorgssektoren i Norge.
 
+## Omfang
+Spesifikasjonen skal benyttes for attestering av et helsepersonells grunnlag for tilgang til sin pasients helseopplysninger hos andre virksomheter ved deling av journaldokumenter i prosjektet Pasientens journaldokumenter (PJD) i Kjernejournal.
+Dette dokumentet er et utkast som er ment for utviklere av programvare som skal delta i første utprøving i PJD. Det er forventet at erfaringer fra implementasjon og bruk av denne spesifikasjonen vil føre til behov for tilpassinger av spesifikasjonen. 
 
 ## Dokumentets status
 
@@ -17,6 +20,7 @@ Denne spesifikasjonen definerer en informasjons- og datamodell som skal brukes f
 | -0 | Utkast | 17.02.2023 |
 | -1 | Utkast | 10.03.2023 |
 | -2 | Utkast | 25.09.2023 |
+| -3 | Utkast | 18.10.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
@@ -25,29 +29,29 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 
 
 ## Innholdsfortegnelse
-1. Innledning<br/>
-2. Ordliste
-3. Bakgrunn for spesifikasjonen
-4. Spesifikasjon<br/>
-	4.1 Informasjonsmodell<br/>
-	4.2 Datamodell<br/>
-	4.3 Beskrivelse av helsepersonellet: "practitioner"<br/>
-	4.4 Beskrivelse av behandlerrelasjon: "care_relation"<br/>
-	4.5 Beskrivelse av pasienten: "patient"<br/>
-5. Sikkerhets- og personvernshensyn<br/>
-	5.1 Cybersikkerhet<br/>
-	5.2 Personvern 
-6. Vedlegg A: relasjon til andre standarder og spesifikasjoner<br/>
-	6.1 Relasjon til EHDSi datamodell og avvik fra EHDSI sine spesifikasjoner<br/>
-	6.2 Relasjon til HL7 FHIR datamodell<br/>
-7. Vedlegg B: JSON profil for datamodell
-8. Vedlegg C: Eksempel på bruk av datamodell<br/>
-	8.1 Eksempel #1 - Fastlege ber om tilgang til dokument<br/>
-	8.2 Eksempel #2 - Ansatt i kommune ber om tilgang til dokument<br/>
-	8.3 Eksempel #3 - Helsepersonell i foretak ber om tilgang til dokument<br/>
-	8.4 Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege<br/>
-9. Normative referanser
-10. Anerkjennelse av bidragsytere til spesifikasjonen
+1. [Innledning](#1-innledning)<br/>
+2. [Ordliste](#2-ordliste)
+3. [Bakgrunn for spesifikasjonen](#3-bakgrunn-for-spesifikasjonen)
+4. [Spesifikasjon](#4-spesifikasjon)<br/>
+	4.1 [Informasjonsmodell](#41-informasjonsmodell)<br/>
+	4.2 [Datamodell](#42-datamodell)<br/>
+	4.3 [Beskrivelse av helsepersonellet: "practitioner"](#43-beskrivelse-av-helsepersonellet-practitioner)<br/>
+	4.4 [Beskrivelse av behandlerrelasjon: "care_relation"](#44-care_relation-behandlerrelasjon)<br/>
+	4.5 [Beskrivelse av pasienten: "patient"](#45-kategori-pasient---pasienten)<br/>
+5. [Sikkerhets- og personvernshensyn](#5-sikkerhets--og-personvernshensyn)<br/>
+	5.1 [Cybersikkerhet](#51-cybersikkerhet)<br/>
+	5.2 [Personvern](#52-personvern) 
+6. [Vedlegg A: relasjon til andre standarder og spesifikasjoner](#6-vedlegg-a-relasjon-til-andre-standarder-og-spesifikasjoner)<br/>
+	6.1 [Relasjon til EHDSi datamodell og avvik fra EHDSI sine spesifikasjoner](#61-relasjon-til-ehsdi-datamodell-og-avvik-fra-ehdsi-sine-spesifikasjoner)<br/>
+	6.2 [Relasjon til HL7 FHIR datamodell](#62-relasjon-til-hl7-fhir-datamodell)<br/>
+7. [Vedlegg B: JSON profil for datamodell](#7-vedlegg-b-json-profil-for-datamodell)
+8. [Vedlegg C: Eksempel på bruk av datamodell](#8-vedlegg-c-eksempler-på-bruk-av-datamodell)<br/>
+	8.1 [Eksempel #1 - Fastlege ber om tilgang til dokument](#81-eksempel-1---fastlege-ber-om-tilgang-til-dokument)<br/>
+	8.2 [Eksempel #2 - Ansatt i kommune ber om tilgang til dokument](#82-eksempel-2---ansatt-i-kommune-ber-om-tilgang-til-dokument)<br/>
+	8.3 [Eksempel #3 - Helsepersonell i foretak ber om tilgang til dokument](#83-eksempel-3---helsepersonell-i-foretak-ber-om-tilgang-til-dokument)<br/>
+	8.4 [Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege](#84-eksempel-4---legesekretær-ber-om-tilgang-til-dokument-på-vegne-av-lege)<br/>
+9. [Normative referanser](#9-normative-referanser)
+10. [Anerkjennelse av bidragsytere til spesifikasjonen](#10-anerkjennelse-av-bidragsytere-til-spesifikasjonen)
 
 
 ## 1. Innledning 
@@ -643,7 +647,7 @@ Attributtet er til behandling av NHN - ROS/DIPA
 }
 ````
 
-#### 4.5.2 "point_of_care": Behandlingssted som pasienten mottar behandling fra)
+#### 4.5.2 "point_of_care": Behandlingssted som pasienten mottar behandling fra
 
 Attributtet "point_of_care" identifiserer behandlingsstedet hvor pasienten mottar behandlingen som er grunnlaget for tilgangen fra,
 og skal peke på en virksomhet i enhetsregisteret.
