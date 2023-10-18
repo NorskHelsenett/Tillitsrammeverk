@@ -171,8 +171,14 @@ Datamodellen skal legge til rette for at helsevirksomhetene lettere kan samhandl
 
 Datamodellen skal overføres til og behandles av mange aktører og i mange systemer. Mottakeren av informasjonen må ha høy tillit til at informasjonen er korrekt og trygg.
 
+#### 4.2.2 Serialisering av datamodell for attest
+I denne spesifikasjonen er eksempler på datamodellen serialisert til JSON format på grunn av lesbarhet, men den kan serialiseres til mange forskjellige format.
+Valg av format er normalt knyttet til teknisk plattform eller praktiske hensyn, noen eksempler på aktuelle format for datamodell er XML, JSON og CBOR.
+Et felles behov for alle serialiserte format er at de bør kunne ivareta attestens dataintegritet og sporbarhet, f.eks. ved bruk av digital signatur. 
 
-#### 4.2.2 Oversikt over attributter i datamodellen 
+
+
+#### 4.2.3 Oversikt over attributter i datamodellen 
 
 ```mermaid
 ---
@@ -208,7 +214,7 @@ classDiagram
 		
 ```
 
-#### 4.2.3 Oppsummering av påkrevd eller valgfri informasjon
+#### 4.2.4 Oppsummering av påkrevd eller valgfri informasjon
 Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
@@ -230,7 +236,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsumentens EPJ                                                                                         | Informasjon til pasienten |
 
 
-#### 4.2.4 Informasjonskilder for attestering
+#### 4.2.5 Informasjonskilder for attestering
 
 ```mermaid
 
