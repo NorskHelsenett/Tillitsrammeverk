@@ -228,7 +228,7 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | **Ja**  | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | NHN		 | 
 | **Nei** | practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | NHN       | 
 | **Nei** | practitioner  | "authorization"     	 | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument | 
-| **Ja**  | practitioner  | "legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | Konsument | 
+| **Ja**  | practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | Konsument | 
 | **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument | 
 | **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument | 
 | **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument | 
