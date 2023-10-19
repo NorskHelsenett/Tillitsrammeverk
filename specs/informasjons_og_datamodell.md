@@ -223,21 +223,21 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Påkrevd | Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde                                                                                        | 
-|---------|---------------|--------------------------|---------------------------------------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- | 
-| **Ja**  | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | NHN                                                                                                 | 
-| **Nei** | practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | NHN                                                                                                 | 
-| **Nei** | practitioner  | "authorization"     	 | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument                                                                               						| 
-| **Ja**  | practitioner  | "legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | - For §9 samarbeid og multi-tenancy system: Konsument<br>- Single-tenancy/on-premise system: NHN    | 
-| **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument                                                                                         | 
-| **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument                                                                                         | 
-| **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument                                                                                         | 
-| **Nei** | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Konsument                                                                 | 
-| **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsument                                                                                         | 
-| **Ja**  | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsument                                                                                         | 
-| **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsument                                                                                         | 
-| **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsument                                                                                         | 
-| **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsument                                                                                         | 
+| Påkrevd | Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde | 
+|---------|---------------|--------------------------|---------------------------------------------------------------------------------------------------| --------- | 
+| **Ja**  | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | NHN		 | 
+| **Nei** | practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | NHN       | 
+| **Nei** | practitioner  | "authorization"     	 | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument | 
+| **Ja**  | practitioner  | "legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | Konsument | 
+| **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument | 
+| **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument | 
+| **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument | 
+| **Nei** | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Konsument | 
+| **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsument | 
+| **Ja**  | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsument | 
+| **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsument | 
+| **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsument | 
+| **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsument | 
 
 
 #### 4.2.5 Informasjonskilder for attestering
@@ -494,7 +494,7 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 | Obligatorisk: | **Nei** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Informasjonskilde: | Kjernejournal |
+| Informasjonskilde: | Konsument |
 | Kodeverk: | [Kategori Helsepersonell (OID=2.16.578.1.12.4.1.1.9060)](https://volven.no/produkt.asp?id=506875&catID=3&subID=8)  |
 | Gyldige verdier: | N/A |
 
@@ -674,8 +674,6 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 ### 4.5 Kategori: Pasient - Pasienten
 
 #### 4.5.1 "patient_id": Unik identifikator for pasienten
-
-Attributtet er til behandling av NHN - ROS/DIPA
 
 | Attributt | |
 | --- | --- |
