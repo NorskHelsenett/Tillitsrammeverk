@@ -225,25 +225,78 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 
 | Påkrevd | Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde                                                                                        | 
 |---------|---------------|--------------------------|---------------------------------------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- | 
-| **Ja**  | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | HelseID                                                                                                  | 
-| **Nei** | practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | HelseID                                                                                                  | 
-| **Nei** | practitioner  | "authorization"     	 | Helsepersonellets autorisasjon, dersom den finnes                                                 | HelseID<br/>Kjernerjournal                                                                               | 
-| **Ja**  | practitioner  | "legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | 
-| **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsumentens EPJ                                                                                         | 
-| **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsumentens EPJ                                                                                         | 
-| **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsumentens EPJ                                                                                         | 
-| **Nei** | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Kjernejournal, eller<br>Konsumentens EPJ                                                                 | 
-| **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ                                                                                         | 
-| **Ja**  | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsumentens EPJ                                                                                         | 
-| **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsumentens EPJ                                                                                         | 
-| **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsumentens EPJ                                                                                         | 
-| **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsumentens EPJ                                                                                         | 
+| **Ja**  | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | NHN                                                                                                 | 
+| **Nei** | practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | NHN                                                                                                 | 
+| **Nei** | practitioner  | "authorization"     	 | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument                                                                               						| 
+| **Ja**  | practitioner  | "legal_entity"           | Den dataansvarlige virksomhetens org.nr og navn.                                                  | - For §9 samarbeid og multi-tenancy system: Konsument<br>- Single-tenancy/on-premise system: NHN    | 
+| **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument                                                                                         | 
+| **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument                                                                                         | 
+| **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument                                                                                         | 
+| **Nei** | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Konsument                                                                 | 
+| **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsument                                                                                         | 
+| **Ja**  | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsument                                                                                         | 
+| **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsument                                                                                         | 
+| **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsument                                                                                         | 
+| **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsument                                                                                         | 
 
 
 #### 4.2.5 Informasjonskilder for attestering
+En attest består av informasjon fra flere informasjonskilder:
+* Konsumentens attestering av at helsepersonellet har gyldig grunnlag for tilgang
+* Tillitsankerets attestering av at tilgangsforespørselen kommer fra et journalsystem hos en helsevirksomhet som er medlem av helsenettet.
+
+Tillitsankeret sørger for å ivareta behov for sporbarhet ved å tilby et høyt tillitsnivå (LoA) som definert i tillitsrammeverket.
 
 ```mermaid
 
+flowchart LR
+subgraph Konsument
+	direction TB
+		authorization([autorisasjon])
+		poc([point of care])
+		department([department])
+		hcs([healthcare service])
+		pou([purpose of use])
+		poud([purpose of use details])
+		dec([decicion ref])
+		pat_id([patient id])
+		pat_poc([patient point of care])
+		pat_dep([patient department])
+	direction LR
+		consumer_attestation((Attestering))
+		hp_attest([HP Attest])
+	
+	authorization--->consumer_attestation
+	poc--->consumer_attestation
+	department--->consumer_attestation
+	hcs--->consumer_attestation
+	pou--->consumer_attestation
+	poud--->consumer_attestation
+	dec--->consumer_attestation
+	pat_id--->consumer_attestation
+	pat_poc--->consumer_attestation
+	pat_dep--->consumer_attestation
+end
+hp_attest--->access_req
+subgraph NHN Tillitsanker
+	direction LR
+		access_req((Forespørsel om attestering))		
+		nhn_attestation((Attestering))
+		access_req--->nhn_hpattest
+	direction TB
+		nhn_pid([subject])
+		nhn_hprid([hpr_nummer])		
+		nhn_virk([legal_entity])
+		nhn_hpattest([HP Attest])
+		nhn_hpattest--->nhn_attestation
+		nhn_pid--->nhn_attestation
+		nhn_hprid--->nhn_attestation
+		nhn_virk--->nhn_attestation
+	direction LR
+		virk_attest([Tillitsanker attest])
+		nhn_attestation--->virk_attest
+end
+consumer_attestation--->hp_attest
 
 
 ```
@@ -265,7 +318,7 @@ Forretningsregel: Det er bare navn som skal vises til innbygger.
 | Obligatorisk: | **Ja** |
 | Data type: | Object |
 | Autoritativ kilde: | www.skatteetaten.no |
-| Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
+| Informasjonskilde: | Tillitsanker, basert på innlogging via eID ordning |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 | Gyldige verdier: | N/A |
 
@@ -284,13 +337,13 @@ Forretningsregel: Det er bare navn som skal vises til innbygger.
 #### 4.3.2 "legal_entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
 Attributtet "legal_entity" identifiserer den dataansvarlige virksomheten for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
 
-Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår (medlemsskap i helsenett, avtale om tilgang til tjenester som helseid, kjernejournal og aksept av tilhørende bruksvilkår)
+Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår (medlemsskap i helsenett, avtale om tilgang til tjenester som HelseID, kjernejournal og aksept av tilhørende bruksvilkår)
 Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
 
 Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
 
-- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal_entity". HelseID kontrollerer at databehandler har rett til å opptre på vegne av helsevirksomheten ved å gjøre oppslag i delegeringer som er utført i Altinn.
-- For single-tenancy/on-premise løsninger vil HelseID utlede helsevirksomhet.
+- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal_entity".
+- For single-tenancy/on-premise løsninger kan tillitsankeret utlede helsevirksomhet.
 
 |   |   |
 | ---| ---|
@@ -300,7 +353,7 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 | Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | www.brreg.no |
-| Informasjonskilde: | - §9/multi tenancy: Konsumentens journalsystem<br>- Single-tenancy: Utledes av HelseID  |
+| Informasjonskilde: | - §9/multi tenancy: Konsumentens journalsystem<br>- Single-tenancy: Utledes av Tillitsanker  |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: | N/A |
 
@@ -401,7 +454,7 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseopplysninger. Derfor kan ikke attributtet være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
 
 Er nødvendig for å slå opp i helsepersonellregisteret, og for å undersøke hvorvidt det foreligger sperringer hos kilden og Kjernejournal.
-HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer etter vellykket pålogging.
+Tillitsanker kan berike brukersesjonen med hpr_nr basert på hp sitt fødselsnummer etter vellykket pålogging.
  
 |   |   |
 | ---| ---|
@@ -489,7 +542,8 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 ````
 
 #### 4.4.2 "purpose_of_use": formålet med behandlingen av personopplysninger
-Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
+Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger, og benyttes til å begrunne _hvorfor_ helsepersonellet trenger tilgang til pasientens helseopplysninger.
+I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesialiserte formål ikke ansees som relevante eller nødvendige for omfanget til Pasientens Journaldokumenter.
 
 |   |   |
 | ---| ---|
@@ -1137,16 +1191,19 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 
 
 
-## 9. Normative referanser 
+## 9. Referanser 
 
-Normative referanser spesifiserer dokumenter som må leses for å forstå eller implementere datamodellen, eller teknologi som må være på plass for å kunne implementere teknologien. 
+Informative og normative referanser spesifiserer dokumenter som må leses for å forstå eller implementere datamodellen, eller teknologi som må være på plass for å kunne implementere teknologien. 
 
-* SNOMED-CT
-* ASTM
-* Volven
-* Enhetsregisteret
-* Folkeregisteret
-* Helsepersonellregisteret
+| | |
+| --- | --- |
+| Direktoratet for eHelse | Anbefaling av tillitsmodell for data- og dokumentdeling<br/>https://www.ehelse.no/standardisering/standarder/anbefaling-av-tillitsmodell-for-data-og-dokumentdeling/_/attachment/inline/4b78b44e-dbfe-4f13-9527-4b47e19a5585:a1003d97d50492bed6eb8064a936354b88a5abf0/Anbefaling%20av%20tillitsmodell%20for%20data-%20og%20dokumentdeling.pdf |
+| Direktoratet for eHelse | Volven - Nasjonal database for helsetjenestens metatdatagrunnlag<br/>https://volven.no/index.asp |
+| Brønnøysundsregistrene | Forretningsmodell for enhetsregisteret<br/>https://brreg.github.io/docs/informasjonsmodeller/enhetsregisteret/forretningsobjektmodeller/enhetsregisteret_sentraleopplysninger/ |
+| HL7 International | Purpose Of Use<br/>https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html |
+| Helsedirektoratet | Helsepersonellregisteret<br/>https://www.helsedirektoratet.no/tema/statistikk-registre-og-rapporter/helsedata-og-helseregistre/helsepersonellregisteret-hpr<br/>https://www.nhn.no/tjenester/helsepersonellregisteret |
+| Skattedirektoratet | Folkeregisteret<br/> https://www.skatteetaten.no/person/folkeregister/om/om/ |
+
 
 ## 10. Anerkjennelse av bidragsytere til spesifikasjonen
 Teamet som har hatt ansvaret for denne spesifikasjonen har bestått av Morten Stensøy (HNIKT), Richard Husevåg (HSØ), Sverre Martin Jensen (Oslo Kommune), Erik Vegler Broen (Oslo Kommune - Origo), Simone Vandeberg (NHN), Steinar Noem (NHN).
