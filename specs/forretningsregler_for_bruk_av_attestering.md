@@ -11,21 +11,21 @@ Bruksscenarier også for etterarbeid (oppfølgingsarbeid)
 Attributtene som kan inngå i en attest er spesifisert i [Informasjons- og datamodell for attestering av grunnlag for tilgang ved deling av helseopplysninger](informasjons_og_datamodell.md).
 Attesten skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, SAML og lignende.
 
-| Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde | 
-|---------------|--------------------------|---------------------------------------------------------------------------------------------------| --------- | 
-| practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | Konsument | 
-| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | Konsument | 
-| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument | 
-| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | Konsument | 
-| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument | 
-| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument | 
-| care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument | 
-| care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Konsument | 
-| care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsument | 
-| care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsument | 
-| patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsument | 
-| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsument | 
-| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | Konsument | 
+| Kategori      | Attributt                | Beskrivelse                                                                                       | 
+|---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
+| practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
+| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
+| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
+| care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | 
+| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
+| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
 
 ## Dokumentets status

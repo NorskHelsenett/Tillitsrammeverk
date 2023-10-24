@@ -218,26 +218,23 @@ classDiagram
 		
 ```
 
-#### 4.2.4 Oppsummering av påkrevd eller valgfri informasjon
-Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er valgfrie.
+#### 4.2.4 Oppsummering av informasjonselementer
 
-Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
-
-| Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde | 
-|---------------|--------------------------|---------------------------------------------------------------------------------------------------| --------- | 
-| practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | Konsument | 
-| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | Konsument | 
-| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument | 
-| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | Konsument | 
-| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument | 
-| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument | 
-| care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument | 
-| care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Konsument | 
-| care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsument | 
-| care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsument | 
-| patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsument | 
-| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsument | 
-| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | Konsument | 
+| Kategori      | Attributt                | Beskrivelse                                                                                       | 
+|---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
+| practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
+| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
+| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
+| care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | 
+| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
+| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
 
 #### 4.2.5 Konsumenten som informasjonskilde for attestering
@@ -298,7 +295,6 @@ Attributtet "subject" i entitet practitioner består av verdier som beskriver de
 | Avtalemessig påkrevd | **Ja** |
 | Data type: | Object |
 | Autoritativ kilde: | www.skatteetaten.no |
-| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 | Gyldige verdier: | N/A |
 
@@ -332,7 +328,6 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | String |
 | Autoritativ kilde: | www.brreg.no |
-| Informasjonskilde: | Konsument  |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: | N/A |
 
@@ -374,7 +369,6 @@ Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care:
 | Avtalemessig påkrevd | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: | N/A |
 
@@ -409,7 +403,6 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Konsument    |
-| Informasjonskilde: | Konsument    |
 | Kodeverk: | RESH/Enhetsregisteret |
 | Gyldige verdier: | N/A |
 
@@ -440,7 +433,6 @@ Tillitsanker kan berike brukersesjonen med hpr_nr basert på hp sitt fødselsnum
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 | Gyldige verdier: | N/A |
 
@@ -469,7 +461,6 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Informasjonskilde: | Konsument |
 | Kodeverk: | [Kategori Helsepersonell (OID=2.16.578.1.12.4.1.1.9060)](https://volven.no/produkt.asp?id=506875&catID=3&subID=8)  |
 | Gyldige verdier: | N/A |
 
@@ -498,7 +489,6 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsument |
 | Kodeverk: | [Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655)<br/>[UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)](https://volven.no/produkt.asp?id=507406&catID=3&subID=8)<br/>[Fagområde (OID=2.16.578.1.12.4.1.1.8451)](https://volven.no/produkt.asp?id=507306&catID=3&subID=8)<br/>[Tjenestetyper for spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8668)](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv (OID=2.16.578.1.12.4.1.1.8663)](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper (OID=2.16.578.1.12.4.1.1.8662)](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister (OID=2.16.578.1.12.4.1.1.8664)](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper (OID=2.16.578.1.12.4.1.1.8666)](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666) |
 | Gyldige verdier:| N/A |
 
@@ -525,7 +515,6 @@ I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesiali
 | Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsument |
 | Data type: | Object |
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
 | Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC,<br/>BTG |
@@ -538,7 +527,7 @@ I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesiali
 	"code": "TREAT",
 	"text": "Behandling",
 	"system": "urn:oid:2.16.840.1.113883.1.11.20448",
-	"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+	"assigner": "http://www.hl7.org/"
 }
 ````
 
@@ -561,7 +550,6 @@ I spesialist vil denne være gitt av beslutningsmal.
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsument |
 | Data type: | Object |
 | Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
 | Gyldige verdier:| N/A |
@@ -573,7 +561,7 @@ I spesialist vil denne være gitt av beslutningsmal.
 	"code": "15",
 	"text": "Helsetjenester i hjemmet",
 	"system": "urn:oid:x.x.x.x.x.9151",
-	"assigner": "https://www.helsedirektoratet.no/"
+	"assigner": "https://www.volven.no/"
 },
 ````
 
@@ -595,7 +583,6 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 | Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsument |
 | Data type: | Object |
 | Kodeverk: | N/A |
 | Gyldige verdier:|  |
@@ -622,7 +609,6 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 | Informasjonselement | Unik identifikator og navn for pasienten som helsepersonellet ber om helseopplysninger for |
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
-| Informasjonskilde: | Konsument |
 | Data type: | String |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 | Gyldige verdier: |  |
@@ -657,7 +643,6 @@ Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informas
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: |  |
 
@@ -692,7 +677,6 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB eller Norsk Helsenett SF |
-| Informasjonskilde: | Konsument |
 | Kodeverk: | RESH/Enhetsregisteret |
 | Gyldige verdier: | N/A |
 
@@ -856,19 +840,19 @@ Full modell - valgfrie elementer er tatt med
 			"code": "S03",
 			"text": "Indremedisin",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
-			"assigner": "https://www.helsedirektoratet.no/"
+			"assigner": "https://www.volven.no/"
 		},
 		"purpose_of_use": {
 			"code": "TREAT",
 			"text": "Behandling",
 			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
-			"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
+			"assigner": "http://www..hl7.org/"
 		},
 		"purpose_of_use_details": {
 			"code": "15",
 			"text": "Helsetjenester i hjemmet",
 			"system": "urn:oid:x.x.x.x.x.9151",
-			"assigner": "https://www.helsedirektoratet.no/"
+			"assigner": "https://www.volven.no/"
 		},
 		"decision_ref": {
 			"ref_id": {
@@ -890,7 +874,7 @@ Full modell - valgfrie elementer er tatt med
 			"id": "974589095",
 			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.skatteetaten.no"
+			"authority": "https://www.brreg.no"
 		},
 		"department": {
 			"id": "109765",
@@ -948,7 +932,7 @@ Eksempelet hvor en fastlege er konsument
 			"code": "KX17",
 			"text": "Fastlege, liste uten fast lege",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
-			"assigner": "https://www.helsedirektoratet.no/"
+			"assigner": "https://www.volven.no/"
 		}
 	},
 	"patient": {
@@ -1012,13 +996,13 @@ I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang ti
 			"code": "COC",
 			"text": "",
 			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
-			"assigner": "HL7"
+			"assigner": "https://www.hl7.com/"
 		},
 		"purpose_of_use_details": {
 			"code": "15",
 			"text": "Helsetjenester i hjemmet",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.9151",
-			"assigner": "volven.no"
+			"assigner": "https://www.volven.no"
 		}
 	},
 	"patient": {
