@@ -93,7 +93,7 @@ Spesifikasjonen definerer en informasjonsmodell som beskriver informasjonen som 
 
 Spesifikasjonen beskriver en datamodell som angir hvilke konkrete attributter som skal brukes i attesten, og hvilke kodeverk og verdier som er gyldige for hvert attributt.
 
-Spesifikasjonen skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. Datamodellen vil også implementeres i relevante nasjonale e-helseløsninger og tillitstjenester.
+Spesifikasjonen skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. 
 
 ### 4.1 Informasjonsmodell
 Informasjonen som skal overføres fra konsument til datakilde kan deles inn i tre hovedkategorier:
@@ -223,35 +223,34 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Påkrevd | Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde | 
-|---------|---------------|--------------------------|---------------------------------------------------------------------------------------------------| --------- | 
-| **Ja**  | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | NHN		 | 
-| **Nei** | practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | NHN       | 
-| **Nei** | practitioner  | "authorization"     	 | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument | 
-| **Ja**  | practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | Konsument | 
-| **Ja**  | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument | 
-| **Nei** | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument | 
-| **Ja**  | care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument | 
-| **Nei** | care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Konsument | 
-| **Nei** | care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsument | 
-| **Ja**  | care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsument | 
-| **Ja**  | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsument | 
-| **Nei** | patient       | "point_of_care"  	     | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsument | 
-| **Nei** | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	     | Konsument | 
+| Kategori      | Attributt                | Beskrivelse                                                                                       | Informasjonskilde | 
+|---------------|--------------------------|---------------------------------------------------------------------------------------------------| --------- | 
+| practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | Konsument | 
+| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | Konsument | 
+| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | Konsument | 
+| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | Konsument | 
+| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | Konsument | 
+| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | Konsument | 
+| care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | Konsument | 
+| care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | Konsument | 
+| care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsument | 
+| care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | Konsument | 
+| patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | Konsument | 
+| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | Konsument | 
+| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | Konsument | 
 
 
-#### 4.2.5 Informasjonskilder for attestering
-En attest består av informasjon fra flere informasjonskilder:
-* Konsumentens attestering av at helsepersonellet har gyldig grunnlag for tilgang
-* Tillitsankerets attestering av at tilgangsforespørselen kommer fra et journalsystem hos en helsevirksomhet som er medlem av helsenettet.
-
-Tillitsankeret sørger for å ivareta behov for sporbarhet ved å tilby et høyt tillitsnivå (LoA) som definert i tillitsrammeverket.
+#### 4.2.5 Konsumenten som informasjonskilde for attestering
+En attest består av informasjon som beskriver helsepersonellets grunnlag for tilgang, og skal attesteres av en helsevirksomhet som er medlem av helsenettet.
 
 ```mermaid
 
-flowchart LR
-subgraph Konsument
-	direction TB
+flowchart TB
+subgraph Konsument - innhentende virksomhet
+	direction LR
+		pid([pid])
+		hprid([hpr_nummer])		
+		legalEntity([legal_entity])
 		authorization([autorisasjon])
 		poc([point of care])
 		department([department])
@@ -262,10 +261,13 @@ subgraph Konsument
 		pat_id([patient id])
 		pat_poc([patient point of care])
 		pat_dep([patient department])
-	direction LR
+	direction TB
 		consumer_attestation((Attestering))
-		hp_attest([HP Attest])
+		hp_attest([Helsepersonellets attest])
 	
+	pid--->consumer_attestation
+	hprid--->consumer_attestation
+	legalEntity--->consumer_attestation
 	authorization--->consumer_attestation
 	poc--->consumer_attestation
 	department--->consumer_attestation
@@ -276,29 +278,10 @@ subgraph Konsument
 	pat_id--->consumer_attestation
 	pat_poc--->consumer_attestation
 	pat_dep--->consumer_attestation
-end
-hp_attest--->access_req
-subgraph NHN Tillitsanker
-	direction LR
-		access_req((Forespørsel om attestering))		
-		nhn_attestation((Attestering))
-		access_req--->nhn_hpattest
-	direction TB
-		nhn_pid([subject])
-		nhn_hprid([hpr_nummer])		
-		nhn_virk([legal_entity])
-		nhn_hpattest([HP Attest])
-		nhn_hpattest--->nhn_attestation
-		nhn_pid--->nhn_attestation
-		nhn_hprid--->nhn_attestation
-		nhn_virk--->nhn_attestation
-	direction LR
-		virk_attest([Tillitsanker attest])
-		nhn_attestation--->virk_attest
-end
-consumer_attestation--->hp_attest
 
+	consumer_attestation--->hp_attest
 
+end
 ```
 
 ### 4.3 Beskrivelse av helsepersonellet: "practitioner"
@@ -306,19 +289,16 @@ Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret,
 Helsepersonellets identitet beskrives ved bruk av en struktur som består av identifikatorer og verdier fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
 #### 4.3.1 "subject": Helsepersonellet som "fysisk person" 
-Attributtet "subject" i entitet practitioner er en representasjon av verdier som beskriver en fysisk  person. 
-Forretningsregel: Denne er nødvendig for loggkontroll, sporbarhet og innsyn til innbygger. 
-Forretningsregel: Det er bare navn som skal vises til innbygger.
+Attributtet "subject" i entitet practitioner består av verdier som beskriver den fysiske  personen som ber om innsyn i journaldokumenter. 
 
 |   |   |
 | ---| ---|
 | Attributt: | "subject" |
 | Informasjonselement | Unik identifikator og navn på helsepersonellet |
 | Avtalemessig påkrevd | **Ja** |
-| Obligatorisk: | **Ja** |
 | Data type: | Object |
 | Autoritativ kilde: | www.skatteetaten.no |
-| Informasjonskilde: | Tillitsanker, basert på innlogging via eID ordning |
+| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 | Gyldige verdier: | N/A |
 
@@ -335,7 +315,7 @@ Forretningsregel: Det er bare navn som skal vises til innbygger.
 
 
 #### 4.3.2 "legal_entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
-Attributtet "legal_entity" identifiserer den dataansvarlige virksomheten for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
+Attributtet "legal_entity" identifiserer den juridisk ansvarlige virksomheten hvor helsepersonellet er ansatt. Denne virksomheten er ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
 
 Den juridiske enheten er eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår (medlemsskap i helsenett, avtale om tilgang til tjenester som HelseID, kjernejournal og aksept av tilhørende bruksvilkår)
 Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
@@ -350,10 +330,9 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 | Attributt: | "legal_entity" |
 | Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | www.brreg.no |
-| Informasjonskilde: | - §9/multi tenancy: Konsumentens journalsystem<br>- Single-tenancy: Utledes av Tillitsanker  |
+| Informasjonskilde: | Konsument  |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: | N/A |
 
@@ -393,10 +372,9 @@ Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care:
 | Attributt: | "point_of_care" |
 | Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
 | Avtalemessig påkrevd | **Ja** |
-| Obligatorisk: | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsumentens journalsystem |
+| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: | N/A |
 
@@ -429,10 +407,9 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Attributt: | "department" |
 | Informasjonselement | Fysisk sted/avdeling/organisasjonsenhet som helsepersonellet tilhører |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk:| **Nei** |
 | Data type: | Object |
-| Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens journalsystem |
+| Autoritativ kilde: | Konsument    |
+| Informasjonskilde: | Konsument    |
 | Kodeverk: | RESH/Enhetsregisteret |
 | Gyldige verdier: | N/A |
 
@@ -461,10 +438,9 @@ Tillitsanker kan berike brukersesjonen med hpr_nr basert på hp sitt fødselsnum
 | Attributt: | "hpr_nr" |
 | Informasjonselement | Unik identifikator for helsepersonellet knyttet opp til formelle autorisasjoner eller lisenser |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk: | **Nei** |
 | Data type: | Object |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Informasjonskilde: | Helsepersonellregisteret |
+| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 | Gyldige verdier: | N/A |
 
@@ -491,7 +467,6 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 | Attributt: | "authorization" |
 | Informasjonselement | Den gjeldende autorisasjonen for helsepersonellet i behandlingen av pasienten  |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk: | **Nei** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Informasjonskilde: | Konsument |
@@ -521,10 +496,9 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | Attributt: | "healthcare_service" |
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk: | **Nei** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens journalsystem |
+| Informasjonskilde: | Konsument |
 | Kodeverk: | [Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655)<br/>[UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)](https://volven.no/produkt.asp?id=507406&catID=3&subID=8)<br/>[Fagområde (OID=2.16.578.1.12.4.1.1.8451)](https://volven.no/produkt.asp?id=507306&catID=3&subID=8)<br/>[Tjenestetyper for spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8668)](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv (OID=2.16.578.1.12.4.1.1.8663)](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper (OID=2.16.578.1.12.4.1.1.8662)](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister (OID=2.16.578.1.12.4.1.1.8664)](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper (OID=2.16.578.1.12.4.1.1.8666)](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666) |
 | Gyldige verdier:| N/A |
 
@@ -550,42 +524,11 @@ I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesiali
 | Attributt: | "purpose_of_use" |
 | Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
 | Avtalemessig påkrevd | **Ja** |
-| Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
+| Informasjonskilde: | Konsument |
 | Data type: | Object |
 | Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
 | Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC,<br/>BTG |
-
-
-###### Retningslinjer for bruk av verdier "purpose_of_use"
-**TREAT/treatment**
-Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp som ikke er å regne som akutt. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring.
-
-Eksempler:
-Planlagt legekonsultasjon hos spesialist
-Behandling hos fastlege som ikke faller under øyeblikkelig hjelp
-Oppfølging av behandlingsplan i virksomhet innen primærhelsetjenesten
-
-**ETREAT/Emergency Treatment**
-Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp innen akuttkjeden. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring.
-
-Eksempler:
-Behandling ved akuttmottak på sykehus eller legevakt
-Behandling i ambulanse, via kontakt med AMK eller legevaktsentral
-Øyeblikkelig hjelp hos fastlege
-
-**COC/coordination of care**
-Skal benyttes når forespørsel om tilgang til helsedata ikke skjer i direkte forbindelse med den kliniske utførelsen av helsehjelp. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring.
-
-Eksempler:
-Saksbehandling ved tildeling av kommunale helsetjenester
-
-**BTG/Break the glass**
-Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp og en overstyring av normale tilgangsregler er nødvendig for umiddelbar tilgang. Tilgangsbeslutning hos konsument følger ikke standard regler for tilgangsstyring.
-
-Eksempler:
-Helsepersonell som yter akutt helsehjelp utenfor egen virksomhet
 
 
 ###### "purpose_of_use" - JSON format
@@ -617,9 +560,8 @@ I spesialist vil denne være gitt av beslutningsmal.
 | Attributt: | "purpose_of_use_details" |
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk: | **Nei** |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens journalsystem |
+| Informasjonskilde: | Konsument |
 | Data type: | Object |
 | Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
 | Gyldige verdier:| N/A |
@@ -652,9 +594,8 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 | Attributt: | "decision_ref" |
 | Informasjonselement | Ekstern referanse til lokal tilgangsbeslutning  |
 | Avtalemessig påkrevd | **Ja** |
-| Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Konsument |
-| Informasjonskilde: | Konsumentens EPJ |
+| Informasjonskilde: | Konsument |
 | Data type: | Object |
 | Kodeverk: | N/A |
 | Gyldige verdier:|  |
@@ -680,9 +621,8 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 | Attributt: | "patient" |
 | Informasjonselement | Unik identifikator og navn for pasienten som helsepersonellet ber om helseopplysninger for |
 | Avtalemessig påkrevd | **Ja** |
-| Obligatorisk: | **Ja** |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
-| Informasjonskilde: | Konsumentens jornalsystem |
+| Informasjonskilde: | Konsument |
 | Data type: | String |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 | Gyldige verdier: |  |
@@ -715,10 +655,9 @@ Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informas
 | Attributt: | "point_of_care" |
 | Informasjonselement | Virksomheten (underenhet) hvor pasienten behandles |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk: | **Nei** |
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Informasjonskilde: | Konsumentens journalsystem |
+| Informasjonskilde: | Konsument |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Gyldige verdier: |  |
 
@@ -751,10 +690,9 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi mest mulig forståeli
 | Attributt: | "department" |
 | Informasjonselement | Detaljert organisasjonsenhet som pasienten tilhører |
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
-| Obligatorisk:| **Nei** |
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB eller Norsk Helsenett SF |
-| Informasjonskilde: | Konsumentens EPJ |
+| Informasjonskilde: | Konsument |
 | Kodeverk: | RESH/Enhetsregisteret |
 | Gyldige verdier: | N/A |
 
