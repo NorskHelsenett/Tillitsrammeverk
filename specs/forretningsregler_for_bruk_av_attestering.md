@@ -73,6 +73,7 @@ Spesifikasjonen beskriver en datamodell som angir hvilke konkrete attributter so
 Spesifikasjonen skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. 
 
 ### Generelle forretningsregler knyttet til attestering av helsepersonellets grunnlag for tilgang
+### (Mulig at dette går inn i et generelt tillitsrammeverk og tas ut av forretningskrav for PJD..)
 <table>
     <tr><td> ID </td><td> ATT-X </td></tr>
     <tr><td>Navn</td><td>Serialisering av attest</td></tr>
@@ -142,10 +143,10 @@ Spesifikasjonen skal anvendes av programvare- og systemleverandører ved impleme
                 </ul>
             Sporbarhet skal ivaretas ved bruk av digital signatur, og standardiserte signeringsformater:
             <ul>
-                <li>For XML: XML-Signature</li>
-                <li>For JSON: JOSE - JWS</li>
+                <li>For XML: XML-Encryption</li>
+                <li>For JSON: JOSE - JWE</li>
             </ul>
-            Konkrete løsningsvalg kan f.eks. være bruk av SAML eller JWT.
+            Konkrete løsningsvalg for å håndtere konfidensialitetkan f.eks. være bruk av TLS, samt SAML eller JWT.
         </td>
     </tr>
     <tr>
