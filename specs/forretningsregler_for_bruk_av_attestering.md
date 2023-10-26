@@ -9,7 +9,7 @@ Bruksscenarier også for etterarbeid (oppfølgingsarbeid)
 ## Omfang
 
 Attributtene som kan inngå i en attest er spesifisert i [Informasjons- og datamodell for attestering av grunnlag for tilgang ved deling av helseopplysninger](informasjons_og_datamodell.md).
-Attesten skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, SAML og lignende.
+Attesten skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, XML og CBOR.
 
 | Kategori      | Attributt                | Beskrivelse                                                                                       | 
 |---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
@@ -66,11 +66,11 @@ Denne spesifikasjonen er utarbeidet for Pasientens Journaldokumenter (PJD), som 
 
 ## Spesifikasjon av forretningsregler
 
-Spesifikasjonen definerer felles regler som beskriver  attestering av helsepersonellets grunnlag for tilgang til helseopplysninger samt overføres mellom aktørene. Spesifikasjonen definerer hva denne informasjonen beskriver, og hvorfor den skal overføres.
+Spesifikasjonen definerer felles regler som beskriver hvordan av helsepersonellets grunnlag for tilgang til helseopplysninger skal attesteres og krav knyttet hvordan attesten skal benyttes. 
+Spesifikasjonen hvilke kodeverk og verdier som er gyldige for hvert attributt.
 
-Spesifikasjonen beskriver en datamodell som angir hvilke konkrete attributter som skal brukes i attesten, og hvilke kodeverk og verdier som er gyldige for hvert attributt.
-
-Spesifikasjonen skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. 
+Forretningsreglene skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren. 
+Forretningsreglene danner også et utgangspunkt for kvalitetssikring av systemene som skal implementere attesteringsfunksjonalitet eller behandle attester.
 
 ### Generelle forretningsregler knyttet til attestering av helsepersonellets grunnlag for tilgang
 ### (Mulig at dette går inn i et generelt tillitsrammeverk og tas ut av forretningskrav for PJD..)
@@ -110,12 +110,12 @@ Spesifikasjonen skal anvendes av programvare- og systemleverandører ved impleme
                     <li>Ivaretar attributtenes integritet under transport og lagring.</li>
                     <li>Entydig, og med høy grad av sannsynlighet, kan knyttes til den konsumerende virksomheten som besluttet tilgangen</li>
                 </ul>
-            Sporbarhet skal ivaretas ved bruk av digital signatur, og standardiserte signeringsformater:
+            
+            Sporbarhet kan for eksempel ivaretas ved bruk av digital signatur, og standardiserte signeringsformater:
             <ul>
-                <li>For XML: XML-Signature</li>
-                <li>For JSON: JOSE - JWS</li>
+                <li>XML-Signature og SAML formatet</li>
+                <li>Json Web Signatures og JWT formatet</li>
             </ul>
-            Konkrete løsningsvalg kan f.eks. være bruk av SAML eller JWT.
         </td>
     </tr>
     <tr>
@@ -141,12 +141,11 @@ Spesifikasjonen skal anvendes av programvare- og systemleverandører ved impleme
                     <li>Overføres ved bruk av kryptert transportlag, f.eks. ved bruk av TLS for transport via http.</li>
                     <li>Krypteres ved lagring over tid</li>                    
                 </ul>
-            Sporbarhet skal ivaretas ved bruk av digital signatur, og standardiserte signeringsformater:
+            Sporbarhet kan f.eks. ivaretas ved bruk av digital signatur, og standardiserte signeringsformater som:
             <ul>
-                <li>For XML: XML-Encryption</li>
-                <li>For JSON: JOSE - JWE</li>
+                <li>XML-Encryption og SAML formatet</li>
+                <li>Json Web Encryption og JWT formatet</li>
             </ul>
-            Konkrete løsningsvalg for å håndtere konfidensialitetkan f.eks. være bruk av TLS, samt SAML eller JWT.
         </td>
     </tr>
     <tr>
@@ -170,7 +169,13 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     <tr><td>Navn</td><td>Bruk av innholdet i attributtet "subject"</td></tr>
     <tr>
         <td> Regel </td>
-        <td>Attributtet "subject" skal benyttes til sporbarhetsformål i revisjonslogger, skal benyttes til validering av innkommende parameter i meldinger og KAN eventuelt for informasjon til innbygger (f.eks. http).</td>
+        <td>
+            Attributtet "subject":
+            <ul>
+                <li>SKAL benyttes til sporbarhetsformål i revisjonslogger</li>
+                <li>SKAL benyttes til validering av innkommende parameter i meldinger</li>
+                <li>KAN benyttes for informasjon til innbygger</li>.
+            </td>
     </tr>
     <tr>
         <td> Ansvarlig </td> 
@@ -187,10 +192,18 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 <table>
     <tr><td> ID </td><td> ATT-X </td></tr>
-    <tr><td> Navn  </td><td> Visning av innholdet i attributtet "subject" til innbygger </td></tr>
-    <tr><td> Regel </td><td> Innbygger skal bare se helsepersonellets navn. Fødselsnummer skal skjules </td></tr>
+    <tr><td> Navn  </td><td> Visning av innholdet i attributtet "subject" til innbygger.</td></tr>
     <tr>
-        <td>Ansvarlig </td><td> 
+        <td> Regel </td>
+        <td> Ved anvendelse av attest som informasjonskilde for visning av innsynslogg til innbygger, gjelder følgende regler:
+            <ul>
+                <li>Innbygger SKAL se helsepersonellets navn.</li>
+                <li>Fødselsnummer SKAL IKKE vises</li> 
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig </td>
+        <td> 
             Denne regelen håndheves av alle parter som er involvert i delingen av dokumenter. 
             <ul>
                 <li>konsument/innhentende</li> 
@@ -206,7 +219,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     <tr><td> Navn  </td><td> Tillitsnivå (LoA) til data i attributtet "subject" </td></tr>
     <tr>
         <td> Regel </td>
-        <td> Identiteten til personen som attributtet "subject" peker på skal være basert på et tillitsnivå "høyt" iht identifikasjonsnivåforskriften, eller tilsvarende. </td>
+        <td> Identiteten til personen som attributtet "subject" peker på SKAL være basert på et tillitsnivå "høyt" iht identifikasjonsnivåforskriften, eller tilsvarende. </td>
     </tr>
     <tr>
         <td>Ansvarlig </td>
@@ -299,14 +312,12 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 <table>
 <tr><td>ID </td><td> ATT-X </td></tr>
-<tr><td> Navn  </td><td> Sporbarhet knyttet til attributtet "legal_entity" for multi-tenancy systeme og §9 samarbeid</td>
+<tr><td> Navn  </td><td> Sporbarhet knyttet til attributtet "legal_entity" for multi-tenancy systeme og [§9 samarbeid](https://lovdata.no/lov/2014-06-20-42/§9)</td>
     <tr>    
         <td> Regel </td>
         <td>  
-            <ul>
-                <li>For multi-tenancy løsninger og §9-samarbeid må den juridisk ansvarlige virksomheten bruke Altinn for å eksplisitt delegere et representasjonsforhold til sin databehandler slik at Tillitsankeret kan utføre kontroll.<br>
+                For multi-tenancy løsninger og [§9-samarbeid](https://lovdata.no/lov/2014-06-20-42/§9) må den juridisk ansvarlige virksomheten bruke Altinn for å eksplisitt delegere et representasjonsforhold til sin databehandler slik at Tillitsankeret kan utføre kontroll.<br>
                 Tillitsanker skal kontrollere at det foreligger en gyldig delegering i Altinn.<li>
-                <li>For "on-premise" løsninger vil Tillitsanker benytte informasjon registrert i HelseID selvbetjening til å sikre sporbarhet.</li>
             </ul>
         </td>
     </tr>
@@ -346,7 +357,6 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
 
 #### 3 Forretningsregler for attributtet "point_of_care"
-
 <table>
 <tr><td>ID </td><td> ATT-X </td></tr>
 <tr><td> Navn  </td><td> Bruk av innholdet i attributtet "point_of_care" </td>
@@ -362,18 +372,189 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
             </ul>
         </td>
     </tr>
-    <tr><td> Ansvarlig </td><td>Denne regelen skal håndheves av NHN i rollen som tillitsanker</td>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>tillitsanker/NHN</li>
+            </ul>  
+        </td>
 </table>
 
 #### 4 Forretningsregler for attributtet "department"
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Angivelse av verdi for attributtet "department" for mindre virksomheter </td>
+    <tr>    
+        <td> Regel </td>
+        <td> Attributtet er ikke relevant for mindre virksomheter uten et organiasjonshierarki.<br>
+             Det er derfor ikke obligatorisk å legge det ved i attesten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+</table>
+
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Angivelse av verdi for attributtet "department" for kommunale virksomheter </td>
+    <tr>    
+        <td> Regel </td>
+        <td> 
+            Bruk attributtet "department" for å angi:
+            <ul>
+                <li>Aktuell skole i skolehelsetjenesten</li>
+                <li>Avdeling eller spesifikk enhet i sykehjemskontekst dersom det er relevant</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+</table>
+
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Granuleringsnivå for angivelse av "department" </td>
+    <tr>    
+        <td> Regel </td>
+        <td> Det er virksomheten hvor helsepersonellet jobber som må vurdere hvilket granuleringsnivå som vil være hensiktsmessig for å beskrive hvilken avdeling eller enhet helsepersonellet helsepersonellet yter helsehjelp hos.<br>
+             Granularitetsnivået må gi verdi i følgende scenario:
+             <ul>
+                <li>ved oppfølging av henvendelser fra andre virksomheter</li>
+                <li>ved logganalyse og loggoppfølging i egen virksomhet</li>
+                <li>ved informasjon til pasienten</li>
+            <ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li> 
+            </ul>  
+        </td>
+</table>
+
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Angivelse av "assigner" og "system" for lokale identifikatorer for attributtet "department" </td>
+    <tr>    
+        <td> Regel </td>
+        <td> "System" og "assigner" skal angis selv om konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet.<br>
+        I slike tilfeller skal:
+        <ul>
+            <li>verdien for attributtet "assigner" skal settes til org.nr for juridisk enhet. 
+            <li>verdien for attributtet "system" skal settes til en globalt unik identifikator for å sikre at de er entydige over tid.<br>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li> 
+            </ul>  
+        </td>
+</table>
 
 #### 5 Forretningsregler for attributtet "hpr_nr"
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Angivelse av verdi for attributtet "hpr_nr" for helsepersonell uten lisens/autorisasjon </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr_nr" påkrevd.<br>
+            Attributtet "hpr_nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
+            <ul>
+                <li>Attributtet skal angis dersom den fysiske personen har et innslag i HPR.
+                <li>Attributtet kan utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
+            </ul> 
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+</table>
 
 #### 6 Forretningsregler for attributtet "authorization"
-
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Angivelse av verdi for attributtet "hpr_nr" for helsepersonell uten lisens/autorisasjon </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr_nr" påkrevd.<br>
+            Attributtet "hpr_nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
+            <ul>
+                <li>Attributtet skal angis dersom den fysiske personen har et innslag i HPR.
+                <li>Attributtet kan utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
+            </ul> 
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+</table>
 
 ### Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care_relation"
 #### 7 Forretningsregler for attributtet "healthcare_service"
+
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Angivelse av verdi for attributtet "healthcare_service" </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare_service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br>
+            Verdien som angis for attributtet "healthcare_service" skal være definert i ett av de følgende kodeverkene:
+            <ul>
+                <li>[Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655)</li>
+                <li>[UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)](https://volven.no/produkt.asp?id=507406&catID=3&subID=8)</li>
+                <li>[Fagområde (OID=2.16.578.1.12.4.1.1.8451)](https://volven.no/produkt.asp?id=507306&catID=3&subID=8)</li>
+                <li>[Tjenestetyper for spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8668)](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)</li>
+                <li>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv (OID=2.16.578.1.12.4.1.1.8663)](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)</li>
+                <li>[Fylkeskommunale tjenestetyper (OID=2.16.578.1.12.4.1.1.8662)](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)</li>
+                <li>[Tjenestetyper for apotek og bandasjister (OID=2.16.578.1.12.4.1.1.8664)](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)</li>
+                <li>[Felles tjenestetyper (OID=2.16.578.1.12.4.1.1.8666)](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666)</li>
+            </ul>  
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
 
 #### 8 Forretningsregler for attributtet "purpose_of_use"
 <table>
@@ -381,7 +562,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 <tr><td> Navn  </td><td> Bruk av kode "TREAT" som verdi for attributtet "purpose_of_use" </td>
     <tr>    
         <td> Regel </td>
-        <td>TREAT/treatment
+        <td><em>TREAT</em> (Treatment)<br>
             Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp som ikke er å regne som akutt. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring. 
             Eksempler:
             <ul>
@@ -391,7 +572,15 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
             </ul>
         </td>
     </tr>
-    <tr><td> Ansvarlig </td><td>Denne regelen skal håndheves av innhentende virksomhet i rollen som konsument</td>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
 </table>
 
 <table>
@@ -399,7 +588,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 <tr><td> Navn  </td><td> Bruk av kode "ETREAT" som verdi for attributtet "purpose_of_use" </td>
     <tr>    
         <td> Regel </td>
-        <td>ETREAT/Emergency Treatment
+        <td><em>ETREAT</em> (Emergency Treatment)<br>
             Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp innen akuttkjeden. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring. 
             Eksempler:
             <ul>
@@ -409,7 +598,15 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
             </ul>
         </td>
     </tr>
-    <tr><td> Ansvarlig </td><td>Denne regelen skal håndheves av innhentende virksomhet i rollen som konsument</td>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
 </table>
 
 <table>
@@ -417,7 +614,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 <tr><td> Navn  </td><td> Bruk av kode "COC" som verdi for attributtet "purpose_of_use" </td>
     <tr>    
         <td> Regel </td>
-        <td>COC/coordination of care
+        <td><em>COC</em> (coordination of care)<br>
             Skal benyttes når forespørsel om tilgang til helsedata ikke skjer i direkte forbindelse med den kliniske utførelsen av helsehjelp. Tilgangsbeslutning hos konsument følger standard regler for tilgangsstyring. 
             Eksempler:
             <ul>
@@ -425,7 +622,15 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
             </ul>
         </td>
     </tr>
-    <tr><td> Ansvarlig </td><td>Denne regelen skal håndheves av innhentende virksomhet i rollen som konsument</td>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
 </table>
 
 <table>
@@ -433,26 +638,161 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 <tr><td> Navn  </td><td> Bruk av kode "BTG" som verdi for attributtet "purpose_of_use" </td>
     <tr>    
         <td> Regel </td>
-        <td>BTG/Break the glass
-            Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp og en overstyring av normale tilgangsregler er nødvendig for umiddelbar tilgang. Tilgangsbeslutning hos konsument følger ikke standard regler for tilgangsstyring. 
+        <td><em>BTG (Break the glass)<em><br>
+            Skal benyttes når forespørsel om tilgang til helsedata skjer i direkte forbindelse med ytelse av helsehjelp og en overstyring av normale tilgangsregler er nødvendig for umiddelbar tilgang. Tilgangsbeslutning hos konsument følger ikke standard regler for tilgangsstyring.<br> 
             Eksempler:
             <ul>
                 <li>Helsepersonell som yter akutt helsehjelp utenfor egen virksomhet</li>
             </ul>
         </td>
     </tr>
-    <tr><td> Ansvarlig </td><td>Denne regelen skal håndheves av innhentende virksomhet i rollen som konsument</td>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+#### 9 Forretningsregler for attributtet "purpose_of_use_details"
+
+<<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Gyldige kodeverk for angivelse av verdi for "purpose_of_use_details" </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
+            <ul>
+                <li>For attestering av helsepersonell i spesialisthelsetjenesten skal følgende kodeverk benyttes: <a href="https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html">HL7 Norway: care relation</a></li>                
+                <li>For attestering av helsepersonell i sykehjemstjenesten skal følgende kodeverk benyttes:<a href="https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151">Volvens kodeverk 9151</a></li>
+                <li>Dersom det finnes andre eksisterende kodeverk som har samme formål kan disse også benyttes. </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
 </table>
 
 
-#### 9 Forretningsregler for attributtet "decision_ref"
+#### 10 Forretningsregler for attributtet "decision_ref"
 
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Informasjon til helsepersonellet om bruk av "user_reason" i attributtet "decision_ref".  </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Ved bruk av attributtet "user_reason" når helsepersonellet selv angir formål eller begrunnelse for tilgangen til helseopplysningene må helsepersonellet informeres om at denne informasjonen kan bli brukt i forbindelse med logganalyse og loggoppfølging eller bli vist til pasienten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Gyldige tegn for "user_reason" i attributtet "decision_ref".  </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Ettersom verdien i attributtet "user_reason" er basert på inntastet tekst fra bruker er det en risiko for at en ondsinnet aktør kan utføre sikkerhetsangrep ved å manipulere data i dette feltet. Verdien i attributtet blir transportert, behandlet og lagret i forskjellige systemer på tvers av virksomhetene i verdikjeden.<br>
+            Derfor skal det være usannsynlig at det kan utføres sikkerhetsangrep ved bruk av innholdet i attributtet. Verdien skal kun inneholde alfanumeriske tegn, samt utvalgte spesialtegn.<br>
+            Tekstverdien skal sikres mot forskjellige typer angrep, som: 
+            <ul>
+                <li>SQL injection angrep</li>
+                <li>JSON SQL injection angrep</li>
+                <li>XSS angrep</li>                
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal kontrolleres og håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+                <li>dokumentkilde/utleverende
+                <li>tillitsanker/NHN</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Maksimalt antall tegn for "user_reason" i attributtet "decision_ref".  </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Ettersom verdien i attributtet "user_reason" er basert på inntastet tekst fra bruker er det en risiko for at en ondsinnet aktør kan utføre sikkerhetsangrep ved å manipulere data i dette feltet.<br>
+            Derfor skal det være usannsynlig at det kan utføres sikkerhetsangrep ved bruk av innholdet i attributtet.<br> 
+            Verdien for attributtet "user_reason" skal inneholde <b>maksimalt 250 tegn</b>.<br>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal kontrolleres og håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+                <li>dokumentkilde/utleverende
+                <li>tillitsanker/NHN</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+<tr><td>ID </td><td> ATT-X </td></tr>
+<tr><td> Navn  </td><td> Gyldige verdi for "user_selected" i attributtet "decision_ref".  </td>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Verdien for attributtet "user_selected" skal være av typen <em>boolean</em>.<br>
+            Verdien angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger, eller om tilgangen er systemutledet.
+            <ul>
+                <li>Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være <em>false</em>.</li>
+                <li>Dersom tilgangen er gitt av helsepersonellet selv (selvautorisasjon) skal verdien være <em>true</em>.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal kontrolleres og håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+                <li>dokumentkilde/utleverende
+                <li>tillitsanker/NHN</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
 
 ### Forretningsregler for beskrivelse av pasienten - attributt: "patient"
 
-#### 10 Forretningsregler for attributtet "patient_id"
+#### 11 Forretningsregler for attributtet "patient_id"
 
 
-#### 11 Forretningsregler for attributtet "point_of_care"
+#### 12 Forretningsregler for attributtet "point_of_care"
 
-#### 11 Forretningsregler for attributtet "department"
+#### 13 Forretningsregler for attributtet "department"
+           
