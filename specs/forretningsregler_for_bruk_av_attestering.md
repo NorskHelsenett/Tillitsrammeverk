@@ -312,11 +312,11 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 <table>
 <tr><td>ID </td><td> ATT-X </td></tr>
-<tr><td> Navn  </td><td> Sporbarhet knyttet til attributtet "legal_entity" for multi-tenancy systeme og [§9 samarbeid](https://lovdata.no/lov/2014-06-20-42/§9)</td>
+<tr><td> Navn  </td><td> Sporbarhet knyttet til attributtet "legal_entity" for multi-tenancy systeme og <a href="(https://lovdata.no/lov/2014-06-20-42/§9)">§9 samarbeid</a></td>
     <tr>    
         <td> Regel </td>
         <td>  
-                For multi-tenancy løsninger og [§9-samarbeid](https://lovdata.no/lov/2014-06-20-42/§9) må den juridisk ansvarlige virksomheten bruke Altinn for å eksplisitt delegere et representasjonsforhold til sin databehandler slik at Tillitsankeret kan utføre kontroll.<br>
+                For multi-tenancy løsninger og <a href="https://lovdata.no/lov/2014-06-20-42/§9">§9-samarbeid</a> må den juridisk ansvarlige virksomheten bruke Altinn for å eksplisitt delegere et representasjonsforhold til sin databehandler slik at Tillitsankeret kan utføre kontroll.<br>
                 Tillitsanker skal kontrollere at det foreligger en gyldig delegering i Altinn.<li>
             </ul>
         </td>
@@ -533,14 +533,14 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
             Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare_service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br>
             Verdien som angis for attributtet "healthcare_service" skal være definert i ett av de følgende kodeverkene:
             <ul>
-                <li>[Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655)</li>
-                <li>[UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)](https://volven.no/produkt.asp?id=507406&catID=3&subID=8)</li>
-                <li>[Fagområde (OID=2.16.578.1.12.4.1.1.8451)](https://volven.no/produkt.asp?id=507306&catID=3&subID=8)</li>
-                <li>[Tjenestetyper for spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8668)](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)</li>
-                <li>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv (OID=2.16.578.1.12.4.1.1.8663)](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)</li>
-                <li>[Fylkeskommunale tjenestetyper (OID=2.16.578.1.12.4.1.1.8662)](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)</li>
-                <li>[Tjenestetyper for apotek og bandasjister (OID=2.16.578.1.12.4.1.1.8664)](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)</li>
-                <li>[Felles tjenestetyper (OID=2.16.578.1.12.4.1.1.8666)](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666)</li>
+                <li><a href="https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655">Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)</a></li>
+                <li><a href="https://volven.no/produkt.asp?id=507406&catID=3&subID=8">UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)</a></li>
+                <li><a href="https://volven.no/produkt.asp?id=507306&catID=3&subID=8">Fagområde (OID=2.16.578.1.12.4.1.1.8451)</a></li>
+                <li><a href="https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668">Tjenestetyper for spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8668)</a></li>
+                <li><a href="https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663">Tjenestetyper for kommunal helse- og omsorgstjeneste mv (OID=2.16.578.1.12.4.1.1.8663)</a></li>
+                <li><a href="https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662">Fylkeskommunale tjenestetyper (OID=2.16.578.1.12.4.1.1.8662)</a></li>
+                <li><a href="https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664">Tjenestetyper for apotek og bandasjister (OID=2.16.578.1.12.4.1.1.8664)</a></li>
+                <li><a href="https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666">Felles tjenestetyper (OID=2.16.578.1.12.4.1.1.8666)</a></li>
             </ul>  
         </td>
     </tr>
