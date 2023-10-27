@@ -769,6 +769,37 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | patient:department:id | AuditEvent.encounter:serviceProvider | identifier:RSH.value |  | Identifikasjon av detaljert organisasjonstilhørighet for pasienten |
 | patient:department:name | AuditEvent.encounter:serviceProvider | name |  | Navn på detaljert organisasjonstilhørighet for pasienten |
 
+### 6.3 Relasjon til IHE XDS og XUA SAML profil for kjernejournal
+
+#### 6.3.1 Attributter koblet mot [IHE XDS og XUA SAML profil for kjernejournal](https://www.ehelse.no/standardisering/standarder/iImplementation%20guide%20for%20Norwegian%20usage%20of%20IHE%20XDS,%20XCA%20and%20XUA)
+
+| Attributt | SAML Token | Beskrivelse |
+| --- |--- |--- |
+| practitioner:pid:id | subject/NameID | Helsepersonellets identitet |
+| practitioner:pid:name | subject:subject-id | Helsepersonellets navn |
+| practitioner:professional_licence:hpr_nr:id  | subject:npi | Helsepersonellets autorisasjonsnummer i helsepersonellregisteret |
+| practitioner:professional_licence:authorization:code  | subject:role:code | Helsepersonellets formelle autorisasjon (kodeverdi) |
+| practitioner:professional_licence:authorization:text | subject:role:displayName | Helsepersonellets formelle autorisasjon (navn) |
+| practitioner:legal_entity:id  | subject:organization-id extension | Helsevirksomhetens unike identifikator (organisasjonsnummer) |
+| practitioner:legal_entity:name | subject:organization | Helsevirksomhetens navn |
+| practitioner:point_of_care:id | subject:child-organization extension | Identifikasjon av helsepersonellets arbeidssted (behandlingsstedet de formelt sett opptrer på vegne av) |
+| practitioner:point_of_care:name  | subject:child-organization | Navn på helsepersonellets arbeidssted |
+| practitioner:department:id | subject:facility-id extension | Identifikasjon av enhet som ugjør helsepersonellets detaljerte organisasjonstilhørighet |
+| practitioner:department:name | subject:facility | Navn på enhet som utgjør helsepersonellets detaljerte organisasjonstilhørighet | 
+| care_relationship:healthcareservice:code | care_relationship:healthcare_service:code | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:healthcareservice:text | care_relationship:healthcare_service:text | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:purpose_of_use:code | subject:purposeOfUse code | Identifikasjon av overordnet formål med tilgangen |
+| care_relationship:purpose_of_use:text | subject:purposeOfUse displayName | Navn på overordnet formål med tilgangen |
+| care_relationship:purpose_of_use_details:code | care_relationship:purpose_of_use_details:code | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:purpose_of_use_details:text | care_relationship:purpose_of_use_details:text | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:decision_ref:ref_id | care_relationship:decision_ref:ref_id | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
+| patient:id | resource:resource-id | Identifikasjon av pasienten tilgangen gjelder |
+| patient:name | - | Navn på pasienten tilgangen gjelder |
+| patient:point_of_care:id | resource:child-organization-id extension | Identifikasjon av behandlingsstedet som pasienten behandles ved |
+| patient:point_of_care:name | resource:child-organization | Navn på behandlingsstedet som pasienten behandles ved |
+| patient:department:id | resource:facility-id extension | Identifikasjon av detaljert organisasjonstilhørighet for pasienten |
+| patient:department:name | resource:facility | Navn på detaljert organisasjonstilhørighet for pasienten |
+
 
 ## 7. Vedlegg B: JSON profil for datamodell
 Full modell - valgfrie elementer er tatt med
