@@ -24,7 +24,7 @@
 2. Gjennomgang av utkast til forretningsregler
 3. Hvordan tar vi forretningsregler videre?
 4. Utestående Issues
-5. Annet/eventuelt
+5. Arbeids- og møteplanlegging for neste uke
 
 ## Saksbehandling
 
@@ -55,4 +55,4 @@
 #### [Issue 105](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/105)
 
 
-### 5. Annet/eventuelt
+### 5. Arbeids- og møteplanlegging for neste uke
