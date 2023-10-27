@@ -659,7 +659,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 
 #### 9 Forretningsregler for attributtet "purpose_of_use_details"
 
-<<table>
+<table>
 <tr><td>ID </td><td> ATT-X </td></tr>
 <tr><td> Navn  </td><td> Gyldige kodeverk for angivelse av verdi for "purpose_of_use_details" </td>
     <tr>    
