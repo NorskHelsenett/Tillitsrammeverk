@@ -29,7 +29,7 @@ Attesten skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. J
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| -0 | Utkast | 24.10.2023 |
+| -0 | Utkast | 27.10.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
