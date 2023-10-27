@@ -31,18 +31,27 @@
 ### 1. Gjennomgang av agendaen
 
 ### 2. Utestående Issues
-- [Issue 79](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/79)
-- [Issue 93](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/93)
-- [Issue 94](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/94) 
-- [Issue 98](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/98)
-- [Issue 100](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/100)
-- [Issue 102](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/102)
-- [Issue 104](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/104)
-- [Issue 105](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/105)
+#### [Issue 79](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/79)
+
+#### [Issue 93](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/93)
+
+#### [Issue 94](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/94) 
+
+#### [Issue 98](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/98)
+
+#### [Issue 100](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/100)
+
+#### [Issue 102](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/102)
+
+#### [Issue 104](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/104)
+
+#### [Issue 105](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/105)
 
 ### 3. Gjennomgang av utkast til forretningsregler
-
+- Er det formattert på formålstjenlig måte?
+- Gir dokumentet verdi?
 
 ### 4. Hvordan tar vi forretningsregler videre?
+- Tas inn i løsningsbeskrivelser?
 
 ### 5. Annet/eventuelt
