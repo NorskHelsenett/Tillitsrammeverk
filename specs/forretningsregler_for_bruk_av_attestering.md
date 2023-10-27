@@ -1,6 +1,4 @@
 # Forretningsregler for bruk av attest
-Hva attributtet brukes til skal inn i informasjonsmodell, ikke i regler.. Regler=hvordan - infomodell=hva og hvorfor
-
 ## Sammendrag
 Dette dokumentet beskriver forretningsregler knyttet til attestering av helsepersonellets grunnlag for tilgang til pasientens helseopplysninger i kjøretid.
 
