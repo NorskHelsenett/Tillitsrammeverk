@@ -3,21 +3,21 @@
 ## Til stede
 - Richard Husevåg (HSØ)
 - Eirik Vegler Broen (Oslo Kommune - Origo)
-- Sverre Martin Jensen (Oslo Kommune)
-- Morten Stensøy (HNIKT)
-- Frank Furnes (HNIKT)
-- Øyvind Kvennås (NHN)
-- Kristin Lyng (NHN)
-- Øyvind Bech (NHN)
+- Frank Furnes (Helse Vest IKT)
+- Morten Stensøy (Helse Nord IKT)
 - Kristin Rønneberg (NHN)
-- Rune Andreas Grimstad (NHN)
-- Ragnhild Varmedal (NHN)
-- Nina Nordberg (NHN)
-- Michal Cermak (NHN)
 - Simone Vandeberg (NHN)
 - Steinar Noem (NHN)
 
 ### Ikke til stede
+- Sverre Martin Jensen (Oslo Kommune)
+- Øyvind Kvennås (NHN)
+- Kristin Lyng (NHN)
+- Øyvind Bech (NHN)
+- Rune Andreas Grimstad (NHN)
+- Ragnhild Varmedal (NHN)
+- Nina Nordberg (NHN)
+- Michal Cermak (NHN)
 
 ## Agenda
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
