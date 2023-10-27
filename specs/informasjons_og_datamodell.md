@@ -792,7 +792,7 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | care_relationship:purpose_of_use:text | subject:purposeOfUse displayName | Navn på overordnet formål med tilgangen |
 | care_relationship:purpose_of_use_details:code | care_relationship:purpose_of_use_details:code | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
 | care_relationship:purpose_of_use_details:text | care_relationship:purpose_of_use_details:text | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
-| care_relationship:decision_ref:ref_id | care_relationship:decision_ref:ref_id | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
+| care_relationship:decision_ref:id | care_relationship:decision_ref:id | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
 | patient:id | resource:resource-id | Identifikasjon av pasienten tilgangen gjelder |
 | patient:name | - | Navn på pasienten tilgangen gjelder |
 | patient:point_of_care:id | resource:child-organization-id extension | Identifikasjon av behandlingsstedet som pasienten behandles ved |
