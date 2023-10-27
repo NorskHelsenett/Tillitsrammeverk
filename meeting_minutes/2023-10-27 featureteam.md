@@ -56,3 +56,4 @@
 
 
 ### 5. Arbeids- og møteplanlegging for neste uke
+- Fordele forretningsregler ut fra informasjonselementer i spesifikasjonen?
