@@ -21,16 +21,23 @@
 
 ## Agenda
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
-2. Utestående Issues
-3. Gjennomgang av utkast til forretningsregler
-4. Hvordan tar vi forretningsregler videre?
+2. Gjennomgang av utkast til forretningsregler
+3. Hvordan tar vi forretningsregler videre?
+4. Utestående Issues
 5. Annet/eventuelt
 
 ## Saksbehandling
 
 ### 1. Gjennomgang av agendaen
 
-### 2. Utestående Issues
+### 2. Gjennomgang av utkast til forretningsregler
+- Er det formattert på formålstjenlig måte?
+- Gir dokumentet verdi?
+
+### 3. Hvordan tar vi forretningsregler videre?
+- Tas inn i løsningsbeskrivelser?
+
+### 4. Utestående Issues
 #### [Issue 79](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/79)
 
 #### [Issue 93](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/93)
@@ -47,11 +54,5 @@
 
 #### [Issue 105](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/105)
 
-### 3. Gjennomgang av utkast til forretningsregler
-- Er det formattert på formålstjenlig måte?
-- Gir dokumentet verdi?
-
-### 4. Hvordan tar vi forretningsregler videre?
-- Tas inn i løsningsbeskrivelser?
 
 ### 5. Annet/eventuelt
