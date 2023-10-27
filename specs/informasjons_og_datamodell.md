@@ -577,7 +577,7 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 
 ````JSON
     "decision_ref" : {
-		"ref_id":  "8<.. id til lokal tilgangsbeslutning, unik for konsument og autogenerert i EPJ ..>8" , 
+		"id":  "8<.. id til lokal tilgangsbeslutning, unik for konsument og autogenerert i EPJ ..>8" , 
 		"description": "Legekonsultasjon",
 		"user_selected": false,
 		"user_reason": "Tekst lagt inn av bruker.."
@@ -832,7 +832,7 @@ Full modell - valgfrie elementer er tatt med
 			"assigner": "https://www.volven.no/"
 		},
 		"decision_ref": {
-			"ref_id": {
+			"id": {
 				"8<..autogenerert i EPJ..>8"
 			},
 			"user_selected": true,
