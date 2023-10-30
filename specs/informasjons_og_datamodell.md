@@ -999,6 +999,9 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | --- |--- |--- |
 | practitioner:pid:id | subject/NameID | Helsepersonellets identitet |
 | practitioner:pid:name | subject:subject-id | Helsepersonellets navn |
+| practitioner:hpr-nr:id  | subject:npi | Helsepersonellets autorisasjonsnummer i helsepersonellregisteret |
+| practitioner:authorization:code  | subject:role:code | Helsepersonellets formelle autorisasjon (kodeverdi) |
+| practitioner:authorization:text | subject:role:displayName | Helsepersonellets formelle autorisasjon (navn) |
 | practitioner:legal-entity:id  | subject:organization-id extension | Helsevirksomhetens unike identifikator (organisasjonsnummer) |
 | practitioner:legal-entity:name | subject:organization | Helsevirksomhetens navn |
 | practitioner:point-of-care:id | subject:child-organization extension | Identifikasjon av helsepersonellets arbeidssted (behandlingsstedet de formelt sett opptrer på vegne av) |
