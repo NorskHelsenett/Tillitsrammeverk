@@ -389,7 +389,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
                 <li>tillitsanker/NHN</li>
             </ul>  
         </td>
-    <tr>
+    </tr>
 </table>
 
 <table>
@@ -685,7 +685,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Bruk av kode "TREAT" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "TREAT" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -717,7 +717,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Bruk av kode "ETREAT" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "ETREAT" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -749,7 +749,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Bruk av kode "COC" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "COC" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -779,7 +779,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Bruk av kode "BTG" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "BTG" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
