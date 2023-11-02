@@ -26,7 +26,7 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 | patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
-En er ikke knyttet til en spesifikk internettprotokoll, eller et spesifikt format, men skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, XML og CBOR, og benyttes i forskjellige protokoller (som http, amqp, smtp osv). Noen forretningsregler vil være spesifikke for enkelte protokoller eller serialiseringsformater.
+En attest er ikke knyttet til en spesifikk internettprotokoll, eller et spesifikt format, men skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, XML og CBOR, og benyttes i forskjellige protokoller (som http, amqp, smtp osv). Noen forretningsregler vil være spesifikke for enkelte protokoller eller serialiseringsformater.
 
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
@@ -67,9 +67,10 @@ Denne spesifikasjonen er utarbeidet for Pasientens Journaldokumenter (PJD), som 
 
 Spesifikasjonen definerer felles regler som beskriver hvordan helsepersonellets grunnlag for tilgang til helseopplysninger skal attesteres og krav knyttet hvordan attesten skal benyttes. Spesifikasjonen definerer hvilke kodeverk og verdier som er gyldige for hvert attributt.
 
+### Formålet med forretningsregler
 Forretningsreglene skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren.
 
-Forretningsreglene gir et utgangspunkt for kvalitetssikring av systemene som skal implementere attesteringsfunksjonalitet eller behandle attester.
+Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av systemene som skal implementere attesteringsfunksjonalitet eller behandle attester.
 
 ### 1. Generelle forretningsregler knyttet til attestering av helsepersonellets grunnlag for tilgang
 ##### (Mulig at dette går inn i et generelt tillitsrammeverk og tas ut av forretningskrav for PJD..)
@@ -117,10 +118,10 @@ Forretningsreglene gir et utgangspunkt for kvalitetssikring av systemene som ska
         <td> Regel </td>
         <td>
             Attestens sporbarhet skal ivaretas, slik at attesten:
-                <ul>
-                    <li>Ivaretar attributtenes integritet under transport og lagring.</li>
-                    <li>Entydig, og med høy grad av sannsynlighet, kan knyttes til den konsumerende virksomheten som besluttet tilgangen</li>
-                </ul>            
+            <ul>
+                <li>Ivaretar attributtenes integritet under transport og lagring.</li>
+                <li>Entydig, og med høy grad av sannsynlighet, kan knyttes til den konsumerende virksomheten som besluttet tilgangen</li>
+            </ul>            
             Sporbarhet kan for eksempel ivaretas ved bruk av digital signatur, og standardiserte signeringsformater:
             <ul>
                 <li>XML-Signature og SAML formatet</li>
@@ -520,6 +521,36 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
+        <td>Angivelse av verdi for attributtet "department" for Helseforetak i spesialisthelsetjenesten </td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td> 
+            Bruk attributtet "department" for å angi:
+            <ul>
+                <li>?</li>
+                <li>?</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
         <td>Granuleringsnivå for angivelse av "department"</td>
     </tr>
     <tr>    
@@ -894,7 +925,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
                 <li>konsument/innhentende</li>
                 <li>dokumentkilde/utleverende</li>
                 <li>tillitsanker/NHN</li>
-            </ul>  
+            </ul>
         </td>
     </tr>
 </table>
