@@ -1,9 +1,3 @@
-# <span style="color: red">TIL INFORMASJON! </span>
-# <span style="color: red">VI OMSTRUKTURERER SPESIFIKASJONENE PÅ GITHUB</span>
-For å forenkle arbeidet med spesifikasjoner knyttet til tillitsrammeverk og Pasientens Journaldokumenter har vi startet en omstruktering av spesifikasjonene.
-Dette Github repository'et vil fortsette å være hjemmet til informasjonsmodellen for attestering av helsepersonellets tjenstlige behov.
-
-
 # Tillitsrammeverk
 Repo for spesifikasjoner og annet relevant arbeid med Tillitsrammeverket
 
@@ -14,11 +8,11 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 - Det gjør samarbeid på tvers enklere
 
 ### Spesifikasjoner
-* [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md).
-* [Profil for bruk av OpenID Connect ved deling av helseopplysninger via API](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/flyttes/bruk_av_oidc.md)
-* [Profil for JWT Access Token format](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/flyttes/jwt_access_token_format.md)
-* [Profil for "authorization_details" strukturen ved bruk av HelseID](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/flyttes/profil_for_authorization_details.md)
-
+* [Forretningsregler for bruk av informasjonsmodell for attestering av helsepersonellets grunnlag for tilgang til helseopplysninger](/specs/forretningsregler_for_bruk_av_attestering.md)
+* [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](/specs/informasjons_og_datamodell.md).
+* [Profil for bruk av OpenID Connect ved deling av helseopplysninger via API](/specs/flyttes/bruk_av_oidc.md)
+* [Profil for JWT Access Token format](/specs/flyttes/jwt_access_token_format.md)
+* [Profil for "authorization_details" strukturen ved bruk av HelseID](/specs/flyttes/profil_for_authorization_details.md)
 
 ## Prosess
 Utviklingen av spesifikasjonene vil foregå over flere iterasjoner, hvor hver iterasjon fører til en ny versjon av spesifikasjonen. NHN skal sørge for framdrift og vil fungere som reviewer av pull-requests, sørger for framdrift i viktige diskusjoner og vil håndtere eventuelle tilbakemeldinger via issues.
