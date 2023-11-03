@@ -13,17 +13,17 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 | Kategori      | Attributt                | Beskrivelse                                                                                       | 
 |---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
 | practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
-| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
 | practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
-| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
-| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
+| practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
 | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
-| care_relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care_relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care_relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care_relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care-relation | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
 | patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | 
-| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
+| patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
 En attest er ikke knyttet til en spesifikk internettprotokoll, eller et spesifikt format, men skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, XML og CBOR, og benyttes i forskjellige protokoller (som http, amqp, smtp osv). Noen forretningsregler vil være spesifikke for enkelte protokoller eller serialiseringsformater.
@@ -332,7 +332,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 </table>
 
 
-#### 2.2 Forretningsregler for attributtet "legal_entity"
+#### 2.2 Forretningsregler for attributtet "legal-entity"
 
 <table>
     <tr>
@@ -341,7 +341,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Bruk av innholdet i attributtet "legal_entity"</td>
+        <td>Bruk av innholdet i attributtet "legal-entity"</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -373,7 +373,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td> Navn </td>
-        <td> Sporbarhet knyttet til attributtet "legal_entity" for multi-tenancy systeme og <a href="https://lovdata.no/lov/2014-06-20-42/§9">§9 samarbeid</a></td>
+        <td> Sporbarhet knyttet til attributtet "legal-entity" for multi-tenancy systeme og <a href="https://lovdata.no/lov/2014-06-20-42/§9">§9 samarbeid</a></td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -400,7 +400,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td> Sporbarhet knyttet til attributtet "legal_entity" for "on-premise" systemer som er brukt av en enkelt virksomhet </td>
+        <td> Sporbarhet knyttet til attributtet "legal-entity" for "on-premise" systemer som er brukt av en enkelt virksomhet </td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -423,7 +423,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
 
-#### 2.3 Forretningsregler for attributtet "point_of_care"
+#### 2.3 Forretningsregler for attributtet "point-of-care"
 
 <table>
     <tr>
@@ -432,7 +432,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td> Bruk av innholdet i attributtet "point_of_care"</td>
+        <td> Bruk av innholdet i attributtet "point-of-care"</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -604,20 +604,20 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
 </table>
 
-#### 2.5 Forretningsregler for attributtet "hpr_nr"
+#### 2.5 Forretningsregler for attributtet "hpr-nr"
 <table>
     <tr>
         <td>ID </td><td> ATT-X </td>
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Angivelse av verdi for attributtet "hpr_nr" for helsepersonell uten lisens/autorisasjon</td>
+        <td>Angivelse av verdi for attributtet "hpr-nr" for helsepersonell uten lisens/autorisasjon</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr_nr" påkrevd.<br>
-            Attributtet "hpr_nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
+            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr-nr" påkrevd.<br>
+            Attributtet "hpr-nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
             <ul>
                 <li>Attributtet skal angis dersom den fysiske personen har et innslag i HPR.</li>
                 <li>Attributtet kan utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
@@ -643,13 +643,13 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Angivelse av verdi for attributtet "hpr_nr" for helsepersonell uten lisens/autorisasjon </td>
+        <td>Angivelse av verdi for attributtet "hpr-nr" for helsepersonell uten lisens/autorisasjon </td>
     </tr>
     <tr>    
         <td>Regel</td>
         <td>
-            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr_nr" påkrevd.<br>
-            Attributtet "hpr_nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
+            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr-nr" påkrevd.<br>
+            Attributtet "hpr-nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
             <ul>
                 <li>Attributtet skal angis dersom den fysiske personen har et innslag i HPR.</li>
                 <li>Attributtet kan utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
@@ -667,8 +667,8 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
 </table>
 
-### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care_relation"
-#### 3.1 Forretningsregler for attributtet "healthcare_service"
+### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care-relation"
+#### 3.1 Forretningsregler for attributtet "healthcare-service"
 
 <table>
     <tr>
@@ -677,13 +677,13 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Angivelse av verdi for attributtet "healthcare_service"</td>
+        <td>Angivelse av verdi for attributtet "healthcare-service"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare_service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br>
-            Verdien som angis for attributtet "healthcare_service" skal være definert i ett av de følgende kodeverkene:
+            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare-service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br>
+            Verdien som angis for attributtet "healthcare-service" skal være definert i ett av de følgende kodeverkene:
             <ul>
                 <li><a href="https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655">Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)</a></li>
                 <li><a href="https://volven.no/produkt.asp?id=507406&catID=3&subID=8">UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)</a></li>
@@ -708,7 +708,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 </table>
 
 
-#### 3.2 Forretningsregler for attributtet "purpose_of_use"
+#### 3.2 Forretningsregler for attributtet "purpose-of-use"
 <table>
     <tr>
         <td>ID</td>
@@ -716,7 +716,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Angivelse av kode "TREAT" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "TREAT" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -748,7 +748,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Angivelse av kode "ETREAT" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "ETREAT" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -780,7 +780,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Angivelse av kode "COC" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "COC" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -810,7 +810,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Angivelse av kode "BTG" som verdi for attributtet "purpose_of_use"</td>
+        <td>Angivelse av kode "BTG" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -833,7 +833,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
 </table>
 
-#### 3.3 Forretningsregler for attributtet "purpose_of_use_details"
+#### 3.3 Forretningsregler for attributtet "purpose-of-use-details"
 
 <table>
     <tr>
@@ -842,7 +842,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Gyldige kodeverk for angivelse av verdi for "purpose_of_use_details"</td>
+        <td>Gyldige kodeverk for angivelse av verdi for "purpose-of-use-details"</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -867,7 +867,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 </table>
 
 
-#### 3.4 Forretningsregler for attributtet "decision_ref"
+#### 3.4 Forretningsregler for attributtet "decision-ref"
 
 <table>
     <tr>
@@ -876,7 +876,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Informasjon til helsepersonellet om bruk av "user_reason" i attributtet "decision_ref".</td>
+        <td>Informasjon til helsepersonellet om bruk av "user_reason" i attributtet "decision-ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -902,7 +902,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Gyldige tegn for "user_reason" i attributtet "decision_ref".</td>
+        <td>Gyldige tegn for "user_reason" i attributtet "decision-ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -937,7 +937,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Maksimalt antall tegn for "user_reason" i attributtet "decision_ref".</td>
+        <td>Maksimalt antall tegn for "user_reason" i attributtet "decision-ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -967,7 +967,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Gyldige verdi for "user_selected" i attributtet "decision_ref".</td>
+        <td>Gyldige verdi for "user_selected" i attributtet "decision-ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -998,7 +998,7 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
 #### 4.1 Forretningsregler for attributtet "patient_id"
 
 
-#### 4.2 Forretningsregler for attributtet "point_of_care"
+#### 4.2 Forretningsregler for attributtet "point-of-care"
 
 
 #### 4.3 Forretningsregler for attributtet "department"

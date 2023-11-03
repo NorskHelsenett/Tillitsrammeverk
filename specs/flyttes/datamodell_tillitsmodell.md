@@ -155,8 +155,8 @@ classDiagram
 	Fagsystem -- Helsepersonell
 
 	class Helsevirksomhet{
-		- "legal_entity"
-		- "point_of_care"
+		- "legal-entity"
+		- "point-of-care"
 	}
 		
 	class Fagsystem{
@@ -168,7 +168,7 @@ classDiagram
 	class Helsepersonell{
 		- "subject"
 		- "pid"
-		- "hpr_nr"
+		- "hpr-nr"
 		- "authorization"
 	}	
 		
@@ -182,10 +182,10 @@ Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi 
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Formål |
 | --- | --- | --- | --- | --- | 
 | "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | Loggkontroll og sporbarhet |
-| "hpr_nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "hpr-nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | Loggkontroll, sporbarhet og informasjon til pasienten |
 | "professional_licence" | Helsepersonellets autorisasjon, dersom den finnes | HelseID | **Nei** | Tilgangsstyring |
-| "legal_entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | Loggkontroll og sporbarhet og informasjon til pasienten |
-| "point_of_care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity" | Konsumentens EPJ | **Ja** | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "legal-entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | Loggkontroll og sporbarhet og informasjon til pasienten |
+| "point-of-care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity" | Konsumentens EPJ | **Ja** | Loggkontroll, sporbarhet og informasjon til pasienten |
 
 #### 4.2.4 Kategori: Helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
@@ -228,22 +228,22 @@ Det er bare navn som skal vises til innbygger.
 
 ````JSON
 "professional_license": {
-	"hpr_nr": { 8<...>8 },
+	"hpr-nr": { 8<...>8 },
 	"authorization": { 8<...>8 }
 }
 ````
 
-###### "hpr_nr": Helsepersonellnummer
-Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
+###### "hpr-nr": Helsepersonellnummer
+Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
 
 Noe helsepersonell har ikke autorisasjon, men trenger likevel tilgang på helseopplysninger. Derfor kan ikke attributtet være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
 
 Er nødvendig for å slå opp i helsepersonellregisteret, og for å undersøke hvorvidt det foreligger sperringer hos kilden og Kjernejournal.
-HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer etter vellykket pålogging.
+HelseID beriker brukersesjonen med hpr-nr basert på hp sitt fødselsnummer etter vellykket pålogging.
  
 |   |   |
 | ---| ---|
-| Attributt: | "hpr_nr" |
+| Attributt: | "hpr-nr" |
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Unik identifikator for helsepersonellet knyttet opp til formelle autorisasjoner eller lisenser |
 | Attributt EHDSI: | N/A (?) |
@@ -253,9 +253,9 @@ HelseID beriker brukersesjonen med hpr_nr basert på hp sitt fødselsnummer ette
 | Informasjonskilde: | Helsepersonellregisteret |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 
-###### "hpr_nr": Helsepersonellets gjeldende autorisasjon - JSON format
+###### "hpr-nr": Helsepersonellets gjeldende autorisasjon - JSON format
 ````JSON
-"hpr_nr": {
+"hpr-nr": {
 	"id": "9144900",
 	"system": "urn:oid:2.16.578.1.12.4.1.4.4",
 	"authority": "https://www.helsedirektoratet.no/"
@@ -294,11 +294,11 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 }
 ````
 
-###### "professional_licence" - JSON struktur med "hpr_nr" og "authorization"
+###### "professional_licence" - JSON struktur med "hpr-nr" og "authorization"
 
 ````JSON
 "professional_license": {
-	"hpr_nr": {
+	"hpr-nr": {
 		"id": "9144900",
 		"system": "urn:oid:2.16.578.1.12.4.1.4.4",
 		"authority": "https://www.helsedirektoratet.no/"
@@ -316,22 +316,22 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 #### 4.2.6 Kategori: Helsevirksomhet
 Attributter som beskriver virksomheten hvor helsepersonellet yter helsehjelp.
 
-##### "legal_entity": den dataansvarlige virksomheten 
-Attributtet "legal_entity" identifiserer den dataansvarlige for helseopplysningene som behandles i journalsystemet som brukes av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
+##### "legal-entity": den dataansvarlige virksomheten 
+Attributtet "legal-entity" identifiserer den dataansvarlige for helseopplysningene som behandles i journalsystemet som brukes av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
 
 Den juridiske enheten eier medlemsskapet i Helsenettet, og benyttes til tilgangsstyring i forb. med signerte bruksvilkår (medlem i helsenett, helseid, kj)
 Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
 
 Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
 
-- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal_entity". HelseID kontrollerer at databehandler har rett til å opptre på vegne av helsevirksomheten ved å gjøre oppslag i delegeringer som er utført i Altinn.
+- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal-entity". HelseID kontrollerer at databehandler har rett til å opptre på vegne av helsevirksomheten ved å gjøre oppslag i delegeringer som er utført i Altinn.
 - For single-tenancy/on-premise løsninger vil HelseID utlede helsevirksomhet.
 
 |   |   |
 | ---| ---|
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
-| Attributt: | "legal_entity" |
+| Attributt: | "legal-entity" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:organization"<br/>"urn:oasis:names:tc:xspa:1.0:subject:organization-id" |
 | Obligatorisk: | **Ja** |
 | Data type: | String |
@@ -343,7 +343,7 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 ###### Den dataansvarlige virksomheten - Attributter JSON format
 
 ````JSON
-"legal_entity": {
+"legal-entity": {
 	"id": "921592761",
 	"name": "Lege Leif Lagesen ENK",
 	"system": "2.16.578.1.12.4.1.4.101",
@@ -351,38 +351,38 @@ Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller h
 }
 ```` 
 
-##### "point_of_care": Behandlingssted
+##### "point-of-care": Behandlingssted
 
-Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp,
+Attributtet "point-of-care" identifiserer behandlingsstedet hvor helsepersonellet yter helsehjelp,
 og skal peke på en virksomhet i enhetsregisteret.
 <br>
-Attributtet er obligatorisk, men dersom verdiene for "legal_entity" og "point_of_care" er like verdien gjentas i begge attributter.
+Attributtet er obligatorisk, men dersom verdiene for "legal-entity" og "point-of-care" er like verdien gjentas i begge attributter.
 
 | :warning:               | Intern kommentar fra team dok.deling |
 |--------------------------|:------------------------|
-| "point_of_care"           | Informasjonselement bør være den som pasienten gjenkjenner igjen, som f.eks. "Legevakt på Hamar" i stedet for "Hamar kommune". Bør ikke settes absolutt krav til knytting til enhetsregister men støttes ellers |
+| "point-of-care"           | Informasjonselement bør være den som pasienten gjenkjenner igjen, som f.eks. "Legevakt på Hamar" i stedet for "Hamar kommune". Bør ikke settes absolutt krav til knytting til enhetsregister men støttes ellers |
 
-Attributtet "point_of_care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
+Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
 
-Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care: 
+Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care: 
 **Spesialisthelsetjenesten**
 * legal_enitity: "nordlandssykehuset hf" 
-* point_of_care: "nordlandssykehuset somatikk gravdal"
+* point-of-care: "nordlandssykehuset somatikk gravdal"
 
 **Kommune**
-* legal_entity: "Oslo Kommune helseetaten"
-* point_of_care: "Legevakten storgata"
+* legal-entity: "Oslo Kommune helseetaten"
+* point-of-care: "Legevakten storgata"
 
 **Fastlege**
-* legal_entity: "Fastlege Lege Legesen"
-* point_of_care: "Fastlege Lege Legesen"
+* legal-entity: "Fastlege Lege Legesen"
+* point-of-care: "Fastlege Lege Legesen"
 
 
 |   |   |
 | ---| ---|
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Virksomheten (underenhet) hvor helsepersonellet yter helsehjelp |
-| Attributt: | "point_of_care" |
+| Attributt: | "point-of-care" |
 | Obligatorisk: | **JA** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
@@ -392,7 +392,7 @@ Eksempler på gyldige sammensetninger av "legal_entity" og "point_of_care:
 ###### Behandlingssted - Attributter JSON format
 
 ````JSON
-"point_of_care": {
+"point-of-care": {
 	"id": "123456789",
 	"name": "Det beste legekontoret i byen AS",
 	"system": "2.16.578.1.12.4.1.4.101",
@@ -414,7 +414,7 @@ Full modell - valgfrie elementer er tatt med
 			"authority": "https://www.skatteetaten.no"
 		},
 		"professional_license": {
-			"hpr_nr": {
+			"hpr-nr": {
 				"id": "9144900",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
 				"authority": "https://www.helsedirektoratet.no/"
@@ -427,14 +427,14 @@ Full modell - valgfrie elementer er tatt med
 			}
 		},
 	}
-	"care_relationship": {
-		"legal_entity": {
+	"care-relationship": {
+		"legal-entity": {
 			"id": "993467049",
 			"name": "OSLO UNIVERSITETSSYKEHUS HF",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.skatteetaten.no"
 		},
-		"point_of_care": {
+		"point-of-care": {
 			"id": "974589095",
 			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
@@ -500,7 +500,7 @@ I dette eksempelet har en fastlege ...
 			"authority": "https://www.skatteetaten.no"
 		},
 		"professional_license": {
-			"hpr_nr": {
+			"hpr-nr": {
 				"id": "9144897",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
 				"authority": "https://www.helsedirektoratet.no/"
@@ -513,14 +513,14 @@ I dette eksempelet har en fastlege ...
 			}
 		}
 	},
-	"care_relationship": {
-		"legal_entity": {
+	"care-relationship": {
+		"legal-entity": {
 			"id": "100100673",
 			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.skatteetaten.no"
 		},
-		"point_of_care": {
+		"point-of-care": {
 			"id": "100100673",
 			"name": "Norsk Helsenett SF Fagersta Testlegekontor",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
@@ -547,7 +547,7 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 			"authority": "https://www.skatteetaten.no"
 		},
 		"professional_license": {
-			"hpr_nr": {
+			"hpr-nr": {
 				"id": "9144900",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
 				"authority": "https://www.helsedirektoratet.no/"
@@ -560,14 +560,14 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 			}
 		}
 	},
-	"care_relationship": {
-		"legal_entity": {
+	"care-relationship": {
+		"legal-entity": {
 			"id": "997506499",
 			"name": "OSLO KOMMUNE HELSEETATEN",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.skatteetaten.no"
 		},
-		"point_of_care": {
+		"point-of-care": {
 			"id": "875300342",
 			"name": "MADSERUDHJEMMET",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",

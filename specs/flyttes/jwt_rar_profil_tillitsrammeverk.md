@@ -109,7 +109,7 @@ Dette elemenetet inneholder 4 claims som beskrevet under:
 | `type` | Verdi som angir at elementet beskriver tillitsrammeverket. Verdien må være satt som  `nhn:trust_framework:parameters` | 
 | `version` | Verdi som angir versjon av tillitrammeverk. Kan utelates; i så fall vil versjonen settes til `1.0`. | 
 | `practitioner` | Informasjon om helsepersonellet<br><br> Kilde: HPR, Konsument (klient/IdP) |
-| `care_relationship` | Informasjon om helsepersonellets relasjon til pasienten |
+| `care-relationship` | Informasjon om helsepersonellets relasjon til pasienten |
 
 ````JSON
 {
@@ -118,14 +118,14 @@ Dette elemenetet inneholder 4 claims som beskrevet under:
     "practitioner":{
         …
     },
-    "care_relationship": {
+    "care-relationship": {
         …	
     }
 }
 ````
 
-#### Spesifikasjon av «practitioner»- og «care_relationship»-elementene
-Semantikken for elementene `practitioner` og `care_relationship` er beskrevet i spesifikasjonen av [informasjons- og datamodell](datamodell_tillitsmodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
+#### Spesifikasjon av «practitioner»- og «care-relationship»-elementene
+Semantikken for elementene `practitioner` og `care-relationship` er beskrevet i spesifikasjonen av [informasjons- og datamodell](datamodell_tillitsmodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
 
 
 ## 5. Claims som beskriver parametre for bruk av Tillitsrammeverket
@@ -139,17 +139,17 @@ JSON-dokumentet under beskriver hvordan en struktur som gjør bruk av Tillitsram
         "version": "0.1",
         "practitioner": {
             "professional_license": {
-                "hpr_nr": "9144900",
+                "hpr-nr": "9144900",
                 "authorization": "LE",
             },
         }
-        "care_relationship": {
-            "legal_entity": {
+        "care-relationship": {
+            "legal-entity": {
                 "id": "993467049",
                 "name": "OSLO UNIVERSITETSSYKEHUS HF",
                 "system": "oid:2.16.578.1.12.4.1.4.101"
             },
-            "point_of_care": {
+            "point-of-care": {
                 "id": "974589095",
                 "name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
                 "system": "oid:2.16.578.1.12.4.1.4.101"

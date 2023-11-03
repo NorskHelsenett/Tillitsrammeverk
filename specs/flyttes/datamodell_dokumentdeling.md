@@ -58,9 +58,9 @@ Modellen som er presentert her må ses på som en "alfa-versjon"/"0.1-versjon" a
 | Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Status | Formål |
 | --- | --- | --- | --- | --- | --- |
 | "department"| Avdeling/org.enhet hvor helsepersonellet yter helsehjelp | Konsumentens EPJ | **Nei** |<span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Informasjon til pasienten |
-| "healthcare_service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
-| "purpose_of_use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
-| "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
+| "healthcare-service" | Helsetjenestetyper som leveres ved virksomheten | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring og informasjon til pasienten? |
+| "purpose-of-use" | Helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Kjernejournal, eller<br>Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Tilgangsstyring |
+| "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | Konsumentens EPJ | **Nei** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
 | "tracing_ref" | Referanse til opprinnelsen av forespørsel | Konsumentens EPJ | **Ja** | <span style="color: green; font-weight: bold;">Inkluderes JWT, SAML</span> | Loggkontroll |
 | "patient_id" | Unik identifikator for pasienten | Kjernejournal | **Ja** | <span style="color: orange; font-weight: bold;">Inkluderes SAML</span> | Loggkontroll |
 
@@ -114,8 +114,8 @@ Attributtet blir benyttet ved loggkontroll, samt for å gi informasjon om tilgan
 //},
 ````
 
-#### 2.3.2 Attributt "healthcare_service": Helsetjenestetype
-Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
+#### 2.3.2 Attributt "healthcare-service": Helsetjenestetype
+Attributtet "healthcare-service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
@@ -123,7 +123,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 | ---| ---|
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Hvilken type helsetjenester som leveres ved virksomheten hvor helsepersonellet yter helsehjelp |
-| Attributt: | "healthcare_service" |
+| Attributt: | "healthcare-service" |
 | Attributt EHDSI: | N/A |
 | Modenhet | Lav |
 | Obligatorisk: | **Ja** |
@@ -135,13 +135,13 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 
 | :warning:               | Kommentar ved tilgang til NHNs tjeneste for oppslag i pasientens journaldokumenter |
 |--------------------------|:------------------------|
-| "healthcare_service"     | Konsumenten kan oppgi flere tjenestetyper dersom det er relevant ift pasienten som behandles. Dette elementet kan potensielt benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. | 
+| "healthcare-service"     | Konsumenten kan oppgi flere tjenestetyper dersom det er relevant ift pasienten som behandles. Dette elementet kan potensielt benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. | 
 |                          | I XUA (SAML) blir denne verdien overskrivet dersom helsepersonell viser seg til å være "fastlege" for pasienten denne forespørsel gjelder |
 
-###### JSON format for "healthcare_service"
+###### JSON format for "healthcare-service"
 
 ````JSON
-"healthcare_service":{
+"healthcare-service":{
 	"text": "Sykepleietjeneste",
 	"code": "KP02",
 	"system": "8663",
@@ -149,14 +149,14 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 }
 ````
 
-#### 2.3.3 Attributt "purpose_of_use": formålet med behandlingen av personopplysninger
-Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
+#### 2.3.3 Attributt "purpose-of-use": formålet med behandlingen av personopplysninger
+Attributtet "purpose-of-use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger.
 
 |   |   |
 | ---| ---|
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Kodifisert beskrivelse av hva helsepersonellet skal benytte helseopplysningene til  |
-| Attributt: | "purpose_of_use" |
+| Attributt: | "purpose-of-use" |
 | Attributt EHDSI: | "urn:oasis:names:tc:xspa:1.0:subject:purposeofuse" |
 | Modenhet | Høy |
 | Obligatorisk: | **Ja** |
@@ -167,10 +167,10 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 | Gyldige verdier:| TREAT //Behandling,  <br/>ETREAT  //Nødtilgang,<br/>COC  //Administrativ tilgang<br/> |
 
 
-###### JSON format for "purpose_of_use"
+###### JSON format for "purpose-of-use"
 
 ````JSON
-"purpose_of_use": {
+"purpose-of-use": {
 	"code": "TREAT",
 	"text": "Behandling",
 	"system": "urn:oid:2.16.840.1.113883.1.11.20448",
@@ -178,8 +178,8 @@ Attributtet "purpose_of_use" beskriver det overordnede formålet som helseperson
 }
 ````
 
-#### 2.3.4 Attributt "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
-Attributtet "purpose_of_use_details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
+#### 2.3.4 Attributt "purpose-of-use-details": type tjeneste som pasienten skal motta hos virksomheten
+Attributtet "purpose-of-use-details" beskriver konklusjonen av tilgangangsreglene som ligger til grunn for at helsepersonellet er blitt gitt tilgang til pasientens helseopplysninger i hens journalsystem. Attributtet representerer en oppsummering av tilgangsbeslutningen i lokalt system hos konsument.
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
 
@@ -192,7 +192,7 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 | ---| ---|
 | Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
-| Attributt: | "purpose_of_use_details" |
+| Attributt: | "purpose-of-use-details" |
 | Attributt EHDSI: | N/A |
 | Modenhet | Lav |
 | Obligatorisk: | **Nei** |
@@ -204,12 +204,12 @@ Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for 
 
 | :warning:                | Kommentar ved tilgang til NHNs tjeneste for oppslag i pasientens journaldokumenter |
 |-------------------------|:------------------------|
-| "purpose_of_use_details" | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. |
+| "purpose-of-use-details" | Dette elementet vil ikke benyttes for tilgangsstyring til tjenesten dok.deling hos Norsk helsenett. Dette elementet er ønsket av dokumentkildene. Elementet er ikke obligatorisk og kan bli tatt ut i fremtiden. |
 
-###### JSON format for "purpose_of_use_details"
+###### JSON format for "purpose-of-use-details"
 
 ````JSON
-"purpose_of_use_details": {
+"purpose-of-use-details": {
 	"code": "15",
 	"text": "Helsetjenester i hjemmet",
 	"system": "urn:oid:x.x.x.x.x.9151",
@@ -285,8 +285,8 @@ Full modell - valgfrie elementer er tatt med
 
 ````JSON
 {
-	"care_relationship": {
-		"healthcare_service": {
+	"care-relationship": {
+		"healthcare-service": {
 			"code": "S03",
 			"text": "Indremedisin",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
@@ -298,13 +298,13 @@ Full modell - valgfrie elementer er tatt med
 		//	"name": "Avdeling ved Sykehus",
 		//	"authority": "RESH",
     		//},
-		"purpose_of_use": {
+		"purpose-of-use": {
 			"code": "TREAT",
 			"text": "Behandling",
 			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
 			"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
 		},
-		"purpose_of_use_details": {
+		"purpose-of-use-details": {
 			"code": "15",
 			"text": "Helsetjenester i hjemmet",
 			"system": "urn:oid:x.x.x.x.x.9151",

@@ -14,7 +14,7 @@
      "trust_framework":{
         "agreement": {
             "version": "1.0",
-            "legal_entity": {
+            "legal-entity": {
                 "id": "123456789",
                 "name": "Helsevirksomheten AS",
                 "oid": "2.16.578.1.12.4.1.4.101"
@@ -36,7 +36,7 @@
                     "authority": "https://www.skatteetaten.no"
                 },
                 "professional_license": {
-                    "hpr_nr": {
+                    "hpr-nr": {
                         "id": "9144897",
                         "system": "urn:oid:2.16.578.1.12.4.1.4.4",
                         "authority": "https://www.helsedirektoratet.no/"
@@ -49,14 +49,14 @@
                     }
                 }
 	        },
-            "care_relationship": {
-                "legal_entity": {
+            "care-relationship": {
+                "legal-entity": {
                     "id": "100100673",
                     "name": "Norsk Helsenett SF Fagersta Testlegekontor",
                     "system": "urn:oid:2.16.578.1.12.4.1.4.101",
                     "authority": "https://www.skatteetaten.no"
                 },
-                "point_of_care": {
+                "point-of-care": {
                     "id": "100100673",
                     "name": "Norsk Helsenett SF Fagersta Testlegekontor",
                     "system": "urn:oid:2.16.578.1.12.4.1.4.101",

@@ -146,7 +146,7 @@ Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på av
 | Claim | Verdi | 
 | --- | --- | -- |
 | "version" | Versjonsnummer for avtalen | 
-| "legal_entity" | Informasjon om den juridiske enheten som inngikk avtale/aksepterte vilkår |
+| "legal-entity" | Informasjon om den juridiske enheten som inngikk avtale/aksepterte vilkår |
 | "date" | Dato når vilkår ble akseptert/inngått avtale | 
 | "id" | Løpenummer for den aktuelle avtalen/identifikator | 
 | "granting_body" | Informasjon om den juridiske enheten som det ble inngått avtale med |
@@ -156,7 +156,7 @@ Tilliten som mottakeren har til informasjonen i "claims" elementet hviler på av
     8< .... >8
 	"agreement": {
 		"version": "1.0",
-		"legal_entity": {
+		"legal-entity": {
 			"id": "123456789",
 			"name": "Helsevirksomheten AS",
 			"oid": "2.16.578.1.12.4.1.4.101"
@@ -177,7 +177,7 @@ Claims elementet er ett enkeltstående objekt som består av fire attributter me
 
 Attributtene som ligger i "claims" elementet er:
 * "practitioner"
-* "care_relationship"
+* "care-relationship"
 * "patient"
 * "system"
 
@@ -186,7 +186,7 @@ Attributtene som ligger i "claims" elementet er:
 | Claim | Beskrivelse |
 | --- | --- |
 | "practitioner" | Informasjon om helsepersonellet<br><br> Kilde: HPR, Konsument (klient/IdP) |
-| "care_relationship" | Informasjon om helsepersonellets relasjon til pasienten |
+| "care-relationship" | Informasjon om helsepersonellets relasjon til pasienten |
 | "patient" | Informasjon om pasienten |
 | "system" | Informasjon om systemet som ber om tilgang til et API på vegne av helsepersonellet <br><br>Kilde: Konsument eller Databehandler – må være forhåndsregistrert i NHN sin database |
 
@@ -196,7 +196,7 @@ _*Eksempel på JSON strukturen:*_
 	"practitioner":{
 		8<...>8
 	},
-	"care_relationship": {
+	"care-relationship": {
 		8<...>8	
 	},
 	"system": {
@@ -205,11 +205,11 @@ _*Eksempel på JSON strukturen:*_
 }
 ````
 
-#### 4.3.1 Spesifikasjon av "practitioner", "care_relationship" og "patient" elementene
+#### 4.3.1 Spesifikasjon av "practitioner", "care-relationship" og "patient" elementene
 
-> (*) JSON strukturen som inneholder "practitioner", "care_relationship" og "patient" elementene  hoveddelen av denne strukturen er beskrevet i spesifikasjonen [Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), hvor JSON strukturen for denne informasjonen er definert. 
+> (*) JSON strukturen som inneholder "practitioner", "care-relationship" og "patient" elementene  hoveddelen av denne strukturen er beskrevet i spesifikasjonen [Informasjons- og datamodell for beskrivelse av tilgangssgrunnlaget ved deling av helseopplysninger](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), hvor JSON strukturen for denne informasjonen er definert. 
 
-Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesifikasjonen av [informasjons- og datamodell](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
+Elementene "practitioner", "care-relationship" og "patient" er beskrevt i spesifikasjonen av [informasjons- og datamodell](https://github.com/NorskHelsenett/Tillitsrammeverk/blob/main/specs/informasjons_og_datamodell.md), og vil ikke beskrives i detalj i denne spesifikasjonen.
 
 
 
@@ -252,7 +252,7 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 					"authority": "https://www.skatteetaten.no"
 				},
 				"professional_license": {
-					"hpr_nr": {
+					"hpr-nr": {
 						"id": "9144900",
 						"system": "urn:oid:2.16.578.1.12.4.1.4.4",
 						"authority": "https://www.helsedirektoratet.no/"
@@ -266,21 +266,21 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 				},
 			},
 			"organization": {
-				"legal_entity": {
+				"legal-entity": {
 					"id": "993467049",
 					"name": "OSLO UNIVERSITETSSYKEHUS HF",
 					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 					"authority": "https://www.skatteetaten.no"
 				},
-				"point_of_care": {
+				"point-of-care": {
 					"id": "974589095",
 					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
 					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 					"authority": "https://www.skatteetaten.no"
 				},		
 			},
-			"care_relationship": {
-				"healthcare_service": {
+			"care-relationship": {
+				"healthcare-service": {
 					"code": "S03",
 					"text": "Indremedisin",
 					"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
@@ -292,19 +292,19 @@ Elementene "practitioner", "care_relationship" og "patient" er beskrevt i spesif
 					"name": "Avdeling ved Sykehus",
 					"authority": "RESH",
 				},
-				"purpose_of_use": {
+				"purpose-of-use": {
 					"code": "TREAT",
 					"text": "Behandling",
 					"system": "urn:oid:2.16.840.1.113883.1.11.20448",
 					"assigner": "http://terminology.hl7.org/ValueSet/v3-PurposeOfUse"
 				},
-				"purpose_of_use_details": {
+				"purpose-of-use-details": {
 					"code": "15",
 					"text": "Helsetjenester i hjemmet",
 					"system": "urn:oid:x.x.x.x.x.9151",
 					"assigner": "https://www.helsedirektoratet.no/"
 				},
-				"decision_ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
+				"decision-ref": { //TODO: vurdere hvorvidt dette attributtet skal inngå i helseindikator?
 					"ref_id" : "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
 				}
 			},
