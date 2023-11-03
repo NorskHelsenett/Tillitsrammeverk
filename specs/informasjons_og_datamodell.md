@@ -275,9 +275,43 @@ subgraph Konsument - innhentende virksomhet
 end
 ```
 
-### 4.3 Beskrivelse av helsepersonellet: "practitioner"
+### 4.3 Kategori: "practitioner" - beskrivelse av helsepersonellet
 Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret, navn, og identifkator fra HPR.
 Helsepersonellets identitet beskrives ved bruk av en struktur som består av identifikatorer og verdier fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
+
+Strukturen som beskriver helsepersonellet består av seks attributter:
+* _identifier_, som identifiserer den fysiske  personen som ber om innsyn i journaldokumenter
+* _hpr-nr_, som identifiserer et helsepersonell som har fått autorisasjon til å praktisere som et helsepersonell i Norge
+* _authorization_, angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet
+* _legal-entity_, som identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt
+* _point-of-care_, som identifiserer behandlingsstedet hvor helsepersonellet formelt sett har sin tilhørighet
+* _department_, som angir avdelingen eller helsepersonellets mest detaljerte organisasjonstilhørighet
+
+I JSON format er strukturen representert på følgende måte:
+
+```JSON
+"practitioner": {
+	"identifier": {
+		8<...>8
+	},
+	"hpr-nr": {
+		8<..>8
+	},
+	"authorization": {
+		8<...>8
+	},
+	"legal-entity": {
+		8<..>8
+	},
+	"point-of-care": {
+		8<...>8
+	},
+	"department": {
+		8<...>8
+	}
+}
+```
+Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 
 #### 4.3.1 "identifier": Helsepersonellet som "fysisk person" 
 Attributtet "identifier" i entitet practitioner består av verdier som beskriver den fysiske  personen som ber om innsyn i journaldokumenter. 
@@ -458,8 +492,34 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 }
 ````
 
-### 4.4 "care-relation": Behandlerrelasjon
+### 4.4 Kategori: "care-relation" - behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av formålet med og bakgrunnen for behandlingen av helseopplysningene og eventuelt en helsetjenestetype som ytes til pasienten.
+
+Strukturen som beskriver behandlerrelasjonen består av fire attributter:
+* _healthcare-service_, som identifiserer typen helsetjenester som leveres ved virksomheten
+* _purpose-of-use_, som beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger
+* _purpose-of-use-details_, som er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem
+* _decision-ref_, som er en referanse til den lokale tilgangsbeslutningen hos konsumenten
+
+I JSON format er strukturen representert på følgende måte:
+
+```JSON
+"care-relationship": {
+	"healthcare-service": {
+		8<...>
+	},
+	"purpose-of-use": {
+		8<...>8
+	},
+	"purpose-of-use-details": {
+		8<...>
+	},
+	"decision-ref" : {
+		8<...>8
+	}
+},
+```
+Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 
 #### 4.4.1 "healthcare-service": Helsetjenestetype
 Attributtet "healthcare-service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
@@ -578,13 +638,35 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
     }
 ````
 
-### 4.5 Kategori: Pasient - Pasienten
+### 4.5 Kategori: "patient" - pasienten
+
+Strukturen som beskriver pasienten, består av tre attributter:
+* _identifier_, som identifiserer pasienten som fysisk person
+* _point-of-care_, som identifiserer behandlingsstedet som pasienten er tilknyttet
+* _department_, som identifiserer organisasjonsenhet som pasienten tilhører
+
+I JSON format er strukturen representert på følgende måte:
+```JSON
+"patient": {
+	"identifier": {
+		8<...>8
+	},
+	"point-of-care": {
+		8<...>8
+	},
+	"department": {
+		8<...>8
+	}
+}
+```
+
+Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 
 #### 4.5.1 "identifier": Unik identifikator for pasienten
 
 | Attributt | |
 | --- | --- |
-| Attributt: | "patient" |
+| Attributt: | "identifier" |
 | Informasjonselement | Unik identifikator og navn for pasienten som helsepersonellet ber om helseopplysninger for |
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
