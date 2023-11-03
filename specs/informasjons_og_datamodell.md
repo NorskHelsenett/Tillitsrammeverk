@@ -207,7 +207,7 @@ classDiagram
 		- "purpose-of-use"
 		- "purpose-of-use-details"
 		- "decision-ref"
-		- "health_care_service"
+		- "healthcare-service"
 	}
 	
 	class Pasient{
@@ -755,8 +755,8 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | practitioner:point-of-care:name  | AuditEvent.agent.who:PractitionerRole.location | managingOrganization:name |  | Navn på helsepersonellets arbeidssted  |
 | practitioner:department:id | AuditEvent.agent.who:PractitionerRole.organization | identifier:RSH.value |  | Identifikasjon av enhet som ugjør helsepersonellets detaljerte organisasjonstilhørighet  |
 | practitioner:department:name | AuditEvent.agent.who:PractitionerRole.organization | name |  | Navn på enhet som utgjør helsepersonellets detaljerte organisasjonstilhørighet | 
-| care-relationship:healthcareservice:code | AuditEvent.encounter.serviceType:Healthcareservice | specialty.coding |  | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relationship:healthcareservice:text | AuditEvent.encounter.serviceType:Healthcareservice | specialty.text |  | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care-relationship:healthcare-service:code | AuditEvent.encounter.serviceType:healthcare-service | specialty.coding |  | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care-relationship:healthcare-service:text | AuditEvent.encounter.serviceType:healthcare-service | specialty.text |  | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
 | care-relationship:purpose-of-use:code | AuditEvent | authorization.coding.code |  | Identifikasjon av overordnet formål med tilgangen |
 | care-relationship:purpose-of-use:text | AuditEvent | authorization.coding.display |  | Navn på overordnet formål med tilgangen |
 | care-relationship:purpose-of-use-details:code | AuditEvent | agent.authorization.coding.code |  | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
@@ -786,8 +786,8 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | practitioner:point-of-care:name  | subject:child-organization | Navn på helsepersonellets arbeidssted |
 | practitioner:department:id | subject:facility-id extension | Identifikasjon av enhet som ugjør helsepersonellets detaljerte organisasjonstilhørighet |
 | practitioner:department:name | subject:facility | Navn på enhet som utgjør helsepersonellets detaljerte organisasjonstilhørighet | 
-| care-relationship:healthcareservice:code | care-relationship:healthcare-service:code | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relationship:healthcareservice:text | care-relationship:healthcare-service:text | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care-relationship:healthcare-service:code | care-relationship:healthcare-service:code | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care-relationship:healthcare-service:text | care-relationship:healthcare-service:text | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
 | care-relationship:purpose-of-use:code | subject:purposeOfUse code | Identifikasjon av overordnet formål med tilgangen |
 | care-relationship:purpose-of-use:text | subject:purposeOfUse displayName | Navn på overordnet formål med tilgangen |
 | care-relationship:purpose-of-use-details:code | care-relationship:purpose-of-use-details:code | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
