@@ -746,9 +746,6 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | --- | --- |--- |--- |--- |
 | practitioner:pid:id | AuditEvent.agent.who:PractitionerRole.practitioner | identifier | identifier:FNR OR identifier:DNR | Helsepersonellets identitet |
 | practitioner:pid:name  | AuditEvent.agent.who:PractitionerRole.practitioner | name |  | Helsepersonellets navn |
-| practitioner:professional_licence:hpr-nr:id  | AuditEvent.agent.who:PractitionerRole.practitioner | identifier | identifier:HPR | Helsepersonellets autorisasjonsnummer i helsepersonellregisteret |
-| practitioner:professional_licence:authorization:code  | AuditEvent.agent.who:PractitionerRole.practitioner | qualification.code.coding:healthPersonellCategory |  | Helsepersonellets formelle autorisasjon (kodeverdi) |
-| practitioner:professional_licence:authorization:text | AuditEvent.agent.who:PractitionerRole.practitioner | qualification.code.text |  | Helsepersonellets formelle autorisasjon (navn) |
 | practitioner:legal-entity:id  | AuditEvent.agent.who:PractitionerRole.organization | identifier:ENH.value | type:organisatoriskNiva.coding.code=2 (HF) OR type:organisatoriskNiva.coding.code=3 (Institusjon) OR partOf isNullOrEmpty | Helsevirksomhetens unike identifikator (organisasjonsnummer) |
 | practitioner:legal-entity:name | AuditEvent.agent.who:PractitionerRole.organization | name | type:organisatoriskNiva.coding.code=2 (HF) OR type:organisatoriskNiva.coding.code=3 (Institusjon)  OR partOf isNullOrEmpty | Helsevirksomhetens navn |
 | practitioner:point-of-care:id | AuditEvent.agent.who:PractitionerRole.location | managingOrganization:identifier:ENH.value |  | Identifikasjon av helsepersonellets arbeidssted (behandlingsstedet de formelt sett opptrer på vegne av) |
@@ -777,9 +774,6 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | --- |--- |--- |
 | practitioner:pid:id | subject/NameID | Helsepersonellets identitet |
 | practitioner:pid:name | subject:subject-id | Helsepersonellets navn |
-| practitioner:professional_licence:hpr-nr:id  | subject:npi | Helsepersonellets autorisasjonsnummer i helsepersonellregisteret |
-| practitioner:professional_licence:authorization:code  | subject:role:code | Helsepersonellets formelle autorisasjon (kodeverdi) |
-| practitioner:professional_licence:authorization:text | subject:role:displayName | Helsepersonellets formelle autorisasjon (navn) |
 | practitioner:legal-entity:id  | subject:organization-id extension | Helsevirksomhetens unike identifikator (organisasjonsnummer) |
 | practitioner:legal-entity:name | subject:organization | Helsevirksomhetens navn |
 | practitioner:point-of-care:id | subject:child-organization extension | Identifikasjon av helsepersonellets arbeidssted (behandlingsstedet de formelt sett opptrer på vegne av) |

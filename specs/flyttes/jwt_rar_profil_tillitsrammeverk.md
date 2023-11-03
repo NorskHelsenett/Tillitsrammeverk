@@ -138,10 +138,35 @@ JSON-dokumentet under beskriver hvordan en struktur som gjør bruk av Tillitsram
         "type": "nhn:trust_framework:parameters",
         "version": "0.1",
         "practitioner": {
-            "professional_license": {
-                "hpr-nr": "9144900",
-                "authorization": "LE",
+            "identifier": {
+                "id": "03117000205",
+                "name": "Rita Lin",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+                "authority": "https://www.skatteetaten.no"
             },
+            "hpr-nr": {
+                "id": "9144900",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.4",
+                "authority": "https://www.helsedirektoratet.no/"
+            },
+            "authorization": {
+                "code": "LE",
+                "text": "Lege",
+                "system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+                "assigner": "https://www.helsedirektoratet.no/"
+            },
+            "legal-entity": {
+                "id": "993467049",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.skatteetaten.no"
+            },
+            "point-of-care": {
+                "id": "874716782",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.brreg.no"
+            }
         }
         "care-relationship": {
             "legal-entity": {

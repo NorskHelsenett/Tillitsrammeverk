@@ -12,9 +12,9 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 
 | Kategori      | Attributt                | Beskrivelse                                                                                       | 
 |---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
-| practitioner  | "subject"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
+| practitioner  | "identifier"             | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
 | practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
-| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner  | "authorization"     	    | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
 | practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
 | practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
 | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
@@ -180,7 +180,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 ### 2. Forretningsregler for beskrivelse av helsepersonellet - attributt: "practitioner"
 Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, sporbarhet og innsyn til innbygger.
 
-#### 2.1 Forretningsregler for attributtet "subject" 
+#### 2.1 Forretningsregler for attributtet "identifier" 
 
 <table>
     <tr>
@@ -189,12 +189,12 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Bruk av innholdet i attributtet "subject"</td>
+        <td>Bruk av innholdet i attributtet "identifier"</td>
     </tr>
     <tr>
         <td>Regel</td>
         <td>
-            Attributtet "subject":
+            Attributtet "identifier":
             <ul>
                 <li>SKAL benyttes til sporbarhetsformål i revisjonslogger</li>
                 <li>SKAL benyttes til validering av innkommende parameter i meldinger</li>
@@ -222,7 +222,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Visning av innholdet i attributtet "subject" til innbygger.</td>
+        <td>Visning av innholdet i attributtet "identifier" til innbygger.</td>
     </tr>
     <tr>
         <td> Regel </td>
@@ -253,11 +253,11 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Tillitsnivå (LoA) knyttet til data i attributtet "subject" </td>
+        <td>Tillitsnivå (LoA) knyttet til data i attributtet "identifier" </td>
     </tr>
     <tr>
         <td> Regel </td>
-        <td> Identiteten til personen som attributtet "subject" peker på SKAL være basert på et tillitsnivå "høyt" iht identifikasjonsnivåforskriften, eller tilsvarende. </td>
+        <td> Identiteten til personen som attributtet "identifier" peker på SKAL være basert på et tillitsnivå "høyt" iht identifikasjonsnivåforskriften, eller tilsvarende. </td>
     </tr>
     <tr>
         <td>Ansvarlig </td>
@@ -279,7 +279,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Gyldig identifikator for identifisering av den fysiske personen i attributtet "subject" </td>
+        <td>Gyldig identifikator for identifisering av den fysiske personen i attributtet "identifier" </td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -312,11 +312,11 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Validering av informasjon i attributtet "subject".</td>
+        <td>Validering av informasjon i attributtet "identifier".</td>
     </tr>
     <tr>
         <td> Regel </td>
-        <td>Mottaker av attest skal kontrollere og validere at identifikator som identifiserer den fysiske personen i attributtet "subject" i attesten tilsvarer identifikatoren som identifiserer brukeren etter en vellykket autentisering.<br>
+        <td>Mottaker av attest skal kontrollere og validere at identifikator som identifiserer den fysiske personen i attributtet "identifier" i attesten tilsvarer identifikatoren som identifiserer brukeren etter en vellykket autentisering.<br>
         Dersom identifikator i attest ikke tilsvarer identifikator for autentisert bruker skal forespørselen avvises.</td>
     </tr>
     <tr>
