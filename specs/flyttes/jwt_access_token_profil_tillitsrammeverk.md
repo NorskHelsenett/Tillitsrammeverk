@@ -245,39 +245,35 @@ Elementene "practitioner", "care-relationship" og "patient" er beskrevt i spesif
 		"nhn:tillitsrammeverk": {
 			"version": "0.2",
 			"practitioner": {
-				"personal_identifier": {
-					"id": "05709992424",
-					"name": "OVERTENKT LAMPEFOT",
-					"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-					"authority": "https://www.skatteetaten.no"
-				},
-				"professional_license": {
-					"hpr-nr": {
-						"id": "9144900",
-						"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-						"authority": "https://www.helsedirektoratet.no/"
-					},
-					"authorization": {
-						"code": "LE",
-						"text": "Lege",
-						"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-						"assigner": "https://www.helsedirektoratet.no/"
-					}
-				},
-			},
-			"organization": {
-				"legal-entity": {
-					"id": "993467049",
-					"name": "OSLO UNIVERSITETSSYKEHUS HF",
-					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-					"authority": "https://www.skatteetaten.no"
-				},
-				"point-of-care": {
-					"id": "974589095",
-					"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-					"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-					"authority": "https://www.skatteetaten.no"
-				},		
+                "identifier": {
+                    "id": "03117000205",
+                    "name": "Rita Lin",
+                    "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+                    "authority": "https://www.skatteetaten.no"
+                },
+                "hpr-nr": {
+                    "id": "9144900",
+                    "system": "urn:oid:2.16.578.1.12.4.1.4.4",
+                    "authority": "https://www.helsedirektoratet.no/"
+                },
+                "authorization": {
+                    "code": "LE",
+                    "text": "Lege",
+                    "system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+                    "assigner": "https://www.helsedirektoratet.no/"
+                },
+                "legal-entity": {
+                    "id": "993467049",
+                    "name": "OSLO UNIVERSITETSSYKEHUS HF",
+                    "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                    "authority": "https://www.skatteetaten.no"
+                },
+                "point-of-care": {
+                    "id": "874716782",
+                    "name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+                    "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                    "authority": "https://www.brreg.no"
+                }
 			},
 			"care-relationship": {
 				"healthcare-service": {

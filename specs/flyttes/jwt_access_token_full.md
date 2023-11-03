@@ -35,19 +35,17 @@
                     "system": "urn:oid:2.16.578.1.12.4.1.4.1",
                     "authority": "https://www.skatteetaten.no"
                 },
-                "professional_license": {
-                    "hpr-nr": {
-                        "id": "9144897",
-                        "system": "urn:oid:2.16.578.1.12.4.1.4.4",
-                        "authority": "https://www.helsedirektoratet.no/"
-                    },
-                    "authorization": {
-                        "code": "LE",
-                        "text": "Lege",
-                        "system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-                        "assigner": "https://www.helsedirektoratet.no/"
-                    }
-                }
+                 "hpr-nr": {
+                   "id": "9144897",
+                   "system": "urn:oid:2.16.578.1.12.4.1.4.4",
+                   "authority": "https://www.helsedirektoratet.no/"
+                 },
+                 "authorization": {
+                   "code": "LE",
+                   "text": "Lege",
+                   "system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+                   "assigner": "https://www.helsedirektoratet.no/"
+                 }
 	        },
             "care-relationship": {
                 "legal-entity": {

@@ -166,7 +166,7 @@ classDiagram
 	}
 	
 	class Helsepersonell{
-		- "subject"
+		- "identifier"
 		- "pid"
 		- "hpr-nr"
 		- "authorization"
@@ -179,12 +179,11 @@ Ikke all informasjon i datamodellen er relevant, noen informasjonselementer er v
 
 Vi har lagt vekt på å ivareta sporbarheten i delingssammenheng, derfor har vi angitt at alle identifikatorer er påkrevd, dette gjelder både fysiske og juridiske personer.
 
-| Attributt | Beskrivelse | Informasjonskilde | Påkrevd | Formål |
-| --- | --- | --- | --- | --- | 
-| "subject" | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | Loggkontroll og sporbarhet |
-| "hpr-nr" | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | Loggkontroll, sporbarhet og informasjon til pasienten |
-| "professional_licence" | Helsepersonellets autorisasjon, dersom den finnes | HelseID | **Nei** | Tilgangsstyring |
-| "legal-entity" | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | Loggkontroll og sporbarhet og informasjon til pasienten |
+| Attributt       | Beskrivelse | Informasjonskilde | Påkrevd | Formål |
+|-----------------| --- | --- | --- | --- | 
+| "identifier"    | Fødselsnummer og navn fra folkeregisteret | HelseID | **Ja** | Loggkontroll og sporbarhet |
+| "hpr-nr"        | Helsepersonellets HPR-nummer, dersom det finnes | HelseID | **Nei** | Loggkontroll, sporbarhet og informasjon til pasienten |
+| "legal-entity"  | Den dataansvarlige virksomhetens org.nr og navn. | - §9 samarbeid og multi-tenancy system: Konsumentens EPJ<br>- Single-tenancy/on-premise system: HelseID  | **Ja** | Loggkontroll og sporbarhet og informasjon til pasienten |
 | "point-of-care" | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity" | Konsumentens EPJ | **Ja** | Loggkontroll, sporbarhet og informasjon til pasienten |
 
 #### 4.2.4 Kategori: Helsepersonellet
@@ -192,47 +191,35 @@ Helsepersonellets identitet angis ved bruk av identifikator fra folkeregisteret,
 Består av identifikatorer fra folkeregisteret og helsepersonellregisteret, samt informasjon som indikerer hvorvidt dette er et helsepersonell (med/uten lisens) eller administrativt personell.
 
 
-##### 4.2.4.1 "subject": Identifikator for helsepersonellet som "fysisk person"
-Attributtet "subject" er et objekt som identifiserer en fysisk person. Attributtet består av helsepersonellets navn og fødselsnummer.
+##### 4.2.4.1 "identifier": Identifikator for helsepersonellet som "fysisk person"
+Attributtet "identifier" er et objekt som identifiserer en fysisk person. Attributtet består av helsepersonellets navn og fødselsnummer.
 
 Attributtet skal brukes til loggkontroll, sporbarhet og innsyn til innbygger.
 Det er bare navn som skal vises til innbygger.
 
-|   |   |
-| ---| ---|
-| Attributt: | "subject" |
-| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span> |
-| Informasjonselement | Unik identifikator og navn på helsepersonellet |
-| Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id" |
-| Obligatorisk: | **Ja** |
-| Data type: | Objekt |
-| Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
-| Informasjonskilde: | HelseID, basert på innlogging via eID ordning |
-| Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
+|   |                                                                                                              |
+| ---|--------------------------------------------------------------------------------------------------------------|
+| Attributt: | "identifier"                                                                                                 |
+| Status: | <span style="color: green; font-weight: bold;">Inkluderes</span>                                             |
+| Informasjonselement | Unik identifikator og navn på helsepersonellet                                                               |
+| Attributt EHDSI: | "urn:oasis:names:tc:xacml:1.0:subject:subject-id"                                                            |
+| Obligatorisk: | **Ja**                                                                                                       |
+| Data type: | Objekt                                                                                                       |
+| Autoritativ kilde: | Folkeregisteret - Skattedirektoratet                                                                         |
+| Informasjonskilde: | HelseID, basert på innlogging via eID ordning                                                                |
+| Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer) |
 
 
 ###### "subject" - Attributt JSON format
 
 ````JSON
-"subject":{
+"identifier":{
 	"value": "xxxxxx34794",
 	"name": "Lege Legesen",
 	"system": "2.16.578.1.12.4.1.4.1",
 	"authority": "www.skatteetaten.no" /* forvalter folkeregisteret - står i SAML token i dag */
 }
 ````
-
-##### 4.2.5.3 "professional_licence" - Informasjon om helsepersonellet fra Helsepersonellregisteret
-
-###### "professional_licence" - overordnet struktur for attributter fra HPR i JSON
-
-````JSON
-"professional_license": {
-	"hpr-nr": { 8<...>8 },
-	"authorization": { 8<...>8 }
-}
-````
-
 ###### "hpr-nr": Helsepersonellnummer
 Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
 
@@ -293,25 +280,6 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 	"assigner": "https://www.helsedirektoratet.no/"
 }
 ````
-
-###### "professional_licence" - JSON struktur med "hpr-nr" og "authorization"
-
-````JSON
-"professional_license": {
-	"hpr-nr": {
-		"id": "9144900",
-		"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-		"authority": "https://www.helsedirektoratet.no/"
-	},
-	"authorization": {
-		"code": "LE",
-		"text": "Lege",
-		"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-		"assigner": "https://www.helsedirektoratet.no/"
-	}
-}	
-````
-
 
 #### 4.2.6 Kategori: Helsevirksomhet
 Attributter som beskriver virksomheten hvor helsepersonellet yter helsehjelp.
@@ -407,25 +375,35 @@ Full modell - valgfrie elementer er tatt med
 ````JSON
 {
 	"practitioner": {
-		"pid": {
-			"id": "04056600324",
-			"name": "Magnar Koman",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"authority": "https://www.skatteetaten.no"
-		},
-		"professional_license": {
-			"hpr-nr": {
-				"id": "9144900",
-				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-				"authority": "https://www.helsedirektoratet.no/"
-			},
-			"authorization": {
-				"code": "LE",
-				"text": "Lege",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-				"assigner": "https://www.helsedirektoratet.no/"
-			}
-		},
+            "identifier": {
+                "id": "03117000205",
+                "name": "Rita Lin",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+                "authority": "https://www.skatteetaten.no"
+            },
+            "hpr-nr": {
+                "id": "9144900",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.4",
+                "authority": "https://www.helsedirektoratet.no/"
+            },
+            "authorization": {
+                "code": "LE",
+                "text": "Lege",
+                "system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+                "assigner": "https://www.helsedirektoratet.no/"
+            },
+            "legal-entity": {
+                "id": "993467049",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.skatteetaten.no"
+            },
+            "point-of-care": {
+                "id": "874716782",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.brreg.no"
+            }
 	}
 	"care-relationship": {
 		"legal-entity": {
@@ -493,25 +471,35 @@ I dette eksempelet har en fastlege ...
 ```JSON
 {
 	"practitioner": {
-		"pid": {
-			"id": "20086600138",
-			"name": "August September",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"authority": "https://www.skatteetaten.no"
-		},
-		"professional_license": {
-			"hpr-nr": {
-				"id": "9144897",
-				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-				"authority": "https://www.helsedirektoratet.no/"
-			},
-			"authorization": {
-				"code": "LE",
-				"text": "Lege",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-				"assigner": "https://www.helsedirektoratet.no/"
-			}
-		}
+            "identifier": {
+                "id": "03117000205",
+                "name": "Rita Lin",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+                "authority": "https://www.skatteetaten.no"
+            },
+            "hpr-nr": {
+                "id": "9144900",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.4",
+                "authority": "https://www.helsedirektoratet.no/"
+            },
+            "authorization": {
+                "code": "LE",
+                "text": "Lege",
+                "system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+                "assigner": "https://www.helsedirektoratet.no/"
+            },
+            "legal-entity": {
+                "id": "993467049",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.skatteetaten.no"
+            },
+            "point-of-care": {
+                "id": "874716782",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.brreg.no"
+            }
 	},
 	"care-relationship": {
 		"legal-entity": {
@@ -540,25 +528,35 @@ Har ikke klinisk spesialitet, har ikke HPR autorisasjon eller lisens
 ```JSON
 {
 	"practitioner": {
-		"pid": {
-			"id": "03117000205",
-			"name": "Rita Lin",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"authority": "https://www.skatteetaten.no"
-		},
-		"professional_license": {
-			"hpr-nr": {
-				"id": "9144900",
-				"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-				"authority": "https://www.helsedirektoratet.no/"
-			},
-			"authorization": {
-				"code": "LE",
-				"text": "Lege",
-				"system": "urn:oid:2.16.578.1.12.4.1.1.9060",
-				"assigner": "https://www.helsedirektoratet.no/"
-			}
-		}
+            "identifier": {
+                "id": "03117000205",
+                "name": "Rita Lin",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+                "authority": "https://www.skatteetaten.no"
+            },
+            "hpr-nr": {
+                "id": "9144900",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.4",
+                "authority": "https://www.helsedirektoratet.no/"
+            },
+            "authorization": {
+                "code": "LE",
+                "text": "Lege",
+                "system": "urn:oid:2.16.578.1.12.4.1.1.9060",
+                "assigner": "https://www.helsedirektoratet.no/"
+            },
+            "legal-entity": {
+                "id": "993467049",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.skatteetaten.no"
+            },
+            "point-of-care": {
+                "id": "874716782",
+                "name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+                "system": "urn:oid:2.16.578.1.12.4.1.4.101",
+                "authority": "https://www.brreg.no"
+            }
 	},
 	"care-relationship": {
 		"legal-entity": {
