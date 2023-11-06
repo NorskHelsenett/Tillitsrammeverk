@@ -216,21 +216,21 @@ classDiagram
 
 #### 4.2.4 Oppsummering av informasjonselementer
 
-| Kategori      | Attributt                | Beskrivelse                                                                                       | 
-|---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
-| practitioner  | "identifier"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
-| practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
-| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
-| practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
-| practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
-| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
-| care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care-relation | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
-| patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
-| patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
-| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
+| Kategori         | Attributt                | Beskrivelse                                                                                       | 
+|------------------|--------------------------|---------------------------------------------------------------------------------------------------| 
+| practitioner     | "identifier"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
+| practitioner     | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner     | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner     | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner     | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
+| practitioner     | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
+| care-relation    | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care-relation    | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care-relation    | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care-relation    | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| patient          | "identifier"             | Unik identifikator for pasienten                                                                  | 
+| patient          | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
+| patient          | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
 
 #### 4.2.5 Konsumenten som informasjonskilde for attestering
