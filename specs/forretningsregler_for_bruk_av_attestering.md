@@ -22,7 +22,7 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 | care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
 | care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
 | care-relation | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
-| patient       | "patient_id"             | Unik identifikator for pasienten                                                                  | 
+| patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
 | patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
@@ -1191,7 +1191,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 ### 4. Forretningsregler for beskrivelse av pasienten - attributt: "patient"
 
-#### 4.1 Forretningsregler for attributtet "patient_id"
+#### 4.1 Forretningsregler for attributtet "identifier"
 
 
 #### 4.2 Forretningsregler for attributtet "point-of-care"
