@@ -964,12 +964,132 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
+        <td>Bruk av "healthcare-service" for å angi helsehjelpstjeneste</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Attributtet "healthcare-service" (helsehjelpstjeneste) angir hvilken type helsetjenester som leveres/ytes til pasienten ved virksomheten der helsepersonellet jobber. Helsehjelpstjenesten som dokumenteres er grunnlaget for at helsepersonellet trenger tilgang til pasientens helseopplysninger.<br>
+            Et alternativ til begrepet <em>helsehjelpstjeneste</em> er <em>fagområde</em>, som beskriver det tilsvarende grunnlaget i spesialisthelsetjenesten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "department".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Håndtering av tilfeller hvor det finnes flere mulige verdier for helsehjelpstjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Ved flere mulige verdier for helsehjelptjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten skal verdien som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen vektlegges.<br>
+            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Håndtering av tilfeller hvor helsehjelpstjeneste eller fagområde ikke er knyttet til tilganger som helsepersonellet har til pasienten</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Det er ikke alltid slik at helsehjelpstjeneste eller fagområde er registrert og knyttet til tilganger som helsepersonellet har til pasienten, for eksempel:
+            <ul>
+                <li>Når pasienten ikke er i et planlagt forløp hos virksomheten, men behandles eksternt</li>
+                <li>Dersom pasienten ønsker dialog i etterkant av et avsluttet forløp</li>
+                <li>Det har oppstått en akuttsituasjon som krever rask tilgang til pasienten</li>
+            </ul>
+            I slike tilfeller vil det ikke være nødvendig å oppgi verdi for attributtet "healthcare-service".<br>
+            For spesialisthelsetjenesten skal manglende verdi i "healthcare-service" kunne forklares av verdien som formidles i "purpose-of-use-details".
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
         <td>Angivelse av verdi for attributtet "healthcare-service"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare-service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br>
+            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare-service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br><br>
+            Det er flere kodeverk som er aktuelle for å beskrive helsehjelpstjeneste, de fleste er koblet til tjenestebasert adressering, se detaljert beskrivelse under attributtet i informasjonsmodellen.<br>
             Verdien som angis for attributtet "healthcare-service" skal være definert i ett av de følgende kodeverkene:
             <ul>
                 <li><a href="https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655">Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)</a></li>
