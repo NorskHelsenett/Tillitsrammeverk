@@ -667,6 +667,58 @@ Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Håndtering av helsepersonell med flere autorisasjoner i HPR</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            I tilfeller hvor helsepersonellet har flere autorisasjoner i helsepersonellregisteret skal konsumenten, så godt som mulig, bruke autorisasjonen som ligger nærmest den funksjonelle rollen helsepersonellet har i sin behandling av pasienten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Kontroll av korrekte autorisasjoner i tillitsankeret</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            Tillitsankeret skal kontrollere at den angitte autorisasjonen eksisterer i helsepersonellregisteret for det aktuelle helsepersonellet.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
 ### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care-relation"
 #### 3.1 Forretningsregler for attributtet "healthcare-service"
 
