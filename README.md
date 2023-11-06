@@ -10,9 +10,6 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 ### Spesifikasjoner
 * [Forretningsregler for bruk av informasjonsmodell for attestering av helsepersonellets grunnlag for tilgang til helseopplysninger](/specs/forretningsregler_for_bruk_av_attestering.md)
 * [Informasjonsmodell og datamodell for beskrivelse av grunnlaget for tilgang til helseopplysninger](/specs/informasjons_og_datamodell.md).
-* [Profil for bruk av OpenID Connect ved deling av helseopplysninger via API](/specs/flyttes/bruk_av_oidc.md)
-* [Profil for JWT Access Token format](/specs/flyttes/jwt_access_token_format.md)
-* [Profil for "authorization_details" strukturen ved bruk av HelseID](/specs/flyttes/profil_for_authorization_details.md)
 
 ## Prosess
 Utviklingen av spesifikasjonene vil foregå over flere iterasjoner, hvor hver iterasjon fører til en ny versjon av spesifikasjonen. NHN skal sørge for framdrift og vil fungere som reviewer av pull-requests, sørger for framdrift i viktige diskusjoner og vil håndtere eventuelle tilbakemeldinger via issues.

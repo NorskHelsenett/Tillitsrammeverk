@@ -29,9 +29,9 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 4. [Spesifikasjon](#4-spesifikasjon)<br/>
 	4.1 [Informasjonsmodell](#41-informasjonsmodell)<br/>
 	4.2 [Datamodell](#42-datamodell)<br/>
-	4.3 [Beskrivelse av helsepersonellet: "practitioner"](#43-beskrivelse-av-helsepersonellet-practitioner)<br/>
-	4.4 [Beskrivelse av behandlerrelasjon: "care-relation"](#44-care-relation-behandlerrelasjon)<br/>
-	4.5 [Beskrivelse av pasienten: "patient"](#45-kategori-pasient---pasienten)<br/>
+	4.3 [Beskrivelse av helsepersonellet: "practitioner"](#43-kategori-practitioner---beskrivelse-av-helsepersonellet)<br/>
+	4.4 [Beskrivelse av behandlerrelasjon: "care-relation"](#44-kategori-care-relation---behandlerrelasjon)<br/>
+	4.5 [Beskrivelse av pasienten: "patient"](#45-kategori-patients---pasienten)<br/>
 5. [Sikkerhets- og personvernshensyn](#5-sikkerhets--og-personvernshensyn)<br/>
 	5.1 [Cybersikkerhet](#51-cybersikkerhet)<br/>
 	5.2 [Personvern](#52-personvern) 
@@ -173,6 +173,8 @@ Datamodellen skal overføres til og behandles av mange aktører og i mange syste
 I denne spesifikasjonen er eksempler på datamodellen serialisert til JSON format på grunn av lesbarhet, men den kan serialiseres til mange forskjellige format.
 Valg av format er normalt knyttet til teknisk plattform eller praktiske hensyn, noen eksempler på aktuelle format for datamodell er XML, JSON og CBOR.
 Et felles behov for alle serialiserte format er at de bør kunne ivareta attestens dataintegritet og sporbarhet, f.eks. ved bruk av digital signatur. 
+
+##### 4.2.2.1 Konvensjoner brukt i datamodellen
 
 
 
@@ -339,21 +341,21 @@ Attributtet "identifier" i entitet practitioner består av verdier som beskriver
 
 
 #### 4.3.2 "legal-entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
-Attributtet "legal-entity" identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt. Hovedenheten er juridisk ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet.
+Attributtet "legal-entity" identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt. Hovedenheten er juridisk ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet. Det er også hovedenheten som eier medlemsskapet i Helsenettet. 
 
-Det er hovedenheten som eier medlemsskapet i Helsenettet. Attributtet benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår (medlemsskap i helsenett, avtale om tilgang til tjenester som HelseID, kjernejournal og aksept av tilhørende bruksvilkår)
-Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
+Attributtet benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår, f.eks.
+* kontroll av medlemsskap i helsenett 
+* kontroll av gyldig avtale om tilgang til tjenester som HelseID, kjernejournal og aksept av tilhørende bruksvilkår)
 
-Informasjonskilden til dette attributtet er avhengig av systemarkitektur eller hvorvidt systemet brukes i §9-samarbeid.
+Formålet med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"). 
+Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
 
-- For multi-tenancy løsninger og §9-samarbeid må journalsystemet hos konsumenten angi "legal-entity".
-- For single-tenancy/on-premise løsninger kan tillitsankeret utlede helsevirksomhet.
 
 |   |   |
 | ---| ---|
 | Attributt: | "legal-entity" |
 | Informasjonselement | Virksomheten (hovedenhet) som har dataansvaret der hvor helsepersonellet yter helsehjelp |
-| Avtalemessig påkrevd | **Ja, hvis forekommer** |
+| Avtalemessig påkrevd | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | www.brreg.no |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
@@ -638,26 +640,40 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
     }
 ````
 
-### 4.5 Kategori: "patient" - pasienten
+### 4.5 Kategori: "patients" - pasienten
 
-Strukturen som beskriver pasienten, består av tre attributter:
+
+| Attributt | |
+| --- | --- |
+| Attributt: | "patients" |
+| Informasjonselement | Kategorien  "patients" består av en liste av objekter som representerer en pasient. Lista av pasientobjekter kan være tom, eller inneholde ett eller flere elementer. |
+| Avtalemessig påkrevd | **Ja** |
+| Autoritativ kilde: | Konsument |
+| Data type: | Array |
+| Kodeverk: | N/A |
+| Gyldige verdier: |  |
+
+Strukturen som beskriver en pasient, består av tre attributter:
 * _identifier_, som identifiserer pasienten som fysisk person
 * _point-of-care_, som identifiserer behandlingsstedet som pasienten er tilknyttet
 * _department_, som identifiserer organisasjonsenhet som pasienten tilhører
 
-I JSON format er strukturen representert på følgende måte:
+I JSON format er objektet som representerer en pasient strukturert på følgende måte:
 ```JSON
-"patient": {
-	"identifier": {
-		8<...>8
-	},
-	"point-of-care": {
-		8<...>8
-	},
-	"department": {
-		8<...>8
+"patients":	[
+	{
+		"identifier": {
+			8<...>8
+		},
+		"point-of-care": {
+			8<...>8
+		},
+		"department": {
+			8<...>8
+		}
 	}
-}
+]
+
 ```
 
 Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
@@ -941,26 +957,28 @@ Full modell - valgfrie elementer er tatt med
 			"user_reason": "Tekst lagt inn av bruker.."
 		}
 	},
-	"patient": {
-		"identifier": {
-			"id": "05076600324",
-			"name": "Kognar Maman",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"authority": "https://www.skatteetaten.no"
-		},
-		"point-of-care": {
-			"id": "974589095",
-			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.brreg.no"
-		},
-		"department": {
-			"id": "109765",
-			"name": "Øye dagkir/pol 1. etasje",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.102",
-			"authority": "https://www.nhn.no"
+	"patients": [
+		{
+			"identifier": {
+				"id": "05076600324",
+				"name": "Kognar Maman",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+				"authority": "https://www.skatteetaten.no"
+			},
+			"point-of-care": {
+				"id": "974589095",
+				"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+				"authority": "https://www.brreg.no"
+			},
+			"department": {
+				"id": "109765",
+				"name": "Øye dagkir/pol 1. etasje",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+				"authority": "https://www.nhn.no"
+			}
 		}
-	}
+	]
 }
 ````
 
@@ -1013,14 +1031,16 @@ Eksempelet hvor en fastlege er konsument
 			"assigner": "https://www.volven.no/"
 		}
 	},
-	"patient": {
-		"identifier": {
-			"id": "05076600324",
-			"name": "Kognar Maman",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"authority": "https://www.skatteetaten.no"
+	"patients": [
+		{
+			"identifier": {
+				"id": "05076600324",
+				"name": "Kognar Maman",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+				"authority": "https://www.skatteetaten.no"
+			}
 		}
-	}
+	]
 }
 ```
 
@@ -1083,14 +1103,16 @@ I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang ti
 			"assigner": "https://www.volven.no"
 		}
 	},
-	"patient": {
-		"identifier": {
-			"id": "05076600324",
-			"name": "Kognar Maman",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"authority": "https://www.skatteetaten.no"
+	"patients": [
+		{
+			"identifier": {
+				"id": "05076600324",
+				"name": "Kognar Maman",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+				"authority": "https://www.skatteetaten.no"
+			}
 		}
-	}
+	]
 }
 ```
 
@@ -1160,34 +1182,30 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 			"assigner": "https://www.hl7.no"
 		}
 	},
-	"patient": {
-		"identifier": {
-			"id": "05076600324",
-			"name": "Kognar Maman",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.1",
-			"authority": "https://www.skatteetaten.no"
-		},
-		"point-of-care": {
-			"id": "974589095",
-			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-			"authority": "https://www.brreg.no"
-		},
-		"department": {
-			"id": "109765",
-			"name": "Øye dagkir/pol 1. etasje",
-			"system": "urn:oid:2.16.578.1.12.4.1.4.102",
-			"authority": "https://www.nhn.no"
+	"patients": [
+		{
+			"identifier": {
+				"id": "05076600324",
+				"name": "Kognar Maman",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
+				"authority": "https://www.skatteetaten.no"
+			},
+			"point-of-care": {
+				"id": "974589095",
+				"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.101",
+				"authority": "https://www.brreg.no"
+			},
+			"department": {
+				"id": "109765",
+				"name": "Øye dagkir/pol 1. etasje",
+				"system": "urn:oid:2.16.578.1.12.4.1.4.102",
+				"authority": "https://www.nhn.no"
+			}
 		}
-	}
+	]
 }
 ```
-
-
-### 8.4 Eksempel #4 - Legesekretær ber om tilgang til dokument på vegne av lege
-##### JSON
-
-
 
 ## 9. Referanser 
 
