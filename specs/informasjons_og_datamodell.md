@@ -242,7 +242,7 @@ flowchart TB
 subgraph Konsument - innhentende virksomhet
 	direction LR
 		pid([pid])
-		hprid([hpr_nummer])		
+		hprid([hpr-nummer])		
 		legalEntity([legal-entity])
 		authorization([autorisasjon])
 		poc([point of care])
@@ -612,9 +612,6 @@ Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten.
 
 Helsepersonellet må bli informert om at denne informasjonen vil vises til pasienten.
 
-Verdien "user_reason" skal kun inneholde alfanumeriske tegn, samt utvalgte spesialtegn.
-Eksempel på regex: "([0-9a-åA-Å]+)|([0-9a-åA-Å][0-9a-zA-Z\\s]+[0-9a-åA-Å]+)"
-
 Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger. Dersom helsepersonellet har gitt seg selv tilgang skal verdien være _true_. Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være _false_.   
 
 
@@ -635,8 +632,7 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
     "decision-ref" : {
 		"id":  "8<.. id til lokal tilgangsbeslutning, unik for konsument og autogenerert i EPJ ..>8" , 
 		"description": "Legekonsultasjon",
-		"user_selected": false,
-		"user_reason": "Tekst lagt inn av bruker.."
+		"user-selected": false,
     }
 ````
 
@@ -660,7 +656,7 @@ Strukturen som beskriver en pasient, består av tre attributter:
 
 I JSON format er objektet som representerer en pasient strukturert på følgende måte:
 ```JSON
-"patients":	[
+"patients": [
 	{
 		"identifier": {
 			8<...>8
@@ -952,9 +948,8 @@ Full modell - valgfrie elementer er tatt med
 			"id": {
 				"8<..autogenerert i EPJ..>8"
 			},
-			"user_selected": true,
+			"user-selected": true,
 			"description": "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
-			"user_reason": "Tekst lagt inn av bruker.."
 		}
 	},
 	"patients": [
