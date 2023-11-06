@@ -138,10 +138,10 @@ Pasienten må identifiseres ved deling av helseopplysninger for å kunne knytte 
 title: Informasjonsmodell
 ---
 classDiagram
-	Helsepersonell -- Behandlerrelasjon
-	Behandlerrelasjon -- Pasient
+	Practitioner -- CareRelation
+	CareRelation -- Patient
 
-    class Helsepersonell{
+    class Practitioner["Helsepersonell (practitioner)"] {
 		- Helsepersonellets fødselsnummer og navn
 		- Helsepersonellets formelle autorisasjon
 		- Den personalansvarlige og dataansvarlige virksomheten
@@ -150,11 +150,12 @@ classDiagram
 		- Formell rolle/stilling helsepersonellet opptrer i kraft av på vegne av organisasjonen
 		- Funksjon helsepersonellet har og opptrer i kraft av på vegne av organisasjonen
     }
-    class Behandlerrelasjon{
+
+    class CareRelation["Behandlerrelasjon (care-relation)"] {
 		- Formålet med og grunnlaget for behandlingen av helseopplysningene
 		- Helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
     }
-    class Pasient{
+    class Patient["Pasient (patient)"] {
 		- Hvem er pasienten
 		- Tilhørighet til behandlingssted og detaljert organisasjonstilhørighet for pasienten
     }
@@ -186,28 +187,27 @@ title: Datamodell
 ---
 classDiagram
 
-	Helsepersonell -- Behandlerrelasjon
-	Behandlerrelasjon -- Pasient
+	Practitioner -- CareRelation
+	CareRelation -- Patient
 
-	class Helsepersonell{
-		- "name"
-		- "pid"
+	class Practitioner["practitioner"] {
+		- "identifier"
+		- "hpr-nr"
+		- "authorization"
 		- "legal-entity"
 		- "point-of-care"
 		- "department"
-		- "hpr-nr"
-		- "authorization"
 	}
 		
-	class Behandlerrelasjon{
+	class CareRelation["care-relation"] {
+		- "healthcare-service"
 		- "purpose-of-use"
 		- "purpose-of-use-details"
 		- "decision-ref"
-		- "healthcare-service"
 	}
 	
-	class Pasient{
-		- "pid"
+	class Patient["patient"]{
+		- "identifier"
 		- "point-of-care"
 		- "department"
 	}	
