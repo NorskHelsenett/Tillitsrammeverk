@@ -420,8 +420,65 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt angivelse av "legal-entity".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Attributtet "legal-entity" skal inneholde helsepersonellets virksomhetstilhørighet. Det er den registrerte hovedenheten i Brønnøysundregisteret hvor helsepersonellet yter helsehjelp for som skal oppgis.<br> Dersom personellet er innleid og formelt ansatt hos et vikarbyrå eller tilsvarende virksomhet er det ikke denne virksomheten som skal angis.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
 
-Formål med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"), kan vurderes vist til pasienten i innsynslogg.
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "legal-entity".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen dokumenterer hvilken virksomhet som er ansvarlig for personellets tilgang, og vil benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt av kilder.<br> Attributtet vil også inngå i pasientjournalens innsynslogg hos kildene. 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
 
 #### 2.3 Forretningsregler for attributtet "point-of-care"
 
