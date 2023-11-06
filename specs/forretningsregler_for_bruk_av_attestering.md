@@ -458,7 +458,8 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen dokumenterer hvilken virksomhet som er ansvarlig for personellets tilgang, og vil benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt av kilder.<br> Attributtet vil også inngå i pasientjournalens innsynslogg hos kildene. 
+            Informasjonen dokumenterer hvilken virksomhet som er ansvarlig for personellets tilgang, og vil, sammen med annen informasjon i attesten, dokumentere grunnlaget for at tilgang blir gitt av kilder.<br> 
+            Attributtet vil også inngå i pasientjournalens innsynslogg hos kildene. 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
@@ -509,6 +510,92 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
             Denne regelen skal håndheves av:
             <ul>
                 <li>tillitsanker/NHN</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID </td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td> Angivelse av innholdet i attributtet "point-of-care"</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>Attributtet skal inneholde helsepersonellets arbeidssted, som også kan omtales som behandlingsstedet helsepersonellet formelt er tilknyttet. Det er den registrerte underenheten i Brønnøysundregisteret som helsepersonellet formelt utfører sitt arbeide ved som skal oppgis.<br>
+        Det er et generelt krav til alle norske virksomheter at aktivitet skal kunne rapporteres per geografisk sted og per registrert næringskode i Brønnøysund som det drives virksomhet ved, og derfor skal det være registrert slike underenheter i Brønnøysundregisteret for de fleste virksomheter i Norge.
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>tillitsanker/NHN</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID </td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td> Angivelse av innholdet i attributtet "point-of-care" for virksomheter uten underliggende enheter</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>For virksomheter som eventuelt ikke har registrert noen underliggende enheter i Brønnøysundregistrene skal den overordnede enheten oppgis i dette attributtet.<br>
+        Verdien i "legal-entity" og "point-of-care" vil i slike tilfeller være lik.
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "point-of-care".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen dokumenterer behandlingsstedet som helsepersonellet yter helsehjelp ved når tilgangen til pasientens helseopplysninger ble gitt av konsumenten. Denne informasjonen vil, sammen med annen informasjon i attesten, dokumentere grunnlaget for at tilgang blir gitt av kilder.<br>
+            Attributtet vil også inngå i pasientjournalens innsynslogg hos kildene. 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
             </ul>  
         </td>
     </tr>
