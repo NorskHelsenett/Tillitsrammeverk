@@ -602,6 +602,95 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 </table>
 
 #### 2.4 Forretningsregler for attributtet "department"
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Overordnede regler for bruk av attributtet "department".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            I virksomheter som er organisert i flere lokalt definerte underliggende enheter enn de som fremkommer av offentlig registrering i Brønnøysundregistrene, er det et krav at attesten formidler informasjon om hvilken av disse lokalt definerte enhetene helsepersonellet tilhører.<br> 
+            Det er ikke et krav om å formidle noe i dette attributtet fra virksomheter uten lokalt definerte underliggende enheter ut over det som fremkommer av offentlig registrering i Brønnøysundregistrene.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt detaljeringsnivå for attributtet "department".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Hvilket detaljeringsnivå innenfor et potensielt større hierarki av lokalt definerte enheter som er riktig å legge i attesten vil i stor grad avhenge av hva som er praktisk mulig ut fra tilgjengelige registreringer av helsepersonellets organisasjonstilhørighet, og det må derfor vurderes av konsumentvirksomheten.<br><br>
+            Ved flere mulige valg bør det vektlegges hva som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen. Som hovedregel bør dette være et så detaljert nivå som mulig heller enn et mer overordnet nivå, og likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til fremfor mer administrative og formelle nivåer som bare internt personell forholder seg til.<br>
+            I noen tilfeller kan det være behov for å avgi et mer overordnet nivå av hensyn til behov for særlig diskresjon som virksomheten måtte ha behov for ved enkelte mer spesielle enheter.<br>Det kan også være relevant i vurderingen hvilket nivå pasienter eller eksternt personell bør kontakte dersom det er spørsmål om tilgangen har vært legitimt begrunnet, hvis det er ønskelig at slike spørsmål i størst mulig grad håndteres av for eksempel nærmeste leder.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "department".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
 <table>
     <tr>
         <td>ID</td>
@@ -730,7 +819,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>    
         <td> Regel </td>
-        <td> "System" og "assigner" skal angis selv om konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet.<br>
+        <td>"System" og "assigner" skal angis selv om konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet.<br>
         I slike tilfeller skal:
         <ul>
             <li>verdien for attributtet "assigner" skal settes til org.nr for juridisk enhet. 
@@ -747,6 +836,8 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
         </td>
     </tr>
 </table>
+
+
 
 #### 2.5 Forretningsregler for attributtet "hpr-nr"
 <table>
