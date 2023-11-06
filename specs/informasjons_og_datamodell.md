@@ -241,7 +241,7 @@ En attest består av informasjon som beskriver helsepersonellets grunnlag for ti
 flowchart TB
 subgraph Konsument - innhentende virksomhet
 	direction LR
-		pid([pid])
+		pid([practitioner identifikator])
 		hprid([hpr-nummer])		
 		legalEntity([legal-entity])
 		authorization([autorisasjon])
@@ -251,7 +251,7 @@ subgraph Konsument - innhentende virksomhet
 		pou([purpose of use])
 		poud([purpose of use details])
 		dec([decicion ref])
-		pat_id([patient id])
+		pat_id([patient identifikator])
 		pat_poc([patient point of care])
 		pat_dep([patient department])
 	direction TB
