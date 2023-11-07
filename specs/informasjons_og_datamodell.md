@@ -610,8 +610,8 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
-| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC,<br/>BTG |
+| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html)<br>[ISO 14265:2011](https://www.iso.org/standard/83447.html) |
+| Gyldige verdier:| TREAT, <br>ETREAT,<br>COC,<br>BTG |
 
 
 ###### "purpose-of-use" - JSON format
