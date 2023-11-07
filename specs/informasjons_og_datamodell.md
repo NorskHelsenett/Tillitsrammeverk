@@ -67,6 +67,12 @@ For å få tilgang på tvers av virksomheter må den konsumerende virksomheten a
 * lovpålagt etterfølgende kontroll av tilgangen for å avdekke eventuelle urettmessige tilegnelser av helseopplysninger
 * å støtte opp under innbyggers rettigheter i henhold til ulike lovkrav (pasient- og brukerrettighetsloven, personopplysningsloven og personvernforordningen mm)
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.<br>
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at noen informasjonselementer er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig, forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
+
+
 ## 2. Ordliste
  
 |  Begrep | Definisjon  |
@@ -176,8 +182,39 @@ Valg av format er normalt knyttet til teknisk plattform eller praktiske hensyn, 
 Et felles behov for alle serialiserte format er at de bør kunne ivareta attestens dataintegritet og sporbarhet, f.eks. ved bruk av digital signatur. 
 
 ##### 4.2.2.1 Konvensjoner brukt i datamodellen
+Strukturene i datamodellen følger noen konvensjoner som har som formål å skille mellom forskjellige typer verdier.
 
+*Angivelse av identifikatorer*
+For å angi identifikatorer benyttes en struktur med følgende nøkkel/verdi par:
+* "id": identifikator
+* "name": identitetens navn
+* "system": urn for kodesystem (f.eks en oid)
+* "authority": uri for autoritativ kilde
 
+````JSON
+"identitet-attributt": {
+	"id": "unik identifikator",
+	"name": "navn",
+	"system": "urn:oid:x.x.x.x.x.x.x.x.x",
+	"authority": "https://autoritativ-kilde.no"
+}
+```` 
+
+*Angivelse av kodeverk*
+For å angi identifikatorer benyttes en struktur med følgende nøkkel/verdi par:
+* "code": kode
+* "text": tekstlig beskrivelse av koden
+* "system": urn for kodesystem (f.eks en oid)
+* "assigner": uri for autoritativ kilde
+
+````JSON
+"kodeverk-attributt": {
+	"code": "kode",
+	"text": "tekstlig beskrivelse",
+	"system": "urn:oid:x.x.x.x.x.x.x.x.x",
+	"assigner": "https://www.ansvarlig-for-kodeverk.no/"
+}
+````
 
 #### 4.2.3 Oversikt over attributter i datamodellen 
 
@@ -417,6 +454,11 @@ Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care:
 Attributtet "department" angir avdelingen eller helsepersonellets mest detaljerte organisasjonstilhørighet.
 Attributtet benyttes ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at noen informasjonselementer er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig, forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
+
 |   |   |
 | ---| ---|
 | Attributt: | "department" |
@@ -441,10 +483,6 @@ Attributtet benyttes ved loggkontroll, samt for å gi mest mulig forståelig inf
 
 #### 4.3.5 "hpr-nr": Helsepersonellnummer
 Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
-
-
-Er nødvendig for å slå opp i helsepersonellregisteret, og for å undersøke hvorvidt det foreligger sperringer hos kilden og Kjernejournal.
-
  
 |   |   |
 | ---| ---|
@@ -528,6 +566,11 @@ Attributtet "healthcare-service" angir hvilken type helsetjenester som leveres/y
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.<br>
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at noen informasjonselementer er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig, forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
+
 |   |   |
 | ---| ---|
 | Attributt: | "healthcare-service" |
@@ -547,13 +590,18 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 	"code": "KP02",
 	"text": "Sykepleietjeneste",
 	"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
-	"assigner": "www.helsedirektoratet.no"
+	"assigner": "https://www.helsedirektoratet.no"
 }
 ````
 
 #### 4.4.2 "purpose-of-use": formålet med behandlingen av personopplysninger
 Attributtet "purpose-of-use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger, og benyttes til å begrunne _hvorfor_ helsepersonellet trenger tilgang til pasientens helseopplysninger.
 I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesialiserte formål ikke ansees som relevante eller nødvendige for omfanget til Pasientens Journaldokumenter.
+
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 |   |   |
 | ---| ---|
@@ -562,8 +610,8 @@ I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesiali
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html) |
-| Gyldige verdier:| TREAT, <br/>ETREAT,<br/>COC,<br/>BTG |
+| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html)<br>[ISO 14265:2011](https://www.iso.org/standard/83447.html) |
+| Gyldige verdier:| TREAT, <br>ETREAT,<br>COC,<br>BTG |
 
 
 ###### "purpose-of-use" - JSON format
@@ -584,6 +632,10 @@ Attributtet "purpose-of-use-details" er en oppsummering av tilgangsbeslutningen 
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 |   |   |
 | ---| ---|
@@ -614,6 +666,10 @@ Helsepersonellet må bli informert om at denne informasjonen vil vises til pasie
 
 Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger. Dersom helsepersonellet har gitt seg selv tilgang skal verdien være _true_. Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være _false_.   
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 |   |   |
 | ---| ---|
@@ -638,11 +694,15 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 
 ### 4.5 Kategori: "patients" - pasienten
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 | Attributt | |
 | --- | --- |
 | Attributt: | "patients" |
-| Informasjonselement | Kategorien  "patients" består av en liste av objekter som representerer en pasient. Lista av pasientobjekter kan være tom, eller inneholde ett eller flere elementer. |
+| Informasjonselement | Kategorien  "patients" består av en liste av objekter som representerer  pasienter. Lista av pasientobjekter kan være tom, eller inneholde ett eller flere elementer. |
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Array |
@@ -692,7 +752,6 @@ Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 ````JSON
 "identifier": {
 	"id": "05076600324",
-	"name": "Kognar Maman",
 	"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 	"authority": "https://www.skatteetaten.no"
 }
@@ -726,7 +785,7 @@ Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informas
 	"id": "123456789",
 	"name": "Det beste legekontoret i byen AS",
 	"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-	"authority": "www.brreg.no"
+	"authority": "https://www.brreg.no"
 }
 ````
 
@@ -898,7 +957,7 @@ Full modell - valgfrie elementer er tatt med
 		"hpr-nr": {
 			"id": "9144900",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-			"assigner": "https://www.helsedirektoratet.no/"
+			"authority": "https://www.helsedirektoratet.no/"
 		},
 		"authorization": {
 			"code": "LE",
@@ -956,7 +1015,6 @@ Full modell - valgfrie elementer er tatt med
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			},
@@ -1030,7 +1088,6 @@ Eksempelet hvor en fastlege er konsument
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			}
@@ -1102,7 +1159,6 @@ I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang ti
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			}
@@ -1181,7 +1237,6 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			},

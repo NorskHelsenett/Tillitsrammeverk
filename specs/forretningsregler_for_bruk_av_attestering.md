@@ -602,6 +602,95 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 </table>
 
 #### 2.4 Forretningsregler for attributtet "department"
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Overordnede regler for bruk av attributtet "department".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            I virksomheter som er organisert i flere lokalt definerte underliggende enheter enn de som fremkommer av offentlig registrering i Brønnøysundregistrene, er det et krav at attesten formidler informasjon om hvilken av disse lokalt definerte enhetene helsepersonellet tilhører.<br> 
+            Det er ikke et krav om å formidle noe i dette attributtet fra virksomheter uten lokalt definerte underliggende enheter ut over det som fremkommer av offentlig registrering i Brønnøysundregistrene.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt detaljeringsnivå for attributtet "department".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Hvilket detaljeringsnivå innenfor et potensielt større hierarki av lokalt definerte enheter som er riktig å legge i attesten vil i stor grad avhenge av hva som er praktisk mulig ut fra tilgjengelige registreringer av helsepersonellets organisasjonstilhørighet, og det må derfor vurderes av konsumentvirksomheten.<br><br>
+            Ved flere mulige valg bør det vektlegges hva som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen. Som hovedregel bør dette være et så detaljert nivå som mulig heller enn et mer overordnet nivå, og likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til fremfor mer administrative og formelle nivåer som bare internt personell forholder seg til.<br>
+            I noen tilfeller kan det være behov for å avgi et mer overordnet nivå av hensyn til behov for særlig diskresjon som virksomheten måtte ha behov for ved enkelte mer spesielle enheter.<br>Det kan også være relevant i vurderingen hvilket nivå pasienter eller eksternt personell bør kontakte dersom det er spørsmål om tilgangen har vært legitimt begrunnet, hvis det er ønskelig at slike spørsmål i størst mulig grad håndteres av for eksempel nærmeste leder.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "department".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
 <table>
     <tr>
         <td>ID</td>
@@ -730,7 +819,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>    
         <td> Regel </td>
-        <td> "System" og "assigner" skal angis selv om konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet.<br>
+        <td>"System" og "assigner" skal angis selv om konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet.<br>
         I slike tilfeller skal:
         <ul>
             <li>verdien for attributtet "assigner" skal settes til org.nr for juridisk enhet. 
@@ -747,6 +836,8 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
         </td>
     </tr>
 </table>
+
+
 
 #### 2.5 Forretningsregler for attributtet "hpr-nr"
 <table>
@@ -873,12 +964,132 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
+        <td>Bruk av "healthcare-service" for å angi helsehjelpstjeneste</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Attributtet "healthcare-service" (helsehjelpstjeneste) angir hvilken type helsetjenester som leveres/ytes til pasienten ved virksomheten der helsepersonellet jobber. Helsehjelpstjenesten som dokumenteres er grunnlaget for at helsepersonellet trenger tilgang til pasientens helseopplysninger.<br>
+            Et alternativ til begrepet <em>helsehjelpstjeneste</em> er <em>fagområde</em>, som beskriver det tilsvarende grunnlaget i spesialisthelsetjenesten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "healthcare-service".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Håndtering av tilfeller hvor det finnes flere mulige verdier for helsehjelpstjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Ved flere mulige verdier for helsehjelptjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten skal verdien som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen vektlegges.<br>
+            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Håndtering av tilfeller hvor helsehjelpstjeneste eller fagområde ikke er knyttet til tilganger som helsepersonellet har til pasienten</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Det er ikke alltid slik at helsehjelpstjeneste eller fagområde er registrert og knyttet til tilganger som helsepersonellet har til pasienten, for eksempel:
+            <ul>
+                <li>Når pasienten ikke er i et planlagt forløp hos virksomheten, men behandles eksternt</li>
+                <li>Dersom pasienten ønsker dialog i etterkant av et avsluttet forløp</li>
+                <li>Det har oppstått en akuttsituasjon som krever rask tilgang til pasienten</li>
+            </ul>
+            I slike tilfeller vil det ikke være nødvendig å oppgi verdi for attributtet "healthcare-service".<br>
+            For spesialisthelsetjenesten skal manglende verdi i "healthcare-service" kunne forklares av verdien som formidles i "purpose-of-use-details".
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
         <td>Angivelse av verdi for attributtet "healthcare-service"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare-service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br>
+            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare-service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br><br>
+            Det er flere kodeverk som er aktuelle for å beskrive helsehjelpstjeneste, de fleste er koblet til tjenestebasert adressering, se detaljert beskrivelse under attributtet i informasjonsmodellen.<br>
             Verdien som angis for attributtet "healthcare-service" skal være definert i ett av de følgende kodeverkene:
             <ul>
                 <li><a href="https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655">Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)</a></li>
@@ -905,6 +1116,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 
 #### 3.2 Forretningsregler for attributtet "purpose-of-use"
+
 <table>
     <tr>
         <td>ID</td>
@@ -1034,21 +1246,68 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "purpose-of-use-details".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
         <td>ATT-X</td>
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Gyldige kodeverk for angivelse av verdi for "purpose-of-use-details"</td>
+        <td>Overordnede retningslinjer for angivelse av "purpose-of-use-details"</td>
     </tr>
     <tr>    
         <td>Regel</td>
         <td>
-            Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
+            Intensjonen bak attesteringen er å best mulig kunne formidle grunnlaget for tilgang som er dokumentert i helsepersonellets virksomhet.<br>
+            Attributtet "purpose-of-use-details" skal formidle den spesifikke hendelsen aller aktiviteten som er bakgrunnen for at helsepersonellet har fått tilgang til pasientens helseopplysninger i egen virksomhet.<br> 
+            Dette attributtet utfyller andre attributter, slik at det i sum dannes et forståelig bilde av bakgrunnen for tilgangen.<br>
+            Begrepene "hendelse" eller "aktivitet" er ikke nødvendigvis gode begreper for alle virksomhetstyper eller alle typer helsehjelpstjenester.<br>
+            <br>
+            Et utgangspunkt for å vurdere hvilke registreringer som er best egnet for å avgi riktig informasjon i attributtet kan være følgende to scenarier:
             <ul>
-                <li>For attestering av helsepersonell i spesialisthelsetjenesten skal følgende kodeverk benyttes: <a href="https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html">HL7 Norway: care relation</a></li>                
-                <li>For attestering av helsepersonell i sykehjemstjenesten skal følgende kodeverk benyttes:<a href="https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151">Volvens kodeverk 9151</a></li>
-                <li>Dersom det finnes andre eksisterende kodeverk som har samme formål kan disse også benyttes.</li>
+                <li>Hvordan dokumenteres den spesifikke tilgangen et helsepersonell har fått når pasient mottar helsehjelp i øyeblikket</li>
+                <li>Hvordan dokumenteres tilsvarende tilgang når pasienten tidligere mottok helsehjelp fra virksomheten som nå er avsluttet, og det i ettertid er nødvendig med ny tilgang fra det samme helsepersonellet for eksempel som følge av en henvendelse fra pasienten eller pasientens nåværende behandler der de yter helsehjelp til pasienten?</li>
             </ul>
+            <br>
+            I spesialisthelsetjenesten kan en <em>hendelse</em> eller <em>aktivitet</em> for eksempel være at en pasient:
+            <ul>
+                <li>trenger å få vurdert en henvisning,</li>
+                <li>er planlagt å møte til en konsultasjon,</li>
+                <li>er under behandling i en poliklinisk konsultasjon eller er innlagt,</li>
+                <li>skal følges opp av helsepersonellet som er på vakt eller lignende.</li>
+            </ul>
+            Det kan også være at pasienten, pasientens pårørende/verge eller pasientens eksterne behandler har tatt kontakt med helsepersonellet som gjør det nødvendig for helsepersonellet å få tilgang til pasientens helseopplysninger for å sikre at riktig helsehjelp blir gitt til pasienten.<br>
+            Et eksempel på kodeverk som representer spesialisthelsetjenestens aktuelle aktiviteter/hendelser finnes som et utgangspunkt for eventuell nasjonal standardisering hos HL7 Norge.
+            <br>
         </td>
     </tr>
     <tr>
@@ -1062,9 +1321,6 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
 </table>
 
-
-#### 3.4 Forretningsregler for attributtet "decision-ref"
-
 <table>
     <tr>
         <td>ID</td>
@@ -1072,16 +1328,17 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Informasjon til helsepersonellet om bruk av "user_reason" i attributtet "decision-ref".</td>
+        <td>Retningslinjer dersom det finnes flere mulige verdier for "purpose-of-use-details"</td>
     </tr>
     <tr>    
-        <td> Regel </td>
+        <td>Regel</td>
         <td>
-            Ved bruk av attributtet "user_reason" når helsepersonellet selv angir formål eller begrunnelse for tilgangen til helseopplysningene må helsepersonellet informeres om at denne informasjonen kan bli brukt i forbindelse med logganalyse og loggoppfølging eller bli vist til pasienten.
+            Ved flere mulige valg bør det vektlegges hva som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen.<br> 
+            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
         </td>
     </tr>
     <tr>
-        <td> Ansvarlig </td>
+        <td>Ansvarlig</td>
         <td>
             Denne regelen skal håndheves av:
             <ul>
@@ -1098,30 +1355,66 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Gyldige tegn for "user_reason" i attributtet "decision-ref".</td>
+        <td>Foreslåtte kodeverk for angivelse av verdi for "purpose-of-use-details"</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
+            <ul>
+                <li>For attestering av helsepersonell i spesialisthelsetjenesten skal følgende kodeverk benyttes: <a href="https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html">HL7 Norway: care relation</a></li>                
+                <li>For attestering av helsepersonell i sykehjemstjenesten skal følgende kodeverk benyttes:<a href="https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151">Volvens kodeverk 9151</a></li>
+                <li>Dersom det finnes andre eksisterende kodeverk som har samme formål kan disse også benyttes.</li>
+            </ul>
+            For avtalespesialister er relevante eksempler ...<br>
+            Hos legekontor er det ofte ...<br>
+            <br>
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+#### 3.4 Forretningsregler for attributtet "decision-ref"
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Formål med, og bruk av attributtet "decision-ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
-        <td>
-            Ettersom verdien i attributtet "user_reason" er basert på inntastet tekst fra bruker er det en risiko for at en ondsinnet aktør kan utføre sikkerhetsangrep ved å manipulere data i dette feltet. Verdien i attributtet blir transportert, behandlet og lagret i forskjellige systemer på tvers av virksomhetene i verdikjeden.<br>
-            Derfor skal det være usannsynlig at det kan utføres sikkerhetsangrep ved bruk av innholdet i attributtet. Verdien skal kun inneholde alfanumeriske tegn, samt utvalgte spesialtegn.<br>
-            Tekstverdien skal sikres mot forskjellige typer angrep, som: 
+        <td>  
+            Attributtet skal formidle informasjon om helsepersonellet har tatt seg selv tilgang (selvautorisasjon), eller om det er en automatisert (systemavledet) tilgangsbeslutning. Det er også tilrettelagt for at en mer utdypende systemavledet beskrivelse kan formidles for å sikre best mulig forståelse av grunnlaget for tilgangen.
+            <br>
+            Formålet med dette attributtet er at alle parter i en kjede av involverte virksomheter og systemer, skal kunne gjenfinne logginnslag som har opphav fra den opprinnelige tilgangsbeslutningen hos konsument.<br><br>
+            Denne opplysningen SKAL benyttes på følgende måte:
             <ul>
-                <li>SQL injection angrep</li>
-                <li>JSON SQL injection angrep</li>
-                <li>XSS angrep</li>                
+                <li>Dersom etterfølgende kontroll av tilgangene hos kilder fører til behov for videre oppfølging hos konsument skal "decision-ref" oppgis ved henvendelser.</li>
+                <li>Dersom "decision-ref" oppgis ved henvendelse fra data- eller dokumentkilde skal det være mulig for konsument å framstille informasjon som beskriver beslutningen om tilgang i sitt system, slik at de kan vurdere hvorvidt tilgangen var gyldig.</li>
             </ul>
         </td>
     </tr>
     <tr>
         <td> Ansvarlig </td>
         <td>
-            Denne regelen skal kontrolleres og håndheves av:
+            Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
-            </ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
         </td>
     </tr>
 </table>
@@ -1133,28 +1426,42 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Maksimalt antall tegn for "user_reason" i attributtet "decision-ref".</td>
+        <td>Overordnet beskrivelse av angivelse av verdi for attributtet "decision-ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Ettersom verdien i attributtet "user_reason" er basert på inntastet tekst fra bruker er det en risiko for at en ondsinnet aktør kan utføre sikkerhetsangrep ved å manipulere data i dette feltet.<br>
-            Derfor skal det være usannsynlig at det kan utføres sikkerhetsangrep ved bruk av innholdet i attributtet.<br> 
-            Verdien for attributtet "user_reason" skal inneholde <b>maksimalt 250 tegn</b>.<br>
+            Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten.<br> 
+            Med tilgangsbeslutning menes det som er dokumentert hos en konsument i forbindelse med at et helsepersonell har fått tilgang:<br><br>
+            Vi skiller mellom to brukstilfeller for verdien i attributtet "decision-ref":
+            <ul>
+                <li>tilgang til flere pasienter</li>
+                <li>tilgang til en spesifikk pasient</li>
+            </ul>
+            <strong>Tilgang til flere pasienter</strong><br>
+            Etter pålogging i lokalt EPJ vil helsepersonellet navigere seg fram til de aktuelle pasientene de skal yte helsehjelp til.<br> 
+            Helsepersonellet må da gis tilgang til en oversikt over pasienter som de potensielt skal behandle. . 
+            <br>
+            I tilfeller hvor oversikten hentes fra andre virksomheter er det <em>referanse til denne tilgangsbeslutningen som skal oppgis</em><br>
+            <br><br>
+            <strong>Tilgang til en spesifikk pasient</strong><br>
+            Hvis helsepersonellet trenger tilgang til mer detaljert informasjon om en spesifikk pasient må det foreligge en referanse til den <em>spesifikke tilgangsbeslutningen for tilgang til denne pasienten</em>.<br>
+            Tilgangsbeslutningen er utgangspunktet for videre tilgang til andre virksomheter og nasjonale løsninger.<br> 
+            Det er den mest spesifikke tilgangsbeslutningen som til enhver tid skal identifiseres.
         </td>
     </tr>
     <tr>
         <td> Ansvarlig </td>
         <td>
-            Denne regelen skal kontrolleres og håndheves av:
+            Denne regelen skal håndheves av:
             <ul>
                 <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
             </ul>  
         </td>
     </tr>
 </table>
+
+
 
 <table>
     <tr>
@@ -1191,11 +1498,273 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 ### 4. Forretningsregler for beskrivelse av pasienten - attributt: "patient"
 
-#### 4.1 Forretningsregler for attributtet "identifier"
+#### 4.1 Forretningsregler for attributtet "identifier" for pasient
 
 
-#### 4.2 Forretningsregler for attributtet "point-of-care"
+#### 4.2 Forretningsregler for attributtet "point-of-care" for pasient
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Angivelse av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Attributtet skal inneholde pasientens behandlingssted så fremt behandlingen foregår i helsepersonellets egen virksomhet, og det er registrert en kontakt med en organisasjonsenhet i helsepersonellets egen virksomhet som er grunnlaget for tilgangen. Det er den registrerte underenheten i Brønnøysundregisteret som pasientens kontakt tilhører som skal oppgis.
+            <br>
+            Det er et generelt krav til alle norske virksomheter at aktivitet skal kunne rapporteres per geografisk sted og per registrert næringskode i Brønnøysund som det drives virksomhet ved, og derfor skal det være registrert slike underenheter i Brønnøysundregisteret for de fleste virksomheter i Norge.
+            <br>
+            Det er altså kun når pasienten har en registrert kontakt i helsepersonellets egen virksomhet, og helsehjelp knyttet til denne kontakten er grunnlaget for at helsepersonellet trenger tilgang til helseopplysningene for pasienten, at dette attributtet skal formidle den offisielle underenheten pasienten har sin registrerte kontakt ved. Informasjonen skal formidles uavhengig av om helsepersonellet trenger tilgangen som følge av helsehjelp de selv yter direkte til pasienten, eller indirekte som følge av at de trenger tilgangen for å bistå kolleger i egen virksomhet.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Angivelse av attributtet "point-of-care" for pasient for virksomheter uten underenheter.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            For virksomheter som eventuelt ikke har registrert noen underliggende enheter i Brønnøysundregistrene skal den overordnede enheten oppgis i dette attributtet så lenge kriteriene for at dette attributtet skal brukes er oppfylt.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Unntak fra bruk av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Dersom pasienten behandles ved en annen virksomhet enn helsepersonellets, for eksempel ved behov for tilgang for å kunne bistå en kollega i en annen virksomhet som har pasienten til behandling hos seg, eller dersom pasienten selv eller pårørende har henvendt seg uten at dette er knyttet til en registrert kontakt med helsepersonellets virksomhet, skal ikke dette attributtet benyttes.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
 
 
-#### 4.3 Forretningsregler for attributtet "department"
-           
+
+#### 4.3 Forretningsregler for attributtet "department" for pasient
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Overordnede regler for bruk av attributtet "department" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            I virksomheter som er organisert i flere lokalt definerte underliggende enheter enn de som fremkommer av offentlig registrering i Brønnøysundregistrene, er det et krav at attesten formidler informasjon om hvilken av disse lokalt definerte enhetene pasienten mottar behandling ved i forbindelse med tilgangen helsepersonellet ønsker å oppnå. Det er ikke et krav om å formidle noe i dette attributtet fra virksomheter uten lokalt definerte underliggende enheter ut over det som fremkommer av offentlig registrering i Brønnøysundregistrene.
+            <br>
+            Det er altså kun når pasienten har en registrert kontakt i helsepersonellets egen virksomhet, og helsehjelp knyttet til denne kontakten er grunnlaget for at helsepersonellet trenger tilgang til helseopplysningene for pasienten, at dette attributtet skal formidle enheten pasienten har sin registrerte kontakt ved. Informasjonen skal formidles uavhengig av om helsepersonellet trenger tilgangen som følge av helsehjelp de selv yter direkte til pasienten, eller indirekte som følge av at de trenger tilgangen for å bistå kolleger i egen virksomhet.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>                
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt detaljeringsnivå for attributtet "department" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Hvilket detaljeringsnivå innenfor et potensielt større hierarki av lokalt definerte enheter som er riktig å legge i attesten må vurderes av konsumentvirksomheten, ut fra hva som i størst mulig grad bidrar til å avklare hva som er bakgrunnen for tilgangen. Som hovedregel bør dette være et så detaljert nivå som mulig heller enn et mer overordnet nivå, og likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til fremfor mer administrative og formelle nivåer som bare internt personell forholder seg til.<br> 
+            I noen tilfeller kan det være behov for å avgi et mer overordnet nivå av hensyn til behov for særlig diskresjon som virksomheten måtte ha behov for ved enkelte mer spesielle enheter.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Angivelse av attributtet "department" for pasient for virksomheter uten underenheter.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            For virksomheter som eventuelt ikke har registrert noen underliggende enheter i Brønnøysundregistrene skal den overordnede enheten oppgis i dette attributtet så lenge kriteriene for at dette attributtet skal brukes er oppfylt.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Unntak fra bruk av attributtet "department" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Dersom pasienten behandles ved en annen virksomhet enn helsepersonellets, for eksempel ved behov for tilgang for å kunne bistå en kollega i en annen virksomhet som har pasienten til behandling hos seg, eller dersom pasienten selv eller pårørende har henvendt seg uten at dette er knyttet til en registrert kontakt med helsepersonellets virksomhet, skal ikke dette attributtet benyttes.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
