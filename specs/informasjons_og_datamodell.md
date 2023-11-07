@@ -70,6 +70,9 @@ For å få tilgang på tvers av virksomheter må den konsumerende virksomheten a
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.<br>
 Det er ikke tenkt at systemene må endre på eksisterende registreringer.
 
+Dersom det viser seg at noen informasjonselementer er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig, forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
+
+
 ## 2. Ordliste
  
 |  Begrep | Definisjon  |
@@ -451,6 +454,11 @@ Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care:
 Attributtet "department" angir avdelingen eller helsepersonellets mest detaljerte organisasjonstilhørighet.
 Attributtet benyttes ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at noen informasjonselementer er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig, forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
+
 |   |   |
 | ---| ---|
 | Attributt: | "department" |
@@ -475,10 +483,6 @@ Attributtet benyttes ved loggkontroll, samt for å gi mest mulig forståelig inf
 
 #### 4.3.5 "hpr-nr": Helsepersonellnummer
 Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
-
-
-Er nødvendig for å slå opp i helsepersonellregisteret, og for å undersøke hvorvidt det foreligger sperringer hos kilden og Kjernejournal.
-
  
 |   |   |
 | ---| ---|
@@ -562,6 +566,11 @@ Attributtet "healthcare-service" angir hvilken type helsetjenester som leveres/y
 
 Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.<br>
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at noen informasjonselementer er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig, forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
+
 |   |   |
 | ---| ---|
 | Attributt: | "healthcare-service" |
@@ -588,6 +597,11 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 #### 4.4.2 "purpose-of-use": formålet med behandlingen av personopplysninger
 Attributtet "purpose-of-use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger, og benyttes til å begrunne _hvorfor_ helsepersonellet trenger tilgang til pasientens helseopplysninger.
 I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesialiserte formål ikke ansees som relevante eller nødvendige for omfanget til Pasientens Journaldokumenter.
+
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 |   |   |
 | ---| ---|
@@ -618,6 +632,10 @@ Attributtet "purpose-of-use-details" er en oppsummering av tilgangsbeslutningen 
 
 Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 |   |   |
 | ---| ---|
@@ -648,6 +666,10 @@ Helsepersonellet må bli informert om at denne informasjonen vil vises til pasie
 
 Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger. Dersom helsepersonellet har gitt seg selv tilgang skal verdien være _true_. Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være _false_.   
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 |   |   |
 | ---| ---|
@@ -672,6 +694,10 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 
 ### 4.5 Kategori: "patients" - pasienten
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
+Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 | Attributt | |
 | --- | --- |
