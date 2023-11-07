@@ -1116,6 +1116,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 
 #### 3.2 Forretningsregler for attributtet "purpose-of-use"
+
 <table>
     <tr>
         <td>ID</td>
@@ -1245,21 +1246,68 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "purpose-of-use-details".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
         <td>ATT-X</td>
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Gyldige kodeverk for angivelse av verdi for "purpose-of-use-details"</td>
+        <td>Overordnede retningslinjer for angivelse av "purpose-of-use-details"</td>
     </tr>
     <tr>    
         <td>Regel</td>
         <td>
-            Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
+            Intensjonen bak attesteringen er å best mulig kunne formidle grunnlaget for tilgang som er dokumentert i helsepersonellets virksomhet.<br>
+            Attributtet "purpose-of-use-details" skal formidle den spesifikke hendelsen aller aktiviteten som er bakgrunnen for at helsepersonellet har fått tilgang til pasientens helseopplysninger i egen virksomhet.<br> 
+            Dette attributtet utfyller andre attributter, slik at det i sum dannes et forståelig bilde av bakgrunnen for tilgangen.<br>
+            Begrepene "hendelse" eller "aktivitet" er ikke nødvendigvis gode begreper for alle virksomhetstyper eller alle typer helsehjelpstjenester.<br>
+            <br>
+            Et utgangspunkt for å vurdere hvilke registreringer som er best egnet for å avgi riktig informasjon i attributtet kan være følgende to scenarier:
             <ul>
-                <li>For attestering av helsepersonell i spesialisthelsetjenesten skal følgende kodeverk benyttes: <a href="https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html">HL7 Norway: care relation</a></li>                
-                <li>For attestering av helsepersonell i sykehjemstjenesten skal følgende kodeverk benyttes:<a href="https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151">Volvens kodeverk 9151</a></li>
-                <li>Dersom det finnes andre eksisterende kodeverk som har samme formål kan disse også benyttes.</li>
+                <li>Hvordan dokumenteres den spesifikke tilgangen et helsepersonell har fått når pasient mottar helsehjelp i øyeblikket</li>
+                <li>Hvordan dokumenteres tilsvarende tilgang når pasienten tidligere mottok helsehjelp fra virksomheten som nå er avsluttet, og det i ettertid er nødvendig med ny tilgang fra det samme helsepersonellet for eksempel som følge av en henvendelse fra pasienten eller pasientens nåværende behandler der de yter helsehjelp til pasienten?</li>
             </ul>
+            <br>
+            I spesialisthelsetjenesten kan en _hendelse_ eller _aktivitet_ for eksempel være at en pasient:
+            <ul>
+                <li>trenger å få vurdert en henvisning,</li>
+                <li>er planlagt å møte til en konsultasjon,</li>
+                <li>er under behandling i en poliklinisk konsultasjon eller er innlagt,</li>
+                <li>skal følges opp av helsepersonellet som er på vakt eller lignende.</li>
+            </ul>
+            Det kan også være at pasienten, pasientens pårørende/verge eller pasientens eksterne behandler har tatt kontakt med helsepersonellet som gjør det nødvendig for helsepersonellet å få tilgang til pasientens helseopplysninger for å sikre at riktig helsehjelp blir gitt til pasienten.<br>
+            Et eksempel på kodeverk som representer spesialisthelsetjenestens aktuelle aktiviteter/hendelser finnes som et utgangspunkt for eventuell nasjonal standardisering hos HL7 Norge.
+            <br>
         </td>
     </tr>
     <tr>
@@ -1273,6 +1321,66 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Retningslinjer dersom det finnes flere mulige verdier for "purpose-of-use-details"</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            Ved flere mulige valg bør det vektlegges hva som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen.<br> 
+            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Foreslåtte kodeverk for angivelse av verdi for "purpose-of-use-details"</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            Informasjonen i attributtet kan beskrives ved bruk av forskjellige kodeverk avhengig av hvilke helsetjenester pasienten mottar.
+            <ul>
+                <li>For attestering av helsepersonell i spesialisthelsetjenesten skal følgende kodeverk benyttes: <a href="https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html">HL7 Norway: care relation</a></li>                
+                <li>For attestering av helsepersonell i sykehjemstjenesten skal følgende kodeverk benyttes:<a href="https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151">Volvens kodeverk 9151</a></li>
+                <li>Dersom det finnes andre eksisterende kodeverk som har samme formål kan disse også benyttes.</li>
+            </ul>
+            For avtalespesialister er relevante eksempler ...<br>
+            Hos legekontor er det ofte ...<br>
+            <br>
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
 
 #### 3.4 Forretningsregler for attributtet "decision-ref"
 

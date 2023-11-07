@@ -642,7 +642,7 @@ Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepers
 | Attributt | |
 | --- | --- |
 | Attributt: | "patients" |
-| Informasjonselement | Kategorien  "patients" består av en liste av objekter som representerer en pasient. Lista av pasientobjekter kan være tom, eller inneholde ett eller flere elementer. |
+| Informasjonselement | Kategorien  "patients" består av en liste av objekter som representerer  pasienter. Lista av pasientobjekter kan være tom, eller inneholde ett eller flere elementer. |
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Array |
