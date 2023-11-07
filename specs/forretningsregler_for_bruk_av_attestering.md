@@ -1498,10 +1498,10 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 ### 4. Forretningsregler for beskrivelse av pasienten - attributt: "patient"
 
-#### 4.1 Forretningsregler for attributtet "patient_id"
+#### 4.1 Forretningsregler for attributtet "identifier" for pasient
 
 
-#### 4.2 Forretningsregler for attributtet "point-of-care"
+#### 4.2 Forretningsregler for attributtet "point-of-care" for pasient
 
 <table>
     <tr>
@@ -1625,7 +1625,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 
 
-#### 4.3 Forretningsregler for attributtet "department"
+#### 4.3 Forretningsregler for attributtet "department" for pasient
 <table>
     <tr>
         <td>ID</td>

@@ -698,7 +698,6 @@ Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 ````JSON
 "identifier": {
 	"id": "05076600324",
-	"name": "Kognar Maman",
 	"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 	"authority": "https://www.skatteetaten.no"
 }
@@ -962,7 +961,6 @@ Full modell - valgfrie elementer er tatt med
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			},
@@ -1036,7 +1034,6 @@ Eksempelet hvor en fastlege er konsument
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			}
@@ -1108,7 +1105,6 @@ I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang ti
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			}
@@ -1187,7 +1183,6 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 		{
 			"identifier": {
 				"id": "05076600324",
-				"name": "Kognar Maman",
 				"system": "urn:oid:2.16.578.1.12.4.1.4.1",
 				"authority": "https://www.skatteetaten.no"
 			},
