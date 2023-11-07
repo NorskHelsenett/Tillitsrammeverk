@@ -1528,6 +1528,268 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 
 #### 4.2 Forretningsregler for attributtet "point-of-care"
 
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Angivelse av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Attributtet skal inneholde pasientens behandlingssted så fremt behandlingen foregår i helsepersonellets egen virksomhet, og det er registrert en kontakt med en organisasjonsenhet i helsepersonellets egen virksomhet som er grunnlaget for tilgangen. Det er den registrerte underenheten i Brønnøysundregisteret som pasientens kontakt tilhører som skal oppgis.
+            <br>
+            Det er et generelt krav til alle norske virksomheter at aktivitet skal kunne rapporteres per geografisk sted og per registrert næringskode i Brønnøysund som det drives virksomhet ved, og derfor skal det være registrert slike underenheter i Brønnøysundregisteret for de fleste virksomheter i Norge.
+            <br>
+            Det er altså kun når pasienten har en registrert kontakt i helsepersonellets egen virksomhet, og helsehjelp knyttet til denne kontakten er grunnlaget for at helsepersonellet trenger tilgang til helseopplysningene for pasienten, at dette attributtet skal formidle den offisielle underenheten pasienten har sin registrerte kontakt ved. Informasjonen skal formidles uavhengig av om helsepersonellet trenger tilgangen som følge av helsehjelp de selv yter direkte til pasienten, eller indirekte som følge av at de trenger tilgangen for å bistå kolleger i egen virksomhet.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Angivelse av attributtet "point-of-care" for pasient for virksomheter uten underenheter.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            For virksomheter som eventuelt ikke har registrert noen underliggende enheter i Brønnøysundregistrene skal den overordnede enheten oppgis i dette attributtet så lenge kriteriene for at dette attributtet skal brukes er oppfylt.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Unntak fra bruk av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Dersom pasienten behandles ved en annen virksomhet enn helsepersonellets, for eksempel ved behov for tilgang for å kunne bistå en kollega i en annen virksomhet som har pasienten til behandling hos seg, eller dersom pasienten selv eller pårørende har henvendt seg uten at dette er knyttet til en registrert kontakt med helsepersonellets virksomhet, skal ikke dette attributtet benyttes.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+
 
 #### 4.3 Forretningsregler for attributtet "department"
-           
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Overordnede regler for bruk av attributtet "department" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            I virksomheter som er organisert i flere lokalt definerte underliggende enheter enn de som fremkommer av offentlig registrering i Brønnøysundregistrene, er det et krav at attesten formidler informasjon om hvilken av disse lokalt definerte enhetene pasienten mottar behandling ved i forbindelse med tilgangen helsepersonellet ønsker å oppnå. Det er ikke et krav om å formidle noe i dette attributtet fra virksomheter uten lokalt definerte underliggende enheter ut over det som fremkommer av offentlig registrering i Brønnøysundregistrene.
+            <br>
+            Det er altså kun når pasienten har en registrert kontakt i helsepersonellets egen virksomhet, og helsehjelp knyttet til denne kontakten er grunnlaget for at helsepersonellet trenger tilgang til helseopplysningene for pasienten, at dette attributtet skal formidle enheten pasienten har sin registrerte kontakt ved. Informasjonen skal formidles uavhengig av om helsepersonellet trenger tilgangen som følge av helsehjelp de selv yter direkte til pasienten, eller indirekte som følge av at de trenger tilgangen for å bistå kolleger i egen virksomhet.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>                
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt detaljeringsnivå for attributtet "department" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Hvilket detaljeringsnivå innenfor et potensielt større hierarki av lokalt definerte enheter som er riktig å legge i attesten må vurderes av konsumentvirksomheten, ut fra hva som i størst mulig grad bidrar til å avklare hva som er bakgrunnen for tilgangen. Som hovedregel bør dette være et så detaljert nivå som mulig heller enn et mer overordnet nivå, og likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til fremfor mer administrative og formelle nivåer som bare internt personell forholder seg til.<br> 
+            I noen tilfeller kan det være behov for å avgi et mer overordnet nivå av hensyn til behov for særlig diskresjon som virksomheten måtte ha behov for ved enkelte mer spesielle enheter.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Angivelse av attributtet "department" for pasient for virksomheter uten underenheter.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            For virksomheter som eventuelt ikke har registrert noen underliggende enheter i Brønnøysundregistrene skal den overordnede enheten oppgis i dette attributtet så lenge kriteriene for at dette attributtet skal brukes er oppfylt.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Unntak fra bruk av attributtet "department" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Dersom pasienten behandles ved en annen virksomhet enn helsepersonellets, for eksempel ved behov for tilgang for å kunne bistå en kollega i en annen virksomhet som har pasienten til behandling hos seg, eller dersom pasienten selv eller pårørende har henvendt seg uten at dette er knyttet til en registrert kontakt med helsepersonellets virksomhet, skal ikke dette attributtet benyttes.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
