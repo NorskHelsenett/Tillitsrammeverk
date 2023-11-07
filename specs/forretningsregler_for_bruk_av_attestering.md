@@ -1461,31 +1461,6 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
 </table>
 
-<table>
-    <tr>
-        <td>ID</td>
-        <td>ATT-X</td>
-    </tr>
-    <tr>
-        <td>Navn</td>
-        <td>Informasjon til helsepersonellet om bruk av "user_reason" i attributtet "decision-ref".</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>
-            Ved bruk av attributtet "user_reason" når helsepersonellet selv angir formål eller begrunnelse for tilgangen til helseopplysningene må helsepersonellet informeres om at denne informasjonen kan bli brukt i forbindelse med logganalyse og loggoppfølging eller bli vist til pasienten.
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>konsument/innhentende</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
 
 
 <table>

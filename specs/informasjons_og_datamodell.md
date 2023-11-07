@@ -67,6 +67,9 @@ For å få tilgang på tvers av virksomheter må den konsumerende virksomheten a
 * lovpålagt etterfølgende kontroll av tilgangen for å avdekke eventuelle urettmessige tilegnelser av helseopplysninger
 * å støtte opp under innbyggers rettigheter i henhold til ulike lovkrav (pasient- og brukerrettighetsloven, personopplysningsloven og personvernforordningen mm)
 
+Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.<br>
+Det er ikke tenkt at systemene må endre på eksisterende registreringer.
+
 ## 2. Ordliste
  
 |  Begrep | Definisjon  |
@@ -175,7 +178,10 @@ Valg av format er normalt knyttet til teknisk plattform eller praktiske hensyn, 
 Et felles behov for alle serialiserte format er at de bør kunne ivareta attestens dataintegritet og sporbarhet, f.eks. ved bruk av digital signatur. 
 
 ##### 4.2.2.1 Konvensjoner brukt i datamodellen
-
+* authority
+* assigner
+* id
+* value
 
 
 #### 4.2.3 Oversikt over attributter i datamodellen 
