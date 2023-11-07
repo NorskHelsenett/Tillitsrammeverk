@@ -144,10 +144,10 @@ Pasienten må identifiseres ved deling av helseopplysninger for å kunne knytte 
 title: Informasjonsmodell
 ---
 classDiagram
-	Helsepersonell -- Behandlerrelasjon
-	Behandlerrelasjon -- Pasient
+	Practitioner -- CareRelation
+	CareRelation -- Patient
 
-    class Helsepersonell{
+    class Practitioner["Helsepersonell (practitioner)"] {
 		- Helsepersonellets fødselsnummer og navn
 		- Helsepersonellets formelle autorisasjon
 		- Den personalansvarlige og dataansvarlige virksomheten
@@ -156,11 +156,12 @@ classDiagram
 		- Formell rolle/stilling helsepersonellet opptrer i kraft av på vegne av organisasjonen
 		- Funksjon helsepersonellet har og opptrer i kraft av på vegne av organisasjonen
     }
-    class Behandlerrelasjon{
+
+    class CareRelation["Behandlerrelasjon (care-relation)"] {
 		- Formålet med og grunnlaget for behandlingen av helseopplysningene
 		- Helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
     }
-    class Pasient{
+    class Patient["Pasient (patient)"] {
 		- Hvem er pasienten
 		- Tilhørighet til behandlingssted og detaljert organisasjonstilhørighet for pasienten
     }
@@ -223,28 +224,27 @@ title: Datamodell
 ---
 classDiagram
 
-	Helsepersonell -- Behandlerrelasjon
-	Behandlerrelasjon -- Pasient
+	Practitioner -- CareRelation
+	CareRelation -- Patient
 
-	class Helsepersonell{
-		- "name"
-		- "pid"
+	class Practitioner["practitioner"] {
+		- "identifier"
+		- "hpr-nr"
+		- "authorization"
 		- "legal-entity"
 		- "point-of-care"
 		- "department"
-		- "hpr-nr"
-		- "authorization"
 	}
 		
-	class Behandlerrelasjon{
+	class CareRelation["care-relation"] {
+		- "healthcare-service"
 		- "purpose-of-use"
 		- "purpose-of-use-details"
 		- "decision-ref"
-		- "healthcare-service"
 	}
 	
-	class Pasient{
-		- "pid"
+	class Patient["patient"]{
+		- "identifier"
 		- "point-of-care"
 		- "department"
 	}	
@@ -253,21 +253,21 @@ classDiagram
 
 #### 4.2.4 Oppsummering av informasjonselementer
 
-| Kategori      | Attributt                | Beskrivelse                                                                                       | 
-|---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
-| practitioner  | "identifier"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
-| practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
-| practitioner  | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
-| practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
-| practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
-| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
-| care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care-relation | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
-| patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
-| patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
-| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
+| Kategori         | Attributt                | Beskrivelse                                                                                       | 
+|------------------|--------------------------|---------------------------------------------------------------------------------------------------| 
+| practitioner     | "identifier"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
+| practitioner     | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner     | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner     | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner     | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
+| practitioner     | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
+| care-relation    | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care-relation    | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care-relation    | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care-relation    | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| patient          | "identifier"             | Unik identifikator for pasienten                                                                  | 
+| patient          | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
+| patient          | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
 
 #### 4.2.5 Konsumenten som informasjonskilde for attestering
@@ -278,7 +278,7 @@ En attest består av informasjon som beskriver helsepersonellets grunnlag for ti
 flowchart TB
 subgraph Konsument - innhentende virksomhet
 	direction LR
-		pid([pid])
+		pid([practitioner identifikator])
 		hprid([hpr-nummer])		
 		legalEntity([legal-entity])
 		authorization([autorisasjon])
@@ -288,7 +288,7 @@ subgraph Konsument - innhentende virksomhet
 		pou([purpose of use])
 		poud([purpose of use details])
 		dec([decicion ref])
-		pat_id([patient id])
+		pat_id([patient identifikator])
 		pat_poc([patient point of care])
 		pat_dep([patient department])
 	direction TB
