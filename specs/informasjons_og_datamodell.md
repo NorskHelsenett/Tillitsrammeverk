@@ -178,11 +178,39 @@ Valg av format er normalt knyttet til teknisk plattform eller praktiske hensyn, 
 Et felles behov for alle serialiserte format er at de bør kunne ivareta attestens dataintegritet og sporbarhet, f.eks. ved bruk av digital signatur. 
 
 ##### 4.2.2.1 Konvensjoner brukt i datamodellen
-* authority
-* assigner
-* id
-* value
+Strukturene i datamodellen følger noen konvensjoner som har som formål å skille mellom forskjellige typer verdier.
 
+*Angivelse av identifikatorer*
+For å angi identifikatorer benyttes en struktur med følgende nøkkel/verdi par:
+* "id": identifikator
+* "name": identitetens navn
+* "system": urn for kodesystem (f.eks en oid)
+* "authority": uri for autoritativ kilde
+
+````JSON
+"identitet-attributt": {
+	"id": "unik identifikator",
+	"name": "navn",
+	"system": "urn:oid:x.x.x.x.x.x.x.x.x",
+	"authority": "https://autoritativ-kilde.no"
+}
+```` 
+
+*Angivelse av kodeverk*
+For å angi identifikatorer benyttes en struktur med følgende nøkkel/verdi par:
+* "code": kode
+* "text": tekstlig beskrivelse av koden
+* "system": urn for kodesystem (f.eks en oid)
+* "assigner": uri for autoritativ kilde
+
+````JSON
+"kodeverk-attributt": {
+	"code": "kode",
+	"text": "tekstlig beskrivelse",
+	"system": "urn:oid:x.x.x.x.x.x.x.x.x",
+	"assigner": "https://www.ansvarlig-for-kodeverk.no/"
+}
+````
 
 #### 4.2.3 Oversikt over attributter i datamodellen 
 
@@ -553,7 +581,7 @@ Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning fo
 	"code": "KP02",
 	"text": "Sykepleietjeneste",
 	"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
-	"assigner": "www.helsedirektoratet.no"
+	"assigner": "https://www.helsedirektoratet.no"
 }
 ````
 
@@ -731,7 +759,7 @@ Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informas
 	"id": "123456789",
 	"name": "Det beste legekontoret i byen AS",
 	"system": "urn:oid:2.16.578.1.12.4.1.4.101",
-	"authority": "www.brreg.no"
+	"authority": "https://www.brreg.no"
 }
 ````
 
@@ -903,7 +931,7 @@ Full modell - valgfrie elementer er tatt med
 		"hpr-nr": {
 			"id": "9144900",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.4",
-			"assigner": "https://www.helsedirektoratet.no/"
+			"authority": "https://www.helsedirektoratet.no/"
 		},
 		"authorization": {
 			"code": "LE",
