@@ -991,7 +991,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Korrekt bruk av attributtet "department".</td>
+        <td>Korrekt bruk av attributtet "healthcare-service".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1298,7 +1298,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
                 <li>Hvordan dokumenteres tilsvarende tilgang når pasienten tidligere mottok helsehjelp fra virksomheten som nå er avsluttet, og det i ettertid er nødvendig med ny tilgang fra det samme helsepersonellet for eksempel som følge av en henvendelse fra pasienten eller pasientens nåværende behandler der de yter helsehjelp til pasienten?</li>
             </ul>
             <br>
-            I spesialisthelsetjenesten kan en _hendelse_ eller _aktivitet_ for eksempel være at en pasient:
+            I spesialisthelsetjenesten kan en <em>hendelse</em> eller <em>aktivitet</em> for eksempel være at en pasient:
             <ul>
                 <li>trenger å få vurdert en henvisning,</li>
                 <li>er planlagt å møte til en konsultasjon,</li>
@@ -1387,6 +1387,83 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Formål med, og bruk av attributtet "decision-ref".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Attributtet skal formidle informasjon om helsepersonellet har tatt seg selv tilgang (selvautorisasjon), eller om det er en automatisert (systemavledet) tilgangsbeslutning. Det er også tilrettelagt for at en mer utdypende systemavledet beskrivelse kan formidles for å sikre best mulig forståelse av grunnlaget for tilgangen.
+            <br>
+            Formålet med dette attributtet er at alle parter i en kjede av involverte virksomheter og systemer, skal kunne gjenfinne logginnslag som har opphav fra den opprinnelige tilgangsbeslutningen hos konsument.<br><br>
+            Denne opplysningen SKAL benyttes på følgende måte:
+            <ul>
+                <li>Dersom etterfølgende kontroll av tilgangene hos kilder fører til behov for videre oppfølging hos konsument skal "decision-ref" oppgis ved henvendelser.</li>
+                <li>Dersom "decision-ref" oppgis ved henvendelse fra data- eller dokumentkilde skal det være mulig for konsument å framstille informasjon som beskriver beslutningen om tilgang i sitt system, slik at de kan vurdere hvorvidt tilgangen var gyldig.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-X</td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Overordnet beskrivelse av angivelse av verdi for attributtet "decision-ref".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten.<br> 
+            Med tilgangsbeslutning menes det som er dokumentert hos en konsument i forbindelse med at et helsepersonell har fått tilgang:<br><br>
+            Vi skiller mellom to brukstilfeller for verdien i attributtet "decision-ref":
+            <ul>
+                <li>tilgang til flere pasienter</li>
+                <li>tilgang til en spesifikk pasient</li>
+            </ul>
+            <strong>Tilgang til flere pasienter</strong><br>
+            Etter pålogging i lokalt EPJ vil helsepersonellet navigere seg fram til de aktuelle pasientene de skal yte helsehjelp til.<br> 
+            Helsepersonellet må da gis tilgang til en oversikt over pasienter som de potensielt skal behandle. . 
+            <br>
+            I tilfeller hvor oversikten hentes fra andre virksomheter er det <em>referanse til denne tilgangsbeslutningen som skal oppgis</em><br>
+            <br><br>
+            <strong>Tilgang til en spesifikk pasient</strong><br>
+            Hvis helsepersonellet trenger tilgang til mer detaljert informasjon om en spesifikk pasient må det foreligge en referanse til den <em>spesifikke tilgangsbeslutningen for tilgang til denne pasienten</em>.<br>
+            Tilgangsbeslutningen er utgangspunktet for videre tilgang til andre virksomheter og nasjonale løsninger.<br> 
+            Det er den mest spesifikke tilgangsbeslutningen som til enhver tid skal identifiseres.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>konsument/innhentende</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
         <td>ATT-X</td>
     </tr>
     <tr>
@@ -1410,70 +1487,6 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
 </table>
 
-<table>
-    <tr>
-        <td>ID</td>
-        <td>ATT-X</td>
-    </tr>
-    <tr>
-        <td>Navn</td>
-        <td>Gyldige tegn for "user_reason" i attributtet "decision-ref".</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>
-            Ettersom verdien i attributtet "user_reason" er basert på inntastet tekst fra bruker er det en risiko for at en ondsinnet aktør kan utføre sikkerhetsangrep ved å manipulere data i dette feltet. Verdien i attributtet blir transportert, behandlet og lagret i forskjellige systemer på tvers av virksomhetene i verdikjeden.<br>
-            Derfor skal det være usannsynlig at det kan utføres sikkerhetsangrep ved bruk av innholdet i attributtet. Verdien skal kun inneholde alfanumeriske tegn, samt utvalgte spesialtegn.<br>
-            Tekstverdien skal sikres mot forskjellige typer angrep, som: 
-            <ul>
-                <li>SQL injection angrep</li>
-                <li>JSON SQL injection angrep</li>
-                <li>XSS angrep</li>                
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal kontrolleres og håndheves av:
-            <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
-            </ul>
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
-        <td>ATT-X</td>
-    </tr>
-    <tr>
-        <td>Navn</td>
-        <td>Maksimalt antall tegn for "user_reason" i attributtet "decision-ref".</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>
-            Ettersom verdien i attributtet "user_reason" er basert på inntastet tekst fra bruker er det en risiko for at en ondsinnet aktør kan utføre sikkerhetsangrep ved å manipulere data i dette feltet.<br>
-            Derfor skal det være usannsynlig at det kan utføres sikkerhetsangrep ved bruk av innholdet i attributtet.<br> 
-            Verdien for attributtet "user_reason" skal inneholde <b>maksimalt 250 tegn</b>.<br>
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal kontrolleres og håndheves av:
-            <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
 
 <table>
     <tr>
