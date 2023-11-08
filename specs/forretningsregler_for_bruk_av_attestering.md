@@ -158,7 +158,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
                 <li>Overføres ved bruk av kryptert transportlag, f.eks. ved bruk av TLS for transport via http.</li>
                 <li>Krypteres ved lagring over tid</li>                    
             </ul>
-            Sporbarhet kan f.eks. ivaretas ved bruk av digital signatur, og standardiserte signeringsformater som:
+            Konfidensialitet kan f.eks. ivaretas ved bruk av kryptering, og standardiserte krypteringsformater som:
             <ul>
                 <li>XML-Encryption og SAML formatet</li>
                 <li>Json Web Encryption og JWT formatet</li>
