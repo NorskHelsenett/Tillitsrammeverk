@@ -177,6 +177,94 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Knytning mellom attest og pasientens identitet</td>
+    </tr>
+    <tr>
+        <td> Regel </td>
+        <td>Når en attest gjelder helsepersonellets grunnlag for tilgang til en spesifikk pasient skal attesten entydig knyttes til pasienten som er inne til behandling, slik at den ikke kan brukes for tilgang til andre pasienter.<br>
+            Pasientens identifikator må være forståelig for parten som mottar attesten.<br><br>
+            Denne regelen gjelder også i tilfeller hvor attesten gjelder for flere spesifikke pasienter.<br>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td> 
+        <td>
+            Denne regelen håndheves av:. 
+            <ul>
+                <li>konsument/innhentende</li>
+                <li>dokumentkilde/utleverende</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Bruk av identifikatorer i attest for håndheving av sperringer</td>
+    </tr>
+    <tr>
+        <td> Regel </td>
+        <td>Ved forespørsler hvor et helsepersonell ber om tilgang til en eller flere spesifikke pasienter skal informasjon i en attest brukes til å håndheve sperringer hos data- eller dokumentkilde.<br>
+            Det skal være mulig å kontrollere at helsepersonellet som har tjenstlig behov for pasientens helseopplysninger ikke er sperret for tilgang av pasienten.<br>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td> 
+        <td>
+            Denne regelen håndheves av:. 
+            <ul>
+                <li>konsument/innhentende</li>
+                <li>dokumentkilde/utleverende</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-X </td>
+    </tr>
+    <tr>
+        <td>Navn</td>
+        <td>Attest som ikke gjelder en spesifikk pasient eller flere pasienter</td>
+    </tr>
+    <tr>
+        <td> Regel </td>
+        <td>I noen tilfeller hvor pasienten ikke er kjent kan attesten benyttes uten binding til en spesifikk pasient.<br>
+            En attest uten binding til pasient bør bare kunne benyttes for tilgang til et smalt sett av opplysninger om pasienten.<br><br>
+            Eksempler på slike tilfeller kan være:
+            <ul>
+                <li>henting av en oversikt over pasienter som er innkommende til en legevakt i ambulanser, eller</li>
+                <li>oversikt over pasienter som er innlagt ved en gitt enhet.</li> 
+            </ul>    
+            Når helsepersonellet trenger å se mer detaljert informasjon om en spesifikk pasient skal attesten være knyttet til denne pasienten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td> 
+        <td>
+            Denne regelen håndheves av:. 
+            <ul>
+                <li>konsument/innhentende</li>
+                <li>dokumentkilde/utleverende</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
 ### 2. Forretningsregler for beskrivelse av helsepersonellet - attributt: "practitioner"
 Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, sporbarhet og innsyn til innbygger.
 
