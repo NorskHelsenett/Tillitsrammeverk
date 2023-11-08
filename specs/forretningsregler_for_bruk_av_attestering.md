@@ -266,9 +266,18 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 </table>
 
 ### 2. Forretningsregler for beskrivelse av helsepersonellet - attributt: "practitioner"
-Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, sporbarhet og innsyn til innbygger.
+Introduksjon - tekst 
 
-#### 2.1 Forretningsregler for attributtet "identifier" 
+| | |
+| --- | --- |
+| practitioner  | "identifier"             | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
+| practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner  | "authorization"     	    | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
+| practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
+
+#### 2.1 Forretningsregler for attributtet "identifier"
 
 <table>
     <tr>
@@ -310,11 +319,11 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Visning av innholdet i attributtet "identifier" til innbygger.</td>
+        <td>Visning av innholdet i attributtet "identifier" i innbyggerens tilgangslogg.</td>
     </tr>
     <tr>
         <td> Regel </td>
-        <td> Ved anvendelse av attest som informasjonskilde for visning av innsynslogg til innbygger, gjelder følgende regler:
+        <td> Ved anvendelse av attest som informasjonskilde for løsning som viser tilgangslogg til innbyggeren, gjelder følgende regler:
             <ul>
                 <li>Innbygger SKAL se helsepersonellets navn.</li>
                 <li>Fødselsnummer SKAL IKKE vises</li> 
@@ -461,13 +470,14 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td> Navn </td>
-        <td> Sporbarhet knyttet til attributtet "legal-entity" for multi-tenancy systeme og <a href="https://lovdata.no/lov/2014-06-20-42/§9">§9 samarbeid</a></td>
+        <td> Krav til sporbarhet for attributtet "legal-entity"</a></td>
     </tr>
     <tr>    
         <td> Regel </td>
-        <td>  
-                For multi-tenancy løsninger og <a href="https://lovdata.no/lov/2014-06-20-42/§9">§9-samarbeid</a> må den juridisk ansvarlige virksomheten bruke Altinn for å eksplisitt delegere et representasjonsforhold til sin databehandler slik at Tillitsankeret kan utføre kontroll.<br>
-                Tillitsanker skal kontrollere at det foreligger en gyldig delegering i Altinn.            
+        <td>
+            Attributtet "legal-entity" skal entydig og med stor sannsynlighet (uavviselig) knyttes til den juridiske enheten som har behandlingsansvar for personopplysningene, og som er ansvarlig for ansettelsesforholdet til  helsepersonellet som yter helsehjelp.<br><br>
+            Tillitsnivået (LoA) skal tilsvare knytningen mellom juridisk enhet og identifikasjonsmiddel som angitt i identifikasjonsnivåforskriften.<br>
+            Det skal være usannsynlig at verdien som angis i "legal-entity" kan endres eller manipuleres i sikkerhetsangrep under transport, eller ved lagring.
         </td>
     </tr>
     <tr>
@@ -475,34 +485,9 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>tillitsanker/NHN</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
-        <td> ATT-14 </td>
-    </tr>
-    <tr>
-        <td>Navn</td>
-        <td> Sporbarhet knyttet til attributtet "legal-entity" for "on-premise" systemer som er brukt av en enkelt virksomhet </td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>  
-            Tilnærming til sporbarhet for dette attributtet er avhengig av systemarkitektur og/eller hvorvidt systemet brukes i §9-samarbeid.
-            For on-premise løsninger vil Tillitsanker benytte informasjon registrert i HelseID selvbetjening til å sikre sporbarhet.            
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li>
+                <li>Tillitsanker</li>
+                <li>Kilde</li>
             </ul>  
         </td>
     </tr>
@@ -515,12 +500,15 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Korrekt angivelse av "legal-entity".</td>
+        <td>Korrekt angivelse av "legal-entity"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>  
-            Attributtet "legal-entity" skal inneholde helsepersonellets virksomhetstilhørighet. Det er den registrerte hovedenheten i Brønnøysundregisteret hvor helsepersonellet yter helsehjelp for som skal oppgis.<br> Dersom personellet er innleid og formelt ansatt hos et vikarbyrå eller tilsvarende virksomhet er det ikke denne virksomheten som skal angis.
+            Attributtet "legal-entity" skal inneholde helsepersonellets virksomhetstilhørighet.<br>
+            Det er hovedenheten hvor helsepersonellet yter helsehjelp som skal angis.<br> 
+            Verdien for attributtet skal være identifikatoren som er registrert i Brønnøysundregisteret.<br><br>
+            For personell som er innleid og formelt ansatt hos et vikarbyrå eller tilsvarende virksomhet er det ikke virksomheten som helsepersonellet er innleid fra som skal angis, men hovedenheten hvor helsepersonellet yter helsehjelp.
         </td>
     </tr>
     <tr>
@@ -541,15 +529,15 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>
         <td>Navn</td>
-        <td>Korrekt bruk av attributtet "legal-entity".</td>
+        <td>Korrekt bruk av attributtet "legal-entity"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen dokumenterer hvilken virksomhet som er ansvarlig for personellets tilgang, og vil, sammen med annen informasjon i attesten, dokumentere grunnlaget for at tilgang blir gitt av kilder.<br> 
-            Attributtet vil også inngå i pasientjournalens innsynslogg hos kildene. 
+            Informasjonen dokumenterer hvilken virksomhet som er ansvarlig for personellets tilgang, og skal inngå i pasientjournalens innsynslogg hos data- og dokumentkilde.<br><br> 
             Denne opplysningen SKAL benyttes ved:
             <ul>
+                <li>Lovpålagt dokumentasjon av grunnlaget for tilgang til helseopplysninger hos kilder.</li>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
                 <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
             </ul>
@@ -574,48 +562,17 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID </td>
-        <td> ATT-17 </td>
-    </tr>
-    <tr>
-        <td>Navn</td>
-        <td> Bruk av innholdet i attributtet "point-of-care"</td>
-    </tr>
-    <tr>    
-        <td>Regel</td>
-        <td>Identiteten til den juridiske personen skal benyttes til tilgangsstyring hos Tillitsankeret.<br>
-            Tillitsankeret skal kontrollere at den juridiske enheten (virksomheten): 
-            <ul>
-                <li>har gyldig medlemsskap i Helsenettet</li>
-                <li>har akseptert vilkår for medlemssskap i Helsenettet</li>
-                <li>har gyldig avtale om tilgang til fellestjenester som HelseID, Kjernejournal osv</li>
-                <li>har akseptert bruksvilkår knyttet til fellestjenester</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Ansvarlig</td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>tillitsanker/NHN</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID </td>
         <td> ATT-18 </td>
     </tr>
     <tr>
         <td>Navn</td>
-        <td> Angivelse av innholdet i attributtet "point-of-care"</td>
+        <td>Korrekt angivelse av innholdet i attributtet "point-of-care"</td>
     </tr>
     <tr>    
         <td>Regel</td>
-        <td>Attributtet skal inneholde helsepersonellets arbeidssted, som også kan omtales som behandlingsstedet helsepersonellet formelt er tilknyttet. Det er den registrerte underenheten i Brønnøysundregisteret som helsepersonellet formelt utfører sitt arbeide ved som skal oppgis.<br>
-        Det er et generelt krav til alle norske virksomheter at aktivitet skal kunne rapporteres per geografisk sted og per registrert næringskode i Brønnøysund som det drives virksomhet ved, og derfor skal det være registrert slike underenheter i Brønnøysundregisteret for de fleste virksomheter i Norge.
+        <td>Attributtet skal inneholde helsepersonellets arbeidssted, altså behandlingsstedet som helsepersonellet formelt er tilknyttet.<br> 
+        Verdien skal angi underenheten som er registrert i Brønnøysundregisteret, hvor helsepersonellet formelt utfører sitt arbeid.<br><br>
+        Alle norske virksomheter er påkrevd å rapportere aktivitet per geografisk sted og per registrert næringskode i Brønnøysund. Det antas at de fleste norske virksomheter har registrerte underenheter i Brønnøysundregisteret.
         </td>
     </tr>
     <tr>
@@ -623,7 +580,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -640,7 +597,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     </tr>
     <tr>    
         <td>Regel</td>
-        <td>For virksomheter som eventuelt ikke har registrert noen underliggende enheter i Brønnøysundregistrene skal den overordnede enheten oppgis i dette attributtet.<br>
+        <td>For virksomheter uten underenheter registrert i Brønnøysundregistrene skal hovedenheten oppgis.<br>
         Verdien i "legal-entity" og "point-of-care" vil i slike tilfeller være lik.
         </td>
     </tr>
@@ -649,7 +606,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>Konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -667,7 +624,8 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen dokumenterer behandlingsstedet som helsepersonellet yter helsehjelp ved når tilgangen til pasientens helseopplysninger ble gitt av konsumenten. Denne informasjonen vil, sammen med annen informasjon i attesten, dokumentere grunnlaget for at tilgang blir gitt av kilder.<br>
+            Informasjonen dokumenterer behandlingsstedet som helsepersonellet yter helsehjelp ved når tilgangen til pasientens helseopplysninger ble gitt av konsumenten.<br>
+            Denne informasjonen vil, sammen med annen informasjon i attesten, dokumentere grunnlaget for at tilgang blir gitt av kilder.<br>
             Attributtet vil også inngå i pasientjournalens innsynslogg hos kildene. 
             Denne opplysningen SKAL benyttes ved:
             <ul>
