@@ -41,7 +41,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 ## Innholdsfortegnelse
 
 ## Innledning
-Denne spesifikasjonen definerer felles regler som skal benyttes i forbindelse med attestering av helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt, og baserer seg på [datamodell som er angitt i egen spesifikasjon.](informasjons_og_datamodell.md). 
+Denne spesifikasjonen definerer felles regler som skal benyttes i forbindelse med attestering av helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt, og baserer seg på [datamodell for attestering som er angitt i egen spesifikasjon.](informasjons_og_datamodell.md). 
 
 Et felles regelverk vil sikre at alle aktører som er involvert i delingen benytter samme metode for å utføre attestering og håndtere attester i kjøretid.  
 
