@@ -43,21 +43,21 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 ## Innledning
 Denne spesifikasjonen definerer felles regler som skal benyttes i forbindelse med attestering av helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt, og baserer seg på [datamodell for attestering som er angitt i egen spesifikasjon.](informasjons_og_datamodell.md). 
 
-Et felles regelverk vil sikre at alle aktører som er involvert i delingen benytter samme metode for å utføre attestering og håndtere attester i kjøretid.  
+Et felles regelverk vil sikre at alle aktører som er involvert i delingen benytter samme metode for å utføre attestering og at attester håndteres likt i kjøretid.  
 
 Reglene definert i denne spesifikasjonen omfatter:
 <ul>
     <li>Hvordan verdier for de enkelte attributter skal fylles ut.</li>
     <li>Hvilke formål en attest skal benyttes for.</li>
-    <li>Hvordan attest skal behandles hos den enkelte aktør.</li>
+    <li>Hvordan en attest skal behandles hos den enkelte aktør.</li>
     <li>Hvordan sikkerhets- og personvernshensyn skal ivaretas hos den enkelte aktør.
 </ul>
 
 
 ## Bakgrunn
-Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles tillitsmodell som skisserer tillitsgrunnlaget for å dele helseopplysninger mellom helsepersonell på tvers av virksomhetene i sektoren. Les mer om felles tillitsmodell her: [https://www.ehelse.no/standardisering/standarder/anbefaling-av-tillitsmodell-for-data-og-dokumentdeling/](https://www.ehelse.no/standardisering/standarder/anbefaling-av-tillitsmodell-for-data-og-dokumentdeling/_/attachment/inline/4b78b44e-dbfe-4f13-9527-4b47e19a5585:a1003d97d50492bed6eb8064a936354b88a5abf0/Anbefaling%20av%20tillitsmodell%20for%20data-%20og%20dokumentdeling.pdf).
+Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles modell som skisserer tillitsgrunnlaget for å dele helseopplysninger mellom helsepersonell på tvers av virksomhetene i sektoren. Les mer om felles tillitsmodell her: [https://www.ehelse.no/standardisering/standarder/anbefaling-av-tillitsmodell-for-data-og-dokumentdeling/](https://www.ehelse.no/standardisering/standarder/anbefaling-av-tillitsmodell-for-data-og-dokumentdeling/_/attachment/inline/4b78b44e-dbfe-4f13-9527-4b47e19a5585:a1003d97d50492bed6eb8064a936354b88a5abf0/Anbefaling%20av%20tillitsmodell%20for%20data-%20og%20dokumentdeling.pdf).
 
-Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene (_*Lenke mangler*_). Et grunnleggende vilkår i tillitsrammeverket er kravet til medlemmene av Helsenettet om å etterleve [Norm for informasjonssikkerhet og personvern i helse- og omsorgssektoren](https://www.ehelse.no/normen/normen-for-informasjonssikkerhet-og-personvern-i-helse-og-omsorgssektoren). 
+Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene (_*Lenke mangler*_). Det er medlemsordningen Helsenettet som danner de ytre rammene for økosystemet hvor tillitsrammeverket skal virke. Et grunnleggende vilkår i tillitsrammeverket er kravet til medlemmene av Helsenettet om å etterleve [Norm for informasjonssikkerhet og personvern i helse- og omsorgssektoren](https://www.ehelse.no/normen/normen-for-informasjonssikkerhet-og-personvern-i-helse-og-omsorgssektoren). 
 
 Denne spesifikasjonen er utarbeidet for Pasientens Journaldokumenter (PJD), som er den første anvendelsen av tillitsrammeverket.
 
