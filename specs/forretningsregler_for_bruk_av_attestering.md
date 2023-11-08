@@ -77,7 +77,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 <table>
     <tr>
         <td> ID </td>
-        <td> ATT-X </td>
+        <td> ATT-1 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -108,7 +108,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 <table>
     <tr>
         <td> ID </td>
-        <td> ATT-X </td>
+        <td> ATT-2 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -143,7 +143,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-3 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -180,7 +180,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-4 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -208,7 +208,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-5 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -235,7 +235,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-6 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -273,7 +273,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td> ID </td>
-        <td> ATT-X </td>
+        <td> ATT-7 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -306,7 +306,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-8</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -337,7 +337,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-9</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -363,7 +363,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-10</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -396,7 +396,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td> ID </td>
-        <td> ATT-X </td>
+        <td> ATT-11 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -425,7 +425,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID </td>
-        <td>ATT-X</td>
+        <td>ATT-12</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -457,7 +457,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID </td>
-        <td> ATT-X </td>
+        <td> ATT-13 </td>
     </tr>
     <tr>
         <td> Navn </td>
@@ -484,7 +484,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-14 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -511,7 +511,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-15 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -537,7 +537,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-16 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -574,7 +574,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID </td>
-        <td> ATT-X </td>
+        <td> ATT-17 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -606,7 +606,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID </td>
-        <td> ATT-X </td>
+        <td> ATT-18 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -632,7 +632,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID </td>
-        <td> ATT-X </td>
+        <td> ATT-19 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -658,7 +658,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-20 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -694,7 +694,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-21 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -722,7 +722,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-22 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -750,7 +750,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-23 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -782,7 +782,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-24</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -808,7 +808,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-25</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -838,7 +838,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-26</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -868,7 +868,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-27</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -899,7 +899,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-28</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -930,7 +930,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 #### 2.5 Forretningsregler for attributtet "hpr-nr"
 <table>
     <tr>
-        <td>ID </td><td> ATT-X </td>
+        <td>ID </td><td> ATT-29 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -962,7 +962,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-30</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -993,7 +993,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-31</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1019,7 +1019,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-32</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1048,7 +1048,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-33</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1075,7 +1075,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-34 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1107,7 +1107,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-35</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1134,7 +1134,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-36</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1167,7 +1167,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-37</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1208,7 +1208,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-38</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1240,7 +1240,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-39</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1272,7 +1272,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-40</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1302,7 +1302,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-41</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1334,7 +1334,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-42 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1366,7 +1366,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-43</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1412,7 +1412,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-44</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1439,7 +1439,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-45</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1475,7 +1475,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-46 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1510,7 +1510,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-47</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1554,7 +1554,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-X</td>
+        <td>ATT-48</td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1594,7 +1594,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-49 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1626,7 +1626,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-50 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1654,7 +1654,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-51 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1682,7 +1682,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-52 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1717,7 +1717,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-53 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1745,7 +1745,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-54 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1772,7 +1772,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-55 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1800,7 +1800,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-56 </td>
     </tr>
     <tr>
         <td>Navn</td>
@@ -1828,7 +1828,7 @@ Informasjon om helsepersonellet er nødvendig for å gjennomføre loggkontroll, 
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-X </td>
+        <td> ATT-57 </td>
     </tr>
     <tr>
         <td>Navn</td>
