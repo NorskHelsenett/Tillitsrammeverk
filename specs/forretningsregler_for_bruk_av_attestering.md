@@ -597,7 +597,7 @@ Introduksjon - tekst
     </tr>
     <tr>    
         <td>Regel</td>
-        <td>For virksomheter uten underenheter registrert i Brønnøysundregistrene skal hovedenheten oppgis.<br>
+        <td>For virksomheter uten underenheter registrert i Brønnøysundregistrene skal hovedenheten oppgis i "point-of-care".<br>
         Verdien i "legal-entity" og "point-of-care" vil i slike tilfeller være lik.
         </td>
     </tr>
@@ -624,9 +624,9 @@ Introduksjon - tekst
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen dokumenterer behandlingsstedet som helsepersonellet yter helsehjelp ved når tilgangen til pasientens helseopplysninger ble gitt av konsumenten.<br>
-            Denne informasjonen vil, sammen med annen informasjon i attesten, dokumentere grunnlaget for at tilgang blir gitt av kilder.<br>
-            Attributtet vil også inngå i pasientjournalens innsynslogg hos kildene. 
+            Attributtet dokumenterer behandlingsstedet hvor helsepersonellet yter helsehjelp når tilgangen til pasientens helseopplysninger ble gitt av konsumenten.<br>
+            Attributtet utgjør en del av informasjonen som brukes av data- og dokumentkilder for å dokumentere grunnlaget for at tilgang blir gitt.<br>
+            Attributtet vil også brukes hos data- og dokumentkilden i pasientjournalens innsynslogg for pasienten. 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
@@ -661,8 +661,10 @@ Introduksjon - tekst
     <tr>    
         <td> Regel </td>
         <td>  
-            I virksomheter som er organisert i flere lokalt definerte underliggende enheter enn de som fremkommer av offentlig registrering i Brønnøysundregistrene, er det et krav at attesten formidler informasjon om hvilken av disse lokalt definerte enhetene helsepersonellet tilhører.<br> 
-            Det er ikke et krav om å formidle noe i dette attributtet fra virksomheter uten lokalt definerte underliggende enheter ut over det som fremkommer av offentlig registrering i Brønnøysundregistrene.
+            Noen virksomheter er organisert i underliggende enheter som ikke er registrert i enhetsregisteret.<br> 
+            For slike virksomheter skal konsumenten attestere hvilken enhet helsepersonellet tilhører.<br>
+            Enhet uten registrering i enhetsregisteret skal angis i attributtet "department".<br><br>
+            Det er ikke påkrevd å attestere underliggende enheter for virksomheter som ikke er organisert i lunderliggende enheter som ikke er registrert i enhetsregisteret.
         </td>
     </tr>
     <tr>
@@ -671,7 +673,6 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Dokumentkilde</li>
             </ul>  
         </td>
     </tr>
@@ -689,9 +690,17 @@ Introduksjon - tekst
     <tr>    
         <td> Regel </td>
         <td>  
-            Hvilket detaljeringsnivå innenfor et potensielt større hierarki av lokalt definerte enheter som er riktig å legge i attesten vil i stor grad avhenge av hva som er praktisk mulig ut fra tilgjengelige registreringer av helsepersonellets organisasjonstilhørighet, og det må derfor vurderes av konsumentvirksomheten.<br><br>
-            Ved flere mulige valg bør det vektlegges hva som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen. Som hovedregel bør dette være et så detaljert nivå som mulig heller enn et mer overordnet nivå, og likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til fremfor mer administrative og formelle nivåer som bare internt personell forholder seg til.<br>
-            I noen tilfeller kan det være behov for å avgi et mer overordnet nivå av hensyn til behov for særlig diskresjon som virksomheten måtte ha behov for ved enkelte mer spesielle enheter.<br>Det kan også være relevant i vurderingen hvilket nivå pasienter eller eksternt personell bør kontakte dersom det er spørsmål om tilgangen har vært legitimt begrunnet, hvis det er ønskelig at slike spørsmål i størst mulig grad håndteres av for eksempel nærmeste leder.
+            Riktig detaljeringsnivå for angivelse av attributtet "department" må vurderes av konsumenten.<br>
+            Vurderingen kan påvirkes av hvilke registreringer av helsepersonellets organisasjonstilhørighet som finnes i systemet.<br><br>
+            Konsumenten bør tilstrebe å angi en verdi som i størst mulig grad bidrar beskriver bakgrunnen for tilgangen.<br><br>
+            Prinsipper for detaljeringsnivå ved angivelse av "department":
+            <ul>
+                <li>bør være et så detaljert nivå som mulig heller enn et mer overordnet nivå</li>
+                <li>bør være et nivå pasienten og eksternt helsepersonell har et forhold til</li>
+                <li>vurder å avgi enhet som pasienter eller eksternt personell bør kontakte ved spørsmål om gyldig grunnlag for tilgang, hvis det er ønskelig at nærmeste leder er ansvarlig for slike henvendelser</li>
+                <li>unngå administrative og formelle nivåer som bare gir mening for internt personell</li>
+                <li>unngå å avgi navn på enheter som gjør det mulig å utlede sensitiv kontekst<li>
+            </ul>
         </td>
     </tr>
     <tr>
@@ -717,7 +726,7 @@ Introduksjon - tekst
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Informasjonen skal inngå i attestering av helsepersonellets grunnlaget for tilgang til helseopplysninger, og skal dokumenteres i pasientjournalens innsynslogg.<br>Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
