@@ -80,7 +80,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td> ATT-1 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Serialisering av attest</td>
     </tr>
     <tr>
@@ -99,7 +99,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td>
             Denne regelen håndheves av:. 
             <ul>
-                <li>konsument/innhentende</li> 
+                <li>Konsument</li> 
             </ul>
         </td>
     </tr>
@@ -111,7 +111,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td> ATT-2 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Håndtering av sporbarhet</td>
     </tr>
     <tr>
@@ -134,7 +134,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td>
             Denne regelen håndheves av:. 
             <ul>
-                <li>konsument/innhentende</li> 
+                <li>Konsument</li> 
             </ul>
         </td>
     </tr>
@@ -146,7 +146,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td> ATT-3 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Sikring av konfidensialitet for informasjon om behandling av pasient.</td>
     </tr>
     <tr>
@@ -170,8 +170,8 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td>
             Denne regelen håndheves av:. 
             <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
             </ul>
         </td>
     </tr>
@@ -183,7 +183,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td> ATT-4 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Knytning mellom attest og pasientens identitet</td>
     </tr>
     <tr>
@@ -198,8 +198,8 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td>
             Denne regelen håndheves av:. 
             <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
             </ul>
         </td>
     </tr>
@@ -211,7 +211,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td> ATT-5 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Bruk av identifikatorer i attest for håndheving av sperringer</td>
     </tr>
     <tr>
@@ -225,8 +225,8 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td>
             Denne regelen håndheves av:. 
             <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
             </ul>
         </td>
     </tr>
@@ -238,7 +238,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td> ATT-6 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Attest som ikke gjelder en spesifikk pasient eller flere pasienter</td>
     </tr>
     <tr>
@@ -258,16 +258,15 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td>
             Denne regelen håndheves av:. 
             <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
             </ul>
         </td>
     </tr>
 </table>
 
 ### 2. Forretningsregler for beskrivelse av helsepersonellet - attributt: "practitioner"
-Introduksjon - tekst 
-
+Attributtet "practitioner" består av seks underliggende attributt som beskriver helsepersonellet som attesten gjelder for.
 | | |
 | --- | --- |
 | practitioner  | "identifier"             | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
@@ -285,7 +284,7 @@ Introduksjon - tekst
         <td> ATT-7 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Bruk av innholdet i attributtet "identifier"</td>
     </tr>
     <tr>
@@ -304,9 +303,9 @@ Introduksjon - tekst
         <td>
             Denne regelen håndheves av alle parter som er involvert i delingen av dokumenter. 
             <ul>
-                <li>konsument/innhentende</li> 
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li> 
+                <li>Dokumentkilde</li>
+                <li>NHN</li>
             </ul>
         </td>
     </tr>
@@ -318,7 +317,7 @@ Introduksjon - tekst
         <td>ATT-8</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Visning av innholdet i attributtet "identifier" i innbyggerens tilgangslogg.</td>
     </tr>
     <tr>
@@ -335,9 +334,9 @@ Introduksjon - tekst
         <td> 
             Denne regelen håndheves av alle parter som er involvert i delingen av dokumenter. 
             <ul>
-                <li>konsument/innhentende</li> 
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li> 
+                <li>Dokumentkilde</li>
+                <li>NHN</li>
             </ul>
         </td>
     </tr>
@@ -349,7 +348,7 @@ Introduksjon - tekst
         <td>ATT-9</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Tillitsnivå (LoA) knyttet til data i attributtet "identifier" </td>
     </tr>
     <tr>
@@ -361,9 +360,9 @@ Introduksjon - tekst
         <td> 
             Denne regelen håndheves av alle parter som er involvert i delingen av dokumenter. 
             <ul>
-                <li>konsument/innhentende</li> 
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li> 
+                <li>Dokumentkilde</li>
+                <li>NHN</li>
             </ul>
         </td>
     </tr>
@@ -375,7 +374,7 @@ Introduksjon - tekst
         <td>ATT-10</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Gyldig identifikator for identifisering av den fysiske personen i attributtet "identifier" </td>
     </tr>
     <tr>    
@@ -393,9 +392,9 @@ Introduksjon - tekst
         <td> Ansvarlig </td>
         <td> Denne regelen skal håndheves av alle aktører som mottar en attest som følger en http melding.
             <ul>
-                <li>konsument/innhentende</li> 
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li> 
+                <li>Dokumentkilde</li>
+                <li>NHN</li>
             </ul>
         </td>
     </tr>
@@ -408,7 +407,7 @@ Introduksjon - tekst
         <td> ATT-11 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Validering av informasjon i attributtet "identifier".</td>
     </tr>
     <tr>
@@ -420,9 +419,9 @@ Introduksjon - tekst
         <td> Ansvarlig </td>
         <td> Denne regelen skal håndheves av alle aktører som mottar en attest som følger en http melding.
             <ul>
-                <li>konsument/innhentende</li> 
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li> 
+                <li>Dokumentkilde</li>
+                <li>NHN</li>
             </ul>            
         </td>
     </tr>
@@ -437,7 +436,7 @@ Introduksjon - tekst
         <td>ATT-12</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Bruk av innholdet i attributtet "legal-entity"</td>
     </tr>
     <tr>    
@@ -456,7 +455,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>tillitsanker/NHN</li>
+                <li>NHN</li>
             </ul>  
         </td>
     </tr>
@@ -469,7 +468,7 @@ Introduksjon - tekst
         <td> ATT-13 </td>
     </tr>
     <tr>
-        <td> Navn </td>
+        <td> Beskrivelse av regel </td>
         <td> Krav til sporbarhet for attributtet "legal-entity"</a></td>
     </tr>
     <tr>    
@@ -486,7 +485,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Kilde</li>
             </ul>  
         </td>
@@ -499,7 +498,7 @@ Introduksjon - tekst
         <td> ATT-15 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt angivelse av "legal-entity"</td>
     </tr>
     <tr>    
@@ -528,7 +527,7 @@ Introduksjon - tekst
         <td> ATT-16 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "legal-entity"</td>
     </tr>
     <tr>    
@@ -549,7 +548,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -565,7 +564,11 @@ Introduksjon - tekst
         <td> ATT-18 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt angivelse av innholdet i attributtet "point-of-care"</td>
     </tr>
     <tr>    
@@ -592,7 +595,11 @@ Introduksjon - tekst
         <td> ATT-19 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td> Angivelse av innholdet i attributtet "point-of-care" for virksomheter uten underliggende enheter</td>
     </tr>
     <tr>    
@@ -618,7 +625,11 @@ Introduksjon - tekst
         <td> ATT-20 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "point-of-care".</td>
     </tr>
     <tr>    
@@ -640,7 +651,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -655,7 +666,11 @@ Introduksjon - tekst
         <td> ATT-21 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Overordnede regler for bruk av attributtet "department".</td>
     </tr>
     <tr>    
@@ -684,7 +699,11 @@ Introduksjon - tekst
         <td> ATT-22 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt detaljeringsnivå for attributtet "department".</td>
     </tr>
     <tr>    
@@ -720,13 +739,17 @@ Introduksjon - tekst
         <td> ATT-23 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "department".</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen skal inngå i attestering av helsepersonellets grunnlaget for tilgang til helseopplysninger, og skal dokumenteres i pasientjournalens innsynslogg.<br>Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Informasjonen skal inngå i attestering av helsepersonellets grunnlaget for tilgang til helseopplysninger, og skal dokumenteres i pasientjournalens innsynslogg.<br>Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på bidrar til å gjøre innslagene i tilgangsloggen mer forståelige for innbyggere.<br> 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
@@ -752,7 +775,11 @@ Introduksjon - tekst
         <td>ATT-24</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "department" for mindre virksomheter</td>
     </tr>
     <tr>    
@@ -766,7 +793,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -778,7 +805,11 @@ Introduksjon - tekst
         <td>ATT-25</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "department" for kommunale virksomheter </td>
     </tr>
     <tr>    
@@ -796,7 +827,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -808,7 +839,11 @@ Introduksjon - tekst
         <td>ATT-26</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "department" for Helseforetak i spesialisthelsetjenesten </td>
     </tr>
     <tr>    
@@ -826,7 +861,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -838,7 +873,11 @@ Introduksjon - tekst
         <td>ATT-27</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Granuleringsnivå for angivelse av "department"</td>
     </tr>
     <tr>    
@@ -857,7 +896,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li> 
+                <li>Konsument</li> 
             </ul>  
         </td>
     </tr>
@@ -869,16 +908,22 @@ Introduksjon - tekst
         <td>ATT-28</td>
     </tr>
     <tr>
-        <td>Navn</td>
-        <td>Angivelse av "assigner" og "system" for lokale identifikatorer for attributtet "department"</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Angivelse av "assigner" og "system" ved bruk av lokale identifikatorer for attributtet "department"</td>
     </tr>
     <tr>    
         <td> Regel </td>
-        <td>"System" og "assigner" skal angis selv om konsumenten har lokale identifikatorer som brukes for å beskrive avdeling/organisasjonsenhet.<br>
-        I slike tilfeller skal:
+        <td>"System" og "assigner" skal angis selv om konsumenten bruker lokale identifikatorer til å beskrive avdeling/organisasjonsenhet.<br>
+        I slike tilfeller SKAL:
         <ul>
-            <li>verdien for attributtet "assigner" skal settes til org.nr for juridisk enhet. 
-            <li>verdien for attributtet "system" skal settes til en globalt unik identifikator for å sikre at de er entydige over tid.<br>
+            <li>verdien for attributtet "assigner" settes til org.nr for juridisk enhet. 
+            <li>verdien for attributtet "system" settes til en globalt unik identifikator, som er stabil over tid</li>
+            <li>konsumenten skal sørge for at identifikatoren er entydig over tid.</li>
+        </ul>        
         </td>
     </tr>
     <tr>
@@ -886,7 +931,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li> 
+                <li>Konsument</li> 
             </ul>  
         </td>
     </tr>
@@ -897,10 +942,15 @@ Introduksjon - tekst
 #### 2.5 Forretningsregler for attributtet "hpr-nr"
 <table>
     <tr>
-        <td>ID </td><td> ATT-29 </td>
+        <td>ID </td>
+        <td> ATT-29 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"hpr-nr"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "hpr-nr" for helsepersonell uten lisens/autorisasjon</td>
     </tr>
     <tr>    
@@ -919,7 +969,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -932,7 +982,11 @@ Introduksjon - tekst
         <td>ATT-30</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"authorization"</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "hpr-nr" for helsepersonell uten lisens/autorisasjon </td>
     </tr>
     <tr>    
@@ -951,7 +1005,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -963,7 +1017,11 @@ Introduksjon - tekst
         <td>ATT-31</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"authorization"</td>
+    </tr>            
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Håndtering av helsepersonell med flere autorisasjoner i HPR</td>
     </tr>
     <tr>    
@@ -977,7 +1035,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -989,7 +1047,11 @@ Introduksjon - tekst
         <td>ATT-32</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"authorization"</td>
+    </tr>            
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Kontroll av korrekte autorisasjoner i tillitsankeret</td>
     </tr>
     <tr>    
@@ -1003,13 +1065,21 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
 </table>
 
 ### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care-relation"
+
+Attributtet "care-relation" består av fire underliggende attributter, som beskriver behandlerrelasjonen som attesten gjelder for.
+
+| care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care-relation | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+
 #### 3.1 Forretningsregler for attributtet "healthcare-service"
 
 <table>
@@ -1018,7 +1088,11 @@ Introduksjon - tekst
         <td>ATT-33</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>            
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Bruk av "healthcare-service" for å angi helsehjelpstjeneste</td>
     </tr>
     <tr>    
@@ -1033,7 +1107,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1045,7 +1119,11 @@ Introduksjon - tekst
         <td> ATT-34 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>                
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "healthcare-service".</td>
     </tr>
     <tr>    
@@ -1077,7 +1155,11 @@ Introduksjon - tekst
         <td>ATT-35</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Håndtering av tilfeller hvor det finnes flere mulige verdier for helsehjelpstjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten</td>
     </tr>
     <tr>    
@@ -1092,7 +1174,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1104,7 +1186,11 @@ Introduksjon - tekst
         <td>ATT-36</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Håndtering av tilfeller hvor helsehjelpstjeneste eller fagområde ikke er knyttet til tilganger som helsepersonellet har til pasienten</td>
     </tr>
     <tr>    
@@ -1125,7 +1211,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1137,7 +1223,11 @@ Introduksjon - tekst
         <td>ATT-37</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "healthcare-service"</td>
     </tr>
     <tr>    
@@ -1163,7 +1253,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1178,7 +1268,11 @@ Introduksjon - tekst
         <td>ATT-38</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av kode "TREAT" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
@@ -1198,7 +1292,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1210,7 +1304,11 @@ Introduksjon - tekst
         <td>ATT-39</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av kode "ETREAT" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
@@ -1230,7 +1328,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1242,7 +1340,11 @@ Introduksjon - tekst
         <td>ATT-40</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av kode "COC" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
@@ -1260,7 +1362,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1272,7 +1374,11 @@ Introduksjon - tekst
         <td>ATT-41</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av kode "BTG" som verdi for attributtet "purpose-of-use"</td>
     </tr>
     <tr>    
@@ -1290,7 +1396,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1304,7 +1410,11 @@ Introduksjon - tekst
         <td> ATT-42 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use-details"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "purpose-of-use-details".</td>
     </tr>
     <tr>    
@@ -1336,7 +1446,11 @@ Introduksjon - tekst
         <td>ATT-43</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use-details"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Overordnede retningslinjer for angivelse av "purpose-of-use-details"</td>
     </tr>
     <tr>    
@@ -1370,7 +1484,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1382,7 +1496,11 @@ Introduksjon - tekst
         <td>ATT-44</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use-details"</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Retningslinjer dersom det finnes flere mulige verdier for "purpose-of-use-details"</td>
     </tr>
     <tr>    
@@ -1397,7 +1515,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1409,7 +1527,11 @@ Introduksjon - tekst
         <td>ATT-45</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"purpose-of-use-details"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Foreslåtte kodeverk for angivelse av verdi for "purpose-of-use-details"</td>
     </tr>
     <tr>    
@@ -1431,7 +1553,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1445,7 +1567,11 @@ Introduksjon - tekst
         <td> ATT-46 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"decision-ref"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Formål med, og bruk av attributtet "decision-ref".</td>
     </tr>
     <tr>    
@@ -1467,7 +1593,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -1480,7 +1606,11 @@ Introduksjon - tekst
         <td>ATT-47</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"decision-ref"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Overordnet beskrivelse av angivelse av verdi for attributtet "decision-ref".</td>
     </tr>
     <tr>    
@@ -1510,7 +1640,7 @@ Introduksjon - tekst
         <td>
             Denne regelen skal håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
@@ -1524,7 +1654,11 @@ Introduksjon - tekst
         <td>ATT-48</td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"decision-ref"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Gyldige verdi for "user_selected" i attributtet "decision-ref".</td>
     </tr>
     <tr>    
@@ -1543,18 +1677,23 @@ Introduksjon - tekst
         <td>
             Denne regelen skal kontrolleres og håndheves av:
             <ul>
-                <li>konsument/innhentende</li>
-                <li>dokumentkilde/utleverende</li>
-                <li>tillitsanker/NHN</li>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+                <li>NHN</li>
             </ul>  
         </td>
     </tr>
 </table>
 
 ### 4. Forretningsregler for beskrivelse av pasienten - attributt: "patient"
+Attributtet "patient" består av tre underliggende attributter som beskriver pasienten attesten gjelder for. 
+
+| patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
+| patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
+| patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
+
 
 #### 4.1 Forretningsregler for attributtet "identifier" for pasient
-
 
 #### 4.2 Forretningsregler for attributtet "point-of-care" for pasient
 
@@ -1564,7 +1703,11 @@ Introduksjon - tekst
         <td> ATT-49 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av attributtet "point-of-care" for pasient.</td>
     </tr>
     <tr>    
@@ -1583,7 +1726,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -1596,7 +1739,11 @@ Introduksjon - tekst
         <td> ATT-50 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av attributtet "point-of-care" for pasient for virksomheter uten underenheter.</td>
     </tr>
     <tr>    
@@ -1611,7 +1758,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -1624,7 +1771,11 @@ Introduksjon - tekst
         <td> ATT-51 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Unntak fra bruk av attributtet "point-of-care" for pasient.</td>
     </tr>
     <tr>    
@@ -1639,7 +1790,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -1652,7 +1803,11 @@ Introduksjon - tekst
         <td> ATT-52 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
     </tr>
     <tr>    
@@ -1687,7 +1842,11 @@ Introduksjon - tekst
         <td> ATT-53 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Overordnede regler for bruk av attributtet "department" for pasient.</td>
     </tr>
     <tr>    
@@ -1715,7 +1874,11 @@ Introduksjon - tekst
         <td> ATT-54 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt detaljeringsnivå for attributtet "department" for pasient.</td>
     </tr>
     <tr>    
@@ -1742,7 +1905,11 @@ Introduksjon - tekst
         <td> ATT-55 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Angivelse av attributtet "department" for pasient for virksomheter uten underenheter.</td>
     </tr>
     <tr>    
@@ -1757,7 +1924,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -1770,7 +1937,11 @@ Introduksjon - tekst
         <td> ATT-56 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Unntak fra bruk av attributtet "department" for pasient.</td>
     </tr>
     <tr>    
@@ -1785,7 +1956,7 @@ Introduksjon - tekst
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>Tillitsanker</li>
+                <li>NHN</li>
                 <li>Dokumentkilde</li>
             </ul>  
         </td>
@@ -1798,7 +1969,11 @@ Introduksjon - tekst
         <td> ATT-57 </td>
     </tr>
     <tr>
-        <td>Navn</td>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
     </tr>
     <tr>    
