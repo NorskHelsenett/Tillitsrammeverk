@@ -2,7 +2,7 @@
 ## Sammendrag
 Dette dokumentet beskriver forretningsregler knyttet til attestering av helsepersonellets grunnlag for tilgang til pasientens helseopplysninger i kjøretid.
 
-Forretningsreglene omfatter forberedende faser, kjøretid og for bruksscenarier knyttet til oppfølgingsarbeid etter delingen har funnet sted.
+Forretningsreglene omfatter forberedende faser, kjøretidsfasen samt oppfølgingsarbeid etter delingen har funnet sted.
 
 ## Omfang
 
@@ -26,7 +26,9 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 | patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
-En attest er ikke knyttet til en spesifikk internettprotokoll, eller et spesifikt format, men skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, XML og CBOR, og benyttes i forskjellige protokoller (som http, amqp, smtp osv). Noen forretningsregler vil være spesifikke for enkelte protokoller eller serialiseringsformater.
+En attest er ikke knyttet til en spesifikk internettprotokoll, eller et spesifikt format, men skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, XML og CBOR, og benyttes i forskjellige protokoller (som http, amqp, smtp osv). 
+
+Noen forretningsregler vil kunne være spesifikke for enkelte protokoller eller serialiseringsformater.
 
 ## Dokumentets status
 | Versjon | Dokumentets status | dato |
@@ -43,34 +45,89 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 ## Innledning
 Denne spesifikasjonen definerer felles regler som skal benyttes i forbindelse med attestering av helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt, og baserer seg på [datamodell for attestering som er angitt i egen spesifikasjon.](informasjons_og_datamodell.md). 
 
-Et felles regelverk vil sikre at alle aktører som er involvert i delingen benytter samme metode for å utføre attestering og at attester håndteres likt i kjøretid.  
+Et felles regelverk vil sikre at alle aktører som er involvert i delingen benytter samme metode for å utføre attestering og at attester håndteres likt i kjøretid og benyttes til samme formål etter at helseopplysningene er delt.
 
 Reglene definert i denne spesifikasjonen omfatter:
 <ul>
-    <li>Hvordan verdier for de enkelte attributter skal fylles ut.</li>
     <li>Hvilke formål en attest skal benyttes for.</li>
+    <li>Hvilke verdier som er gyldige for de enkelte attributter.</li>
     <li>Hvordan en attest skal behandles hos den enkelte aktør.</li>
-    <li>Hvordan sikkerhets- og personvernshensyn skal ivaretas hos den enkelte aktør.
+    <li>Hvordan sikkerhets- og personvernshensyn skal ivaretas hos den enkelte aktør.</li>
 </ul>
 
+Datamodellen som skal brukes til attestering og reglene skissert i denne spesifikasjonen, er ment å være gjenbrukbare for ulike protokoller og tekniske løsninger. Spesifikasjonene peker derfor ikke på konkrete tekniske protokoller, tjenester eller tekniske løsninger.
+
+Så lenge de overordnede kravene blir tilfredsstilt står hver enkelt løsning, som skal ta i bruk attestering av helsepersonellets grunnlag for tilgang til helseopplysninger, fritt til å velge teknologi og implementasjonsdetaljer for attestering og overføring av attest.
 
 ## Bakgrunn
 Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles modell som skisserer tillitsgrunnlaget for å dele helseopplysninger mellom helsepersonell på tvers av virksomhetene i sektoren. Les mer om felles tillitsmodell her: [https://www.ehelse.no/standardisering/standarder/anbefaling-av-tillitsmodell-for-data-og-dokumentdeling/](https://www.ehelse.no/standardisering/standarder/anbefaling-av-tillitsmodell-for-data-og-dokumentdeling/_/attachment/inline/4b78b44e-dbfe-4f13-9527-4b47e19a5585:a1003d97d50492bed6eb8064a936354b88a5abf0/Anbefaling%20av%20tillitsmodell%20for%20data-%20og%20dokumentdeling.pdf).
 
-Tillitsmodellen konkretiseres i et tillitsrammeverk som består av vilkår knyttet til bruken av tillitstjenestene (_*Lenke mangler*_). Det er medlemsordningen Helsenettet som danner de ytre rammene for økosystemet hvor tillitsrammeverket skal virke. Et grunnleggende vilkår i tillitsrammeverket er kravet til medlemmene av Helsenettet om å etterleve [Norm for informasjonssikkerhet og personvern i helse- og omsorgssektoren](https://www.ehelse.no/normen/normen-for-informasjonssikkerhet-og-personvern-i-helse-og-omsorgssektoren). 
+Tillitsmodellen konkretiseres i et [tillitsrammeverk](https://www.nhn.no/tjenester/kjernejournal/deling-av-journaldokumenter-gjennom-kjernejournal/Beskrivelse%20av%20tillitsrammeverk.pdf) som består av vilkår knyttet til bruken av tillitstjenestene. Det er medlemsordningen Helsenettet som danner de ytre rammene for økosystemet hvor tillitsrammeverket skal virke. Et grunnleggende vilkår i tillitsrammeverket er at medlemmene av Helsenettet plikter å etterleve kravene i [norm for informasjonssikkerhet og personvern i helse- og omsorgssektoren](https://www.ehelse.no/normen/normen-for-informasjonssikkerhet-og-personvern-i-helse-og-omsorgssektoren). 
 
-Denne spesifikasjonen er utarbeidet for Pasientens Journaldokumenter (PJD), som er den første anvendelsen av tillitsrammeverket.
+Denne spesifikasjonen er utarbeidet i forbindelse med Pasientens Journaldokumenter (PJD), som er den første anvendelsen av tillitsrammeverket. 
 
 ## Ordliste
 
 ## Spesifikasjon av forretningsregler
-
 Spesifikasjonen definerer felles regler som beskriver hvordan helsepersonellets grunnlag for tilgang til helseopplysninger skal attesteres og krav knyttet hvordan attesten skal benyttes. Spesifikasjonen definerer hvilke kodeverk og verdier som er gyldige for hvert attributt.
 
 ### Formålet med forretningsregler
 Forretningsreglene skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren.
 
 Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av systemene som skal implementere attesteringsfunksjonalitet eller behandle attester.
+
+### Konvensjoner brukt i spesifikasjonen
+
+#### Bruk av modalverb i spesifikasjonen
+Modalverb brukt i spesifikasjonen skal forstås på følgende måte:
+<table>
+    <tr>
+        <td>SKAL/MÅ</td>
+        <td>Absolutt krav</td>
+    </tr>
+    <tr>
+        <td>BØR</td>
+        <td>Anbefalt krav</td>
+    </tr>
+    <tr>
+        <td>KAN</td>
+        <td>Valgfritt krav</td>
+    </tr>
+</table>
+
+#### Begreper brukt i spesifikasjonen
+Hver regel i spesifikasjonen er beskrevet i følgende format:
+<table>
+    <tr>
+        <td>Begrep</td>
+        <td>Definisjon</td>
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>En unik identifikator for regelen som er spesifisert</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>Navn på attributtet som skal benyttes til attestering</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>En kort forklaring på hvilken informasjon attributtet inneholder</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>En kort overordnet beskrivelse av regelen</td>
+    </tr>
+    <tr>
+        <td>Regel</td>
+        <td>En detaljert beskrivelse av den aktuelle regelen</td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td> 
+        <td>En beskrivelse av hvilke(n) aktør(er) som er ansvarlig for å håndheve regelen</td>
+    </tr>
+</table>
+
 
 ### 1. Generelle forretningsregler knyttet til attestering av helsepersonellets grunnlag for tilgang
 ##### (Mulig at dette går inn i et generelt tillitsrammeverk og tas ut av forretningskrav for PJD..)
@@ -86,12 +143,12 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
     <tr>
         <td> Regel </td>
         <td>
-            En attest skal formatteres til ett av følgende format: 
+            En attest SKAL formatteres til ett av følgende format: 
             <ul>
                 <li>JSON</li> 
                 <li>XML</li>
             </ul>
-            Det er den aktuelle tjenesten som skal konsumeres som avgjør hvilket format som forventes. Serialiseringsdetaljer blir spesifisert i relevant dokumentasjon av løsning. 
+            Det er den aktuelle tjenesten som skal konsumeres som avgjør hvilket format som forventes. Serialiseringsdetaljer blir spesifisert i relevant dokumentasjon av den aktuelle løsningen. 
         </td>
     </tr>
     <tr>
@@ -119,10 +176,10 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td>
             Attestens sporbarhet skal ivaretas, slik at attesten:
             <ul>
-                <li>Ivaretar attributtenes integritet under transport og lagring.</li>
+                <li>Ivaretar attributtenes integritet under transport og lagring</li>
                 <li>Entydig, og med høy grad av sannsynlighet, kan knyttes til den konsumerende virksomheten som besluttet tilgangen</li>
             </ul>            
-            Sporbarhet kan for eksempel ivaretas ved bruk av digital signatur, og standardiserte signeringsformater:
+            Sporbarhet SKAL ivaretas ved bruk av digital signatur og standardiserte signeringsformater, som f.eks.:
             <ul>
                 <li>XML-Signature og SAML formatet</li>
                 <li>Json Web Signatures og JWT formatet</li>
@@ -153,12 +210,12 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
         <td> Regel </td>
         <td>
             Informasjon som beskriver behandlingsrelasjonen mellom helsepersonellet og pasienten kan være sensitiv og taushetsbelagt, og krever ivaretagelse av konfidensialitet.
-            Attesten skal:
+            Attesten SKAL:
             <ul>
                 <li>Overføres ved bruk av kryptert transportlag, f.eks. ved bruk av TLS for transport via http.</li>
                 <li>Krypteres ved lagring over tid</li>                    
             </ul>
-            Konfidensialitet kan f.eks. ivaretas ved bruk av kryptering, og standardiserte krypteringsformater som:
+            Konfidensialitet KAN ivaretas ved bruk av meldingskryptering (ende-til-ende), og standardiserte krypteringsformater som f.eks.:
             <ul>
                 <li>XML-Encryption og SAML formatet</li>
                 <li>Json Web Encryption og JWT formatet</li>
@@ -188,9 +245,9 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
     </tr>
     <tr>
         <td> Regel </td>
-        <td>Når en attest gjelder helsepersonellets grunnlag for tilgang til en spesifikk pasient skal attesten entydig knyttes til pasienten som er inne til behandling, slik at den ikke kan brukes for tilgang til andre pasienter.<br>
-            Pasientens identifikator må være forståelig for parten som mottar attesten.<br><br>
-            Denne regelen gjelder også i tilfeller hvor attesten gjelder for flere spesifikke pasienter.<br>
+        <td>Når en attest gjelder helsepersonellets grunnlag for tilgang til en spesifikk pasient SKAL attesten entydig knyttes til pasienten som er inne til behandling, slik at den ikke kan brukes for tilgang til andre pasienter.<br>
+        Pasientens identifikator SKAL være forståelig for parten som mottar attesten.<br><br>
+        Denne regelen gjelder også i tilfeller hvor attesten gjelder for flere spesifikke pasienter.<br>
         </td>
     </tr>
     <tr>
@@ -216,8 +273,8 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
     </tr>
     <tr>
         <td> Regel </td>
-        <td>Ved forespørsler hvor et helsepersonell ber om tilgang til en eller flere spesifikke pasienter skal informasjon i en attest brukes til å håndheve sperringer hos data- eller dokumentkilde.<br>
-            Det skal være mulig å kontrollere at helsepersonellet som har tjenstlig behov for pasientens helseopplysninger ikke er sperret for tilgang av pasienten.<br>
+        <td>Ved forespørsler hvor et helsepersonell ber om tilgang til en eller flere spesifikke pasienter SKAL informasjon i en attest brukes til å håndheve sperringer hos data- eller dokumentkilde.<br>
+        Det SKAL være mulig å kontrollere at helsepersonellet som har tjenstlig behov for pasientens helseopplysninger ikke er sperret for tilgang av pasienten.<br>
         </td>
     </tr>
     <tr>
@@ -243,14 +300,14 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
     </tr>
     <tr>
         <td> Regel </td>
-        <td>I noen tilfeller hvor pasienten ikke er kjent kan attesten benyttes uten binding til en spesifikk pasient.<br>
-            En attest uten binding til pasient bør bare kunne benyttes for tilgang til et smalt sett av opplysninger om pasienten.<br><br>
+        <td>I noen tilfeller hvor pasienten ikke er kjent KAN attesten benyttes uten binding til en spesifikk pasient.<br>
+            En attest uten binding til pasient BØR bare kunne benyttes for tilgang til et smalt sett av opplysninger om pasienten.<br><br>
             Eksempler på slike tilfeller kan være:
             <ul>
                 <li>henting av en oversikt over pasienter som er innkommende til en legevakt i ambulanser, eller</li>
                 <li>oversikt over pasienter som er innlagt ved en gitt enhet.</li> 
             </ul>    
-            Når helsepersonellet trenger å se mer detaljert informasjon om en spesifikk pasient skal attesten være knyttet til denne pasienten.
+            Når helsepersonellet trenger å se mer detaljert informasjon om en spesifikk pasient SKAL attesten være knyttet til denne pasienten.
         </td>
     </tr>
     <tr>
@@ -282,6 +339,14 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td> ID </td>
         <td> ATT-7 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"identifier"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets fødselsnummer og navn fra folkeregisteret</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -317,6 +382,14 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td>ATT-8</td>
     </tr>
     <tr>
+        <td>Attributt</td>
+        <td>"identifier"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets fødselsnummer og navn fra folkeregisteret</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Visning av innholdet i attributtet "identifier" i innbyggerens tilgangslogg.</td>
     </tr>
@@ -348,6 +421,14 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td>ATT-9</td>
     </tr>
     <tr>
+        <td>Attributt</td>
+        <td>"identifier"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets fødselsnummer og navn fra folkeregisteret</td>
+    </tr>    
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Tillitsnivå (LoA) knyttet til data i attributtet "identifier" </td>
     </tr>
@@ -374,18 +455,26 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td>ATT-10</td>
     </tr>
     <tr>
+        <td>Attributt</td>
+        <td>"identifier"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets fødselsnummer og navn fra folkeregisteret</td>
+    </tr>    
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Gyldig identifikator for identifisering av den fysiske personen i attributtet "identifier" </td>
     </tr>
     <tr>    
         <td> Regel </td>
-        <td> Identifikatoren som skal brukes til å identifisere den fysiske personen skal være registrert i Folkeregisteret. <br/>
+        <td> Identifikatoren som skal brukes til å identifisere den fysiske personen SKAL være registrert i Folkeregisteret. <br/>
             Identifikatoren skal være en av følgende: 
             <ul>
                 <li>F-Nummer (2.16.578.1.12.4.1.4.1)</li>
                 <li>D-Nummer (2.16.578.1.12.4.1.4.2)</li>                
             </ul>
-            Dersom identifikator brukt til å identifisere helsepersonellet ikke er et av de nevnte fødselsnumre skal forespørselen avvises. 
+            Dersom identifikator brukt til å identifisere helsepersonellet ikke er et av de nevnte fødselsnumre SKAL forespørselen avvises. 
         </td>
     </tr>
     <tr>
@@ -407,13 +496,21 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td> ATT-11 </td>
     </tr>
     <tr>
+        <td>Attributt</td>
+        <td>"identifier"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets fødselsnummer og navn fra folkeregisteret</td>
+    </tr>    
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Validering av informasjon i attributtet "identifier".</td>
     </tr>
     <tr>
         <td> Regel </td>
-        <td>Mottaker av attest skal kontrollere og validere at identifikator som identifiserer den fysiske personen i attributtet "identifier" i attesten tilsvarer identifikatoren som identifiserer brukeren etter en vellykket autentisering.<br>
-        Dersom identifikator i attest ikke tilsvarer identifikator for autentisert bruker skal forespørselen avvises.</td>
+        <td>Mottaker av attest SKAL kontrollere og validere at identifikator som identifiserer den fysiske personen i attributtet "identifier" i attesten tilsvarer identifikatoren som identifiserer brukeren etter en vellykket autentisering.<br>
+        Dersom identifikator i attest ikke tilsvarer identifikator for autentisert bruker SKAL forespørselen avvises.</td>
     </tr>
     <tr>
         <td> Ansvarlig </td>
@@ -432,71 +529,17 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 
 <table>
     <tr>
-        <td>ID </td>
-        <td>ATT-12</td>
-    </tr>
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Bruk av innholdet i attributtet "legal-entity"</td>
-    </tr>
-    <tr>    
-        <td>Regel</td>
-        <td> Identiteten til den juridiske personen skal benyttes til tilgangsstyring hos Tillitsankeret. Tillitsankeret skal kontrollere at den juridiske enheten (virksomheten):
-            <ul>
-                <li>har gyldig medlemsskap i Helsenettet</li>
-                <li>har akseptert vilkår for medlemssskap i Helsenettet</li>
-                <li>har gyldig avtale om tilgang til fellestjenester som HelseID, Kjernejournal osv</li>
-                <li>har akseptert bruksvilkår knyttet til fellestjenester</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Ansvarlig</td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>NHN</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-
-<table>
-    <tr>
-        <td>ID </td>
-        <td> ATT-13 </td>
-    </tr>
-    <tr>
-        <td> Beskrivelse av regel </td>
-        <td> Krav til sporbarhet for attributtet "legal-entity"</a></td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>
-            Attributtet "legal-entity" skal entydig og med stor sannsynlighet (uavviselig) knyttes til den juridiske enheten som har behandlingsansvar for personopplysningene, og som er ansvarlig for ansettelsesforholdet til  helsepersonellet som yter helsehjelp.<br><br>
-            Tillitsnivået (LoA) skal tilsvare knytningen mellom juridisk enhet og identifikasjonsmiddel som angitt i identifikasjonsnivåforskriften.<br>
-            Det skal være usannsynlig at verdien som angis i "legal-entity" kan endres eller manipuleres i sikkerhetsangrep under transport, eller ved lagring.
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-                <li>NHN</li>
-                <li>Kilde</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
         <td>ID</td>
         <td> ATT-15 </td>
     </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"legal-entity"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.</td>
+    </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Korrekt angivelse av "legal-entity"</td>
@@ -504,9 +547,14 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>    
         <td> Regel </td>
         <td>  
-            Attributtet "legal-entity" skal inneholde helsepersonellets virksomhetstilhørighet.<br>
+            Attributtet "legal-entity" SKAL inneholde helsepersonellets virksomhetstilhørighet.<br>
             Det er hovedenheten hvor helsepersonellet yter helsehjelp som skal angis.<br> 
-            Verdien for attributtet skal være identifikatoren som er registrert i Brønnøysundregisteret.<br><br>
+            Verdien for attributtet SKAL være identifikatoren som er registrert i Brønnøysundregisteret.<br><br>
+            Eksempler på hovedenhet er:
+            <ul>
+                <li>Oslo Kommune</li>
+                <li>Oslo universitetssykehus HF</li>
+            </ul>
             For personell som er innleid og formelt ansatt hos et vikarbyrå eller tilsvarende virksomhet er det ikke virksomheten som helsepersonellet er innleid fra som skal angis, men hovedenheten hvor helsepersonellet yter helsehjelp.
         </td>
     </tr>
@@ -527,13 +575,21 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td> ATT-16 </td>
     </tr>
     <tr>
+        <td>Attributt</td>
+        <td>"legal-entity"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.</td>
+    </tr>    
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "legal-entity"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen dokumenterer hvilken virksomhet som er ansvarlig for personellets tilgang, og skal inngå i pasientjournalens innsynslogg hos data- og dokumentkilde.<br><br> 
+            Informasjonen dokumenterer hvilken hovedenhet som er ansvarlig for personellets tilgang, og SKAL inngå i pasientjournalens innsynslogg hos data- og dokumentkilde.<br><br> 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt dokumentasjon av grunnlaget for tilgang til helseopplysninger hos kilder.</li>
@@ -555,6 +611,83 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>ID </td>
+        <td>ATT-12</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"legal-entity"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Tilgangsstyring basert på "legal-entity" hos tillitsanker</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td> Identiteten til hovedenheten SKAL benyttes i forbindelse med tilgangsstyring hos Tillitsankeret. Tillitsankeret SKAL kontrollere at hovedenheten:
+            <ul>
+                <li>har gyldig medlemsskap i Helsenettet</li>
+                <li>har akseptert vilkår for medlemssskap i Helsenettet</li>
+                <li>har gyldig avtale om tilgang til fellestjenester hovedenheten til enhver tid bruker</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>NHN</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID </td>
+        <td> ATT-13 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"legal-entity"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.</td>
+    </tr>    
+    <tr>
+        <td> Beskrivelse av regel </td>
+        <td> Krav til sporbarhet for attributtet "legal-entity"</a></td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Attributtet "legal-entity" SKAL entydig og med stor sannsynlighet (uavviselig) knyttes til hovedenheten som har behandlingsansvar for personopplysningene, og som er ansvarlig for ansettelsesforholdet til  helsepersonellet som yter helsehjelp.<br><br>
+            Tillitsnivået (LoA) SKAL tilsvare knytningen mellom virksomheten og identifikasjonsmiddel som angitt i identifikasjonsnivåforskriften.<br>
+            Det skal være usannsynlig at verdien som angis i "legal-entity" kan endres eller manipuleres i sikkerhetsangrep under transport, eller ved lagring.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>NHN</li>
+                <li>Kilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+
 
 #### 2.3 Forretningsregler for attributtet "point-of-care"
 
@@ -568,13 +701,17 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td>"point-of-care"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Behandlingsstedets org.nr. og navn.</td>
+    </tr>    
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Korrekt angivelse av innholdet i attributtet "point-of-care"</td>
     </tr>
     <tr>    
         <td>Regel</td>
-        <td>Attributtet skal inneholde helsepersonellets arbeidssted, altså behandlingsstedet som helsepersonellet formelt er tilknyttet.<br> 
-        Verdien skal angi underenheten som er registrert i Brønnøysundregisteret, hvor helsepersonellet formelt utfører sitt arbeid.<br><br>
+        <td>Attributtet SKAL inneholde identifikator for helsepersonellets arbeidssted, altså behandlingsstedet som helsepersonellet formelt er tilknyttet.<br> 
+        Verdien SKAL angi underenheten som er registrert i Brønnøysundregisteret, hvor helsepersonellet formelt utfører sitt arbeid.<br><br>
         Alle norske virksomheter er påkrevd å rapportere aktivitet per geografisk sted og per registrert næringskode i Brønnøysund. Det antas at de fleste norske virksomheter har registrerte underenheter i Brønnøysundregisteret.
         </td>
     </tr>
@@ -599,12 +736,16 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td>"point-of-care"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Behandlingsstedets org.nr. og navn.</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
         <td> Angivelse av innholdet i attributtet "point-of-care" for virksomheter uten underliggende enheter</td>
     </tr>
     <tr>    
         <td>Regel</td>
-        <td>For virksomheter uten underenheter registrert i Brønnøysundregistrene skal hovedenheten oppgis i "point-of-care".<br>
+        <td>For virksomheter uten underenheter registrert i Brønnøysundregistrene SKAL hovedenheten oppgis i "point-of-care".<br>
         Verdien i "legal-entity" og "point-of-care" vil i slike tilfeller være lik.
         </td>
     </tr>
@@ -627,7 +768,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td>Attributt</td>
         <td>"point-of-care"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Behandlingsstedets org.nr. og navn.</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "point-of-care".</td>
@@ -637,11 +782,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td>  
             Attributtet dokumenterer behandlingsstedet hvor helsepersonellet yter helsehjelp når tilgangen til pasientens helseopplysninger ble gitt av konsumenten.<br>
             Attributtet utgjør en del av informasjonen som brukes av data- og dokumentkilder for å dokumentere grunnlaget for at tilgang blir gitt.<br>
-            Attributtet vil også brukes hos data- og dokumentkilden i pasientjournalens innsynslogg for pasienten. 
+            Attributtet vil også brukes hos data- og dokumentkilden i innbyggers innsynslogg for pasienten. 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
-                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+                <li>Visning i innbyggers innsynslogg for tilganger dersom dette elementet vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
             </ul>
         </td>
     </tr>
@@ -668,7 +813,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Overordnede regler for bruk av attributtet "department".</td>
@@ -677,8 +826,8 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td> Regel </td>
         <td>  
             Noen virksomheter er organisert i underliggende enheter som ikke er registrert i enhetsregisteret.<br> 
-            For slike virksomheter skal konsumenten attestere hvilken enhet helsepersonellet tilhører.<br>
-            Enhet uten registrering i enhetsregisteret skal angis i attributtet "department".<br><br>
+            For slike virksomheter SKAL konsumenten attestere hvilken enhet helsepersonellet tilhører.<br>
+            Enhet uten registrering i enhetsregisteret SKAL angis i attributtet "department".<br><br>
             Det er ikke påkrevd å attestere underliggende enheter for virksomheter som ikke er organisert i lunderliggende enheter som ikke er registrert i enhetsregisteret.
         </td>
     </tr>
@@ -701,7 +850,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
-    </tr>        
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Korrekt detaljeringsnivå for attributtet "department".</td>
@@ -741,7 +894,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
-    </tr>        
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "department".</td>
@@ -749,8 +906,8 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen skal inngå i attestering av helsepersonellets grunnlaget for tilgang til helseopplysninger, og skal dokumenteres i pasientjournalens innsynslogg.<br>Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på bidrar til å gjøre innslagene i tilgangsloggen mer forståelige for innbyggere.<br> 
-            Denne opplysningen SKAL benyttes ved:
+            Informasjonen KAN inngå i attestering av helsepersonellets grunnlaget for tilgang til helseopplysninger, og skal dokumenteres i pasientjournalens innsynslogg.<br>Dersom den er del av attesten vil opplysningen benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på bidrar til å gjøre innslagene i tilgangsloggen mer forståelige for innbyggere.<br> 
+            Denne opplysningen KAN benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
                 <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
@@ -772,42 +929,16 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-24</td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"department"</td>
-    </tr>        
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Angivelse av verdi for attributtet "department" for mindre virksomheter</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td> Attributtet er ikke relevant for mindre virksomheter uten et organiasjonshierarki.<br>
-             Det er derfor ikke obligatorisk å legge det ved i attesten.
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
         <td>ATT-25</td>
     </tr>
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
-    </tr>        
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "department" for kommunale virksomheter </td>
@@ -815,7 +946,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>    
         <td> Regel </td>
         <td> 
-            Bruk attributtet "department" for å angi:
+            Attributtet "department" KAN f.eks. brukes for å angi:
             <ul>
                 <li>Aktuell skole i skolehelsetjenesten</li>
                 <li>Avdeling eller spesifikk enhet i sykehjemskontekst dersom det er relevant</li>
@@ -841,7 +972,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
-    </tr>        
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "department" for Helseforetak i spesialisthelsetjenesten </td>
@@ -870,12 +1005,89 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 <table>
     <tr>
         <td>ID</td>
+        <td>ATT-28</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>      
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Angivelse av "authority" og "system" ved bruk av lokale identifikatorer for attributtet "department"</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>Dersom attributtet "department" er en del av attesten SKAL "System" og "authority" angis selv om konsumenten bruker lokale identifikatorer til å beskrive avdeling/organisasjonsenhet.<br>
+        I slike tilfeller SKAL:
+        <ul>
+            <li>verdien for attributtet "authority" settes til org.nr for juridisk enhet. 
+            <li>verdien for attributtet "system" settes til en globalt unik identifikator, som er stabil over tid</li>
+            <li>konsumenten skal sørge for at identifikatoren er entydig over tid.</li>
+        </ul>        
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li> 
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-24</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Angivelse av verdi for attributtet "department" for mindre virksomheter</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td> Attributtet er ikke relevant for mindre virksomheter uten et organiasjonshierarki.<br>
+             Det er derfor ikke obligatorisk å legge det ved i attesten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
         <td>ATT-27</td>
     </tr>
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
-    </tr>        
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor helsepersonellet yter helsehjelp</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Granuleringsnivå for angivelse av "department"</td>
@@ -902,40 +1114,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
 </table>
 
-<table>
-    <tr>
-        <td>ID</td>
-        <td>ATT-28</td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"department"</td>
-    </tr>        
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Angivelse av "assigner" og "system" ved bruk av lokale identifikatorer for attributtet "department"</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>"System" og "assigner" skal angis selv om konsumenten bruker lokale identifikatorer til å beskrive avdeling/organisasjonsenhet.<br>
-        I slike tilfeller SKAL:
-        <ul>
-            <li>verdien for attributtet "assigner" settes til org.nr for juridisk enhet. 
-            <li>verdien for attributtet "system" settes til en globalt unik identifikator, som er stabil over tid</li>
-            <li>konsumenten skal sørge for at identifikatoren er entydig over tid.</li>
-        </ul>        
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li> 
-            </ul>  
-        </td>
-    </tr>
-</table>
+
 
 
 
@@ -948,7 +1127,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td>Attributt</td>
         <td>"hpr-nr"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets HPR-nummer, dersom det finnes</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "hpr-nr" for helsepersonell uten lisens/autorisasjon</td>
@@ -957,10 +1140,9 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
         <td> Regel </td>
         <td>
             Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr-nr" påkrevd.<br>
-            Attributtet "hpr-nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
             <ul>
-                <li>Attributtet skal angis dersom den fysiske personen har et innslag i HPR.</li>
-                <li>Attributtet kan utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
+                <li>Attributtet "hpr-nr" SKAL angis dersom den fysiske personen har et innslag i HPR.</li>
+                <li>Attributtet SKAL utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
             </ul> 
         </td>
     </tr>
@@ -976,28 +1158,30 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 </table>
 
 #### 2.6 Forretningsregler for attributtet "authorization"
+
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-30</td>
+        <td>ATT-32</td>
     </tr>
     <tr>
         <td>Attributt</td>
         <td>"authorization"</td>
-    </tr>        
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets autorisasjon, dersom den finnes</td>
+    </tr>                
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av verdi for attributtet "hpr-nr" for helsepersonell uten lisens/autorisasjon </td>
+        <td>Kontroll av korrekte autorisasjoner</td>
     </tr>
     <tr>    
         <td>Regel</td>
         <td>
-            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr-nr" påkrevd.<br>
-            Attributtet "hpr-nr" skal inkluderes i datamodellen dersom den fysiske personen har et innslag i HPR.
-            <ul>
-                <li>Attributtet skal angis dersom den fysiske personen har et innslag i HPR.</li>
-                <li>Attributtet kan utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
-            </ul> 
+            Alle aktører skal være trygge på at den angitte autorisasjonen eksisterer i helsepersonellregisteret for det aktuelle helsepersonellet.
+            <br>
+            Dersom den angitte autorisasjonen ikke stemmer overens med autorisasjoner som er registrert i helsepersonellet SKAL forespørselen avvises.
         </td>
     </tr>
     <tr>
@@ -1006,6 +1190,8 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
+                <li>NHN</li>
+                <li>Kilde</li>
             </ul>  
         </td>
     </tr>
@@ -1019,7 +1205,11 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>
         <td>Attributt</td>
         <td>"authorization"</td>
-    </tr>            
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets autorisasjon, dersom den finnes</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Håndtering av helsepersonell med flere autorisasjoner i HPR</td>
@@ -1027,7 +1217,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     <tr>    
         <td>Regel</td>
         <td>
-            I tilfeller hvor helsepersonellet har flere autorisasjoner i helsepersonellregisteret skal konsumenten, så godt som mulig, bruke autorisasjonen som ligger nærmest den funksjonelle rollen helsepersonellet har i sin behandling av pasienten.
+            I tilfeller hvor helsepersonellet har flere autorisasjoner i helsepersonellregisteret BØR konsumenten, så godt som mulig, bruke autorisasjonen som ligger nærmest den funksjonelle rollen helsepersonellet har i sin behandling av pasienten.
         </td>
     </tr>
     <tr>
@@ -1041,40 +1231,13 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
 </table>
 
-<table>
-    <tr>
-        <td>ID</td>
-        <td>ATT-32</td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"authorization"</td>
-    </tr>            
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Kontroll av korrekte autorisasjoner i tillitsankeret</td>
-    </tr>
-    <tr>    
-        <td>Regel</td>
-        <td>
-            Tillitsankeret skal kontrollere at den angitte autorisasjonen eksisterer i helsepersonellregisteret for det aktuelle helsepersonellet.
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
+
 
 ### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care-relation"
 
 Attributtet "care-relation" består av fire underliggende attributter, som beskriver behandlerrelasjonen som attesten gjelder for.
-
+|||
+| --- | --- | --- |
 | care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
 | care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
 | care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
@@ -1085,147 +1248,16 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-33</td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"healthcare-service"</td>
-    </tr>            
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Bruk av "healthcare-service" for å angi helsehjelpstjeneste</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>
-            Attributtet "healthcare-service" (helsehjelpstjeneste) angir hvilken type helsetjenester som leveres/ytes til pasienten ved virksomheten der helsepersonellet jobber. Helsehjelpstjenesten som dokumenteres er grunnlaget for at helsepersonellet trenger tilgang til pasientens helseopplysninger.<br>
-            Et alternativ til begrepet <em>helsehjelpstjeneste</em> er <em>fagområde</em>, som beskriver det tilsvarende grunnlaget i spesialisthelsetjenesten.
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
-        <td> ATT-34 </td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"healthcare-service"</td>
-    </tr>                
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "healthcare-service".</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>  
-            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
-            Denne opplysningen SKAL benyttes ved:
-            <ul>
-                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
-                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-                <li>Dokumentkilde</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
-        <td>ATT-35</td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"healthcare-service"</td>
-    </tr>
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Håndtering av tilfeller hvor det finnes flere mulige verdier for helsehjelpstjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>
-            Ved flere mulige verdier for helsehjelptjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten skal verdien som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen vektlegges.<br>
-            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
-        <td>ATT-36</td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"healthcare-service"</td>
-    </tr>    
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Håndtering av tilfeller hvor helsehjelpstjeneste eller fagområde ikke er knyttet til tilganger som helsepersonellet har til pasienten</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>
-            Det er ikke alltid slik at helsehjelpstjeneste eller fagområde er registrert og knyttet til tilganger som helsepersonellet har til pasienten, for eksempel:
-            <ul>
-                <li>Når pasienten ikke er i et planlagt forløp hos virksomheten, men behandles eksternt</li>
-                <li>Dersom pasienten ønsker dialog i etterkant av et avsluttet forløp</li>
-                <li>Det har oppstått en akuttsituasjon som krever rask tilgang til pasienten</li>
-            </ul>
-            I slike tilfeller vil det ikke være nødvendig å oppgi verdi for attributtet "healthcare-service".<br>
-            For spesialisthelsetjenesten skal manglende verdi i "healthcare-service" kunne forklares av verdien som formidles i "purpose-of-use-details".
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
         <td>ATT-37</td>
     </tr>
     <tr>
         <td>Attributt</td>
         <td>"healthcare-service"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsetjenestetyper som leveres ved virksomheten</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av verdi for attributtet "healthcare-service"</td>
@@ -1259,6 +1291,159 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-33</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsetjenestetyper som leveres ved virksomheten</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Bruk av "healthcare-service" for å angi helsehjelpstjeneste</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Attributtet "healthcare-service" (helsehjelpstjeneste) angir hvilken type helsetjenester som leveres/ytes til pasienten ved virksomheten der helsepersonellet jobber. Helsehjelpstjenesten som dokumenteres inngår i grunnlaget for at helsepersonellet trenger tilgang til pasientens helseopplysninger.<br>
+            Et alternativ til begrepet <em>helsehjelpstjeneste</em> er <em>fagområde</em>, som beskriver det tilsvarende grunnlaget i spesialisthelsetjenesten.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-34 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsetjenestetyper som leveres ved virksomheten</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Korrekt bruk av attributtet "healthcare-service".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Attributtet "healthcare-service" skal inngå i attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og skal inngå i innbyggers innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i innbyggerens innsynslogg for tilganger dersom dette elementet gjør tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder for å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-35</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsetjenestetyper som leveres ved virksomheten</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Håndtering av tilfeller hvor det finnes flere mulige verdier for helsehjelpstjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Ved flere mulige verdier for helsehjelptjeneste eller fagområde knyttet til tilganger som helsepersonellet har til pasienten skal verdien som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen vektlegges.<br>
+            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-36</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"healthcare-service"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsetjenestetyper som leveres ved virksomheten</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Håndtering av tilfeller hvor helsehjelpstjeneste eller fagområde ikke er knyttet til tilganger som helsepersonellet har til pasienten</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Det er ikke alltid slik at helsehjelpstjeneste eller fagområde er registrert og knyttet til tilganger som helsepersonellet har til pasienten, for eksempel:
+            <ul>
+                <li>Når pasienten ikke er i et planlagt forløp hos virksomheten, men behandles eksternt</li>
+                <li>Dersom pasienten ønsker dialog i etterkant av et avsluttet forløp</li>
+                <li>Det har oppstått en akuttsituasjon som krever rask tilgang til pasienten</li>
+            </ul>
+            I slike tilfeller vil det ikke være nødvendig å oppgi verdi for attributtet "healthcare-service".<br>
+            For spesialisthelsetjenesten skal manglende verdi i "healthcare-service" kunne forklares av verdien som formidles i "purpose-of-use-details".
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+
+
 
 #### 3.2 Forretningsregler for attributtet "purpose-of-use"
 
@@ -1270,7 +1455,11 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     <tr>
         <td>Attributt</td>
         <td>"purpose-of-use"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av kode "TREAT" som verdi for attributtet "purpose-of-use"</td>
@@ -1306,7 +1495,11 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     <tr>
         <td>Attributt</td>
         <td>"purpose-of-use"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av kode "ETREAT" som verdi for attributtet "purpose-of-use"</td>
@@ -1342,7 +1535,11 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     <tr>
         <td>Attributt</td>
         <td>"purpose-of-use"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av kode "COC" som verdi for attributtet "purpose-of-use"</td>
@@ -1376,6 +1573,10 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     <tr>
         <td>Attributt</td>
         <td>"purpose-of-use"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
     </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1407,48 +1608,16 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 <table>
     <tr>
         <td>ID</td>
-        <td> ATT-42 </td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"purpose-of-use-details"</td>
-    </tr>    
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "purpose-of-use-details".</td>
-    </tr>
-    <tr>    
-        <td> Regel </td>
-        <td>  
-            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
-            Denne opplysningen SKAL benyttes ved:
-            <ul>
-                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
-                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td> Ansvarlig </td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-                <li>Dokumentkilde</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
         <td>ATT-43</td>
     </tr>
     <tr>
         <td>Attributt</td>
         <td>"purpose-of-use-details"</td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+    </tr>
     <tr>
         <td>Beskrivelse av regel</td>
         <td>Overordnede retningslinjer for angivelse av "purpose-of-use-details"</td>
@@ -1493,42 +1662,15 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 <table>
     <tr>
         <td>ID</td>
-        <td>ATT-44</td>
-    </tr>
-    <tr>
-        <td>Attributt</td>
-        <td>"purpose-of-use-details"</td>
-    </tr>    
-    <tr>
-        <td>Beskrivelse av regel</td>
-        <td>Retningslinjer dersom det finnes flere mulige verdier for "purpose-of-use-details"</td>
-    </tr>
-    <tr>    
-        <td>Regel</td>
-        <td>
-            Ved flere mulige valg bør det vektlegges hva som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen.<br> 
-            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
-        </td>
-    </tr>
-    <tr>
-        <td>Ansvarlig</td>
-        <td>
-            Denne regelen skal håndheves av:
-            <ul>
-                <li>Konsument</li>
-            </ul>  
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>ID</td>
         <td>ATT-45</td>
     </tr>
     <tr>
         <td>Attributt</td>
         <td>"purpose-of-use-details"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1559,6 +1701,83 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-42 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"purpose-of-use-details"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+    </tr>        
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Korrekt bruk av attributtet "purpose-of-use-details".</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Informasjonen vil sammen med annen informasjon i attesten dokumentere grunnlaget for at tilgang blir gitt, og kan inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i innbyggers innsynslogg for tilganger gitt hos datakilder dersom informasjonen gjør tilgangene mer forståelige for innbyggere.<br> 
+            Denne opplysningen SKAL benyttes ved:
+            <ul>
+                <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
+                <li>Visning i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra kilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+                <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ATT-44</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"purpose-of-use-details"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Retningslinjer dersom det finnes flere mulige verdier for "purpose-of-use-details"</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            Ved flere mulige valg bør det vektlegges hva som i størst mulig grad kan bidra til å avklare hva som er bakgrunnen for tilgangen.<br> 
+            Som hovedregel bør det være så presist som mulig heller enn et mer overordnet nivå, men likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til.
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+
+
 #### 3.4 Forretningsregler for attributtet "decision-ref"
 
 <table>
@@ -1569,6 +1788,10 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     <tr>
         <td>Attributt</td>
         <td>"decision-ref"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Referanse til lokal tilgangsbeslutning</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1610,6 +1833,10 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
         <td>"decision-ref"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Referanse til lokal tilgangsbeslutning</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Overordnet beskrivelse av angivelse av verdi for attributtet "decision-ref".</td>
     </tr>
@@ -1646,8 +1873,6 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
 </table>
 
-
-
 <table>
     <tr>
         <td>ID</td>
@@ -1656,6 +1881,10 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     <tr>
         <td>Attributt</td>
         <td>"decision-ref"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Referanse til lokal tilgangsbeslutning</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1688,6 +1917,8 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 ### 4. Forretningsregler for beskrivelse av pasienten - attributt: "patient"
 Attributtet "patient" består av tre underliggende attributter som beskriver pasienten attesten gjelder for. 
 
+|||
+| --- | --- | --- |
 | patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
 | patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
@@ -1705,6 +1936,10 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     <tr>
         <td>Attributt</td>
         <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Virksomheten hvor pasienten mottar behandling</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1743,6 +1978,10 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
         <td>"point-of-care"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Virksomheten hvor pasienten mottar behandling</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Angivelse av attributtet "point-of-care" for pasient for virksomheter uten underenheter.</td>
     </tr>
@@ -1775,6 +2014,10 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
         <td>"point-of-care"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Virksomheten hvor pasienten mottar behandling</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Unntak fra bruk av attributtet "point-of-care" for pasient.</td>
     </tr>
@@ -1805,6 +2048,10 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     <tr>
         <td>Attributt</td>
         <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Virksomheten hvor pasienten mottar behandling</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1846,6 +2093,10 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
         <td>"department"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor pasienten mottar helsehjelp</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Overordnede regler for bruk av attributtet "department" for pasient.</td>
     </tr>
@@ -1876,6 +2127,10 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor pasienten mottar helsehjelp</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1909,8 +2164,12 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
         <td>"department"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor pasienten mottar helsehjelp</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av attributtet "department" for pasient for virksomheter uten underenheter.</td>
+        <td>Angivelse av attributtet "department" for pasient ved virksomheter uten underenheter.</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1939,6 +2198,10 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     <tr>
         <td>Attributt</td>
         <td>"department"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor pasienten mottar helsehjelp</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1973,13 +2236,17 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
         <td>"department"</td>
     </tr>
     <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Avdeling/org.enhet hvor pasienten mottar helsehjelp</td>
+    </tr>
+    <tr>
         <td>Beskrivelse av regel</td>
         <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Informasjonen inngår som et av flere elementer fra attesten som dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i innbyggers innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for innbyggers innsynslogg for tilganger fra datakilder dersom dette elementet gjør tilgangene mer forståelige for innbyggere.<br> 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
