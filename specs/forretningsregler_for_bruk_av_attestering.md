@@ -1917,7 +1917,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 ### 4. Forretningsregler for beskrivelse av pasienten - attributt: "patient"
 Attributtet "patient" består av tre underliggende attributter som beskriver pasienten attesten gjelder for. 
 
-|||
+| | | |
 | --- | --- | --- |
 | patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
 | patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
