@@ -15,6 +15,7 @@ Dette dokumentet er et utkast som er ment for utviklere av programvare som skal 
 | -1 | Utkast | 10.03.2023 |
 | -2 | Utkast | 25.09.2023 |
 | -3 | Utkast | 18.10.2023 |
+| -4 | Utkast | 14.11.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
@@ -153,8 +154,6 @@ classDiagram
 		- Den personalansvarlige og dataansvarlige virksomheten
 		- Hvilket arbeidssted/behandlingssted helsepersonellet tilhører formelt sett
 		- Hvilken detaljert organisasjonstilhørighet helsepersonellet har i større organisasjoner
-		- Formell rolle/stilling helsepersonellet opptrer i kraft av på vegne av organisasjonen
-		- Funksjon helsepersonellet har og opptrer i kraft av på vegne av organisasjonen
     }
 
     class CareRelation["Behandlerrelasjon (care-relation)"] {
@@ -162,8 +161,8 @@ classDiagram
 		- Helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
     }
     class Patient["Pasient (patient)"] {
-		- Hvem er pasienten
-		- Tilhørighet til behandlingssted og detaljert organisasjonstilhørighet for pasienten
+		- Unik identifikator for pasienten
+		- Pasientens tilhørighet til behandlingssted og detaljert organisasjonstilhørighet
     }
 
 ```
@@ -258,7 +257,7 @@ classDiagram
 | practitioner     | "identifier"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
 | practitioner     | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
 | practitioner     | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
-| practitioner     | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner     | "legal-entity"           | Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.            | 
 | practitioner     | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
 | practitioner     | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
 | care-relation    | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
