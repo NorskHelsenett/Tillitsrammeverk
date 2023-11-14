@@ -1948,11 +1948,22 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     <tr>    
         <td> Regel </td>
         <td>  
-            Attributtet skal inneholde pasientens behandlingssted så fremt behandlingen foregår i helsepersonellets egen virksomhet, og det er registrert en kontakt med en organisasjonsenhet i helsepersonellets egen virksomhet som er grunnlaget for tilgangen. Det er den registrerte underenheten i Brønnøysundregisteret som pasientens kontakt tilhører som skal oppgis.
+            Attributtet skal inneholde pasientens behandlingssted så fremt behandlingen foregår i helsepersonellets egen virksomhet, og det er registrert en kontakt med en organisasjonsenhet i helsepersonellets egen virksomhet som er grunnlaget for tilgangen.<br>
+            Det er den registrerte underenheten i Brønnøysundregisteret som pasientens kontakt tilhører som skal oppgis.
+            <br><br>
+            Det er et generelt krav til alle norske virksomheter at aktivitet skal kunne rapporteres per geografisk sted og per registrert næringskode i Brønnøysund som det drives virksomhet ved, det antas derfor at det er registrert underenheter i Brønnøysundregisteret for de fleste virksomheter i Norge.
+            <br><br>
+            Underheten hvor pasienten har sin registrerte kontakt SKAL benyttes når:
+            <ul>
+                <li>pasienten har en registrert kontakt i helsepersonellets egen virksomhet, og</li>
+                <li>helsehjelp knyttet til denne kontakten er grunnlaget for at helsepersonellet trenger tilgang til helseopplysningene for pasienten</li>
+            </ul>
             <br>
-            Det er et generelt krav til alle norske virksomheter at aktivitet skal kunne rapporteres per geografisk sted og per registrert næringskode i Brønnøysund som det drives virksomhet ved, og derfor skal det være registrert slike underenheter i Brønnøysundregisteret for de fleste virksomheter i Norge.
-            <br>
-            Det er altså kun når pasienten har en registrert kontakt i helsepersonellets egen virksomhet, og helsehjelp knyttet til denne kontakten er grunnlaget for at helsepersonellet trenger tilgang til helseopplysningene for pasienten, at dette attributtet skal formidle den offisielle underenheten pasienten har sin registrerte kontakt ved. Informasjonen skal formidles uavhengig av om helsepersonellet trenger tilgangen som følge av helsehjelp de selv yter direkte til pasienten, eller indirekte som følge av at de trenger tilgangen for å bistå kolleger i egen virksomhet.
+            Attributtet skal inngå i attesten:
+            <ul>
+                <li>når helsepersonellet trenger tilgangen som følge av helsehjelp de selv yter direkte til pasienten</li>
+                <li>som følge av at de trenger tilgangen for å bistå kolleger i egen virksomhet.</li>
+            </ul>
         </td>
     </tr>
     <tr>
@@ -1961,8 +1972,6 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>NHN</li>
-                <li>Dokumentkilde</li>
             </ul>  
         </td>
     </tr>
@@ -1997,8 +2006,6 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>NHN</li>
-                <li>Dokumentkilde</li>
             </ul>  
         </td>
     </tr>
@@ -2024,7 +2031,11 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     <tr>    
         <td> Regel </td>
         <td>  
-            Dersom pasienten behandles ved en annen virksomhet enn helsepersonellets, for eksempel ved behov for tilgang for å kunne bistå en kollega i en annen virksomhet som har pasienten til behandling hos seg, eller dersom pasienten selv eller pårørende har henvendt seg uten at dette er knyttet til en registrert kontakt med helsepersonellets virksomhet, skal ikke dette attributtet benyttes.
+            Attributtet SKAL IKKE inngå i attesten dersom:
+            <ul>
+                <li>pasienten behandles ved en annen virksomhet enn helsepersonellets, for eksempel ved behov for tilgang for å kunne bistå en kollega i en annen virksomhet som har pasienten til behandling hos seg</li>
+                <li>pasienten selv eller pårørende har henvendt seg uten at dette er knyttet til en registrert kontakt med helsepersonellets virksomhet</li>
+            </ul>
         </td>
     </tr>
     <tr>
@@ -2033,8 +2044,6 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
-                <li>NHN</li>
-                <li>Dokumentkilde</li>
             </ul>  
         </td>
     </tr>
@@ -2060,7 +2069,8 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     <tr>    
         <td> Regel </td>
         <td>  
-            Informasjonen vil i første rekke benyttes som et av flere elementer fra attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og dermed inngå i pasientjournalens innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i løsningen for digitalt innbyggerinnsyn i tilgangslogg fra datakilder dersom dette elementet på generelt grunnlag vurderes å gjøre tilgangene mer forståelige for innbyggere.<br> 
+            Attributtet inngår i attesten som dokumenterer grunnlaget for gyldig tilgang til pasientens helseopplysninger, og kan inngå i pasientjournalens innsynslogg for innbygger.<br> 
+            Denne opplysningen SKAL benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i innbyggerens innsynslogg for tilganger fra datakilder dersom attributtet gjør tilgangen mer forståelig for innbyggeren.<br> 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
@@ -2138,9 +2148,16 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>    
         <td> Regel </td>
-        <td>  
-            Hvilket detaljeringsnivå innenfor et potensielt større hierarki av lokalt definerte enheter som er riktig å legge i attesten må vurderes av konsumentvirksomheten, ut fra hva som i størst mulig grad bidrar til å avklare hva som er bakgrunnen for tilgangen. Som hovedregel bør dette være et så detaljert nivå som mulig heller enn et mer overordnet nivå, og likevel et nivå pasienten og eksternt helsepersonell med størst sannsynlighet har et forhold til fremfor mer administrative og formelle nivåer som bare internt personell forholder seg til.<br> 
-            I noen tilfeller kan det være behov for å avgi et mer overordnet nivå av hensyn til behov for særlig diskresjon som virksomheten måtte ha behov for ved enkelte mer spesielle enheter.
+        <td>
+            Konsumerende virksomhet må selv finne riktig detaljnivå på attestering av den lokale enheten hvor pasienten befinner seg.<br>
+            Følgende prinsipper eller retningslinjer er et godt utgangspunkt for å finne riktig nivå:
+            <ul>
+                <li>Nivået skal bidra til å forklare bakgrunnen for tilgangen til helseopplysningene</li>
+                <li>Finn et så detaljert nivå som mulig</li>
+                <li>Finn et nivå som gir mening for pasienten eller eksternt helsepersonell</li>
+                <li>Unngå administrative og formelle nivåer som bare internt personell forholder seg til</li>
+                <li>Bruk overordnede detaljeringsnivå av dersom det er behov for diskresjon rundt informasjon om enheten hvor pasienten befinner seg. Dette kan være aktuelt for spesielle enheter.</li>
+            </ul>
         </td>
     </tr>
     <tr>
