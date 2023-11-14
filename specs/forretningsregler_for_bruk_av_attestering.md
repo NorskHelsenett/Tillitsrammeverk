@@ -1236,7 +1236,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 ### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care-relation"
 
 Attributtet "care-relation" består av fire underliggende attributter, som beskriver behandlerrelasjonen som attesten gjelder for.
-|||
+| | | |
 | --- | --- | --- |
 | care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
 | care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
