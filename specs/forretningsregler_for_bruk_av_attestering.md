@@ -34,6 +34,7 @@ Noen forretningsregler vil kunne være spesifikke for enkelte protokoller eller 
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
 | -0 | Utkast | 27.10.2023 |
+| -1 | Utkast | 15.11.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.

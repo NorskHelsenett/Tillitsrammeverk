@@ -16,6 +16,7 @@ Dette dokumentet er et utkast som er ment for utviklere av programvare som skal 
 | -2 | Utkast | 25.09.2023 |
 | -3 | Utkast | 18.10.2023 |
 | -4 | Utkast | 14.11.2023 |
+| -5 | Utkast | 15.11.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
@@ -784,7 +785,6 @@ og skal peke på en virksomhet i enhetsregisteret.
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#42-forretningsregler-for-attributtet-point-of-care-for-pasient) |
 
 Strukturen som beskriver "point-of-care", består av fire attributter:
@@ -815,7 +815,6 @@ Attributtet skal benyttes ved loggkontroll, samt for å gi mest mulig forståeli
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB eller Norsk Helsenett SF |
-| Kodeverk: | RESH/Enhetsregisteret |
 | Krav og forretningsregler knyttet | [Forretningsregler for attributtet "department" ](forretningsregler_for_bruk_av_attestering.md#43-forretningsregler-for-attributtet-department-for-pasient) |
 
 Strukturen som beskriver "department", består av fire attributter:
