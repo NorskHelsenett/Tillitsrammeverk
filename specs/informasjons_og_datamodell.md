@@ -362,7 +362,7 @@ Attributtet "identifier" i entitet practitioner består av verdier som beskriver
 | Data type: | Object |
 | Autoritativ kilde: | www.skatteetaten.no |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer)|
-| Gyldige verdier: | N/A |
+| Krav og forretningsregler | [Forretningsregler for attributtet "identifier" ](forretningsregler_for_bruk_av_attestering.md#21-forretningsregler-for-attributtet-identifier) |
 
 ##### "identifier" - JSON format
 
@@ -375,7 +375,6 @@ Attributtet "identifier" i entitet practitioner består av verdier som beskriver
 }
 ````
 
-
 #### 4.3.2 "legal-entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
 Attributtet "legal-entity" identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt. Hovedenheten er juridisk ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet. Det er også hovedenheten som eier medlemsskapet i Helsenettet. 
 
@@ -386,7 +385,6 @@ Attributtet benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår
 Formålet med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"). 
 Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
 
-
 |   |   |
 | ---| ---|
 | Attributt: | "legal-entity" |
@@ -395,7 +393,7 @@ Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
 | Data type: | String |
 | Autoritativ kilde: | www.brreg.no |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
-| Gyldige verdier: | N/A |
+| Krav og forretningsregler | [Forretningsregler for attributtet "legal-entity" ](forretningsregler_for_bruk_av_attestering.md#22-forretningsregler-for-attributtet-legal-entity) |
 
 ##### Den personalansvarlige og dataansvarlige virksomheten - Attributter JSON format
 
@@ -436,7 +434,7 @@ Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care:
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
-| Gyldige verdier: | N/A |
+| Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#23-forretningsregler-for-attributtet-point-of-care) |
 
 ##### Arbeidssted/behandlingssted - Attributter JSON format
 
@@ -451,7 +449,6 @@ Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care:
 
 #### 4.3.4 "department": Avdeling eller detaljert organisasjonsenhet
 Attributtet "department" angir avdelingen eller helsepersonellets mest detaljerte organisasjonstilhørighet.
-Attributtet benyttes ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
 
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
 Det er ikke tenkt at systemene må endre på eksisterende registreringer.
@@ -466,7 +463,7 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Data type: | Object |
 | Autoritativ kilde: | Konsument    |
 | Kodeverk: | RESH/Enhetsregisteret |
-| Gyldige verdier: | N/A |
+| Krav og forretningsregler | [Forretningsregler for attributtet "department" ](forretningsregler_for_bruk_av_attestering.md#24-forretningsregler-for-attributtet-department) |
 
 
 ##### "department" - Attributter JSON format
@@ -491,7 +488,7 @@ Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Data type: | Object |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
-| Gyldige verdier: | N/A |
+| Krav og forretningsregler | [Forretningsregler for attributtet "hpr-nr" ](forretningsregler_for_bruk_av_attestering.md#25-forretningsregler-for-attributtet-hpr-nr) |
 
 ###### "hpr-nr": Helsepersonellnummer - JSON format
 ````JSON
@@ -504,12 +501,6 @@ Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 
 #### 4.3.6 "authorization": Helsepersonellets gjeldende autorisasjon
 Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet.
-
-Noe helsepersonell har ikke autorisasjoner, men trenger likevel tilgang på helseopplysninger. Attributtet kan derfor ikke være påkrevd, men skal inkluderes i datamodellen dersom den fysiske personen har en eller flere gyldige autorisasjoner.
-
-Formålet med attributtet er loggkontroll og eventuell tilgangsstyring. Dersom noen dokumenter krever en autorisasjon vil dette attributtet måtte benyttes til dette. Ved at dette attributtet er tilgjengelig legger vi til rette for at tilgangsstyring kan utføres.
-
-I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er ønskelig at det er den autorisasjonen som "benyttes" i tilgangsforespørselen som formidles.
  
 |   |   |
 | ---| ---|
@@ -518,8 +509,7 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Kodeverk: | [Kategori Helsepersonell (OID=2.16.578.1.12.4.1.1.9060)](https://volven.no/produkt.asp?id=506875&catID=3&subID=8)  |
-| Gyldige verdier: | N/A |
+| Krav og forretningsregler | [Forretningsregler for attributtet "authorization" ](forretningsregler_for_bruk_av_attestering.md#26-forretningsregler-for-attributtet-authorization) |
 
 ##### "authorization": Helsepersonellets gjeldende autorisasjon - JSON format
 ````JSON
@@ -533,6 +523,8 @@ I dag benyttes autorisasjonen som gir størst grad av tilgang av KJ, men det er 
 
 ### 4.4 Kategori: "care-relation" - behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av formålet med og bakgrunnen for behandlingen av helseopplysningene og eventuelt en helsetjenestetype som ytes til pasienten.
+
+Krav og forretningsregler knyttet til "care-relation": [Forretningsregler for attributtet "care-relation" ](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care-relation)
 
 Strukturen som beskriver behandlerrelasjonen består av fire attributter:
 * _healthcare-service_, som identifiserer typen helsetjenester som leveres ved virksomheten
@@ -563,8 +555,6 @@ Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 #### 4.4.1 "healthcare-service": Helsetjenestetype
 Attributtet "healthcare-service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
-Attributtet _kan_ benyttes til tilgangsstyring hos datakilden (som erstatning for eller i kombinasjon med rolle), men også i forbindelse med loggkontroll/analyse og ved innsyn til innbygger.
-
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.<br>
 Det er ikke tenkt at systemene må endre på eksisterende registreringer.
 
@@ -577,10 +567,7 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
-| Kodeverk: | [Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)](https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655)<br/>[UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)](https://volven.no/produkt.asp?id=507406&catID=3&subID=8)<br/>[Fagområde (OID=2.16.578.1.12.4.1.1.8451)](https://volven.no/produkt.asp?id=507306&catID=3&subID=8)<br/>[Tjenestetyper for spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8668)](https://volven.no/produkt.asp?open_f=true&id=496329&catID=3&subID=8&subCat=163&oid=8668)<br/>[Tjenestetyper for kommunal helse- og omsorgstjeneste mv (OID=2.16.578.1.12.4.1.1.8663)](https://volven.no/produkt.asp?open_f=true&id=496326&catID=3&subID=8&subCat=163&oid=8663)<br/>[Fylkeskommunale tjenestetyper (OID=2.16.578.1.12.4.1.1.8662)](https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662)<br/>[Tjenestetyper for apotek og bandasjister (OID=2.16.578.1.12.4.1.1.8664)](https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664)<br/>[Felles tjenestetyper (OID=2.16.578.1.12.4.1.1.8666)](https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666) |
-| Gyldige verdier:| N/A |
-
-
+| Krav og forretningsregler | [Forretningsregler for attributtet "healthcare-service" ](forretningsregler_for_bruk_av_attestering.md#31-forretningsregler-for-attributtet-healthcare-service) |
 
 ##### "healthcare-service" - Attributter JSON format
 
@@ -594,7 +581,7 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 ````
 
 #### 4.4.2 "purpose-of-use": formålet med behandlingen av personopplysninger
-Attributtet "purpose-of-use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger, og benyttes til å begrunne _hvorfor_ helsepersonellet trenger tilgang til pasientens helseopplysninger.
+Attributtet "purpose-of-use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger, og benyttes til å begrunne *hvorfor* helsepersonellet trenger tilgang til pasientens helseopplysninger.
 I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesialiserte formål ikke ansees som relevante eller nødvendige for omfanget til Pasientens Journaldokumenter.
 
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
@@ -609,8 +596,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Kodeverk: | urn:oid:2.16.840.1.113883.1.11.20448 - [HL7](https://terminology.hl7.org/ValueSet-v3-PurposeOfUse.html)<br>[ISO 14265:2011](https://www.iso.org/standard/83447.html) |
-| Gyldige verdier:| TREAT, <br>ETREAT,<br>COC,<br>BTG |
+| Krav og forretningsregler | [Forretningsregler for attributtet "purpose-of-use" ](forretningsregler_for_bruk_av_attestering.md#32-forretningsregler-for-attributtet-purpose-of-use) |
 
 
 ###### "purpose-of-use" - JSON format
@@ -627,9 +613,8 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 #### 4.4.3 "purpose-of-use-details": type tjeneste som pasienten skal motta hos virksomheten
 Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for tilgjengeliggjøringen for bruk i loggkontroll samt som informasjon til innbygger.
 
-Attributtet "purpose-of-use-details" er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem. Informasjonen i attributtet skal beskrive hvorfor helsepersonellet er gitt tilgang til pasientens helseopplysninger. Beslutningen skal gis etter en vurdering av tilgangsreglene som gjelder for dette helsepersonellet.
-
-Attributtet knytter helsepersonellet til pasienten ved å gi en forklaring på hvorfor helsepersonellet trenger helseopplysningene.
+Attributtet "purpose-of-use-details" skal gi en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem. En tilgangsbeslutning blir gitt etter en vurdering av tilgangsreglene som gjelder for dette helsepersonellet. 
+Informasjonen i attributtet skal beskrive hvorfor helsepersonellet er gitt tilgang til pasientens helseopplysninger. 
 
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
 Det er ikke tenkt at systemene må endre på eksisterende registreringer.
@@ -643,8 +628,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Kodeverk: | Kommune: urn:oid:x.x.x.x.x.9151 - [volven](https://volven.no/produkt.asp?open_f=true&id=494341&catID=3&subID=8&subCat=140&oid=9151)<br/>Spesialisthelsetjenesten:[HL7 Norway](https://hl7norway.github.io/AuditEvent/currentbuild/CodeSystem-carerelation.html) |
-| Gyldige verdier:| N/A |
+| Krav og forretningsregler | [Forretningsregler for attributtet "purpose-of-use-details" ](forretningsregler_for_bruk_av_attestering.md#33-forretningsregler-for-attributtet-purpose-of-use-details) |
 
 ##### "purpose-of-use-details" - JSON format
 
@@ -661,9 +645,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 #### 4.4.4 "decision-ref": ekstern referanse til lokal tilgangsbeslutning
 Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten. Formålet med dette attributtet er at kilden skal være i stand til å referere til en lokal beslutning hos konsumenten ved behov for oppfølging etter en logganalyse.
 
-Verdien "user_selected" skal være av type _boolean_. Verdien angir om helsepersonellet har gitt seg selv tilgang til pasientens helseopplysninger. Dersom helsepersonellet har gitt seg selv tilgang skal verdien være _true_. Dersom tilgangen er systemutledet, dvs basert på informasjon om helsepersonellet og pasienten som er registeret i PAS/EPJ (eventuelt i annet fagsystem), skal verdien være _false_.   
-
-Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
+Målet med attesteringen er at konsumenten skal kunne gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
 Det er ikke tenkt at systemene må endre på eksisterende registreringer.
 
 Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
@@ -675,8 +657,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Kodeverk: | N/A |
-| Gyldige verdier:|  |
+| Krav og forretningsregler | [Forretningsregler for attributtet "decision-ref" ](forretningsregler_for_bruk_av_attestering.md#34-forretningsregler-for-attributtet-decision-ref) |
 
 
 ##### "decision-ref" - Attributter JSON format
@@ -692,9 +673,8 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 ### 4.5 Kategori: "patients" - pasienten
 
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
-Det er ikke tenkt at systemene må endre på eksisterende registreringer.
 
-Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
+Det er ikke tenkt at systemene må endre på eksisterende registreringer. Dersom det viser seg at dette informasjonselementet er krevende å implementere kan det bli nødvendig å justere på spesifikasjonen. Ta derfor kontakt så tidlig som mulig. Forfatterne av spesifikasjonen ønsker å være konstruktive, og vil unngå større endringer i systemene som skal implementere spesifikasjonen.
 
 | Attributt | |
 | --- | --- |
@@ -704,7 +684,8 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Autoritativ kilde: | Konsument |
 | Data type: | Array |
 | Kodeverk: | N/A |
-| Gyldige verdier: |  |
+| Krav og forretningsregler | [Forretningsregler for attributtet "patients" ](forretningsregler_for_bruk_av_attestering.md#4-forretningsregler-for-beskrivelse-av-pasienten---attributt-patient) |
+
 
 Strukturen som beskriver en pasient, består av tre attributter:
 * _identifier_, som identifiserer pasienten som fysisk person
@@ -741,7 +722,7 @@ Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 | Autoritativ kilde: | Folkeregisteret - Skattedirektoratet |
 | Data type: | String |
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
-| Gyldige verdier: |  |
+| Krav og forretningsregler | [Forretningsregler for attributtet "identifier" ](forretningsregler_for_bruk_av_attestering.md#41-forretningsregler-for-attributtet-identifier-for-pasient) |
 
 
 ##### "identifier" - Attributter JSON format
@@ -758,12 +739,7 @@ Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 
 Attributtet "point-of-care" identifiserer behandlingsstedet hvor pasienten mottar behandlingen som er grunnlaget for tilgangen fra,
 og skal peke på en virksomhet i enhetsregisteret.
-<br>
-Attributtet er ikke relevant dersom pasienten behandles utenfor helsepersonellets virksomhet, og det er derfor ikke obligatorisk. Verdien for "point-of-care" kan være lik helsepersonellets "legal-entity" der virksomheten kun drives på et geografisk sted og ikke har undervirksomheter.
-
-
 Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
-
 
 |   |   |
 | ---| ---|
@@ -773,7 +749,7 @@ Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informas
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
-| Gyldige verdier: |  |
+| Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#42-forretningsregler-for-attributtet-point-of-care-for-pasient) |
 
 ##### Behandlingssted for pasient - Attributter JSON format
 
@@ -788,7 +764,7 @@ Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informas
 
 #### 4.5.3 "department": Avdeling eller detaljert organisasjonsenhet
 Attributtet "department" angir avdelingen eller den mest detaljerte organisasjonstilhørigheten pasienten har i forbindelse med helsehjelpen som krever tilgang til helseopplysningene i helsepersonellets virksomhet.
-Attributtet benyttes ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
+Attributtet skal benyttes ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
 
 
 |   |   |
@@ -799,7 +775,7 @@ Attributtet benyttes ved loggkontroll, samt for å gi mest mulig forståelig inf
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB eller Norsk Helsenett SF |
 | Kodeverk: | RESH/Enhetsregisteret |
-| Gyldige verdier: | N/A |
+| Krav og forretningsregler knyttet | [Forretningsregler for attributtet "department" ](forretningsregler_for_bruk_av_attestering.md#43-forretningsregler-for-attributtet-department-for-pasient) |
 
 
 ##### "department" - Attributter JSON format

@@ -1,4 +1,4 @@
-# Forretningsregler for bruk av attest
+# Krav og forretningsregler ved attestering av helsepersonellets grunnlag for tilgang til pasientens helseopplysninger
 ## Sammendrag
 Dette dokumentet beskriver forretningsregler knyttet til attestering av helsepersonellets grunnlag for tilgang til pasientens helseopplysninger i kjøretid.
 
@@ -145,7 +145,7 @@ Hver regel i spesifikasjonen er beskrevet i følgende format:
         <td>
             En attest SKAL formatteres til ett av følgende format: 
             <ul>
-                <li>JSON</li> 
+                <li>JSON</li>
                 <li>XML</li>
             </ul>
             Det er den aktuelle tjenesten som skal konsumeres som avgjør hvilket format som forventes. Serialiseringsdetaljer blir spesifisert i relevant dokumentasjon av den aktuelle løsningen. 
@@ -178,7 +178,8 @@ Hver regel i spesifikasjonen er beskrevet i følgende format:
             <ul>
                 <li>Ivaretar attributtenes integritet under transport og lagring</li>
                 <li>Entydig, og med høy grad av sannsynlighet, kan knyttes til den konsumerende virksomheten som besluttet tilgangen</li>
-            </ul>            
+            </ul>
+            <br>
             Sporbarhet SKAL ivaretas ved bruk av digital signatur og standardiserte signeringsformater, som f.eks.:
             <ul>
                 <li>XML-Signature og SAML formatet</li>
@@ -215,6 +216,7 @@ Hver regel i spesifikasjonen er beskrevet i følgende format:
                 <li>Overføres ved bruk av kryptert transportlag, f.eks. ved bruk av TLS for transport via http.</li>
                 <li>Krypteres ved lagring over tid</li>                    
             </ul>
+            <br>
             Konfidensialitet KAN ivaretas ved bruk av meldingskryptering (ende-til-ende), og standardiserte krypteringsformater som f.eks.:
             <ul>
                 <li>XML-Encryption og SAML formatet</li>
