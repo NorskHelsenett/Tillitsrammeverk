@@ -384,10 +384,6 @@ Strukturen som beskriver "identifier", består av fire attributter:
 #### 4.3.2 "legal-entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
 Attributtet "legal-entity" identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt. Hovedenheten er juridisk ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet. Det er også hovedenheten som eier medlemsskapet i Helsenettet. 
 
-Attributtet benyttes til tilgangsstyring i forbindelse med signerte bruksvilkår, f.eks.
-* kontroll av medlemsskap i helsenett 
-* kontroll av gyldig avtale om tilgang til tjenester som HelseID, kjernejournal og aksept av tilhørende bruksvilkår)
-
 Formålet med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"). 
 Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
 
@@ -419,24 +415,8 @@ Strukturen som beskriver "legal-entity", består av fire attributter:
 ```` 
 
 #### 4.3.3 "point-of-care": Arbeidssted (behandlingssted som helsepersonellet tilhører)
-
 Attributtet "point-of-care" identifiserer behandlingsstedet hvor helsepersonellet formelt sett har sin tilhørighet,
 og skal peke på en virksomhet i enhetsregisteret.
-<br>
-Attributtet er obligatorisk, men verdiene for "legal-entity" og "point-of-care" kan være like der virksomheten kun drives på et geografisk sted og ikke har undervirksomheter.
-
-Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
-
-Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care: 
-
-**Spesialisthelsetjenesten**
-* legal_enitity: "Nordlandssykehuset HF" 
-* point-of-care: "Nordlandssykehuset HF Somatikk - Gravdal"
-
-**Kommune**
-* legal-entity: "Oslo kommune helseetaten"
-* point-of-care: "Oslo kommune helseetaten legevakten Storgata"
-
 
 |   |   |
 | ---| ---|
@@ -445,7 +425,6 @@ Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care:
 | Avtalemessig påkrevd | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#23-forretningsregler-for-attributtet-point-of-care) |
 
 Strukturen som beskriver "point-of-care", består av fire attributter:
@@ -480,7 +459,6 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Konsument    |
-| Kodeverk: | RESH/Enhetsregisteret |
 | Krav og forretningsregler | [Forretningsregler for attributtet "department" ](forretningsregler_for_bruk_av_attestering.md#24-forretningsregler-for-attributtet-department) |
 
 Strukturen som beskriver "department", består av fire attributter:
@@ -510,7 +488,6 @@ Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 | Krav og forretningsregler | [Forretningsregler for attributtet "hpr-nr" ](forretningsregler_for_bruk_av_attestering.md#25-forretningsregler-for-attributtet-hpr-nr) |
 
 Strukturen som beskriver "hpr-nr", består av tre attributter:
@@ -799,7 +776,6 @@ Strukturen som beskriver "identifier", består av fire attributter:
 
 Attributtet "point-of-care" identifiserer behandlingsstedet hvor pasienten mottar behandlingen som er grunnlaget for tilgangen fra,
 og skal peke på en virksomhet i enhetsregisteret.
-Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informasjon til pasient.
 
 |   |   |
 | ---| ---|

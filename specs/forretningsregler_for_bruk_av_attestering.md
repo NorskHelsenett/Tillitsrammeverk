@@ -712,9 +712,72 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>    
         <td>Regel</td>
-        <td>Attributtet SKAL inneholde identifikator for helsepersonellets arbeidssted, altså behandlingsstedet som helsepersonellet formelt er tilknyttet.<br> 
-        Verdien SKAL angi underenheten som er registrert i Brønnøysundregisteret, hvor helsepersonellet formelt utfører sitt arbeid.<br><br>
-        Alle norske virksomheter er påkrevd å rapportere aktivitet per geografisk sted og per registrert næringskode i Brønnøysund. Det antas at de fleste norske virksomheter har registrerte underenheter i Brønnøysundregisteret.
+        <td>
+            Attributtet SKAL inneholde identifikator for helsepersonellets arbeidssted, altså behandlingsstedet som helsepersonellet formelt er tilknyttet.<br> 
+            Verdien SKAL angi underenheten som er registrert i Brønnøysundregisteret, hvor helsepersonellet formelt utfører sitt arbeid.<br><br>
+            Alle norske virksomheter er påkrevd å rapportere aktivitet per geografisk sted og per registrert næringskode i Brønnøysund. Det antas at de fleste norske virksomheter har registrerte underenheter i Brønnøysundregisteret.
+            <br>
+            Eksempler på kombinasjoner av attributtene "legal-entity" og "point-of-care" for spesialisthelsetjenesten:
+            <ul>
+                <tr>
+                    <td>                    
+                        legal_enitity: "Nordlandssykehuset HF"          
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        point-of-care: "Nordlandssykehuset HF Somatikk - Gravdal"
+                    </td>
+                </tr>
+            </ul>
+            <br>
+            Eksempler på kombinasjoner av attributtene "legal-entity" og "point-of-care" for kommune:
+            <ul>
+                <tr>
+                    <td>                    
+                        legal-entity: "Oslo kommune helseetaten"
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        point-of-care: "Oslo kommune helseetaten legevakten Storgata"
+                    </td>
+                </tr>
+            </ul>            
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID </td>
+        <td> ATT-18 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"point-of-care"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Behandlingsstedets org.nr. og navn.</td>
+    </tr>    
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Gyldig kodeverk angivelse av innholdet i attributtet "point-of-care"</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            Attributtet "system" SKAL angis til kodeverk: 2.16.578.1.12.4.1.4.101.<br> 
         </td>
     </tr>
     <tr>
@@ -1121,6 +1184,43 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 
 
 #### 2.5 Forretningsregler for attributtet "hpr-nr"
+<table>
+    <tr>
+        <td>ID </td>
+        <td> ATT-29 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"hpr-nr"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets HPR-nummer, dersom det finnes</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Gyldig kodeverk for angivelse av verdi for attributtet "hpr-nr"</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            Kodeverket som benyttes for angivelse av attributtet "hpr-nr" SKAL være:<br>
+            <ul>
+                <li>2.16.578.1.12.4.1.4.4 - Helsepersonellregisteret</a></li>
+            </ul> 
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
 <table>
     <tr>
         <td>ID </td>
