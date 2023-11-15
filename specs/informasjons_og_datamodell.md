@@ -364,6 +364,12 @@ Attributtet "identifier" i entitet practitioner består av verdier som beskriver
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer)|
 | Krav og forretningsregler | [Forretningsregler for attributtet "identifier" ](forretningsregler_for_bruk_av_attestering.md#21-forretningsregler-for-attributtet-identifier) |
 
+Strukturen som beskriver "identifier", består av fire attributter:
+* *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
+* *name*, som er en navnet på personen som identifikatoren i attributtet "id" identifiserer 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *authority*, som angir hvem den autoritative kilden for registeret som er angitt av attributtet "system"
+
 ##### "identifier" - JSON format
 
 ````JSON
@@ -394,6 +400,12 @@ Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
 | Autoritativ kilde: | www.brreg.no |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Krav og forretningsregler | [Forretningsregler for attributtet "legal-entity" ](forretningsregler_for_bruk_av_attestering.md#22-forretningsregler-for-attributtet-legal-entity) |
+
+Strukturen som beskriver "legal-entity", består av fire attributter:
+* *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
+* *name*, som er en navnet på hovedeneheten som identifikatoren i attributtet "id" identifiserer 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *authority*, som angir hvem den autoritative kilden for registeret som er angitt av attributtet "system"
 
 ##### Den personalansvarlige og dataansvarlige virksomheten - Attributter JSON format
 
@@ -436,6 +448,12 @@ Eksempler på gyldige sammensetninger av "legal-entity" og "point-of-care:
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#23-forretningsregler-for-attributtet-point-of-care) |
 
+Strukturen som beskriver "point-of-care", består av fire attributter:
+* *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
+* *name*, som er en navnet på behandlingsstedet som identifikatoren i attributtet "id" identifiserer 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *authority*, som angir hvem den autoritative kilden for registeret som er angitt av attributtet "system"
+
 ##### Arbeidssted/behandlingssted - Attributter JSON format
 
 ````JSON
@@ -465,6 +483,11 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Kodeverk: | RESH/Enhetsregisteret |
 | Krav og forretningsregler | [Forretningsregler for attributtet "department" ](forretningsregler_for_bruk_av_attestering.md#24-forretningsregler-for-attributtet-department) |
 
+Strukturen som beskriver "department", består av fire attributter:
+* *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
+* *name*, som er en navnet på underenheten som identifikatoren i attributtet "id" identifiserer 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *authority*, som angir hvem den autoritative kilden for registeret som er angitt av attributtet "system"
 
 ##### "department" - Attributter JSON format
 
@@ -490,6 +513,11 @@ Attributtet "hpr-nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Kodeverk: | 2.16.578.1.12.4.1.4.4 |
 | Krav og forretningsregler | [Forretningsregler for attributtet "hpr-nr" ](forretningsregler_for_bruk_av_attestering.md#25-forretningsregler-for-attributtet-hpr-nr) |
 
+Strukturen som beskriver "hpr-nr", består av tre attributter:
+* *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *assigner*, som angir hvem som er ansvarlig for forvaltning av kodeverket angitt i attributtet "system"
+
 ###### "hpr-nr": Helsepersonellnummer - JSON format
 ````JSON
 "hpr-nr": {
@@ -511,6 +539,12 @@ Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for he
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
 | Krav og forretningsregler | [Forretningsregler for attributtet "authorization" ](forretningsregler_for_bruk_av_attestering.md#26-forretningsregler-for-attributtet-authorization) |
 
+Strukturen som beskriver "authorization", består av fire attributter:
+* *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
+* *text*, som er tekstlig beskrivelse av koden angitt attributtet "code"
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *assigner*, som angir hvem som er ansvarlig for forvaltning av kodeverket angitt i attributtet "system"
+
 ##### "authorization": Helsepersonellets gjeldende autorisasjon - JSON format
 ````JSON
 "authorization": {
@@ -526,7 +560,7 @@ Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av fo
 
 Krav og forretningsregler knyttet til "care-relation": [Forretningsregler for attributtet "care-relation" ](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care-relation)
 
-Strukturen som beskriver behandlerrelasjonen består av fire attributter:
+Strukturen som beskriver behandlerrelasjonen består av fire attributter som igjen har sine underliggende strukturer:
 * _healthcare-service_, som identifiserer typen helsetjenester som leveres ved virksomheten
 * _purpose-of-use_, som beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger
 * _purpose-of-use-details_, som er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem
@@ -569,6 +603,12 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Autoritativ kilde: | Konsument |
 | Krav og forretningsregler | [Forretningsregler for attributtet "healthcare-service" ](forretningsregler_for_bruk_av_attestering.md#31-forretningsregler-for-attributtet-healthcare-service) |
 
+Strukturen som beskriver "healthcare-service", består av fire attributter:
+* *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
+* *text*, som er tekstlig beskrivelse av koden angitt attributtet "code"
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *assigner*, som angir hvem som er ansvarlig for forvaltning av kodeverket angitt i attributtet "system"
+
 ##### "healthcare-service" - Attributter JSON format
 
 ````JSON
@@ -598,6 +638,11 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Data type: | Object |
 | Krav og forretningsregler | [Forretningsregler for attributtet "purpose-of-use" ](forretningsregler_for_bruk_av_attestering.md#32-forretningsregler-for-attributtet-purpose-of-use) |
 
+Strukturen som beskriver "purpose-of-use", består av fire attributter:
+* *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
+* *text*, som er tekstlig beskrivelse av koden angitt attributtet "code"
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *assigner*, som angir hvem som er ansvarlig for forvaltning av kodeverket angitt i attributtet "system"
 
 ###### "purpose-of-use" - JSON format
 
@@ -630,6 +675,12 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Data type: | Object |
 | Krav og forretningsregler | [Forretningsregler for attributtet "purpose-of-use-details" ](forretningsregler_for_bruk_av_attestering.md#33-forretningsregler-for-attributtet-purpose-of-use-details) |
 
+Strukturen som beskriver "purpose-of-use-details", består av fire attributter:
+* *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
+* *text*, som er tekstlig beskrivelse av koden angitt attributtet "code"
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *assigner*, som angir hvem som er ansvarlig for forvaltning av kodeverket angitt i attributtet "system"
+
 ##### "purpose-of-use-details" - JSON format
 
 ````JSON
@@ -659,6 +710,11 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Data type: | Object |
 | Krav og forretningsregler | [Forretningsregler for attributtet "decision-ref" ](forretningsregler_for_bruk_av_attestering.md#34-forretningsregler-for-attributtet-decision-ref) |
 
+Strukturen som beskriver attributtet "decision-ref", består av tre attributter:
+* _id_, som er en unik identifikator som identifiserer tilgangsbeslutningen hos konsumenten 
+* _description_, som er en maskingenerert tekstlig beskrivelse av tilgangsbeslutningen hos konsumenten
+* _user-selected_, som er en boolsk verdi som angir hvorvidt brukeren har gitt seg selv tilgang eller ikke
+
 
 ##### "decision-ref" - Attributter JSON format
 
@@ -685,7 +741,6 @@ Det er ikke tenkt at systemene må endre på eksisterende registreringer. Dersom
 | Data type: | Array |
 | Kodeverk: | N/A |
 | Krav og forretningsregler | [Forretningsregler for attributtet "patients" ](forretningsregler_for_bruk_av_attestering.md#4-forretningsregler-for-beskrivelse-av-pasienten---attributt-patient) |
-
 
 Strukturen som beskriver en pasient, består av tre attributter:
 * _identifier_, som identifiserer pasienten som fysisk person
@@ -724,6 +779,11 @@ Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 | Kodeverk: | 2.16.578.1.12.4.1.4.1 (F-nummer),<br/>2.16.578.1.12.4.1.4.2 (D-nummer),<br/>2.16.578.1.12.4.1.4.3 (H-nummer)|
 | Krav og forretningsregler | [Forretningsregler for attributtet "identifier" ](forretningsregler_for_bruk_av_attestering.md#41-forretningsregler-for-attributtet-identifier-for-pasient) |
 
+Strukturen som beskriver "identifier", består av fire attributter:
+* *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
+* *name*, som er en navnet på pasienten som identifikatoren i attributtet "id" identifiserer 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *authority*, som angir hvem den autoritative kilden for registeret som er angitt av attributtet "system"
 
 ##### "identifier" - Attributter JSON format
 
@@ -751,6 +811,12 @@ Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informas
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
 | Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#42-forretningsregler-for-attributtet-point-of-care-for-pasient) |
 
+Strukturen som beskriver "point-of-care", består av fire attributter:
+* *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
+* *name*, som er en navnet på behandlingsstedet som identifikatoren i attributtet "id" identifiserer 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *authority*, som angir hvem den autoritative kilden for registeret som er angitt av attributtet "system"
+
 ##### Behandlingssted for pasient - Attributter JSON format
 
 ````JSON
@@ -766,7 +832,6 @@ Attributtet "point-of-care" skal brukes til loggkontroll, sporbarhet og informas
 Attributtet "department" angir avdelingen eller den mest detaljerte organisasjonstilhørigheten pasienten har i forbindelse med helsehjelpen som krever tilgang til helseopplysningene i helsepersonellets virksomhet.
 Attributtet skal benyttes ved loggkontroll, samt for å gi mest mulig forståelig informasjon om bakgrunnen for tilgangen til innbygger.
 
-
 |   |   |
 | ---| ---|
 | Attributt: | "department" |
@@ -777,6 +842,11 @@ Attributtet skal benyttes ved loggkontroll, samt for å gi mest mulig forståeli
 | Kodeverk: | RESH/Enhetsregisteret |
 | Krav og forretningsregler knyttet | [Forretningsregler for attributtet "department" ](forretningsregler_for_bruk_av_attestering.md#43-forretningsregler-for-attributtet-department-for-pasient) |
 
+Strukturen som beskriver "department", består av fire attributter:
+* *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
+* *name*, som er en navnet på underenheten som identifikatoren i attributtet "id" identifiserer 
+* *system*, som angir hvilket kodeverk attributtet "code" er definert i
+* *authority*, som angir hvem den autoritative kilden for registeret som er angitt av attributtet "system"
 
 ##### "department" - Attributter JSON format
 
@@ -788,7 +858,6 @@ Attributtet skal benyttes ved loggkontroll, samt for å gi mest mulig forståeli
 	"authority": "https://www.nhn.no"
 }
 ````
-
 
 ## 5. Sikkerhets- og personvernshensyn
 ### 5.1 Cybersikkerhet
