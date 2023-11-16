@@ -11,18 +11,18 @@ Dette dokumentet er et utkast som er ment for utviklere av programvare som skal 
 
 | Versjon | Dokumentets status | dato |
 | --- | --- | --- |
-| -0 | Utkast | 17.02.2023 |
-| -1 | Utkast | 10.03.2023 |
-| -2 | Utkast | 25.09.2023 |
-| -3 | Utkast | 18.10.2023 |
-| -4 | Utkast | 14.11.2023 |
-| -5 | Utkast | 15.11.2023 |
+| -0 | Utkast 		| 17.02.2023 |
+| -1 | Utkast 		| 10.03.2023 |
+| -2 | Utkast 		| 25.09.2023 |
+| -3 | Utkast 		| 18.10.2023 |
+| -4 | Utkast 		| 14.11.2023 |
+| -5 | Utkast 		| 15.11.2023 |
+| -6 | Utprøving 	| 16.11.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
 
 Spesifikasjonen skal versjoneres for å støtte endringer over tid.
-
 
 ## Innholdsfortegnelse
 1. [Innledning](#1-innledning)<br/>
@@ -34,6 +34,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 	4.3 [Beskrivelse av helsepersonellet: "practitioner"](#43-kategori-practitioner---beskrivelse-av-helsepersonellet)<br/>
 	4.4 [Beskrivelse av behandlerrelasjon: "care-relation"](#44-kategori-care-relation---behandlerrelasjon)<br/>
 	4.5 [Beskrivelse av pasienten: "patient"](#45-kategori-patients---pasienten)<br/>
+	4.6 [Beskrivelse av attesten: "attestation"](#46-attestation)<br>
 5. [Sikkerhets- og personvernshensyn](#5-sikkerhets--og-personvernshensyn)<br/>
 	5.1 [Cybersikkerhet](#51-cybersikkerhet)<br/>
 	5.2 [Personvern](#52-personvern) 
@@ -161,6 +162,7 @@ classDiagram
 		- Formålet med og grunnlaget for behandlingen av helseopplysningene
 		- Helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
     }
+
     class Patient["Pasient (patient)"] {
 		- Unik identifikator for pasienten
 		- Pasientens tilhørighet til behandlingssted og detaljert organisasjonstilhørighet
@@ -224,8 +226,12 @@ title: Datamodell
 ---
 classDiagram
 
-	Practitioner -- CareRelation
-	CareRelation -- Patient
+	class Attestation["attestation"]{
+		+ "toa": utcDateTime
+		+ Practitioner : practitioner
+		+ CareRelation : care-relation
+		+ Patient : patient
+	}
 
 	class Practitioner["practitioner"] {
 		- "identifier"
@@ -248,6 +254,20 @@ classDiagram
 		- "point-of-care"
 		- "department"
 	}	
+
+
+direction TD
+	Attestation *-- Practitioner
+	Attestation *-- CareRelation
+	Attestation *-- Patient
+
+direction LR
+	Practitioner -- CareRelation
+	CareRelation -- Patient
+
+
+
+	
 		
 ```
 
@@ -255,9 +275,9 @@ classDiagram
 
 | Kategori         | Attributt                | Beskrivelse                                                                                       | 
 |------------------|--------------------------|---------------------------------------------------------------------------------------------------| 
-| practitioner     | "identifier"                | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
+| practitioner     | "identifier"             | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
 | practitioner     | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
-| practitioner     | "authorization"     	   | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner     | "authorization"     	  | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
 | practitioner     | "legal-entity"           | Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.            | 
 | practitioner     | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
 | practitioner     | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
@@ -266,8 +286,9 @@ classDiagram
 | care-relation    | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
 | care-relation    | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
 | patient          | "identifier"             | Unik identifikator for pasienten                                                                  | 
-| patient          | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
-| patient          | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
+| patient          | "point-of-care"  	      | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
+| patient          | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	      |
+| attestation	   | "toa"   				  | "Time of Attestation" - tidspunktet hvor attestering ble utført 								  |
 
 
 #### 4.2.5 Konsumenten som informasjonskilde for attestering
@@ -832,6 +853,46 @@ Strukturen som beskriver "department", består av fire attributter:
 	"system": "urn:oid:2.16.578.1.12.4.1.4.102",
 	"authority": "https://www.nhn.no"
 }
+````
+
+### 4.6 "attestation"
+Attributtet "attestation" skal inneholde strukturene som er definert tidligere i spesifikasjonen: "practitioner", "care-relation", "patients", og fungerer som en omsluttende struktur for en attest.
+I JSON format er objektet som representerer en attest strukturert på følgende måte:
+
+```JSON
+"attestation": {
+		"toa": 1700121037,
+		"practitioner": {
+			8<...>8
+		},
+		"care-relation": {
+			8<...>8
+		},
+		"patients": {
+			8<...>8
+		}
+	}
+```
+#### 4.6.1 "toa" - tidspunktet hvor attestering ble utført
+
+Attributtet "toa" angir tidspunktet hvor grunnlaget for tilgjengeliggjøringen ble attestert.
+Attributtet kan benyttes til tilgangskontroll og loggkontroll.
+
+|   |   |
+| ---| ---|
+| Attributt: | "toa" |
+| Informasjonselement | "Time of attestation" - tidspunktet når attestering ble utført |
+| Avtalemessig påkrevd | **Ja** |
+| Data type: | int |
+| Autoritativ kilde: | N/A |
+| Krav og forretningsregler knyttet | [Forretningsregler for attributtet "toa" ](forretningsregler_for_bruk_av_attestering.md#51-forretningsregler-for-attributtet-toa-for-pasient) |
+
+##### "toa" - Attributter JSON format
+
+````JSON
+
+"toa": 1700121037,
+
 ````
 
 ## 5. Sikkerhets- og personvernshensyn

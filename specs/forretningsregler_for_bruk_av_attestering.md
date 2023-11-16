@@ -14,7 +14,7 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 |---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
 | practitioner  | "identifier"             | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
 | practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
-| practitioner  | "authorization"     	    | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
+| practitioner  | "authorization"     	    | Helsepersonellets autorisasjon, dersom den finnes                                                | 
 | practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
 | practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
 | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
@@ -25,6 +25,7 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 | patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
 | patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
+| attestation	| "toa"   				  | "Time of Attestation" - tidspunktet hvor attestering ble utført 								   |
 
 En attest er ikke knyttet til en spesifikk internettprotokoll, eller et spesifikt format, men skal kunne serialiseres ved bruk av forskjellige formater, som f.eks. JSON, XML og CBOR, og benyttes i forskjellige protokoller (som http, amqp, smtp osv). 
 
@@ -35,6 +36,7 @@ Noen forretningsregler vil kunne være spesifikke for enkelte protokoller eller 
 | --- | --- | --- |
 | -0 | Utkast | 27.10.2023 |
 | -1 | Utkast | 15.11.2023 |
+| -2 | Utprøving | 16.11.2023 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
@@ -2381,6 +2383,52 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
             <ul>
                 <li>Konsument</li>
                 <li>Dokumentkilde</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+
+### 5. Forretningsregler for attestering - attributt: "attestation"
+Attributtet "attestation" består av fire underliggende attributter som utgjør attesten. De fire underliggende attributtene utgjør selve attesten og er definert tidligere i spesifikasjonen.
+
+| | |
+| --- | --- |
+| "toa" | Tidspunktet for attestering | 
+| "practitioner" | Informasjon om helsepersonellet | 
+| "care-relation" | Informasjon om behandlerrelasjonen | 
+| "patient" | Informasjon om pasienten som helsepersonellet ønsker å hente helseopplysninger om | 
+
+#### 5.1 Forretningsregler for attributtet "toa" for pasient
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-58 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"toa"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Tidspunktet for attestering</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Korrekt formattering av "toa" for attest.</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>  
+            Attributtet "toa" skal være en numerisk verdi som representerer antallet sekunder siden 1970-01-01T00:00:00Z UTC fram til tidspunket for attesteringen, uten <a href="https://no.wikipedia.org/wiki/Skuddsekund">skuddsekund</a>. Dette er likt såkalt <a href="https://no.wikipedia.org/wiki/Unixtid">Unixtid</a>, og er en fortrukken måte å representere en gitt dato eller tidspunkt ved bruk av internett protokoller.
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
             </ul>  
         </td>
     </tr>
