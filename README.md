@@ -1,5 +1,6 @@
 # Tillitsrammeverk
-PJD med relevante spesifikasjoner er nå i utprøving.
+PJD med relevante spesifikasjoner er nå i utprøving. 
+
 Spesifikasjonene for PJD understøtter krav i tillitsrammeverket for PJD og er klare til å prøves ut.
 
 NHN vil i samarbeid med helsevirksomhetene og EPJ leverandørene som deltar i utprøvingen forbedre og oppdatere spesifikasjonene underveis i utprøvingsperioden basert på erfaringer.
@@ -12,7 +13,7 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 
 ### Spesifikasjoner
 * [Informasjonsmodell og datamodell for attestering av helsepersonells grunnlag for tilgang til helseopplysninger](/specs/informasjons_og_datamodell.md).
-* [Forretningsregler for bruk av informasjonsmodell for attestering av helsepersonellets grunnlag for tilgang til helseopplysninger](/specs/forretningsregler_for_bruk_av_attestering.md)
+* [Krav og forretningsregler for bruk av informasjonsmodell for attestering av helsepersonellets grunnlag for tilgang til helseopplysninger](/specs/forretningsregler_for_bruk_av_attestering.md)
 
 ## Prosess
 Utviklingen av spesifikasjonene vil foregå over flere iterasjoner, hvor hver iterasjon fører til en ny versjon av spesifikasjonen. NHN skal sørge for framdrift og vil fungere som reviewer av pull-requests, sørger for framdrift i viktige diskusjoner og vil håndtere eventuelle tilbakemeldinger via issues.
