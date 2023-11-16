@@ -1,5 +1,8 @@
 # Tillitsrammeverk
-Repo for spesifikasjoner og annet relevant arbeid med Tillitsrammeverket
+PJD med relevante spesifikasjoner er nå i utprøving.
+Spesifikasjonene for PJD understøtter krav i tillitsrammeverket for PJD og er klare til å prøves ut.
+
+NHN vil i samarbeid med helsevirksomhetene og EPJ leverandørene som deltar i utprøvingen forbedre og oppdatere spesifikasjonene underveis i utprøvingsperioden basert på erfaringer.
 
 ## Samarbeid om spesifikasjoner
 Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentasjon og spesifikasjoner av flere årsaker:
