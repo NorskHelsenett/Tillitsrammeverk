@@ -41,6 +41,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 6. [Vedlegg A: relasjon til andre standarder og spesifikasjoner](#6-vedlegg-a-relasjon-til-andre-standarder-og-spesifikasjoner)<br/>
 	6.1 [Relasjon til EHDSi datamodell og avvik fra EHDSI sine spesifikasjoner](#61-relasjon-til-ehsdi-datamodell-og-avvik-fra-ehdsi-sine-spesifikasjoner)<br/>
 	6.2 [Relasjon til HL7 FHIR datamodell](#62-relasjon-til-hl7-fhir-datamodell)<br/>
+	6.3 [Relasjon til IHE XDS og XUA SAML profil for kjernejournal](#63-relasjon-til-ihe-xds-og-xua-saml-profil-for-kjernejournal)<br/>
 7. [Vedlegg B: JSON profil for datamodell](#7-vedlegg-b-json-profil-for-datamodell)
 8. [Vedlegg C: Eksempel på bruk av datamodell](#8-vedlegg-c-eksempler-på-bruk-av-datamodell)<br/>
 	8.1 [Eksempel #1 - Fastlege ber om tilgang til dokument](#81-eksempel-1---fastlege-ber-om-tilgang-til-dokument)<br/>
