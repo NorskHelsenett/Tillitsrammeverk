@@ -33,9 +33,6 @@ Saken er beskrevet i [Issue #134](https://github.com/NorskHelsenett/Tillitsramme
 
 HelseID redegjør kort for denne beslutningen.
 
-* Får denne beslutningen noen følger for løsningsdesign?
-* Hvordan håndterer vi dette? Skal verdien tas ut av datamodellen?
-
 
 ### 3. Hvordan håndterer vi manglende kodeverk for "purpose_of_use_details"?
 HL7 norge har fjernet kodeverket for "care-relation" fra sitt repository, og det er ikke lenger tilgjengelig.
