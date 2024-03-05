@@ -21,6 +21,7 @@
 3. Hvordan håndterer vi manglende kodeverk for "purpose_of_use_details"?
 4. Utestående Issues og diskusjoner
 5. AOB (any other business)?
+6. Planlegge neste møte
 
 ## Saksgrunnlag og referat
 
@@ -57,6 +58,8 @@ Dersom vi kan lukke en issue i møtet er det selvfølgelig fint.
 * [Issue #144](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/144) - Snake-case vs kebab-case
 * [Issue #145](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/145) - "hpr-nr" kodeverk vs identitet
 
-
 ### 5. AOB (any other business)?
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.
+
+
+### 6. Planlegge neste møte
