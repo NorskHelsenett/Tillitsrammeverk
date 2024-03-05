@@ -19,6 +19,7 @@
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 2. Hvordan håndterer vi verdien "description" for attributtet "decision-ref"?
 3. Hvordan håndterer vi manglende kodeverk for "purpose_of_use_details"?
+4. Angivelse av assigner og authority i datamodell
 4. Utestående Issues og diskusjoner
 5. AOB (any other business)?
 6. Planlegge neste møte
@@ -27,13 +28,20 @@
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
+Tilbakemelding fra Teamet: 
+* HelseID kan ikke ta imot angivelse av assigner (eller authority)..
+* Må vi rulle tilbake og snakke om datamodellen?
+
+Legger til et nytt punkt i agendaen - 4. Angivelse av assigner og authority i datamodell
+
+### 1.5 Hilserunde for nye fjes i teamet
+
 ### 2. Hvordan håndterer vi verdien "description" for attributtet "decision-ref"?
 NHN godtar ikke at EPJ sender "description" feltet for attributtet "decision-ref" i http-meldinger til HelseID i dag. Dette betyr at feltet ikke blir inkludert i Access Tokens utstedt av HelseID.
 
 Saken er beskrevet i [Issue #134](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134)
 
 HelseID redegjør kort for denne beslutningen.
-
 
 ### 3. Hvordan håndterer vi manglende kodeverk for "purpose_of_use_details"?
 HL7 norge har fjernet kodeverket for "care-relation" fra sitt repository, og det er ikke lenger tilgjengelig.
@@ -43,7 +51,9 @@ Det er grunn til anta at HelseID ikke vil akseptere verdier i "purpose_of_use_de
 * Hvordan skal dette håndteres? 
 * Hvem tar ansvar?
 
-### 4. Utestående Issues og diskusjoner
+### 4. Angivelse av assigner og authority i datamodell
+
+### 5. Utestående Issues og diskusjoner
 
 Vi går igjennom utestående issues og behandler hvert enket issue.
 Formålet er ikke nødvendigvis å saksbehandle hver issue, det viktigste er å tildele oppgaven med å løse issuet til noen.
@@ -58,8 +68,8 @@ Dersom vi kan lukke en issue i møtet er det selvfølgelig fint.
 * [Issue #144](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/144) - Snake-case vs kebab-case
 * [Issue #145](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/145) - "hpr-nr" kodeverk vs identitet
 
-### 5. AOB (any other business)?
+### 6. AOB (any other business)?
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.
 
 
-### 6. Planlegge neste møte
+### 7. Planlegge neste møte
