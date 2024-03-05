@@ -27,7 +27,7 @@
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
 ### 2. Hvordan håndterer vi verdien "description" for attributtet "decision-ref"?
-NHN godtar ikke at EPJ sender "description" feltet for attributtet "decision-ref" i http-meldinger til HelseID i dag. Dette betyr at feltet ikke blir inkludert i Access Tokens utstedt av HelseID, men kan eventuelt overføres i http-melding til KJ API og inkluderes i SAML token som sendes til dokumentkilde.
+NHN godtar ikke at EPJ sender "description" feltet for attributtet "decision-ref" i http-meldinger til HelseID i dag. Dette betyr at feltet ikke blir inkludert i Access Tokens utstedt av HelseID.
 
 Saken er beskrevet i [Issue #134](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134)
 
