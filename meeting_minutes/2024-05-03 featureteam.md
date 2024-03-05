@@ -12,8 +12,7 @@
 - Ragnhild Varmedal (NHN)
 - Rune Andreas Grimstad (NHN)
 - Kenneth Myhra (NHN)
-
-### Ikke til stede
+- Øyvind Bech (NHN)
 
 ## Agenda
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
@@ -29,10 +28,10 @@
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
 Tilbakemelding fra Teamet: 
-* HelseID kan ikke ta imot angivelse av assigner (eller authority)..
-* Må vi rulle tilbake og snakke om datamodellen?
+*Vi ønsker å diskutere at HelseID kan ikke ta imot angivelse av assigner (eller authority)..
+Må vi rulle tilbake og snakke om grunnlaget for datamodellen?*
 
-Legger til et nytt punkt i agendaen - 4. Angivelse av assigner og authority i datamodell
+_Vi la til et nytt punkt i agendaen: 4. Angivelse av assigner og authority i datamodell_
 
 ### 1.5 Hilserunde for nye fjes i teamet
 
@@ -62,7 +61,7 @@ Sverre:
 Oslo kommune ser ikke for seg å ta dette feltet i bruk umiddelbart..
 
 Steinar:
-Burde vi se til hvem som har behandlingsansvar for denne informasjonen? Hjemmelsgrunnlaget ligger i pasientjournalforskriften §14 - hvilket betyr at det er konsument/kilde som har behandlingsansvar for opplysningene.
+Burde det ikke være opp til den behandlingsansvarlige å vurdere personvernskonsekvenser og å gjennomføre eventuelle risikovurderinger? Hjemmelsgrunnlaget ligger i pasientjournalforskriften §14 - altså er det konsument/kilde som har behandlingsansvar for opplysningene. At dokumentasjonen overføres til kilden og lagres der er en del av oppgavefordelingen mellom partene, hvor NHN har rollen som databehandler.
 
 Aksjon:
 NHN/HelseID og Richard samles for å diskutere videre..
