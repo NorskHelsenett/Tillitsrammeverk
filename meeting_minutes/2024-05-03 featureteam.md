@@ -49,7 +49,7 @@ Formålet er ikke nødvendigvis å saksbehandle hver issue, det viktigste er å 
 Dersom vi kan lukke en issue i møtet er det selvfølgelig fint. 
 
 * [Issue #31](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/31) - Beskrive featureteamets funksjon og tilhørende prosesser
-* [Issue #108](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/108) - Forretningsregler for "hrp_nr"
+* [Issue #108](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/108) - Forretningsregler for "hpr_nr"
 * [Issue #117](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/117) - Forretningsregler for "patient_id"
 * [Issue #133](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/133) - Struktur i forretningsreglerdokumentet
 * [Issue #136](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/136) - Validering av fritekst
