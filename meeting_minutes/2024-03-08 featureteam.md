@@ -20,7 +20,7 @@
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 2. Utestående Issues og diskusjoner
 3. Pasientinformasjon i tokens
-4. Bør vi forenkle forvaltning og utvikling av spesifikasjonen
+4. Bør/kan vi forenkle forvaltning og utvikling av spesifikasjonen?
 5. AOB (any other business)?
 6. Planlegge neste møte
 
@@ -58,9 +58,9 @@ Dersom vi kan lukke en issue i møtet er det selvfølgelig fint.
 [Issue #145](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/145) 
 
 ### 3. Pasientinformasjon i tokens
-Er det mulig å ta en ny diskusjon om pasientinformasjon i tokens
+Er det mulig å ta en ny diskusjon om pasientinformasjon i tokens?
 
-### 4. Bør vi forenkle forvaltning og utvikling av spesifikasjonen
+### 4. Bør/kan vi forenkle forvaltning og utvikling av spesifikasjonen?
 Vi bør kanskje forenkle dokumentasjonen, pasientens journaldokumenter, helseid og featureteam.
 
 ### 6. AoB (Any other Business)?
