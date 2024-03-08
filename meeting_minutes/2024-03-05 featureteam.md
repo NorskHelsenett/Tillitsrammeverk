@@ -40,19 +40,19 @@ NHN godtar ikke at EPJ sender "description" feltet for attributtet "decision-ref
 
 Saken er beskrevet i [Issue #134](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134)
 
-HelseID redegjør kort for denne beslutningen.
+HelseID redegjorde kort for beslutningen.
 
 Richard: 
-dette er ikke en tekst smo sluttbruker legger inn, men en maskingenerert tekst som beskriver beslutningsmal. Får ikke til å bygge opp noe tilsvarende med strukturerte data. Informasjonen kommer fra beslutningsmalen i DIPS, tidspunktet for innleggelse, tilhørighet til organisasjon. Det er også noen innskutte ord i verdien.
+Dette er ikke en tekst som sluttbruker legger inn, men en maskingenerert tekst som beskriver beslutningsmal. Vi får ikke til å bygge opp noe tilsvarende med strukturerte data. Informasjonen kommer fra beslutningsmalen i DIPS, tidspunktet for innleggelse, tilhørighet til organisasjon. Det er også noen innskutte ord i verdien.
 
 HelseID: 
-dette er ikke innhold som vi kan validere, men vi ser behovet.
+Vi ser behovet, men dette er ikke innhold som vi kan validere.
 
 Eirik: 
-Vi forstår behovet for å validere, men vi må forsøke å være pragmatiske. Kan attributtet settes med assigner=virksomheten, og en forhåndsdefinert oid? Det krever mye arbeid å definere et kodeverk.
+Vi forstår ønsket om å validere, men vi må forsøke å være pragmatiske. Kan attributtet settes med assigner=virksomheten, og en forhåndsdefinert oid? Det krever mye arbeid å definere et kodeverk, det er lurt å unngå dette.
 
 Morten:
-Det kan være mulig for DIPS å hente tilstrekkelig informasjon ved å kombinere verdier fra andre attributter?
+Kan være mulig for DIPS å hente tilstrekkelig informasjon ved å kombinere verdier fra andre attributter? I så fall unngår vi problemet.
 
 Eirik:
 For et legevaktsystem vil det være naturlig å sende en unik identifikator, eller eventuelt et tidspunkt. En kunne se for seg at vi starter med et statisk kodeverk, men beveger oss mot noe mer oppslagsbasert.

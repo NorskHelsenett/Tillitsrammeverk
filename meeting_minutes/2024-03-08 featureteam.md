@@ -60,11 +60,24 @@ Dersom vi kan lukke en issue i møtet er det selvfølgelig fint.
 ### 3. Pasientinformasjon i tokens
 Er det mulig å ta en ny diskusjon om pasientinformasjon i tokens?
 
+Ragnhild: Synes i utgangspunktet at det ikke er en god løsning å transportere pasientid via HelseID, men skjønner at det er et behov og et ønske fra sektoren. Team A&A (HelseID) gjennomfører en DPIA, og en eventuell risikovurdering og tids/kostnadsestimering.
+
+Eirik: Er prinsippielt helt enig med Ragnhild om det å overføre pasientid er en suboptimal løsning, men vi må være pragmatisk på kort sikt. På lengre sikt kan vi kanskje se for oss en annen løsning.
+
+Richard: På noen områder må vi akseptere noen risikoer for å ta ned andre risikoer.
+
 ### 4. Bør/kan vi forenkle forvaltning og utvikling av spesifikasjonen?
 Vi bør kanskje forenkle dokumentasjonen, pasientens journaldokumenter, helseid og featureteam.
+
+Vi rakk ikke å behandle saken i møtet.
 
 ### 6. AoB (Any other Business)?
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.
 
 ### 7. Planlegge neste møte
 Vi rakk ikke å gå igjennom utestående issues og diskusjoner.. Vi går igjennom dette neste fredag.
+
+* Mange av oss har en del arbeid og saker som må løses fremover, når passer det å
+* det er avtalt møte den 18. mars for å diskutere målbilde med tillitsrammeverk
+
+Forslag: vi kan treffes onsdag neste uke (13. mars 14.30-15.30)
