@@ -3,8 +3,6 @@
 ## Til stede
 - Richard Husevåg (HSØ)
 - Eirik Vegler Broen (Oslo Kommune)
-- Sverre Martin Jensen (Oslo Kommune)
-- Ronny Heitmann Andersen (Helse Vest IKT)
 - Morten Stensøy (Helse Nord IKT)
 - Nina Nordberg (NHN)
 - Simone Vandeberg (NHN)
@@ -13,6 +11,10 @@
 - Rune Andreas Grimstad (NHN)
 - Kenneth Myhra (NHN)
 - Øyvind Bech (NHN)
+
+## Ikke til stede
+- Sverre Martin Jensen (Oslo Kommune)
+- Ronny Heitmann Andersen (Helse Vest IKT)
 
 ## Agenda
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
