@@ -687,7 +687,7 @@ Strukturen som beskriver "purpose-of-use-details", består av fire attributter:
 "purpose-of-use-details": {
 	"code": "15",
 	"text": "Helsetjenester i hjemmet",
-	"system": "urn:oid:x.x.x.x.x.9151",
+	"system": "urn:oid:2.16.578.1.12.4.1.1.9151",
 	"assigner": "https://www.volven.no/"
 },
 ````
@@ -720,8 +720,8 @@ Strukturen som beskriver attributtet "decision-ref", består av tre attributter:
 
 ````JSON
     "decision-ref" : {
-		"id":  "8<.. id til lokal tilgangsbeslutning, unik for konsument og autogenerert i EPJ ..>8" , 
-		"description": "Legekonsultasjon",
+		"id":  "3d0ec5e7-d2ea-4632-a04d-5528626fa973" , 
+		"description": "Inneliggende pasient på, avdeling, post, seksjon, lokalisering, inntid , uttid",
 		"user-selected": false,
     }
 ````
@@ -1054,8 +1054,8 @@ Full modell - valgfrie elementer er tatt med
 			"authority": "https://www.skatteetaten.no"
 		},
 		"point-of-care": {
-			"id": "874716782",
-			"name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+			"id": "974589095",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.brreg.no"
 		},
@@ -1080,17 +1080,15 @@ Full modell - valgfrie elementer er tatt med
 			"assigner": "http://www..hl7.org/"
 		},
 		"purpose-of-use-details": {
-			"code": "15",
-			"text": "Helsetjenester i hjemmet",
-			"system": "urn:oid:x.x.x.x.x.9151",
-			"assigner": "https://www.volven.no/"
+			"code": "BEHANDLER",
+			"text": "Bruker har behandlingsansvar for pasienten",
+			"system": "urn:oid:2.16.578.1.12.4.1.6.11.x",
+			"assigner": "https://www.dips.com/"
 		},
 		"decision-ref": {
-			"id": {
-				"8<..autogenerert i EPJ..>8"
-			},
-			"user-selected": true,
-			"description": "[id til lokal tilgangsbeslutning som ekstern referanse for kilden]",
+			"id": "0b1f84dd-6a42-4597-a726-3c39bb69f0d6",
+			"user-selected": false,
+			"description": "Inneliggende pasient på, Indremedisinsk avdeling, Ullevål, 2024-01-01T14:09, 2024-01-03T14:09"
 		}
 	},
 	"patients": [
@@ -1164,6 +1162,16 @@ Eksempelet hvor en fastlege er konsument
 			"text": "Fastlege, liste uten fast lege",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
 			"assigner": "https://www.volven.no/"
+		},
+		"purpose-of-use": {
+			"code": "TREAT",
+			"text": "Behandling",
+			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
+			"assigner": "http://www..hl7.org/"
+		},
+		"decision-ref": {
+			"id": "0b1f84dd-6a42-4597-a726-3c39bb69f0d6",
+			"user-selected": false
 		}
 	},
 	"patients": [
@@ -1225,16 +1233,20 @@ I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang ti
 			"assigner": "https://www.helsedirektoratet.no/",   
 		},
 		"purpose-of-use": {
-			"code": "COC",
-			"text": "",
+			"code": "TREAT",
+			"text": "Behandling",
 			"system": "urn:oid:2.16.840.1.113883.1.11.20448",
-			"assigner": "https://www.hl7.com/"
+			"assigner": "http://www..hl7.org/"
 		},
 		"purpose-of-use-details": {
 			"code": "15",
 			"text": "Helsetjenester i hjemmet",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.9151",
 			"assigner": "https://www.volven.no"
+		},
+		"decision-ref": {
+			"id": "0b1f84dd-6a42-4597-a726-3c39bb69f0d6",
+			"user-selected": false
 		}
 	},
 	"patients": [
@@ -1278,13 +1290,13 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 		},
 		"legal-entity": {
 			"id": "993467049",
-			"name": "Oslo universitetssykehus HF",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.brreg.no"
 		},
 		"point-of-care": {
-			"id": "874716782",
-			"name": "OSLO UNIVERSITETSSYKEHUS HF RIKSHOSPITALET - SOMATIKK",
+			"id": "974589095",
+			"name": "OSLO UNIVERSITETSSYKEHUS HF ULLEVÅL - SOMATIKK",
 			"system": "urn:oid:2.16.578.1.12.4.1.4.101",
 			"authority": "https://www.brreg.no"
 		},
@@ -1309,10 +1321,15 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 			"assigner": "https://www.hl7.org"
 		},
 		"purpose-of-use-details": {
-			"code": "POLBESOK",
-			"text": "Poliklinisk besøk",
+			"code": "OPRPLAN",
+			"text": "Pasienten finnes på operasjonsoversikten",
 			"system": "urn:AuditEventHL7Norway/CodeSystem/carerelation",
 			"assigner": "https://www.hl7.no"
+		},
+		"decision-ref": {
+			"id": "0b1f84dd-6a42-4597-a726-3c39bb69f0d6",
+			"user-selected": false,
+			"description": "Pasienten finnes på operasjonsoversikten i DIPS, Øyeavdelingen, Ullevål, 2024-01-01T14:09, 2024-01-03T14:09"
 		}
 	},
 	"patients": [
