@@ -62,19 +62,19 @@ Dersom vi kan lukke en issue i møtet er det selvfølgelig fint.
 #### 3.1 Issue #146: Manglende kodeverk for "purpose_of_use_details" for spesialist
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/146
 
-#### 3.2 Issue #146: Manglende kodeverk for "purpose_of_use_details" for spesialist
+#### 3.2 Issue #147: Angivelse av assigner og authority i HelseID
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/147
 
-#### 3.3 Issue #146: Endre angivelse av assigner og authority i forespørsel til HelseID i datamodellen
+#### 3.3 Issue #148: Endre angivelse av assigner og authority i forespørsel til HelseID i datamodellen
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/148
 
-#### 3.4 Issue #146: Standardisering av carerelation (fhir audit event)
+#### 3.4 Issue #149: Standardisering av carerelation (fhir audit event)
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/149
 
-#### 3.5 Issue #146: Oppfølging av innspill om at ulik forståelse av risikobilde
+#### 3.5 Issue #150: Oppfølging av innspill om at ulik forståelse av risikobilde
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/150
 
-#### 3.6 Issue #146: Avklaring - hvor langt strekker NHN sitt ansvar seg for å validere innhold i Tokens
+#### 3.6 Issue #151: Avklaring - hvor langt strekker NHN sitt ansvar seg for å validere innhold i Tokens
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/151
 
 
