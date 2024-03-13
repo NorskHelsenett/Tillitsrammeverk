@@ -27,7 +27,7 @@
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
-### 2. Innspill fra leverandør
+### 2. Spørsmål fra leverandør
 Vi har fått tilbakemelding fra en leverandør:
 
 "Utvikling hos oss har startet å se på dette.
@@ -51,6 +51,8 @@ Kommunale tjenester (utenom sykehjemstjenester)
 - etc" 
 
 Bør vi endre på teksten "Ja, hvis forekommer" slik at den er lettere å forstå?
+
+Legge denne inn som issue?
 
 ### 3. Utestående Issues og diskusjoner
 Vi går igjennom utestående issues og behandler hvert enket issue.
