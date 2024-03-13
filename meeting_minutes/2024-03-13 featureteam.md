@@ -130,6 +130,8 @@ Aksjon: Morten lager issue på dette
 Direktoratet har begynt å bruke finnkode i stedet for volven.. 
 Vi undersøker med direktoratet om hvorvidt vi bør peke dit i stedet for volven.
 
+"ToA": kommer ikke med i SAML tokenet - steinar oppretter issue og følger opp
+
 ### 5. Planlegge neste møte
 Ehelsekonferanse neste uke, hva kan være et fast tidspunkt fremover?
 Richard: 14-16 er gode tidspunkt
