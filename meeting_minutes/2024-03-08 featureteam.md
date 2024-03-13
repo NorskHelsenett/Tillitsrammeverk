@@ -3,7 +3,6 @@
 ## Til stede
 - Richard Husevåg (HSØ)
 - Eirik Vegler Broen (Oslo Kommune)
-- Sverre Martin Jensen (Oslo Kommune)
 - Ronny Heitmann Andersen (Helse Vest IKT)
 - Morten Stensøy (Helse Nord IKT)
 - Nina Nordberg (NHN)
@@ -15,6 +14,7 @@
 - Øyvind Bech (NHN)
 
 ### Ikke til stede
+- Sverre Martin Jensen (Oslo Kommune)
 
 ## Agenda
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
@@ -27,6 +27,7 @@
 ## Saksgrunnlag og referat
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
+Agenda OK
 
 ### 2. Utestående Issues og diskusjoner
 Vi går igjennom utestående issues og behandler hvert enket issue.
