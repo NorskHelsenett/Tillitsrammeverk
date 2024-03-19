@@ -1720,7 +1720,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
-        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+        <td>Helsepersonellets formål med helseopplysningene (hvorfor helsepersonellet har behov for helseopplysningene)</td>
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
@@ -1729,7 +1729,8 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     <tr>    
         <td>Regel</td>
         <td>
-            <p>Attestering av helsepersonellets grunnlag for tilgang til helseopplysninger hos andre virksomheter SKAL angi både minst ett av attributtene "healthcare_service" og "purpose_of_use_details".</p>
+            <p>Attestering av helsepersonellets grunnlag for tilgang til helseopplysninger hos andre virksomheter SKAL enten angi "healthcare_service" eller "purpose_of_use_details".</p>
+            <p>Dersom begge attributter er relevante skal begge angis</p>
             <p>Attributtet "purpose_of_use_details" SKAL angis dersom organisasjonen har flere organisasjonsnivå, og mer enn ett undernivå.</p>
         </td>
     </tr>
