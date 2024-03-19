@@ -33,7 +33,7 @@ Vi har fått tilbakemelding fra en leverandør:
 
 "Utvikling hos oss har startet å se på dette.
 
-I denne sammenhengen så har vi ett spørsmål angående «"purpose-of-use-details": type tjeneste som pasienten skal motta hos virksomheten». 
+I denne sammenhengen så har vi ett spørsmål angående «"purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten». 
 Mener denne tidligere ikke var påkrevd.
 
 Er dette fremdeles tilfelle, og vi kan forstå «Ja, hvis forekommer» slik?

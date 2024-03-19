@@ -18,7 +18,7 @@
 
 ## Agenda
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
-2. Hvordan håndterer vi verdien "description" for attributtet "decision-ref"?
+2. Hvordan håndterer vi verdien "description" for attributtet "decision_ref"?
 3. Hvordan håndterer vi manglende kodeverk for "purpose_of_use_details"?
 4. Angivelse av assigner og authority i datamodell
 4. Utestående Issues og diskusjoner
@@ -37,8 +37,8 @@ _Vi la til et nytt punkt i agendaen: 4. Angivelse av assigner og authority i dat
 
 ### 1.5 Hilserunde for nye fjes i teamet
 
-### 2. Hvordan håndterer vi verdien "description" for attributtet "decision-ref"?
-NHN godtar ikke at EPJ sender "description" feltet for attributtet "decision-ref" i http-meldinger til HelseID i dag. Dette betyr at feltet ikke blir inkludert i Access Tokens utstedt av HelseID.
+### 2. Hvordan håndterer vi verdien "description" for attributtet "decision_ref"?
+NHN godtar ikke at EPJ sender "description" feltet for attributtet "decision_ref" i http-meldinger til HelseID i dag. Dette betyr at feltet ikke blir inkludert i Access Tokens utstedt av HelseID.
 
 Saken er beskrevet i [Issue #134](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134)
 
@@ -125,9 +125,9 @@ Dersom vi kan lukke en issue i møtet er det selvfølgelig fint.
 * [Issue #117](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/117) - Forretningsregler for "patient_id"
 * [Issue #133](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/133) - Struktur i forretningsreglerdokumentet
 * [Issue #136](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/136) - Validering av fritekst
-* [Issue #137](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/137) - Manglende JSON eksempler på "decision-ref"
+* [Issue #137](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/137) - Manglende JSON eksempler på "decision_ref"
 * [Issue #144](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/144) - Snake-case vs kebab-case
-* [Issue #145](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/145) - "hpr-nr" kodeverk vs identitet
+* [Issue #145](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/145) - "hpr_nr" kodeverk vs identitet
 
 ### 6. AOB (any other business)?
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.

@@ -32,7 +32,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 	4.1 [Informasjonsmodell](#41-informasjonsmodell)<br/>
 	4.2 [Datamodell](#42-datamodell)<br/>
 	4.3 [Beskrivelse av helsepersonellet: "practitioner"](#43-kategori-practitioner---beskrivelse-av-helsepersonellet)<br/>
-	4.4 [Beskrivelse av behandlerrelasjon: "care-relation"](#44-kategori-care-relation---behandlerrelasjon)<br/>
+	4.4 [Beskrivelse av behandlerrelasjon: "care_relation"](#44-kategori-care_relation---behandlerrelasjon)<br/>
 	4.5 [Beskrivelse av pasienten: "patient"](#45-kategori-patients---pasienten)<br/>
 	4.6 [Beskrivelse av attesten: "attestation"](#46-attestation)<br>
 5. [Sikkerhets- og personvernshensyn](#5-sikkerhets--og-personvernshensyn)<br/>
@@ -282,10 +282,10 @@ direction LR
 | practitioner     | "legal_entity"           | Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.            | 
 | practitioner     | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
 | practitioner     | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
-| care-relation    | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care-relation    | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care-relation    | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care-relation    | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| care_relation    | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care_relation    | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care_relation    | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care_relation    | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
 | patient          | "identifier"             | Unik identifikator for pasienten                                                                  | 
 | patient          | "point_of_care"  	      | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
 | patient          | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	      |
@@ -404,8 +404,8 @@ Strukturen som beskriver "identifier", består av fire attributter:
 }
 ````
 
-#### 4.3.2 "legal-entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
-Attributtet "legal-entity" identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt. Hovedenheten er juridisk ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet. Det er også hovedenheten som eier medlemsskapet i Helsenettet. 
+#### 4.3.2 "legal_entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
+Attributtet "legal_entity" identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt. Hovedenheten er juridisk ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet. Det er også hovedenheten som eier medlemsskapet i Helsenettet. 
 
 Formålet med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"). 
 Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
@@ -418,7 +418,7 @@ Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
 | Data type: | String |
 | Autoritativ kilde: | www.brreg.no |
 | Kodeverk: | 2.16.578.1.12.4.1.4.101 |
-| Krav og forretningsregler | [Forretningsregler for attributtet "legal_entity" ](forretningsregler_for_bruk_av_attestering.md#22-forretningsregler-for-attributtet-legal-entity) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "legal_entity" ](forretningsregler_for_bruk_av_attestering.md#22-forretningsregler-for-attributtet-legal_entity) |
 
 Strukturen som beskriver "legal_entity", består av fire attributter:
 * *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
@@ -448,7 +448,7 @@ og skal peke på en virksomhet i enhetsregisteret.
 | Avtalemessig påkrevd | **Ja** |
 | Data type: | String |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#23-forretningsregler-for-attributtet-point-of-care) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "point_of_care" ](forretningsregler_for_bruk_av_attestering.md#23-forretningsregler-for-attributtet-point_of_care) |
 
 Strukturen som beskriver "point_of_care", består av fire attributter:
 * *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
@@ -511,7 +511,7 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Krav og forretningsregler | [Forretningsregler for attributtet "hpr-nr" ](forretningsregler_for_bruk_av_attestering.md#25-forretningsregler-for-attributtet-hpr-nr) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "hpr_nr" ](forretningsregler_for_bruk_av_attestering.md#25-forretningsregler-for-attributtet-hpr_nr) |
 
 Strukturen som beskriver "hpr_nr", består av tre attributter:
 * *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
@@ -555,16 +555,16 @@ Strukturen som beskriver "authorization", består av fire attributter:
 }
 ````
 
-### 4.4 Kategori: "care-relation" - behandlerrelasjon
+### 4.4 Kategori: "care_relation" - behandlerrelasjon
 Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av formålet med og bakgrunnen for behandlingen av helseopplysningene og eventuelt en helsetjenestetype som ytes til pasienten.
 
-Krav og forretningsregler knyttet til "care-relation": [Forretningsregler for attributtet "care_relation" ](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care-relation)
+Krav og forretningsregler knyttet til "care_relation": [Forretningsregler for attributtet "care_relation" ](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care_relation)
 
 Strukturen som beskriver behandlerrelasjonen består av fire attributter som igjen har sine underliggende strukturer:
-* _healthcare-service_, som identifiserer typen helsetjenester som leveres ved virksomheten
-* _purpose-of-use_, som beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger
-* _purpose-of-use-details_, som er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem
-* _decision-ref_, som er en referanse til den lokale tilgangsbeslutningen hos konsumenten
+* _healthcare_service_, som identifiserer typen helsetjenester som leveres ved virksomheten
+* _purpose_of_use_, som beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger
+* _purpose_of_use_details_, som er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem
+* _decision_ref_, som er en referanse til den lokale tilgangsbeslutningen hos konsumenten
 
 I JSON format er strukturen representert på følgende måte:
 
@@ -601,7 +601,7 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | string |
 | Autoritativ kilde: | Konsument |
-| Krav og forretningsregler | [Forretningsregler for attributtet "healthcare_service" ](forretningsregler_for_bruk_av_attestering.md#31-forretningsregler-for-attributtet-healthcare-service) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "healthcare_service" ](forretningsregler_for_bruk_av_attestering.md#31-forretningsregler-for-attributtet-healthcare_service) |
 
 Strukturen som beskriver "healthcare_service", består av fire attributter:
 * *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
@@ -636,7 +636,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Krav og forretningsregler | [Forretningsregler for attributtet "purpose-of-use" ](forretningsregler_for_bruk_av_attestering.md#32-forretningsregler-for-attributtet-purpose-of-use) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "purpose_of_use" ](forretningsregler_for_bruk_av_attestering.md#32-forretningsregler-for-attributtet-purpose_of_use) |
 
 Strukturen som beskriver "purpose_of_use", består av fire attributter:
 * *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
@@ -673,7 +673,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Krav og forretningsregler | [Forretningsregler for attributtet "purpose-of-use-details" ](forretningsregler_for_bruk_av_attestering.md#33-forretningsregler-for-attributtet-purpose-of-use-details) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "purpose_of_use_details" ](forretningsregler_for_bruk_av_attestering.md#33-forretningsregler-for-attributtet-purpose_of_use_details) |
 
 Strukturen som beskriver "purpose_of_use_details", består av fire attributter:
 * *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
@@ -708,7 +708,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | Avtalemessig påkrevd | **Ja** |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
-| Krav og forretningsregler | [Forretningsregler for attributtet "decision_ref" ](forretningsregler_for_bruk_av_attestering.md#34-forretningsregler-for-attributtet-decision-ref) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "decision_ref" ](forretningsregler_for_bruk_av_attestering.md#34-forretningsregler-for-attributtet-decision_ref) |
 
 Strukturen som beskriver attributtet "decision_ref", består av tre attributter:
 * _id_, som er en unik identifikator som identifiserer tilgangsbeslutningen hos konsumenten 
@@ -807,7 +807,7 @@ og skal peke på en virksomhet i enhetsregisteret.
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Enhetsregisteret - SSB |
-| Krav og forretningsregler | [Forretningsregler for attributtet "point-of-care" ](forretningsregler_for_bruk_av_attestering.md#42-forretningsregler-for-attributtet-point-of-care-for-pasient) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "point_of_care" ](forretningsregler_for_bruk_av_attestering.md#42-forretningsregler-for-attributtet-point_of_care-for-pasient) |
 
 Strukturen som beskriver "point_of_care", består av fire attributter:
 * *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
@@ -1000,26 +1000,26 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | --- |--- |--- |
 | practitioner:pid:id | subject/NameID | Helsepersonellets identitet |
 | practitioner:pid:name | subject:subject-id | Helsepersonellets navn |
-| practitioner:hpr-nr:id  | subject:npi | Helsepersonellets autorisasjonsnummer i helsepersonellregisteret |
+| practitioner:hpr_nr:id  | subject:npi | Helsepersonellets autorisasjonsnummer i helsepersonellregisteret |
 | practitioner:authorization:code  | subject:role:code | Helsepersonellets formelle autorisasjon (kodeverdi) |
 | practitioner:authorization:text | subject:role:displayName | Helsepersonellets formelle autorisasjon (navn) |
-| practitioner:legal-entity:id  | subject:organization-id extension | Helsevirksomhetens unike identifikator (organisasjonsnummer) |
-| practitioner:legal-entity:name | subject:organization | Helsevirksomhetens navn |
-| practitioner:point-of-care:id | subject:child-organization extension | Identifikasjon av helsepersonellets arbeidssted (behandlingsstedet de formelt sett opptrer på vegne av) |
-| practitioner:point-of-care:name  | subject:child-organization | Navn på helsepersonellets arbeidssted |
+| practitioner:legal_entity:id  | subject:organization-id extension | Helsevirksomhetens unike identifikator (organisasjonsnummer) |
+| practitioner:legal_entity:name | subject:organization | Helsevirksomhetens navn |
+| practitioner:point_of_care:id | subject:child-organization extension | Identifikasjon av helsepersonellets arbeidssted (behandlingsstedet de formelt sett opptrer på vegne av) |
+| practitioner:point_of_care:name  | subject:child-organization | Navn på helsepersonellets arbeidssted |
 | practitioner:department:id | subject:facility-id extension | Identifikasjon av enhet som ugjør helsepersonellets detaljerte organisasjonstilhørighet |
 | practitioner:department:name | subject:facility | Navn på enhet som utgjør helsepersonellets detaljerte organisasjonstilhørighet | 
-| care-relationship:healthcare-service:code | care-relationship:healthcare-service:code | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relationship:healthcare-service:text | care-relationship:healthcare-service:text | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relationship:purpose-of-use:code | subject:purposeOfUse code | Identifikasjon av overordnet formål med tilgangen |
-| care-relationship:purpose-of-use:text | subject:purposeOfUse displayName | Navn på overordnet formål med tilgangen |
-| care-relationship:purpose-of-use-details:code | care-relationship:purpose-of-use-details:code | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
-| care-relationship:purpose-of-use-details:text | care-relationship:purpose-of-use-details:text | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
-| care-relationship:decision-ref:id | care-relationship:decision-ref:id | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
+| care-relationship:healthcare_service:code | care-relationship:healthcare_service:code | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care-relationship:healthcare_service:text | care-relationship:healthcare_service:text | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care-relationship:purpose_of_use:code | subject:purposeOfUse code | Identifikasjon av overordnet formål med tilgangen |
+| care-relationship:purpose_of_use:text | subject:purposeOfUse displayName | Navn på overordnet formål med tilgangen |
+| care-relationship:purpose_of_use_details:code | care-relationship:purpose_of_use_details:code | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care-relationship:purpose_of_use_details:text | care-relationship:purpose_of_use_details:text | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care-relationship:decision_ref:id | care-relationship:decision_ref:id | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
 | patient:id | resource:resource-id | Identifikasjon av pasienten tilgangen gjelder |
 | patient:name | - | Navn på pasienten tilgangen gjelder |
-| patient:point-of-care:id | resource:child-organization-id extension | Identifikasjon av behandlingsstedet som pasienten behandles ved |
-| patient:point-of-care:name | resource:child-organization | Navn på behandlingsstedet som pasienten behandles ved |
+| patient:point_of_care:id | resource:child-organization-id extension | Identifikasjon av behandlingsstedet som pasienten behandles ved |
+| patient:point_of_care:name | resource:child-organization | Navn på behandlingsstedet som pasienten behandles ved |
 | patient:department:id | resource:facility-id extension | Identifikasjon av detaljert organisasjonstilhørighet for pasienten |
 | patient:department:name | resource:facility | Navn på detaljert organisasjonstilhørighet for pasienten |
 
@@ -1159,7 +1159,7 @@ Eksempelet hvor en fastlege er konsument
 		}
 	},
 	"care_relationship": {
-		"healthcare-service": {
+		"healthcare_service": {
 			"code": "KX17",
 			"text": "Fastlege, liste uten fast lege",
 			"system": "urn:oid:2.16.578.1.12.4.1.1.8655",
