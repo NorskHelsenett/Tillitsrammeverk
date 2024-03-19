@@ -514,9 +514,9 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Krav og forretningsregler | [Forretningsregler for attributtet "hpr_nr" ](forretningsregler_for_bruk_av_attestering.md#25-forretningsregler-for-attributtet-hpr_nr) |
 
 Strukturen som beskriver "hpr_nr", består av tre attributter:
-* *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
-* *system*, som angir hvilket kodeverk attributtet "code" er definert i
-* *assigner*, som angir hvem som er ansvarlig for forvaltning av kodeverket angitt i attributtet "system"
+* *id*, som er identifikatoren for helsepersonellet i helsepersonellregisteret 
+* *system*, som angir helsepersonellregisteret som system
+* *authority*, som angir hvem som er ansvarlig for forvaltning av systemet som er angitt i attributtet "system"
 
 ###### "hpr_nr": Helsepersonellnummer - JSON format
 ````JSON

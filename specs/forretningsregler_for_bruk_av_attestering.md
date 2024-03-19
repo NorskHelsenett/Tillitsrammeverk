@@ -1202,12 +1202,12 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Gyldig kodeverk for angivelse av verdi for attributtet "hpr_nr"</td>
+        <td>Gyldig system for angivelse av verdi for attributtet "hpr_nr"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Kodeverket som benyttes for angivelse av attributtet "hpr_nr" SKAL være:<br>
+            Systemet som benyttes for angivelse av attributtet "hpr_nr" SKAL være:<br>
             <ul>
                 <li>2.16.578.1.12.4.1.4.4 - Helsepersonellregisteret</a></li>
             </ul> 
