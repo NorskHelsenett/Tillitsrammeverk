@@ -18,6 +18,12 @@ Utviklingen av spesifikasjonene vil foregå over flere iterasjoner, hvor hver it
 
 Hvis det ikke oppstår nye diskusjoner eller issues som peker på feil, eller dersom endringene kun består av språklige endringer skal det gjennomføres en avstemning om hvorvidt spesifikasjonen skal publiseres som versjon 1.0.
 
+### "Feature team" for utvikling av spesifikasjoner
+Alle som har interesse oppfordres til å gi innspill og bidrag til spesifikasjonene som utvikles i forbindelse med etablering av tillitsrammeverket. For å sørge for framdrift i utviklingen av spesifikasjoner opprettes det en arbeidsgruppe som består av fageksperter fra sektoren, NHN og direktoratet.  
+Arbeidsgruppa sin oppgave er å sørge for framdrift i utviklingen av spesifikasjoner knyttet til tilgangsstyring og sporbarhet som skal benyttes av tjenesteleverandører og programvareleverandører ved deling av helseopplysninger mellom helsepersonell på tvers av virksomheter i sektoren.
+
+Arbeidsgruppa treffes regelmessig, og har det redaksjonelle ansvaret for spesifikasjonene. Arbeidsgruppa må også sørge for å få nødvendige tilbakemeldinger fra involverte parter, slik at spesifikasjonene reflekterer det reelle behovet.
+
 ### Diskusjoner
 Spesifikasjonene vil bli basert på diskusjoner og innspill gjort i Github. Diskusjoner og innspill i andre kanaler vil ikke bli behandlet. Derfor er det viktig at diskusjoner som foregår utenfor dette repositoriet blir dokumentert skriftlig, enten som diskusjon, eller som issues eller pull-requests.
 
