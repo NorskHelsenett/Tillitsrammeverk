@@ -670,7 +670,7 @@ Dersom det viser seg at dette informasjonselementet er krevende å implementere 
 | ---| ---|
 | Attributt: | "purpose_of_use_details" |
 | Informasjonselement | Kodifisert beskrivelse av tjenesten som virksomheten yter til pasienten  |
-| Avtalemessig påkrevd | **Ja, hvis forekommer** |
+| Avtalemessig påkrevd | **Nei, men skal inkluderes dersom relevant** [(se forretningsregler)](forretningsregler_for_bruk_av_attestering.md#poup) |
 | Autoritativ kilde: | Konsument |
 | Data type: | Object |
 | Krav og forretningsregler | [Forretningsregler for attributtet "purpose_of_use_details" ](forretningsregler_for_bruk_av_attestering.md#33-forretningsregler-for-attributtet-purpose_of_use_details) |

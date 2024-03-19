@@ -1709,6 +1709,40 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 </table>
 
 #### 3.3 Forretningsregler for attributtet "purpose_of_use_details"
+<table>
+    <tr>
+        <td>ID</td>
+        <td><span id="poup"></span>ATT-43</td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"purpose_of_use_details"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Helsepersonellets formål med helseopplysningene (til hva de skal brukes)</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Betingelser og krav knyttet til utfylling av "purpose_of_use_details".</td>
+    </tr>
+    <tr>    
+        <td>Regel</td>
+        <td>
+            <p>Attestering av helsepersonellets grunnlag for tilgang til helseopplysninger hos andre virksomheter SKAL angi både minst ett av attributtene "healthcare_service" og "purpose_of_use_details".</p>
+            <p>Attributtet "purpose_of_use_details" SKAL angis dersom organisasjonen har flere organisasjonsnivå, og mer enn ett undernivå.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Ansvarlig</td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
 
 <table>
     <tr>
@@ -1779,7 +1813,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Foreslåtte kodeverk for angivelse av verdi for "purpose_of_use_details"</td>
+        <td>Kodeverk for angivelse av verdi for "purpose_of_use_details"</td>
     </tr>
     <tr>    
         <td>Regel</td>
