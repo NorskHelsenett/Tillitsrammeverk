@@ -27,13 +27,64 @@
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 OK - agenda akseptert
 
-
 ### 2. Utestående Issues og diskusjoner
 Vi går igjennom utestående issues og behandler hvert enket issue.
-Formålet er ikke nødvendigvis å saksbehandle hver issue, det viktigste er å tildele oppgaven med å løse issuet til noen.
-Dersom vi kan lukke en issue i møtet er det selvfølgelig fint. 
+Formålet er ikke nødvendigvis å saksbehandle hver issue, det viktigste er å tildele oppgaven med å løse issuet til noen. Dersom vi kan lukke en issue i møtet er det selvfølgelig fint. 
 
-#### 2.1 Issue #xx: 
+#### 2.1 Issue #108: Forretningsregler knyttet til attributtet "hpr_nr"
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/108
+
+
+#### 2.2 Issue #117: Forretningsregler knyttet til attributtet patient: "patient_id"
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/117
+
+
+#### 2.3 Issue #133: Forslag til struktur i forretningsregel dokumentet
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134
+
+
+#### 2.4 Issue #134: Description på decision-ref 
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134
+
+#### 2.5 Issue #136: Vurdere om alle felter med potensiell fritekst skal valideres opp mot regulæruttrykk og maksimalt antall tegn av tillitsankeret
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/136
+
+#### 2.6 Issue #137: Vi manger "decision-ref" i JSON eksempler
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/137
+
+#### 2.7 Issue #146: Manglende kodeverk for "purpose_of_use_details" for spesialist
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/146
+
+#### 2.8 Issue #146: Manglende kodeverk for "purpose_of_use_details" for spesialist
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/146
+
+#### 2.9 Issue #147: Angivelse av assigner og authority i HelseID
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/147
+
+#### 2.10 Issue #148: Endre datamodell: angivelse av assigner og authority i forespørsel til HelseID
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/148
+
+#### 2.11 Issue #149: Standardisering av carerelation (fhir audit event)
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/149
+
+#### 2.12 Issue #150: Oppfølging av innspill om at ulik forståelse av risikobilde
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/150
+
+#### 2.13 Issue #151: Avklaring - hvor langt strekker NHN sitt ansvar seg for å validere innhold i Tokens
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/151
+
+#### 2.14 Issue #152: Tjenstlig behov fra helsepersonell som ikke har autorisasjon i Helsepersonellregisteret
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/152
+
+#### 2.15 Issue #153: ToA
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/153
+
+#### 2.16 Issue #156: ToA kommer ikke med i SAML tokenet
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/156
+
+#### 2.17 Issue #157: ToA kommer ikke med i SAML tokenet
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/157
+
 
 ### 3. AoB (Any other Business)?
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.
