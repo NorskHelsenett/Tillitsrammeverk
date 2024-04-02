@@ -1,4 +1,4 @@
-# Møtereferat fra møte i feature-team for informasjons- og datamodell i tillitsrammeverket - xx.xx.2024
+# Møtereferat fra møte i feature-team for informasjons- og datamodell i tillitsrammeverket - 02.04.2024
 
 ## Til stede
 - Richard Husevåg (HSØ)
