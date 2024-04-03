@@ -27,8 +27,6 @@
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
-# Simones test item main header
-
 ### 2. Utestående Issues og diskusjoner
 Vi går igjennom utestående issues og behandler hvert enket issue.
 Formålet er ikke nødvendigvis å saksbehandle hver issue, det viktigste er å tildele oppgaven med å løse issuet til noen. Dersom vi kan lukke en issue i møtet er det selvfølgelig fint. 
