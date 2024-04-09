@@ -8,8 +8,8 @@
 - Øyvind Bech (NHN)
 - Michal Cermak (NHN)
 - Eirik Vegler Broen (Oslo Kommune)
-- Ronny Heitmann Andersen (Helse Vest IKT)
-- Sverre Martin Jensen (Oslo Kommune)
+
+-
 - Kenneth Myhra (NHN)
 
 ### Ikke til stede
