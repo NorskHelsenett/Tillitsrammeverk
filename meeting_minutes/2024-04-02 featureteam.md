@@ -2,19 +2,20 @@
 
 ## Til stede
 - Richard Husevåg (HSØ)
-- Eirik Vegler Broen (Oslo Kommune)
-- Ronny Heitmann Andersen (Helse Vest IKT)
 - Morten Stensøy (Helse Nord IKT)
 - Nina Nordberg (NHN)
 - Simone Vandeberg (NHN)
 - Steinar Noem (NHN)
-- Kenneth Myhra (NHN)
-- Sverre Martin Jensen (Oslo Kommune)
 - Ragnhild Varmedal (NHN)
 - Rune Andreas Grimstad (NHN)
 - Øyvind Bech (NHN)
+- Michal Cermak (NHN)
+- Eirik Vegler Broen (Oslo Kommune)
 
 ### Ikke til stede
+- Ronny Heitmann Andersen (Helse Vest IKT)
+- Sverre Martin Jensen (Oslo Kommune)
+- Kenneth Myhra (NHN)
 
 ## Agenda
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
@@ -26,6 +27,44 @@
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 OK - agenda akseptert
+
+Morten: Ok - fint å gå igjennom issues og få litt push
+
+Ragnhild: ønsker å gi status på prodsetting av HelseID.
+- i release kvitter HelseID seg med avhengigheter til virksomhetssertifikater (noen hickups i SFM)
+- planlagt prodsetting ble utsatt i noen uker
+- Ny prodsetting: fant feilkonfigurerte klienter hos sentrale aktører førte til at de måtte rulle tilbake rett før påske
+
+Stor endring i HelseID
+Produksjonssetting av ny versjon av HelseID 21.00 i dag
+Patch-release i løpet av et par uker.
+HelseID ønsker å kjøre hyppige releases etter hovedrelease
+
+Sektoren bes om å melde tilbake ved issues
+
+Eirik: hva innebærer validering av attesten i HelseID (ref info i utviklerportalen)?
+Rune: Det kommer noen flere dokumenter som gir ytterligere forklaring på hvordan dette fungerer.
+
+Eirik: validerer dere gyldige koder i 9151 (Iplos) for Purpose_of_use_details?
+- Målet må være at utviklere ikke har kommunikasjon med NHN om hvordan mekanismene skal benyttes
+
+Eirik: ang overføring av pasientinformasjon til HelseID er det tvetydig informasjon på dokumentasjonssidene (utviklerportal). Hva er planen for å rydde i dette?
+
+
+Team A&A har allerede en oppgave på å oppdatere dokumentasjonen - oppgaven er ikke synlig utenfor NHN
+Aksjon: opprett et issue på oppdatering av dokumentasjon for HelseID i
+
+Det var en diskusjon rundt pasientid og helsepersonellets attest, som peker på at vi trenger å samle oss.. Dokumentasjon er ett perspektiv, men tillit er et annet..
+
+Morten: Følger pasient-id med i kallet til XDS APIet (altså ikke kjernejournal)? Vi har issues som tar for oss dette..
+
+Richard: dersom de kommersielle leverandører begynner å implementere dette kan vi få en utfordring tidsmessig.. Det må vi ta hensyn til.. Vi må få tydelig dokumentasjon, at attesten ikke er 1:1 med HelseID. Har dokumentdelings-API sin XDS tjenesten tilsvarende tjeneste som helseindikatortjenesten?
+
+
+Steinar: har vi bommet når vi bruker begrepet helsepersonellets attest? Bør vi finne andre begrep eller ord.
+Eirik: Vi må ivareta en viss grad av forutsigbarhet. Endringer tar lang tid i sektoren, og en utprøving sementerer seg raskt. Vi må finne ut om NHN sier et "hard nei" til overføring av pasientinformasjon.
+
+Ragnhild: Vi går i produksjon med noe nå. Vi går i denne retningen. NHN vil ikke ta imot pasient-id i HelseID.
 
 ### 2. Utestående Issues og diskusjoner
 Vi går igjennom utestående issues og behandler hvert enket issue.
