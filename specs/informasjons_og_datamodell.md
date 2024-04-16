@@ -17,7 +17,8 @@ Dette dokumentet er et utkast som er ment for utviklere av programvare som skal 
 | -3 | Utkast 		| 18.10.2023 |
 | -4 | Utkast 		| 14.11.2023 |
 | -5 | Utkast 		| 15.11.2023 |
-| -6 | Utprøving 	| 16.11.2023 |
+| -6 | Utprøving v1.0 	| 16.11.2023 |
+| -6 | Utprøving v1.1 	| 31.05.2024 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
@@ -876,6 +877,7 @@ Strukturen som beskriver "department", består av fire attributter:
 ````
 
 ### 4.6 "attestation"
+
 Attributtet "attestation" skal inneholde strukturene som er definert tidligere i spesifikasjonen: "practitioner", "care-relation", "patients", og fungerer som en omsluttende struktur for en attest.
 I JSON format er objektet som representerer en attest strukturert på følgende måte:
 
@@ -916,29 +918,32 @@ Attributtet kan benyttes til tilgangskontroll og loggkontroll, slik at man hindr
 ````
 
 ## 5. Sikkerhets- og personvernshensyn
+
 ### 5.1 Cybersikkerhet
+
 Både egenprodusert og tredjeparts programvarekomponenter som brukes til datalagring samt behandling og presentasjon av informasjonen i datamodellen kan inneholde svakheter som lar en angriper utnytte data som overføres mellom partene til å utføre forskjellige typer angrep på innsiden av en organisasjon.
 
 Informasjonen i datamodellen flyter mellom flere aktører hvor den lagres og behandles av forskjellige typer programvare. Sikkerhetsangrep som utføres i forbindelse med datalagring er svært vanlig, og utgjør en generell sikkerhetsrisiko som kan begrenses ved at verdier som overføres kan valideres og kontrolleres.
 
 Informasjonen i datamodellen vil blant annet benyttes til å utføre analyse av logger, og vil kunne bli vist til sluttbrukere i forskjellige applikasjoner. Dette åpner for angrep mot sårbarheter i programvare, som f.eks. misbruk av makroer eller XSS angrep i nettlesere. Sannsynligheten for denne typen sikkerhetsangrep bør begrenses ved at verdier som overføres kan valideres og kontrolleres.
 
-
 ### 5.2 Personvern
 
 Datamodellen legger til rette for en utlevering av personopplysninger, herunder helseopplysninger, som en behandling av en særlig kategori av personopplysninger, gjennom å sammenstille opplysninger om helsepersonellet, pasientens identifikasjonsnummer, opplysninger om virksomheten der helsehjelpen utføres, formålet med tilgangen til helseopplysninger og relasjonen mellom helsepersonellet og pasienten, for å autentisere tilgang til gitte helseopplysninger.
 
 #### 5.2.1 Tap av personopplysninger
+
 Ved å utnytte svakheter og sårbarheter i programvare kan kan en angriper observere personopplysninger som utleveres mellom tekniske tjenester som benyttes av virksomheter ved deling av helseopplysninger.
 Tap av personopplysninger kan oppstå mellom flere parter i verdikjeden:
 
-- mellom konsument og autorisasjonsserver/IdP
-- mellom konsument og informasjonstjeneste
-- mellom informasjonstjeneste og datagrensesnitt
+* mellom konsument og autorisasjonsserver/IdP
+* mellom konsument og informasjonstjeneste
+* mellom informasjonstjeneste og datagrensesnitt
 
 For å sikre mot potensielt tap av personopplysninger bør det vurderes å etablere tiltak for å ivareta konfidensialiteten.
 
 #### 5.2.2 Overvåkning av ansatte i andre virksomheter
+
 Datamodellen innebærer en utlevering av opplysninger om helsepersonellets arbeidsforhold. Disse opplysningene utleveres til andre virksomheter enn den virksomheten helsepersonellet er ansatt hos eller yter helsehjelp på vegne av. Det legges derfor til rette for at opplysninger kan benyttes til å monitorere helsepersonell i andre virksomheter. Dataansvarlige må følgelig være bevisste begrensningene i formålet med behandlingen av personopplysninger og eventuelt vurdere risiko knyttet til behandling av personopplysninger utover dette formålet.
 
 #### 5.2.3 Vurdering av personvernkonsevenser
@@ -954,6 +959,7 @@ Med utgangspunkt i at datamodellen legger til rette for en utlevering av persono
 I forbindelse med realiseringen av EU regulativet EHDS er det definert en datamodell for utveksling av helseopplysninger på tvers av landegrenser innad i EU. 
 
 EHDSI definerer tre SAML Assertions, som holder på forskjellige kategorier av informasjon:
+
 * SAML Assertion for identitetsattributter som beskriver helsepersonellet
 * SAML Assertion for identitetsattributter som beskriver pårørende
 * SAML Assertion for identitetsattributter som beskriver pasienten
@@ -1044,6 +1050,7 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 
 
 ## 7. Vedlegg B: JSON profil for datamodell
+
 Full modell - valgfrie elementer er tatt med
 
 ````JSON
