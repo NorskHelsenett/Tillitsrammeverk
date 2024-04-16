@@ -46,6 +46,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 ## Innholdsfortegnelse
 
 ## Innledning
+
 Denne spesifikasjonen definerer felles regler som skal benyttes i forbindelse med attestering av helsepersonells grunnlag for tilgang til helseopplysninger ved deling av helseopplysninger via tekniske grensesnitt, og baserer seg på [datamodell for attestering som er angitt i egen spesifikasjon.](informasjons_og_datamodell.md). 
 
 Et felles regelverk vil sikre at alle aktører som er involvert i delingen benytter samme metode for å utføre attestering og at attester håndteres likt i kjøretid og benyttes til samme formål etter at helseopplysningene er delt.
@@ -67,14 +68,16 @@ Aktørene i helse- og omsorgssektoren har samlet seg rundt en felles modell som 
 
 Tillitsmodellen konkretiseres i et [tillitsrammeverk](https://www.nhn.no/tjenester/kjernejournal/deling-av-journaldokumenter-gjennom-kjernejournal/Beskrivelse%20av%20tillitsrammeverk.pdf) som består av vilkår knyttet til bruken av tillitstjenestene. Det er medlemsordningen Helsenettet som danner de ytre rammene for økosystemet hvor tillitsrammeverket skal virke. Et grunnleggende vilkår i tillitsrammeverket er at medlemmene av Helsenettet plikter å etterleve kravene i [norm for informasjonssikkerhet og personvern i helse- og omsorgssektoren](https://www.ehelse.no/normen/normen-for-informasjonssikkerhet-og-personvern-i-helse-og-omsorgssektoren). 
 
-Denne spesifikasjonen er utarbeidet i forbindelse med Pasientens Journaldokumenter (PJD), som er den første anvendelsen av tillitsrammeverket. 
+Denne spesifikasjonen er utarbeidet i forbindelse med Pasientens Journaldokumenter (PJD), som er den første anvendelsen av tillitsrammeverket.
 
 ## Ordliste
 
 ## Spesifikasjon av forretningsregler
+
 Spesifikasjonen definerer felles regler som beskriver hvordan helsepersonellets grunnlag for tilgang til helseopplysninger skal attesteres og krav knyttet hvordan attesten skal benyttes. Spesifikasjonen definerer hvilke kodeverk og verdier som er gyldige for hvert attributt.
 
 ### Formålet med forretningsregler
+
 Forretningsreglene skal anvendes av programvare- og systemleverandører ved implementasjon av programvare som brukes ved deling av helseopplysninger på tvers av virksomheter i sektoren.
 
 Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av systemene som skal implementere attesteringsfunksjonalitet eller behandle attester.
@@ -82,6 +85,7 @@ Forretningsreglene gir også et utgangspunkt for kvalitetssikring/testing av sys
 ### Konvensjoner brukt i spesifikasjonen
 
 #### Bruk av modalverb i spesifikasjonen
+
 Modalverb brukt i spesifikasjonen skal forstås på følgende måte:
 <table>
     <tr>
@@ -99,6 +103,7 @@ Modalverb brukt i spesifikasjonen skal forstås på følgende måte:
 </table>
 
 #### Begreper brukt i spesifikasjonen
+
 Hver regel i spesifikasjonen er beskrevet i følgende format:
 <table>
     <tr>
@@ -126,7 +131,7 @@ Hver regel i spesifikasjonen er beskrevet i følgende format:
         <td>En detaljert beskrivelse av den aktuelle regelen</td>
     </tr>
     <tr>
-        <td>Ansvarlig</td> 
+        <td>Ansvarlig</td>
         <td>En beskrivelse av hvilke(n) aktør(er) som er ansvarlig for å håndheve regelen</td>
     </tr>
 </table>

@@ -5,16 +5,17 @@
 - Richard Husevåg (HSØ)
 - Morten Stensøy (Helse Nord IKT)
 - Nina Nordberg (NHN)
-- Simone Vandeberg (NHN)
-- Øyvind Bech (NHN)
-- Michal Cermak (NHN)
 - Eirik Vegler Broen (Oslo Kommune)
 - Kenneth Myhra (NHN)
 - Steinar Noem (NHN)
-- Rune Andreas Grimstad (NHN)
 - Ragnhild Varmedal (NHN)
 
 ### Ikke til stede
+
+- Rune Andreas Grimstad (NHN)
+- Øyvind Bech (NHN)
+- Michal Cermak (NHN)
+- Simone Vandeberg (NHN)
 
 ## Agenda
 
@@ -34,10 +35,15 @@
 Har feature teamet tilbakemeldinger på notatet?
 Vi ønsker oss skriftlig tilbakemeldinger, og en eventuell gjennomgang i møte.
 
+Fra feature-teamet:
+
+- Generell kommentar: tillitsrammeverket er også til bruk ved deling av data direkte mellom virksomhetene i sektoren, ikke bare sentralt nasjonalt koblingspunkt eller ved samling/lagring
+- Vi kommer en skriftlig tilbakemelding, men må komme etter annet arbeid.
+
 ### 3. Utestående Issues og diskusjoner
 
 Vi går igjennom utestående issues i første milepæl og behandler hvert enket issue.
-Formålet er ikke nødvendigvis å saksbehandle hver issue, det viktigste er å tildele oppgaven med å løse issuet til noen. Dersom vi kan lukke en issue i møtet er det fint. 
+Formålet er ikke nødvendigvis å saksbehandle hver issue, det viktigste er å tildele oppgaven med å løse issuet til noen. Dersom vi kan lukke en issue i møtet er det fint.
 
 #### 3.1 Issue #158: Bruk av dash (-) og underscore (_) i attributtnavn
 
@@ -69,6 +75,8 @@ https://github.com/NorskHelsenett/Tillitsrammeverk/issues/157
 #### 3.5 Issue #153: ToA: Time of Attestation - Tydeliggjøre beskrivelse av formål og bruk
 
 Steinar skriver et forslag, og oppdaterer spesifikasjonen.
+Hva skal den brukes til, og hvordan skal den brukes?
+Utdyp hva vi mener mener med attestering i denne konteksten.
 
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/153
 
@@ -109,13 +117,25 @@ https://github.com/NorskHelsenett/Tillitsrammeverk/issues/160
 KX17 er misvisende for fastlegerelasjon, finnes det andre alternativ?
 Noen i teamet som kan ta en titt på denne issuen? Noe HDIR kan hjelpe oss med?
 
+Aksjon: legg til at 7750 også er et kodeverk som kan benyttes. Legg til eksempel..
+
+* https://beta.finnkode.ehelse.no/adm/collections/8254?q=8254
+* https://beta.finnkode.ehelse.no/adm/collections/7750?q=fastlege
+
+Ta kontakt med HDIR for å få en avklaring - hvilke koder passer best til vårt formål?
+
 ### 4. Hvordan skal vi håndtere endringer av spesifikasjonene under utprøving?
 
 Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access Tokens/SAML-tokens?
 Hvordan informeres relevante aktører?
 
+Tilbakemelding fra teamet: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
+Det burde også gå mot en veldig forutsigbar endringssyklus - tydelighet hvor lenge eldre versjoner støttes og når nye versjoner rulles ut og tilgjengeliggjøres.
+
 ### 5. AoB (Any other Business)?
 
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.
+
+Er det mulig å se for seg å binde en request og en attest sammen.
 
 ### 6. Planlegge neste møte
