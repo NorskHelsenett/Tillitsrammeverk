@@ -100,7 +100,7 @@ Ny issue registrert av Øyvind K:
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/160
 
 KX17 er misvisende for fastlegerelasjon, finnes det andre alternativ?
-Noen i teamet som kan ta en titt på denne issuen?
+Noen i teamet som kan ta en titt på denne issuen? Noe HDIR kan hjelpe oss med?
 
 ### 3. AoB (Any other Business)?
 
