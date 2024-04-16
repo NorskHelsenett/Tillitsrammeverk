@@ -388,6 +388,7 @@ Attributtet "identifier" i entitet practitioner består av verdier som beskriver
 | Krav og forretningsregler | [Forretningsregler for attributtet "identifier" ](forretningsregler_for_bruk_av_attestering.md#21-forretningsregler-for-attributtet-identifier) |
 
 Strukturen som beskriver "identifier", består av fire attributter:
+
 * *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
 * *name*, som er en navnet på personen som identifikatoren i attributtet "id" identifiserer 
 * *system*, som angir hvilket kodeverk attributtet "code" er definert i
@@ -405,6 +406,7 @@ Strukturen som beskriver "identifier", består av fire attributter:
 ````
 
 #### 4.3.2 "legal_entity": Personalansvarlig og dataansvarlig virksomhet for personopplysninger som behandles av helsepersonellet
+
 Attributtet "legal_entity" identifiserer hovedenheten for virksomheten hvor helsepersonellet er ansatt. Hovedenheten er juridisk ansvarlig for helseopplysningene som behandles av helsepersonellet som forespør tilgang til helseopplysninger i en annen virksomhet. Det er også hovedenheten som eier medlemsskapet i Helsenettet. 
 
 Formålet med attributtet er også sporbarhet (det juridiske ansvaret - "notoritet"). 
@@ -421,6 +423,7 @@ Informasjonen for attributtet kan vurderes vist til pasienten i innsynslogg.
 | Krav og forretningsregler | [Forretningsregler for attributtet "legal_entity" ](forretningsregler_for_bruk_av_attestering.md#22-forretningsregler-for-attributtet-legal_entity) |
 
 Strukturen som beskriver "legal_entity", består av fire attributter:
+
 * *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
 * *name*, som er en navnet på hovedeneheten som identifikatoren i attributtet "id" identifiserer 
 * *system*, som angir hvilket kodeverk attributtet "code" er definert i
@@ -438,6 +441,7 @@ Strukturen som beskriver "legal_entity", består av fire attributter:
 ```` 
 
 #### 4.3.3 "point_of_care": Arbeidssted (behandlingssted som helsepersonellet tilhører)
+
 Attributtet "point_of_care" identifiserer behandlingsstedet hvor helsepersonellet formelt sett har sin tilhørighet,
 og skal peke på en virksomhet i enhetsregisteret.
 
@@ -451,6 +455,7 @@ og skal peke på en virksomhet i enhetsregisteret.
 | Krav og forretningsregler | [Forretningsregler for attributtet "point_of_care" ](forretningsregler_for_bruk_av_attestering.md#23-forretningsregler-for-attributtet-point_of_care) |
 
 Strukturen som beskriver "point_of_care", består av fire attributter:
+
 * *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
 * *name*, som er en navnet på behandlingsstedet som identifikatoren i attributtet "id" identifiserer 
 * *system*, som angir hvilket kodeverk attributtet "code" er definert i
@@ -468,6 +473,7 @@ Strukturen som beskriver "point_of_care", består av fire attributter:
 ````
 
 #### 4.3.4 "department": Avdeling eller detaljert organisasjonsenhet
+
 Attributtet "department" angir avdelingen eller helsepersonellets mest detaljerte organisasjonstilhørighet.
 
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.
@@ -482,9 +488,10 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Object |
 | Autoritativ kilde: | Konsument    |
-| Krav og forretningsregler | [Forretningsregler for attributtet "department" ](forretningsregler_for_bruk_av_attestering.md#24-forretningsregler-for-attributtet-department) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "department"](forretningsregler_for_bruk_av_attestering.md#24-forretningsregler-for-attributtet-department) |
 
 Strukturen som beskriver "department", består av fire attributter:
+
 * *id*, som er en unik identifikator fra registeret som er angitt i attributtet "system" 
 * *name*, som er en navnet på underenheten som identifikatoren i attributtet "id" identifiserer 
 * *system*, som angir hvilket kodeverk attributtet "code" er definert i
@@ -502,8 +509,9 @@ Strukturen som beskriver "department", består av fire attributter:
 ````
 
 #### 4.3.5 "hpr_nr": Helsepersonellnummer
+
 Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien identifiserer et helsepersonell som har fått autorisasjon og/eller lisens til å praktisere som et helsepersonell i Norge.
- 
+
 |   |   |
 | ---| ---|
 | Attributt: | "hpr_nr" |
@@ -514,11 +522,13 @@ Attributtet "hpr_nr" er en forkortelse for "Helsepersonellnummer" hvor verdien i
 | Krav og forretningsregler | [Forretningsregler for attributtet "hpr_nr" ](forretningsregler_for_bruk_av_attestering.md#25-forretningsregler-for-attributtet-hpr_nr) |
 
 Strukturen som beskriver "hpr_nr", består av tre attributter:
+
 * *id*, som er identifikatoren for helsepersonellet i helsepersonellregisteret 
 * *system*, som angir helsepersonellregisteret som system
 * *authority*, som angir hvem som er ansvarlig for forvaltning av systemet som er angitt i attributtet "system"
 
 ###### "hpr_nr": Helsepersonellnummer - JSON format
+
 ````JSON
 "hpr_nr": {
 	"id": "9144900",
@@ -528,8 +538,9 @@ Strukturen som beskriver "hpr_nr", består av tre attributter:
 ````
 
 #### 4.3.6 "authorization": Helsepersonellets gjeldende autorisasjon
+
 Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for helsepersonellet ved forespørsel om helseopplysninger hos en annen virksomhet.
- 
+
 |   |   |
 | ---| ---|
 | Attributt: | "authorization" |
@@ -537,15 +548,17 @@ Attributtet "authorization" angir den aktuelle autorisasjonen som gjelder for he
 | Avtalemessig påkrevd | **Ja, hvis forekommer** |
 | Data type: | Objekt |
 | Autoritativ kilde: | Helsepersonellregisteret - Helsedirektoratet |
-| Krav og forretningsregler | [Forretningsregler for attributtet "authorization" ](forretningsregler_for_bruk_av_attestering.md#26-forretningsregler-for-attributtet-authorization) |
+| Krav og forretningsregler | [Forretningsregler for attributtet "authorization"](forretningsregler_for_bruk_av_attestering.md#26-forretningsregler-for-attributtet-authorization) |
 
 Strukturen som beskriver "authorization", består av fire attributter:
+
 * *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
 * *text*, som er tekstlig beskrivelse av koden angitt attributtet "code"
 * *system*, som angir hvilket kodeverk attributtet "code" er definert i
 * *assigner*, som angir hvem som er ansvarlig for forvaltning av kodeverket angitt i attributtet "system"
 
 ##### "authorization": Helsepersonellets gjeldende autorisasjon - JSON format
+
 ````JSON
 "authorization": {
 	"code": "LE",
@@ -556,11 +569,13 @@ Strukturen som beskriver "authorization", består av fire attributter:
 ````
 
 ### 4.4 Kategori: "care_relation" - behandlerrelasjon
+
 Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av formålet med og bakgrunnen for behandlingen av helseopplysningene og eventuelt en helsetjenestetype som ytes til pasienten.
 
-Krav og forretningsregler knyttet til "care_relation": [Forretningsregler for attributtet "care_relation" ](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care_relation)
+Krav og forretningsregler knyttet til "care_relation": [Forretningsregler for attributtet "care_relation"](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care_relation)
 
 Strukturen som beskriver behandlerrelasjonen består av fire attributter som igjen har sine underliggende strukturer:
+
 * _healthcare_service_, som identifiserer typen helsetjenester som leveres ved virksomheten
 * _purpose_of_use_, som beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger
 * _purpose_of_use_details_, som er en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem
@@ -587,6 +602,7 @@ I JSON format er strukturen representert på følgende måte:
 Disse attributtene er beskrevet i større detalj videre i spesifikasjonen.
 
 #### 4.4.1 "healthcare_service": Helsetjenestetype
+
 Attributtet "healthcare_service" angir hvilken type helsetjenester som leveres/ytes ved virksomheten som helsepersonellet jobber for.
 
 Intensjonen er at konsumenten skal gjenbruke eksisterende informasjon som allerede er registrert deres systemer, og som allerede brukes til offentlig rapportering eller intern tilgangsstyring.<br>
@@ -604,6 +620,7 @@ Dersom det viser seg at noen informasjonselementer er krevende å implementere k
 | Krav og forretningsregler | [Forretningsregler for attributtet "healthcare_service" ](forretningsregler_for_bruk_av_attestering.md#31-forretningsregler-for-attributtet-healthcare_service) |
 
 Strukturen som beskriver "healthcare_service", består av fire attributter:
+
 * *code*, som er verdien fra kodeverket som er angitt i attributtet "system" 
 * *text*, som er tekstlig beskrivelse av koden angitt attributtet "code"
 * *system*, som angir hvilket kodeverk attributtet "code" er definert i
@@ -613,14 +630,15 @@ Strukturen som beskriver "healthcare_service", består av fire attributter:
 
 ````JSON
 "healthcare_service":{
-	"code": "KP02",
-	"text": "Sykepleietjeneste",
-	"system": "urn:oid:2.16.578.1.12.4.1.1.8663",
-	"assigner": "https://www.helsedirektoratet.no"
+ "code": "KP02",
+ "text": "Sykepleietjeneste",
+ "system": "urn:oid:2.16.578.1.12.4.1.1.8663",
+ "assigner": "https://www.helsedirektoratet.no"
 }
 ````
 
 #### 4.4.2 "purpose_of_use": formålet med behandlingen av personopplysninger
+
 Attributtet "purpose_of_use" beskriver det overordnede formålet som helsepersonellet har med behandlingen av personopplysninger, og benyttes til å begrunne *hvorfor* helsepersonellet trenger tilgang til pasientens helseopplysninger.
 I denne spesifikasjonen er gyldige verdier begrenset fordi andre og mer spesialiserte formål ikke ansees som relevante eller nødvendige for omfanget til Pasientens Journaldokumenter.
 
@@ -656,6 +674,7 @@ Strukturen som beskriver "purpose_of_use", består av fire attributter:
 ````
 
 #### 4.4.3 "purpose_of_use_details": type tjeneste som pasienten skal motta hos virksomheten
+
 Formålet med dette attributtet er å gi kilden dokumentasjon av grunnlaget for tilgjengeliggjøringen for bruk i loggkontroll samt som informasjon til innbygger.
 
 Attributtet "purpose_of_use_details" skal gi en oppsummering av tilgangsbeslutningen i helsepersonellets lokale journalsystem. En tilgangsbeslutning blir gitt etter en vurdering av tilgangsreglene som gjelder for dette helsepersonellet. 
