@@ -38,7 +38,7 @@ Dette er en kommentar fra Trond Elde - spec er oppdatert - det er mulig at han i
 
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/158
 
-Svare Trond og lukke issue?
+Steinar tar en sveip igjennom spec først og svarer ut Trond og lukker issuet?
 
 #### 2.2 Issue #117: NHN og sektoren har ulik forståelse av risikobilde i kontekst av informasjon i Access Tokens - krever avklaring
 
