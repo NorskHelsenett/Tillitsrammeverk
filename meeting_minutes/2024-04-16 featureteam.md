@@ -21,17 +21,18 @@
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 2. Tilbakemeldinger på notater
 3. Nye og utestående Issues og diskusjoner (10 stk)
-4. AOB (any other business)?
-5. Planlegge neste møte
+4. Hvordan skal vi håndtere endringer av spesifikasjonene under utprøving?
+5. AOB (any other business)?
+6. Planlegge neste møte
 
 ## Saksgrunnlag og referat
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
-### 2. Utestående Issues og diskusjoner
+### 2. Tilbakemeldinger på notatet om tillitsrammeverk
 
 Har feature teamet tilbakemeldinger på notatet?
-Vi ønsker oss skriftlig tilbakemeldinger, og en eventuell gjennomgang i møte. 
+Vi ønsker oss skriftlig tilbakemeldinger, og en eventuell gjennomgang i møte.
 
 ### 3. Utestående Issues og diskusjoner
 
@@ -108,8 +109,13 @@ https://github.com/NorskHelsenett/Tillitsrammeverk/issues/160
 KX17 er misvisende for fastlegerelasjon, finnes det andre alternativ?
 Noen i teamet som kan ta en titt på denne issuen? Noe HDIR kan hjelpe oss med?
 
-### 4. AoB (Any other Business)?
+### 4. Hvordan skal vi håndtere endringer av spesifikasjonene under utprøving?
+
+Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access Tokens/SAML-tokens?
+Hvordan informeres relevante aktører?
+
+### 5. AoB (Any other Business)?
 
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.
 
-### 5. Planlegge neste møte
+### 6. Planlegge neste møte
