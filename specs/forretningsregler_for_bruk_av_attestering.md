@@ -13,17 +13,17 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 | Kategori      | Attributt                | Beskrivelse                                                                                       | 
 |---------------|--------------------------|---------------------------------------------------------------------------------------------------| 
 | practitioner  | "identifier"             | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
-| practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
 | practitioner  | "authorization"     	    | Helsepersonellets autorisasjon, dersom den finnes                                                | 
-| practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
-| practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
+| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
 | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
-| care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care-relation | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| care-relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care-relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care-relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care-relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
 | patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
-| patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
+| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 | attestation	| "toa"   				  | "Time of Attestation" - tidspunktet hvor attestering ble utført 								   |
 
@@ -332,10 +332,10 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 | | |
 | --- | --- |
 | practitioner  | "identifier"             | Helsepersonellets fødselsnummer og navn fra folkeregisteret                                       | 
-| practitioner  | "hpr-nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
+| practitioner  | "hpr_nr"                 | Helsepersonellets HPR-nummer, dersom det finnes                                                   | 
 | practitioner  | "authorization"     	    | Helsepersonellets autorisasjon, dersom den finnes                                                 | 
-| practitioner  | "legal-entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
-| practitioner  | "point-of-care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal-entity"                    | 
+| practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
+| practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
 | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
 
 #### 2.1 Forretningsregler for attributtet "identifier"
@@ -530,7 +530,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 </table>
 
 
-#### 2.2 Forretningsregler for attributtet "legal-entity"
+#### 2.2 Forretningsregler for attributtet "legal_entity"
 
 <table>
     <tr>
@@ -539,7 +539,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"legal-entity"</td>
+        <td>"legal_entity"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -547,12 +547,12 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt angivelse av "legal-entity"</td>
+        <td>Korrekt angivelse av "legal_entity"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>  
-            Attributtet "legal-entity" SKAL inneholde helsepersonellets virksomhetstilhørighet.<br>
+            Attributtet "legal_entity" SKAL inneholde helsepersonellets virksomhetstilhørighet.<br>
             Det er hovedenheten hvor helsepersonellet yter helsehjelp som skal angis.<br> 
             Verdien for attributtet SKAL være identifikatoren som er registrert i Brønnøysundregisteret.<br><br>
             Eksempler på hovedenhet er:
@@ -581,7 +581,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"legal-entity"</td>
+        <td>"legal_entity"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -589,7 +589,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "legal-entity"</td>
+        <td>Korrekt bruk av attributtet "legal_entity"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -623,7 +623,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"legal-entity"</td>
+        <td>"legal_entity"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -631,7 +631,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Tilgangsstyring basert på "legal-entity" hos tillitsanker</td>
+        <td>Tilgangsstyring basert på "legal_entity" hos tillitsanker</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -661,7 +661,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"legal-entity"</td>
+        <td>"legal_entity"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -669,14 +669,14 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>    
     <tr>
         <td> Beskrivelse av regel </td>
-        <td> Krav til sporbarhet for attributtet "legal-entity"</a></td>
+        <td> Krav til sporbarhet for attributtet "legal_entity"</a></td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Attributtet "legal-entity" SKAL entydig og med stor sannsynlighet (uavviselig) knyttes til hovedenheten som har behandlingsansvar for personopplysningene, og som er ansvarlig for ansettelsesforholdet til  helsepersonellet som yter helsehjelp.<br><br>
+            Attributtet "legal_entity" SKAL entydig og med stor sannsynlighet (uavviselig) knyttes til hovedenheten som har behandlingsansvar for personopplysningene, og som er ansvarlig for ansettelsesforholdet til  helsepersonellet som yter helsehjelp.<br><br>
             Tillitsnivået (LoA) SKAL tilsvare knytningen mellom virksomheten og identifikasjonsmiddel som angitt i identifikasjonsnivåforskriften.<br>
-            Det skal være usannsynlig at verdien som angis i "legal-entity" kan endres eller manipuleres i sikkerhetsangrep under transport, eller ved lagring.
+            Det skal være usannsynlig at verdien som angis i "legal_entity" kan endres eller manipuleres i sikkerhetsangrep under transport, eller ved lagring.
         </td>
     </tr>
     <tr>
@@ -694,7 +694,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 
 
 
-#### 2.3 Forretningsregler for attributtet "point-of-care"
+#### 2.3 Forretningsregler for attributtet "point_of_care"
 
 <table>
     <tr>
@@ -703,7 +703,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -711,7 +711,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt angivelse av innholdet i attributtet "point-of-care"</td>
+        <td>Korrekt angivelse av innholdet i attributtet "point_of_care"</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -720,7 +720,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
             Verdien SKAL angi underenheten som er registrert i Brønnøysundregisteret, hvor helsepersonellet formelt utfører sitt arbeid.<br><br>
             Alle norske virksomheter er påkrevd å rapportere aktivitet per geografisk sted og per registrert næringskode i Brønnøysund. Det antas at de fleste norske virksomheter har registrerte underenheter i Brønnøysundregisteret.
             <br>
-            Eksempler på kombinasjoner av attributtene "legal-entity" og "point-of-care" for spesialisthelsetjenesten:
+            Eksempler på kombinasjoner av attributtene "legal_entity" og "point_of_care" for spesialisthelsetjenesten:
             <ul>
                 <tr>
                     <td>                    
@@ -729,21 +729,21 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
                 </tr>
                 <tr>
                     <td>
-                        point-of-care: "Nordlandssykehuset HF Somatikk - Gravdal"
+                        point_of_care: "Nordlandssykehuset HF Somatikk - Gravdal"
                     </td>
                 </tr>
             </ul>
             <br>
-            Eksempler på kombinasjoner av attributtene "legal-entity" og "point-of-care" for kommune:
+            Eksempler på kombinasjoner av attributtene "legal_entity" og "point_of_care" for kommune:
             <ul>
                 <tr>
                     <td>                    
-                        legal-entity: "Oslo kommune helseetaten"
+                        legal_entity: "Oslo kommune helseetaten"
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        point-of-care: "Oslo kommune helseetaten legevakten Storgata"
+                        point_of_care: "Oslo kommune helseetaten legevakten Storgata"
                     </td>
                 </tr>
             </ul>            
@@ -767,7 +767,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -775,7 +775,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Gyldig kodeverk angivelse av innholdet i attributtet "point-of-care"</td>
+        <td>Gyldig kodeverk angivelse av innholdet i attributtet "point_of_care"</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -801,7 +801,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -809,12 +809,12 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td> Angivelse av innholdet i attributtet "point-of-care" for virksomheter uten underliggende enheter</td>
+        <td> Angivelse av innholdet i attributtet "point_of_care" for virksomheter uten underliggende enheter</td>
     </tr>
     <tr>    
         <td>Regel</td>
-        <td>For virksomheter uten underenheter registrert i Brønnøysundregistrene SKAL hovedenheten oppgis i "point-of-care".<br>
-        Verdien i "legal-entity" og "point-of-care" vil i slike tilfeller være lik.
+        <td>For virksomheter uten underenheter registrert i Brønnøysundregistrene SKAL hovedenheten oppgis i "point_of_care".<br>
+        Verdien i "legal_entity" og "point_of_care" vil i slike tilfeller være lik.
         </td>
     </tr>
     <tr>
@@ -835,7 +835,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -843,7 +843,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "point-of-care".</td>
+        <td>Korrekt bruk av attributtet "point_of_care".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1186,7 +1186,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 
 
 
-#### 2.5 Forretningsregler for attributtet "hpr-nr"
+#### 2.5 Forretningsregler for attributtet "hpr_nr"
 <table>
     <tr>
         <td>ID </td>
@@ -1194,7 +1194,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"hpr-nr"</td>
+        <td>"hpr_nr"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1202,12 +1202,12 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Gyldig kodeverk for angivelse av verdi for attributtet "hpr-nr"</td>
+        <td>Gyldig kodeverk for angivelse av verdi for attributtet "hpr_nr"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Kodeverket som benyttes for angivelse av attributtet "hpr-nr" SKAL være:<br>
+            Kodeverket som benyttes for angivelse av attributtet "hpr_nr" SKAL være:<br>
             <ul>
                 <li>2.16.578.1.12.4.1.4.4 - Helsepersonellregisteret</a></li>
             </ul> 
@@ -1231,7 +1231,7 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"hpr-nr"</td>
+        <td>"hpr_nr"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1239,14 +1239,14 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av verdi for attributtet "hpr-nr" for helsepersonell uten lisens/autorisasjon</td>
+        <td>Angivelse av verdi for attributtet "hpr_nr" for helsepersonell uten lisens/autorisasjon</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr-nr" påkrevd.<br>
+            Det kan forekomme at helsepersonell uten lisens eller autorisasjon i HPR trenger tilgang på helseopplysninger. Derfor er ikke attributtet "hpr_nr" påkrevd.<br>
             <ul>
-                <li>Attributtet "hpr-nr" SKAL angis dersom den fysiske personen har et innslag i HPR.</li>
+                <li>Attributtet "hpr_nr" SKAL angis dersom den fysiske personen har et innslag i HPR.</li>
                 <li>Attributtet SKAL utelates fra attesten dersom helsepersonellet ikke har et innslag i HPR</li>
             </ul> 
         </td>
@@ -1343,12 +1343,12 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 Attributtet "care-relation" består av fire underliggende attributter, som beskriver behandlerrelasjonen som attesten gjelder for.
 | | | |
 | --- | --- | --- |
-| care-relation | "healthcare-service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care-relation | "purpose-of-use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care-relation | "purpose-of-use-details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care-relation | "decision-ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| care-relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
+| care-relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
+| care-relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
+| care-relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
 
-#### 3.1 Forretningsregler for attributtet "healthcare-service"
+#### 3.1 Forretningsregler for attributtet "healthcare_service"
 
 <table>
     <tr>
@@ -1357,7 +1357,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"healthcare-service"</td>
+        <td>"healthcare_service"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1365,14 +1365,14 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av verdi for attributtet "healthcare-service"</td>
+        <td>Angivelse av verdi for attributtet "healthcare_service"</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare-service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br><br>
+            Konsumerende virksomhet må selv avgjøre hvilke verdier for angivelse av attributtet "healthcare_service" som best beskriver typen helsetjeneste som leveres ved virksomheten hvor helsepersonellet yter helsehjelp.<br><br>
             Det er flere kodeverk som er aktuelle for å beskrive helsehjelpstjeneste, de fleste er koblet til tjenestebasert adressering, se detaljert beskrivelse under attributtet i informasjonsmodellen.<br>
-            Verdien som angis for attributtet "healthcare-service" skal være definert i ett av de følgende kodeverkene:
+            Verdien som angis for attributtet "healthcare_service" skal være definert i ett av de følgende kodeverkene:
             <ul>
                 <li><a href="https://volven.no/produkt.asp?open_f=true&id=495806&catID=3&subID=8&subCat=163&oid=8655">Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8655)</a></li>
                 <li><a href="https://volven.no/produkt.asp?id=507406&catID=3&subID=8">UTGÅTT Tjenestetyper innen spesialisthelsetjenesten (OID=2.16.578.1.12.4.1.1.8627)</a></li>
@@ -1403,7 +1403,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"healthcare-service"</td>
+        <td>"healthcare_service"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1411,12 +1411,12 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Bruk av "healthcare-service" for å angi helsehjelpstjeneste</td>
+        <td>Bruk av "healthcare_service" for å angi helsehjelpstjeneste</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
-            Attributtet "healthcare-service" (helsehjelpstjeneste) angir hvilken type helsetjenester som leveres/ytes til pasienten ved virksomheten der helsepersonellet jobber. Helsehjelpstjenesten som dokumenteres inngår i grunnlaget for at helsepersonellet trenger tilgang til pasientens helseopplysninger.<br>
+            Attributtet "healthcare_service" (helsehjelpstjeneste) angir hvilken type helsetjenester som leveres/ytes til pasienten ved virksomheten der helsepersonellet jobber. Helsehjelpstjenesten som dokumenteres inngår i grunnlaget for at helsepersonellet trenger tilgang til pasientens helseopplysninger.<br>
             Et alternativ til begrepet <em>helsehjelpstjeneste</em> er <em>fagområde</em>, som beskriver det tilsvarende grunnlaget i spesialisthelsetjenesten.
         </td>
     </tr>
@@ -1438,7 +1438,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"healthcare-service"</td>
+        <td>"healthcare_service"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1446,12 +1446,12 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>        
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "healthcare-service".</td>
+        <td>Korrekt bruk av attributtet "healthcare_service".</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>  
-            Attributtet "healthcare-service" skal inngå i attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og skal inngå i innbyggers innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i innbyggerens innsynslogg for tilganger dersom dette elementet gjør tilgangene mer forståelige for innbyggere.<br> 
+            Attributtet "healthcare_service" skal inngå i attesten som i sum dokumenterer grunnlaget for at tilgang blir gitt, og skal inngå i innbyggers innsynslogg. Denne opplysningen vil benyttes ved lovpålagt etterfølgende kontroll av tilgangene, samt eventuelt vises i innbyggerens innsynslogg for tilganger dersom dette elementet gjør tilgangene mer forståelige for innbyggere.<br> 
             Denne opplysningen SKAL benyttes ved:
             <ul>
                 <li>Lovpålagt etterfølgende kontroll av tilgangene hos kilder.</li>
@@ -1478,7 +1478,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"healthcare-service"</td>
+        <td>"healthcare_service"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1513,7 +1513,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"healthcare-service"</td>
+        <td>"healthcare_service"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1532,8 +1532,8 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
                 <li>Dersom pasienten ønsker dialog i etterkant av et avsluttet forløp</li>
                 <li>Det har oppstått en akuttsituasjon som krever rask tilgang til pasienten</li>
             </ul>
-            I slike tilfeller vil det ikke være nødvendig å oppgi verdi for attributtet "healthcare-service".<br>
-            For spesialisthelsetjenesten skal manglende verdi i "healthcare-service" kunne forklares av verdien som formidles i "purpose-of-use-details".
+            I slike tilfeller vil det ikke være nødvendig å oppgi verdi for attributtet "healthcare_service".<br>
+            For spesialisthelsetjenesten skal manglende verdi i "healthcare_service" kunne forklares av verdien som formidles i "purpose_of_use_details".
         </td>
     </tr>
     <tr>
@@ -1550,7 +1550,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 
 
 
-#### 3.2 Forretningsregler for attributtet "purpose-of-use"
+#### 3.2 Forretningsregler for attributtet "purpose_of_use"
 
 <table>
     <tr>
@@ -1559,7 +1559,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use"</td>
+        <td>"purpose_of_use"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1567,7 +1567,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av kode "TREAT" som verdi for attributtet "purpose-of-use"</td>
+        <td>Angivelse av kode "TREAT" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1599,7 +1599,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use"</td>
+        <td>"purpose_of_use"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1607,7 +1607,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av kode "ETREAT" som verdi for attributtet "purpose-of-use"</td>
+        <td>Angivelse av kode "ETREAT" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1639,7 +1639,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use"</td>
+        <td>"purpose_of_use"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1647,7 +1647,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av kode "COC" som verdi for attributtet "purpose-of-use"</td>
+        <td>Angivelse av kode "COC" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1677,7 +1677,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use"</td>
+        <td>"purpose_of_use"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1685,7 +1685,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>    
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av kode "BTG" som verdi for attributtet "purpose-of-use"</td>
+        <td>Angivelse av kode "BTG" som verdi for attributtet "purpose_of_use"</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1708,7 +1708,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
 </table>
 
-#### 3.3 Forretningsregler for attributtet "purpose-of-use-details"
+#### 3.3 Forretningsregler for attributtet "purpose_of_use_details"
 
 <table>
     <tr>
@@ -1717,7 +1717,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use-details"</td>
+        <td>"purpose_of_use_details"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1725,13 +1725,13 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Overordnede retningslinjer for angivelse av "purpose-of-use-details"</td>
+        <td>Overordnede retningslinjer for angivelse av "purpose_of_use_details"</td>
     </tr>
     <tr>    
         <td>Regel</td>
         <td>
             Intensjonen bak attesteringen er å best mulig kunne formidle grunnlaget for tilgang som er dokumentert i helsepersonellets virksomhet.<br>
-            Attributtet "purpose-of-use-details" skal formidle den spesifikke hendelsen aller aktiviteten som er bakgrunnen for at helsepersonellet har fått tilgang til pasientens helseopplysninger i egen virksomhet.<br> 
+            Attributtet "purpose_of_use_details" skal formidle den spesifikke hendelsen aller aktiviteten som er bakgrunnen for at helsepersonellet har fått tilgang til pasientens helseopplysninger i egen virksomhet.<br> 
             Dette attributtet utfyller andre attributter, slik at det i sum dannes et forståelig bilde av bakgrunnen for tilgangen.<br>
             Begrepene "hendelse" eller "aktivitet" er ikke nødvendigvis gode begreper for alle virksomhetstyper eller alle typer helsehjelpstjenester.<br>
             <br>
@@ -1771,7 +1771,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use-details"</td>
+        <td>"purpose_of_use_details"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1779,7 +1779,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Foreslåtte kodeverk for angivelse av verdi for "purpose-of-use-details"</td>
+        <td>Foreslåtte kodeverk for angivelse av verdi for "purpose_of_use_details"</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -1813,7 +1813,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use-details"</td>
+        <td>"purpose_of_use_details"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1821,7 +1821,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>        
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "purpose-of-use-details".</td>
+        <td>Korrekt bruk av attributtet "purpose_of_use_details".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1853,7 +1853,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"purpose-of-use-details"</td>
+        <td>"purpose_of_use_details"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1861,7 +1861,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Retningslinjer dersom det finnes flere mulige verdier for "purpose-of-use-details"</td>
+        <td>Retningslinjer dersom det finnes flere mulige verdier for "purpose_of_use_details"</td>
     </tr>
     <tr>    
         <td>Regel</td>
@@ -1883,7 +1883,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
 
 
 
-#### 3.4 Forretningsregler for attributtet "decision-ref"
+#### 3.4 Forretningsregler for attributtet "decision_ref"
 
 <table>
     <tr>
@@ -1892,7 +1892,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"decision-ref"</td>
+        <td>"decision_ref"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1900,7 +1900,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Formål med, og bruk av attributtet "decision-ref".</td>
+        <td>Formål med, og bruk av attributtet "decision_ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -1910,8 +1910,8 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
             Formålet med dette attributtet er at alle parter i en kjede av involverte virksomheter og systemer, skal kunne gjenfinne logginnslag som har opphav fra den opprinnelige tilgangsbeslutningen hos konsument.<br><br>
             Denne opplysningen SKAL benyttes på følgende måte:
             <ul>
-                <li>Dersom etterfølgende kontroll av tilgangene hos kilder fører til behov for videre oppfølging hos konsument skal "decision-ref" oppgis ved henvendelser.</li>
-                <li>Dersom "decision-ref" oppgis ved henvendelse fra data- eller dokumentkilde skal det være mulig for konsument å framstille informasjon som beskriver beslutningen om tilgang i sitt system, slik at de kan vurdere hvorvidt tilgangen var gyldig.</li>
+                <li>Dersom etterfølgende kontroll av tilgangene hos kilder fører til behov for videre oppfølging hos konsument skal "decision_ref" oppgis ved henvendelser.</li>
+                <li>Dersom "decision_ref" oppgis ved henvendelse fra data- eller dokumentkilde skal det være mulig for konsument å framstille informasjon som beskriver beslutningen om tilgang i sitt system, slik at de kan vurdere hvorvidt tilgangen var gyldig.</li>
             </ul>
         </td>
     </tr>
@@ -1935,7 +1935,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"decision-ref"</td>
+        <td>"decision_ref"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1943,14 +1943,14 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Overordnet beskrivelse av angivelse av verdi for attributtet "decision-ref".</td>
+        <td>Overordnet beskrivelse av angivelse av verdi for attributtet "decision_ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
         <td>
             Attributtet er en referanse til den lokale tilgangsbeslutningen hos konsumenten.<br> 
             Med tilgangsbeslutning menes det som er dokumentert hos en konsument i forbindelse med at et helsepersonell har fått tilgang:<br><br>
-            Vi skiller mellom to brukstilfeller for verdien i attributtet "decision-ref":
+            Vi skiller mellom to brukstilfeller for verdien i attributtet "decision_ref":
             <ul>
                 <li>tilgang til flere pasienter</li>
                 <li>tilgang til en spesifikk pasient</li>
@@ -1985,7 +1985,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"decision-ref"</td>
+        <td>"decision_ref"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -1993,7 +1993,7 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Gyldige verdi for "user_selected" i attributtet "decision-ref".</td>
+        <td>Gyldige verdi for "user_selected" i attributtet "decision_ref".</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -2025,13 +2025,13 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
 | | | |
 | --- | --- | --- |
 | patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
-| patient       | "point-of-care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal-entity"         | 
+| patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
 
 
 #### 4.1 Forretningsregler for attributtet "identifier" for pasient
 
-#### 4.2 Forretningsregler for attributtet "point-of-care" for pasient
+#### 4.2 Forretningsregler for attributtet "point_of_care" for pasient
 
 <table>
     <tr>
@@ -2040,7 +2040,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -2048,7 +2048,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av attributtet "point-of-care" for pasient.</td>
+        <td>Angivelse av attributtet "point_of_care" for pasient.</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -2089,7 +2089,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -2097,7 +2097,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Angivelse av attributtet "point-of-care" for pasient for virksomheter uten underenheter.</td>
+        <td>Angivelse av attributtet "point_of_care" for pasient for virksomheter uten underenheter.</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -2123,7 +2123,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -2131,7 +2131,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Unntak fra bruk av attributtet "point-of-care" for pasient.</td>
+        <td>Unntak fra bruk av attributtet "point_of_care" for pasient.</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -2161,7 +2161,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Attributt</td>
-        <td>"point-of-care"</td>
+        <td>"point_of_care"</td>
     </tr>
     <tr>
         <td>Beskrivelse av attributt</td>
@@ -2169,7 +2169,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
+        <td>Korrekt bruk av attributtet "point_of_care" for pasient.</td>
     </tr>
     <tr>    
         <td> Regel </td>
@@ -2363,7 +2363,7 @@ Attributtet "patient" består av tre underliggende attributter som beskriver pas
     </tr>
     <tr>
         <td>Beskrivelse av regel</td>
-        <td>Korrekt bruk av attributtet "point-of-care" for pasient.</td>
+        <td>Korrekt bruk av attributtet "point_of_care" for pasient.</td>
     </tr>
     <tr>    
         <td> Regel </td>
