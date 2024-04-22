@@ -30,10 +30,12 @@
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
 ### 2. Diskusjon om versjonering av datamodell
-Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access Tokens/SAML-tokens?
-Hvordan informeres relevante aktører?
 
-Tilbakemelding fra teamet: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
+Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access Tokens/SAML-tokens? Hvordan informeres relevante aktører?
+
+Recap fra diskusjonen i NHN..
+
+Innspll fra featureteam: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
 Det burde også gå mot en veldig forutsigbar endringssyklus - tydelighet hvor lenge eldre versjoner støttes og når nye versjoner rulles ut og tilgjengeliggjøres.
 
 ### 3. Utestående Issues og diskusjoner
@@ -47,37 +49,28 @@ Dette er en kommentar fra Trond Elde - spec er oppdatert - det er mulig at han i
 
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/158
 
-Steinar tar en sveip igjennom spec først og svarer ut Trond og lukker issuet?
+Forslag akseptert?
 
 #### 3.4 Issue #157: "care-relation" eller "care-relationship"?
 
-Har vi landet på ett av disse begrepene?
-Steinar oppdaterer spesifikasjonen når vi blir enige.
+Endret også SAML spesifikasjonen.. Men det kan hende jeg var for ivrig..
+Er forslaget akseptert?
 
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/157
 
 #### 3.5 Issue #153: ToA: Time of Attestation - Tydeliggjøre beskrivelse av formål og bruk
 
-Steinar skriver et forslag, og oppdaterer spesifikasjonen.
-Hva skal den brukes til, og hvordan skal den brukes?
-Utdyp hva vi mener mener med attestering i denne konteksten.
-
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/153
+
+Er forslaget akseptert?
 
 #### 3.11 Issue #160: Healthcare-service: Manglende kode for fastlegerelasjon?
 
 Ny issue registrert av Øyvind K:
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/160
 
-KX17 er misvisende for fastlegerelasjon, finnes det andre alternativ?
-Noen i teamet som kan ta en titt på denne issuen? Noe HDIR kan hjelpe oss med?
-
-Aksjon: legg til at 7750 også er et kodeverk som kan benyttes. Legg til eksempel..
-
-* https://beta.finnkode.ehelse.no/adm/collections/8254?q=8254
-* https://beta.finnkode.ehelse.no/adm/collections/7750?q=fastlege
-
-Ta kontakt med HDIR for å få en avklaring - hvilke koder passer best til vårt formål?
+La inn nye koder, og har sendt mail til HDIR.
+La issue stå åpen til vi får tilbakemelding fra HDIR?
 
 #### 3.2 Issue #117: NHN og sektoren har ulik forståelse av risikobilde i kontekst av informasjon i Access Tokens - krever avklaring
 
