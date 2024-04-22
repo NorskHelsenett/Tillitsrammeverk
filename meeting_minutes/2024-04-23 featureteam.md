@@ -35,7 +35,7 @@ Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access T
 
 Recap fra diskusjonen i NHN..
 
-Innspll fra featureteam: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
+Innspll fra featureteam i forrige møte: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
 Det burde også gå mot en veldig forutsigbar endringssyklus - tydelighet hvor lenge eldre versjoner støttes og når nye versjoner rulles ut og tilgjengeliggjøres.
 
 ### 3. Utestående Issues og diskusjoner
