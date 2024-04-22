@@ -897,8 +897,10 @@ I JSON format er objektet som representerer en attest strukturert på følgende 
 ```
 #### 4.6.1 "toa" - tidspunktet hvor attestering ble utført
 
-Attributtet "toa" angir tidspunktet hvor grunnlaget for tilgjengeliggjøringen ble attestert hos konsumenten.
-Attributtet kan benyttes til tilgangskontroll og loggkontroll, slik at man hindrer at en gammel attestering blir brukt for tilgang til helseopplysninger.
+En attestering er ikke til engangsbruk, og skal kunne gjenbrukes i forbindelse med utstedelse av nye sikkerhetsbilletter (Access Tokens og SAML-tokens).
+Det må derfor være mulig å kontrollere hvor lenge siden attesteringen ble utført slik at man kan avvise forespørsler hvor attesteringen ansees som for gammel.
+
+Attributtet "toa" angir tidspunktet når grunnlaget for tilgjengeliggjøringen ble attestert hos konsumenten, og skal benyttes til tilgangskontroll, slik at man hindrer at ugyldige attesteringer blir brukt for tilgang til helseopplysninger.
 
 |   |   |
 | ---| ---|

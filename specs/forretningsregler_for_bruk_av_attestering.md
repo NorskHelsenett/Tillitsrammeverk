@@ -1387,6 +1387,8 @@ Attributtet "care-relation" består av fire underliggende attributter, som beskr
                 <li><a href="https://volven.no/produkt.asp?open_f=true&id=496298&catID=3&subID=8&subCat=163&oid=8662">Fylkeskommunale tjenestetyper (OID=2.16.578.1.12.4.1.1.8662)</a></li>
                 <li><a href="https://volven.no/produkt.asp?open_f=true&id=496327&catID=3&subID=8&subCat=163&oid=8664">Tjenestetyper for apotek og bandasjister (OID=2.16.578.1.12.4.1.1.8664)</a></li>
                 <li><a href="https://volven.no/produkt.asp?open_f=true&id=496328&catID=3&subID=8&subCat=163&oid=8666">Felles tjenestetyper (OID=2.16.578.1.12.4.1.1.8666)</a></li>
+                <li><a href="https://beta.finnkode.ehelse.no/adm/collections/7750?q=7750">Lege forhold (fastlegeordningen) (OID=2.16.578.1.12.4.1.1.7750)</a></li>
+                <li><a href="https://beta.finnkode.ehelse.no/adm/collections/8254?q=8254">Type relasjon til tilknyttet tjenesteyter (OID=2.16.578.1.12.4.1.1.8254)</a></li>
             </ul>  
         </td>
     </tr>
@@ -2469,6 +2471,103 @@ Attributtet "attestation" består av fire underliggende attributter som utgjør 
             Denne regelen skal håndheves av:
             <ul>
                 <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-58 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"toa"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Tidspunktet for attestering</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Gyldig levetid for en attest</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td>
+            <ul>
+                <li>  
+                    En attestering av helsepersonellets grunnlag for tilgang er gyldig i den tiden helsepersonellet yter eller administrerer helsehjelp til pasienten, eller pasientene som er angitt i attesten.
+                </li>
+                <li>
+                    Når helsepersonellet henter opplysninger om sin pasient i sin programvare SKAL programvaren generere en ny attest dersom helsepersonellet ønsker å hente opplysninger om pasienten som er produsert og tilgjengeligjort hos en annen virksomhet.
+                </li>
+                <li>
+                    Dersom helsepersonellet bytter pasient i sin programvare SKAL eksisterende attester slettes.
+                </li>
+                <li>
+                    En attest SKAL ha maksimal levetid på 60 minutt.
+                </li>
+                <li>
+                    Programvaren som helsepersonellet benytter MÅ sørge for å attestere på nytt dersom maksimal levetid er nådd.
+                </li>
+                <li>
+                    Programvaren som helsepersonellet benytter KAN velge å generere ny attest for hver forespørsel om sikkerhetsbilletter (Access Tokens og SAML-tokens).
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>Konsument</li>
+            </ul>  
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td> ATT-58 </td>
+    </tr>
+    <tr>
+        <td>Attributt</td>
+        <td>"toa"</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av attributt</td>
+        <td>Tidspunktet for attestering</td>
+    </tr>
+    <tr>
+        <td>Beskrivelse av regel</td>
+        <td>Kontroll av tidspunkt for attestering</td>
+    </tr>
+    <tr>    
+        <td> Regel </td>
+        <td> 
+            <ul>
+                <li>
+                    Dersom det er gått mer enn 60 minutt siden utstedelsen av en attest skal http-forespørselen avvises.
+                </li>
+                <li>
+                    Feilmelding ved avvisning av http-forespørselen skal inneholde feilmeldingen "attestation_has_expired".
+                </li>
+                <li>
+                    Denne spesifikasjonen tar ikke hensyn til utfordringer knyttet til ulik tid/klokke på konsument og server. Forskjell i tid/klokke på klient og server kan føre til at en attest blir utstedt med lengre eller kortere levetid enn det som er reellt.
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td> Ansvarlig </td>
+        <td>
+            Denne regelen skal håndheves av:
+            <ul>
+                <li>NHN og datakilde</li>
             </ul>  
         </td>
     </tr>
