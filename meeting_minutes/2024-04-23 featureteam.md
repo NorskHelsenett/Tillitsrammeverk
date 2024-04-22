@@ -1,4 +1,4 @@
-# Møtereferat fra møte i feature-team for informasjons- og datamodell i tillitsrammeverket - 16.04.2024
+# Møtereferat fra møte i feature-team for informasjons- og datamodell i tillitsrammeverket - 23.04.2024
 
 ## Til stede
 
@@ -9,36 +9,32 @@
 - Kenneth Myhra (NHN)
 - Steinar Noem (NHN)
 - Ragnhild Varmedal (NHN)
-
-### Ikke til stede
-
 - Rune Andreas Grimstad (NHN)
 - Øyvind Bech (NHN)
 - Michal Cermak (NHN)
 - Simone Vandeberg (NHN)
 
+### Ikke til stede
+
+
 ## Agenda
 
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
-2. Tilbakemeldinger på notater
-3. Nye og utestående Issues og diskusjoner (10 stk)
-4. Hvordan skal vi håndtere endringer av spesifikasjonene under utprøving?
-5. AOB (any other business)?
-6. Planlegge neste møte
+2. Diskusjon om versjonering av datamodell
+3. Nye og utestående Issues og diskusjoner
+4. AOB (any other business)?
+5. Planlegge neste møte
 
 ## Saksgrunnlag og referat
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
-### 2. Tilbakemeldinger på notatet om tillitsrammeverk
+### 2. Diskusjon om versjonering av datamodell
+Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access Tokens/SAML-tokens?
+Hvordan informeres relevante aktører?
 
-Har feature teamet tilbakemeldinger på notatet?
-Vi ønsker oss skriftlig tilbakemeldinger, og en eventuell gjennomgang i møte.
-
-Fra feature-teamet:
-
-- Generell kommentar: tillitsrammeverket er også til bruk ved deling av data direkte mellom virksomhetene i sektoren, ikke bare sentralt nasjonalt koblingspunkt eller ved samling/lagring
-- Vi kommer en skriftlig tilbakemelding, men må komme etter annet arbeid.
+Tilbakemelding fra teamet: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
+Det burde også gå mot en veldig forutsigbar endringssyklus - tydelighet hvor lenge eldre versjoner støttes og når nye versjoner rulles ut og tilgjengeliggjøres.
 
 ### 3. Utestående Issues og diskusjoner
 
@@ -52,18 +48,6 @@ Dette er en kommentar fra Trond Elde - spec er oppdatert - det er mulig at han i
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/158
 
 Steinar tar en sveip igjennom spec først og svarer ut Trond og lukker issuet?
-
-#### 3.2 Issue #117: NHN og sektoren har ulik forståelse av risikobilde i kontekst av informasjon i Access Tokens - krever avklaring
-
-Noen framgang på denne?
-
-https://github.com/NorskHelsenett/Tillitsrammeverk/issues/150
-
-#### 3.3 Issue #136: Vurdere om alle felter med potensiell fritekst skal valideres opp mot regulæruttrykk og maksimalt antall tegn av tillitsankeret
-
-Tilbakemelding fra HelseID er at de ikke har prioritert arbeid med attestering av helsepersonellets grunnlag for tilgang til helseopplysninger i inneværende sprint. Flyttes til neste milepæl?
-
-https://github.com/NorskHelsenett/Tillitsrammeverk/issues/136
 
 #### 3.4 Issue #157: "care-relation" eller "care-relationship"?
 
@@ -79,6 +63,34 @@ Hva skal den brukes til, og hvordan skal den brukes?
 Utdyp hva vi mener mener med attestering i denne konteksten.
 
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/153
+
+#### 3.11 Issue #160: Healthcare-service: Manglende kode for fastlegerelasjon?
+
+Ny issue registrert av Øyvind K:
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/160
+
+KX17 er misvisende for fastlegerelasjon, finnes det andre alternativ?
+Noen i teamet som kan ta en titt på denne issuen? Noe HDIR kan hjelpe oss med?
+
+Aksjon: legg til at 7750 også er et kodeverk som kan benyttes. Legg til eksempel..
+
+* https://beta.finnkode.ehelse.no/adm/collections/8254?q=8254
+* https://beta.finnkode.ehelse.no/adm/collections/7750?q=fastlege
+
+Ta kontakt med HDIR for å få en avklaring - hvilke koder passer best til vårt formål?
+
+#### 3.2 Issue #117: NHN og sektoren har ulik forståelse av risikobilde i kontekst av informasjon i Access Tokens - krever avklaring
+
+Noen framgang på denne?
+
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/150
+
+#### 3.3 Issue #136: Vurdere om alle felter med potensiell fritekst skal valideres opp mot regulæruttrykk og maksimalt antall tegn av tillitsankeret
+
+Tilbakemelding fra HelseID er at de ikke har prioritert arbeid med attestering av helsepersonellets grunnlag for tilgang til helseopplysninger i inneværende sprint. Flyttes til neste milepæl?
+
+https://github.com/NorskHelsenett/Tillitsrammeverk/issues/136
+
 
 #### 3.6 Issue #137: Vi manger "decision-ref" i JSON eksempler
 
@@ -109,33 +121,11 @@ Tilbakemelding fra HelseID er at de ikke har prioritert arbeid med attestering a
 
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134
 
-#### 3.11 Issue #160: Healthcare-service: Manglende kode for fastlegerelasjon?
 
-Ny issue registrert av Øyvind K:
-https://github.com/NorskHelsenett/Tillitsrammeverk/issues/160
-
-KX17 er misvisende for fastlegerelasjon, finnes det andre alternativ?
-Noen i teamet som kan ta en titt på denne issuen? Noe HDIR kan hjelpe oss med?
-
-Aksjon: legg til at 7750 også er et kodeverk som kan benyttes. Legg til eksempel..
-
-* https://beta.finnkode.ehelse.no/adm/collections/8254?q=8254
-* https://beta.finnkode.ehelse.no/adm/collections/7750?q=fastlege
-
-Ta kontakt med HDIR for å få en avklaring - hvilke koder passer best til vårt formål?
-
-### 4. Hvordan skal vi håndtere endringer av spesifikasjonene under utprøving?
-
-Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access Tokens/SAML-tokens?
-Hvordan informeres relevante aktører?
-
-Tilbakemelding fra teamet: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
-Det burde også gå mot en veldig forutsigbar endringssyklus - tydelighet hvor lenge eldre versjoner støttes og når nye versjoner rulles ut og tilgjengeliggjøres.
-
-### 5. AoB (Any other Business)?
+### 4. AoB (Any other Business)?
 
 Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt på agendaen for dette.
 
 Er det mulig å se for seg å binde en request og en attest sammen.
 
-### 6. Planlegge neste møte
+### 5. Planlegge neste møte
