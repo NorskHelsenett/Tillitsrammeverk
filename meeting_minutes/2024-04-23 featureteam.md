@@ -114,6 +114,11 @@ Tilbakemelding fra HelseID er at de ikke har prioritert arbeid med attestering a
 
 https://github.com/NorskHelsenett/Tillitsrammeverk/issues/134
 
+#### 3.11 Merge branch med main?
+
+Flere leverandører implementerer modellen i dag, antagelig lurt å oppdatere main med endringene. Det er forvirrende at det er forskjeller mellom HelseID sine spesifikasjoner og datamodell i tillitsrammeverket.
+
+Er feature-teamet enig?
 
 ### 4. AoB (Any other Business)?
 
