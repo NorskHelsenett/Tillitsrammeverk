@@ -4,17 +4,18 @@
 
 - Richard Husevåg (HSØ)
 - Morten Stensøy (Helse Nord IKT)
+- Anders Johan Hem Halling (HSØ)
 - Nina Nordberg (NHN)
 - Eirik Vegler Broen (Oslo Kommune)
-- Kenneth Myhra (NHN)
 - Steinar Noem (NHN)
-- Ragnhild Varmedal (NHN)
-- Rune Andreas Grimstad (NHN)
-- Øyvind Bech (NHN)
-- Michal Cermak (NHN)
 - Simone Vandeberg (NHN)
 
 ### Ikke til stede
+- Michal Cermak (NHN)
+- Ragnhild Varmedal (NHN)
+- Rune Andreas Grimstad (NHN)
+- Kenneth Myhra (NHN)
+- Øyvind Bech (NHN)
 
 
 ## Agenda
@@ -33,9 +34,22 @@
 
 Informasjonsmodellen er versjonert, hvordan versjoneres RAR struktur og Access Tokens/SAML-tokens? Hvordan informeres relevante aktører?
 
-Recap fra diskusjonen i NHN..
+Recap fra diskusjonen i NHN:
+Versjoner datamodellen for tillitsrammeverket:
+- versjon 0.9
+- Å legge til nye felt: utvide - er ikke en breaking change
+- Å fjerne eller endre er en breaking change - er ikke så veldig bekymret
 
-Innspll fra featureteam i forrige møte: NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
+Tiden for å gjøre breaking changes er nå - før det rulles ut til produksjon
+
+I verste tilfelle må hver eneste som skal lese en attest gjøre tilpassinger:
+- Alle som bruker "point-of-care" må gjøre endringer
+- Mange konsumenter og tjenester
+- Hvordan håndterer vi endringer?
+
+
+Innspll fra featureteam i forrige møte: 
+NHN burde ha en kontaktadresse/kontaktpunkt ved endringer som kan brukes. Utviklerportal burde være "sannheten" - varsling av endringer. Bør henge sammen med hva man gjør for andre tjenester.
 Det burde også gå mot en veldig forutsigbar endringssyklus - tydelighet hvor lenge eldre versjoner støttes og når nye versjoner rulles ut og tilgjengeliggjøres.
 
 ### 3. Utestående Issues og diskusjoner
