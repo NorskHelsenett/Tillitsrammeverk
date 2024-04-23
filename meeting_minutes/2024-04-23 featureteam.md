@@ -9,6 +9,7 @@
 - Eirik Vegler Broen (Oslo Kommune)
 - Steinar Noem (NHN)
 - Simone Vandeberg (NHN)
+- Kristin Rønneberg (NHN)
 
 ### Ikke til stede
 - Michal Cermak (NHN)
