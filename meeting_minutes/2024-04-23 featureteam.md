@@ -150,6 +150,8 @@ System: DIPS
 Legg til forretningsregler for hvordan decision_ref håndteres i DIPS
 Team A&A må inkluderes?
 
+Konklusjon:
+- Gjennomfør merge fra branch til main med endringene som er utført.
 
 ### 4. AoB (Any other Business)?
 
@@ -157,5 +159,16 @@ Dersom noen har et tema de ønsker å diskutere har vi satt av ett eget punkt p�
 
 Er det mulig å se for seg å binde en request og en attest sammen.
 
+OSG:
+Hva er signalet fra sektor og NHN?
+Er vi enige, eller har vi ulikt syn?
 
 ### 5. Planlegge neste møte
+Tirsdag 30:
+- Hvordan håndterer vi innspillene til OSG?
+- Leverer vi felles underlag?
+- Ragnhild og Øyvind bes om å prioritere feature team møtet
+- Hva er planlagt for OSG 7.mai?
+- Blir dette en felles sak som belyser alle synspunkter?
+
+Ta en runde på https://github.com/NorskHelsenett/Tillitsrammeverk/issues/162
