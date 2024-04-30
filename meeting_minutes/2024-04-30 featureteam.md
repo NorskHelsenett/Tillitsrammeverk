@@ -21,7 +21,7 @@
 ## Agenda
 
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
-2. Tilbakemeldinger fra NHN på notat fra feature team
+2. Gjennomgang av notat fra feature team
 3. AOB (any other business)?
 4. Planlegge neste møte
 
@@ -33,7 +33,7 @@ Legg inn anders til bidragsytere i github
 
 ### 2. Tilbakemeldinger fra NHN på notat fra feature team
 
-Vi tar en gjennomgang av notatet som featureteamet delte med NHN den 23.03.2024.
+Vi tar en gjennomgang av notatet som featureteamet delte med NHN den 23.03.2024, for å få en felles og bedre forståelse av risikoene som er beskrevet.
 
 ### 3. AoB (Any other Business)?
 
