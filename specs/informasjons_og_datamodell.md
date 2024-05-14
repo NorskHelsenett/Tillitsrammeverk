@@ -18,7 +18,7 @@ Dette dokumentet er et utkast som er ment for utviklere av programvare som skal 
 | -4 | Utkast 		| 14.11.2023 |
 | -5 | Utkast 		| 15.11.2023 |
 | -6 | Utprøving v1.0 	| 16.11.2023 |
-| -6 | Utprøving v1.1 	| 31.05.2024 |
+| -7 | Utprøving v1.1 	| 30.04.2024 |
 
 Dette dokumentet utgjør ikke en formell standard, men inngår som en del av et kravsett knyttet til tillitsrammeverk for deling av helseopplysninger i helse- og omsorgssektoren.
 Spesifikasjonen bør ikke benyttes uten føringene som ligger til grunn i tillitsrammeverket.
