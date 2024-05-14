@@ -9,6 +9,8 @@ Vi har valgt å bruke versjonskontrollverktøyet Github til å skrive dokumentas
 - Det gir oss god kontroll over endringer og historikk
 - Det gjør samarbeid på tvers enklere
 
+
+
 ### Spesifikasjoner
 * [Informasjonsmodell og datamodell for attestering av helsepersonells grunnlag for tilgang til helseopplysninger](/specs/informasjons_og_datamodell.md).
 * [Krav og forretningsregler for bruk av informasjonsmodell for attestering av helsepersonellets grunnlag for tilgang til helseopplysninger](/specs/forretningsregler_for_bruk_av_attestering.md)

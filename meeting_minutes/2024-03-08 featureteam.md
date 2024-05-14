@@ -49,13 +49,13 @@ Dersom vi kan lukke en issue i møtet er det selvfølgelig fint.
 #### 2.5 Issue #136: Validering av fritekst
 [Issue #136](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/136) 
 
-#### 2.6 Issue #137: Manglende JSON eksempler på "decision-ref"
+#### 2.6 Issue #137: Manglende JSON eksempler på "decision_ref"
 [Issue #137](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/137)
 
 #### 2.7 Issue #144: Snake-case vs kebab-case
 [Issue #144](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/144) 
 
-#### 2.8 Issue #145: "hpr-nr" kodeverk vs identitet
+#### 2.8 Issue #145: "hpr_nr" kodeverk vs identitet
 [Issue #145](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/145) 
 
 ### 3. Pasientinformasjon i tokens
