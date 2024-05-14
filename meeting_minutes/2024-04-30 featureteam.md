@@ -3,20 +3,21 @@
 ## Til stede
 
 - Richard Husevåg (HSØ)
+- Anders Johan Hem Halling (Sykehuspartner)
 - Morten Stensøy (Helse Nord IKT)
-- Anders Johan Hem Halling (HSØ)
-- Nina Nordberg (NHN)
+- Ronny Heitmann Andersen (Helse-Vest IKT)
 - Eirik Vegler Broen (Oslo Kommune)
-- Steinar Noem (NHN)
+- Sverre Martin Jensen (Oslo Kommune)
 - Simone Vandeberg (NHN)
-- Kristin Rønneberg (NHN)
+- Steinar Noem (NHN)
 - Michal Cermak (NHN)
 - Ragnhild Varmedal (NHN)
 - Rune Andreas Grimstad (NHN)
-- Kenneth Myhra (NHN)
 - Øyvind Bech (NHN)
-
-### Ikke til stede
+- Kenneth Myhra (NHN)
+- Kristin Lyng (NHN)
+- Fredrik Høie Jordet (NHN)
+- Øyvind Kvennås (NHN)
 
 ## Agenda
 
@@ -34,6 +35,11 @@ Legg inn anders til bidragsytere i github
 ### 2. Gjennomgang av notat fra feature team
 
 Vi tar en gjennomgang av notatet som featureteamet delte med NHN den 23.03.2024, for å få en felles og bedre forståelse av risikoene som er beskrevet.
+
+Hva er neste steg?
+Spørmsål fra feature-teamet: Hvordan blir notatet tatt videre inn i OSG?
+- Aksepterte dette for dokumentdeling via kjernejournal (har ikke oppfattet dette som en endelig beslutning)
+- Hvorfor framstilles dette som en "omkamp" - den er landet for dokumentdeling, men ikke for tillitsrammeverket.
 
 ### 3. AoB (Any other Business)?
 
