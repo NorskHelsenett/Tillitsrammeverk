@@ -29,9 +29,27 @@
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
+OK
+
 ### 2. Issue [#165](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/165) - Angivelse av versjon på datamodell
 
 Team A&A går igjennom forslag for hvordan versjonering skal håndteres.
+
+Eksempler på endringer kan være:
+* Nye koder
+* Fjerning av koder
+* Nye attributter legges til i datamodellen
+* Attributter fjernes
+* Forretningsregler endres (semantisk endring)
+* ++
+
+Vi følger [https://semver.org](semantic versioning)
+
+Spesifikasjon av forretningsregler bør følge versjonering av datamodellen, f.eks. ved endring av gyldige kodeverk.
+
+Hvordan forvaltes spesifikasjonene over tid? Hvem tar ansvar for å dokumentere endringene?
+
+Kenneth oppdaterer issue 165 med detaljer vi ble enige om i møtet.
 
 ### 3. AoB (Any other Business)?
 
