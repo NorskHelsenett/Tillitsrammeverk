@@ -21,7 +21,7 @@
 ## Agenda
 
 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
-2. Gjennomgang av notat fra feature team
+2. Issue [#165](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/165) - Angivelse av versjon på datamodell
 3. AOB (any other business)?
 4. Planlegge neste møte
 
@@ -29,7 +29,7 @@
 
 ### 1. Gjennomgang av agendaen - akseptert av arbeidsgruppa?
 
-### 2. Isse [#165](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/165) - Angivelse av versjon på datamodell
+### 2. Issue [#165](https://github.com/NorskHelsenett/Tillitsrammeverk/issues/165) - Angivelse av versjon på datamodell
 
 Team A&A går igjennom forslag for hvordan versjonering skal håndteres.
 
