@@ -33,7 +33,7 @@ Spesifikasjonen skal versjoneres for å støtte endringer over tid.
 	4.1 [Informasjonsmodell](#41-informasjonsmodell)<br/>
 	4.2 [Datamodell](#42-datamodell)<br/>
 	4.3 [Beskrivelse av helsepersonellet: "practitioner"](#43-kategori-practitioner---beskrivelse-av-helsepersonellet)<br/>
-	4.4 [Beskrivelse av behandlerrelasjon: "care_relation"](#44-kategori-care_relation---behandlerrelasjon)<br/>
+	4.4 [Beskrivelse av behandlerrelasjon: "care_relationship"](#44-kategori-care_relationship---behandlerrelasjon)<br/>
 	4.5 [Beskrivelse av pasienten: "patient"](#45-kategori-patients---pasienten)<br/>
 	4.6 [Beskrivelse av attesten: "attestation"](#46-attestation)<br>
 5. [Sikkerhets- og personvernshensyn](#5-sikkerhets--og-personvernshensyn)<br/>
@@ -149,8 +149,8 @@ Pasienten må identifiseres ved deling av helseopplysninger for å kunne knytte 
 title: Informasjonsmodell
 ---
 classDiagram
-	Practitioner -- CareRelation
-	CareRelation -- Patient
+	Practitioner -- CareRelationship
+	CareRelationship -- Patient
 
     class Practitioner["Helsepersonell (practitioner)"] {
 		- Helsepersonellets fødselsnummer og navn
@@ -160,7 +160,7 @@ classDiagram
 		- Hvilken detaljert organisasjonstilhørighet helsepersonellet har i større organisasjoner
     }
 
-    class CareRelation["Behandlerrelasjon (care-relation)"] {
+    class CareRelationship["Behandlerrelasjon (care_relationship)"] {
 		- Formålet med og grunnlaget for behandlingen av helseopplysningene
 		- Helsetjenestetype/helsehjelpstjeneste som ytes til pasienten
     }
@@ -231,7 +231,7 @@ classDiagram
 	class Attestation["attestation"]{
 		+ "toa": utcDateTime
 		+ Practitioner : practitioner
-		+ CareRelation : care-relation
+		+ CareRelationship : care_relationship
 		+ Patient : patient
 	}
 
@@ -244,7 +244,7 @@ classDiagram
 		- "department"
 	}
 		
-	class CareRelation["care_relation"] {
+	class CareRelationship["care_relationship"] {
 		- "healthcare_service"
 		- "purpose_of_use"
 		- "purpose_of_use_details"
@@ -260,12 +260,12 @@ classDiagram
 
 direction TD
 	Attestation *-- Practitioner
-	Attestation *-- CareRelation
+	Attestation *-- CareRelationship
 	Attestation *-- Patient
 
 direction LR
-	Practitioner -- CareRelation
-	CareRelation -- Patient
+	Practitioner -- CareRelationship
+	CareRelationship -- Patient
 
 
 
@@ -283,10 +283,10 @@ direction LR
 | practitioner     | "legal_entity"           | Hovedenheten (den juridisk ansvarlige virksomheten) hvor helsepersonellet jobber sitt org.nr og navn.            | 
 | practitioner     | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
 | practitioner     | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
-| care_relation    | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care_relation    | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care_relation    | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care_relation    | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| care_relationship    | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   |
+| care_relationship    | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          |
+| care_relationship    | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) |
+| care_relationship    | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            |
 | patient          | "identifier"             | Unik identifikator for pasienten                                                                  | 
 | patient          | "point_of_care"  	      | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
 | patient          | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	      |
@@ -569,11 +569,11 @@ Strukturen som beskriver "authorization", består av fire attributter:
 }
 ````
 
-### 4.4 Kategori: "care_relation" - behandlerrelasjon
+### 4.4 Kategori: "care_relationship" - behandlerrelasjon
 
 Helsepersonellets behandlerrelasjon til pasientent angis av en beskrivelse av formålet med og bakgrunnen for behandlingen av helseopplysningene og eventuelt en helsetjenestetype som ytes til pasienten.
 
-Krav og forretningsregler knyttet til "care_relation": [Forretningsregler for attributtet "care_relation"](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care_relation)
+Krav og forretningsregler knyttet til "care_relationship": [Forretningsregler for attributtet "care_relationship"](forretningsregler_for_bruk_av_attestering.md#3-forretningsregler-for-beskrivelse-av-behandlerrelasjon---attributt-care_relationship)
 
 Strukturen som beskriver behandlerrelasjonen består av fire attributter som igjen har sine underliggende strukturer:
 
@@ -585,7 +585,7 @@ Strukturen som beskriver behandlerrelasjonen består av fire attributter som igj
 I JSON format er strukturen representert på følgende måte:
 
 ```JSON
-"care_relation": {
+"care_relationship": {
 	"healthcare_service": {
 		8<...>
 	},
@@ -878,7 +878,7 @@ Strukturen som beskriver "department", består av fire attributter:
 
 ### 4.6 "attestation"
 
-Attributtet "attestation" skal inneholde strukturene som er definert tidligere i spesifikasjonen: "practitioner", "care-relation", "patients", og fungerer som en omsluttende struktur for en attest.
+Attributtet "attestation" skal inneholde strukturene som er definert tidligere i spesifikasjonen: "practitioner", "care_relationship", "patients", og fungerer som en omsluttende struktur for en attest.
 I JSON format er objektet som representerer en attest strukturert på følgende måte:
 
 ```JSON
@@ -887,7 +887,7 @@ I JSON format er objektet som representerer en attest strukturert på følgende 
 		"practitioner": {
 			8<...>8
 		},
-		"care_relation": {
+		"care_relationship": {
 			8<...>8
 		},
 		"patients": {
@@ -1005,13 +1005,13 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | practitioner:point-of-care:name  | AuditEvent.agent.who:PractitionerRole.location | managingOrganization:name |  | Navn på helsepersonellets arbeidssted  |
 | practitioner:department:id | AuditEvent.agent.who:PractitionerRole.organization | identifier:RSH.value |  | Identifikasjon av enhet som ugjør helsepersonellets detaljerte organisasjonstilhørighet  |
 | practitioner:department:name | AuditEvent.agent.who:PractitionerRole.organization | name |  | Navn på enhet som utgjør helsepersonellets detaljerte organisasjonstilhørighet | 
-| care-relation:healthcare-service:code | AuditEvent.encounter.serviceType:healthcare-service | specialty.coding |  | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relation:healthcare-service:text | AuditEvent.encounter.serviceType:healthcare-service | specialty.text |  | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relation:purpose-of-use:code | AuditEvent | authorization.coding.code |  | Identifikasjon av overordnet formål med tilgangen |
-| care-relation:purpose-of-use:text | AuditEvent | authorization.coding.display |  | Navn på overordnet formål med tilgangen |
-| care-relation:purpose-of-use-details:code | AuditEvent | agent.authorization.coding.code |  | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
-| care-relation:purpose-of-use-details:text | AuditEvent | agent.authorization.coding.display |  | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
-| care-relation:decision-ref:id | AuditEvent | agent.policy |  | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
+| care_relationship:healthcare-service:code | AuditEvent.encounter.serviceType:healthcare-service | specialty.coding |  | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:healthcare-service:text | AuditEvent.encounter.serviceType:healthcare-service | specialty.text |  | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:purpose-of-use:code | AuditEvent | authorization.coding.code |  | Identifikasjon av overordnet formål med tilgangen |
+| care_relationship:purpose-of-use:text | AuditEvent | authorization.coding.display |  | Navn på overordnet formål med tilgangen |
+| care_relationship:purpose-of-use-details:code | AuditEvent | agent.authorization.coding.code |  | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:purpose-of-use-details:text | AuditEvent | agent.authorization.coding.display |  | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:decision-ref:id | AuditEvent | agent.policy |  | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
 | patient:id | AuditEvent.patient | identifier | identifier:FNR OR identifier.DNR | Identifikasjon av pasienten tilgangen gjelder |
 | patient:name | AuditEvent.patient | name |  | Navn på pasienten tilgangen gjelder |
 | patient:point-of-care:id | AuditEvent.encounter:Location | managingOrganization:identifier:ENH.value |  | Identifikasjon av behandlingsstedet som pasienten behandles ved |
@@ -1036,13 +1036,13 @@ Noen attributter som er definert i denne spesifikasjonen har et visst overlapp m
 | practitioner:point_of_care:name  | subject:child-organization | Navn på helsepersonellets arbeidssted |
 | practitioner:department:id | subject:facility-id extension | Identifikasjon av enhet som ugjør helsepersonellets detaljerte organisasjonstilhørighet |
 | practitioner:department:name | subject:facility | Navn på enhet som utgjør helsepersonellets detaljerte organisasjonstilhørighet | 
-| care-relation:healthcare_service:code | care-relation:healthcare_service:code | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relation:healthcare_service:text | care-relation:healthcare_service:text | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
-| care-relation:purpose_of_use:code | subject:purposeOfUse code | Identifikasjon av overordnet formål med tilgangen |
-| care-relation:purpose_of_use:text | subject:purposeOfUse displayName | Navn på overordnet formål med tilgangen |
-| care-relation:purpose_of_use_details:code | care-relation:purpose_of_use_details:code | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
-| care-relation:purpose_of_use_details:text | care-relation:purpose_of_use_details:text | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
-| care-relation:decision_ref:id | care-relation:decision_ref:id | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
+| care_relationship:healthcare_service:code | care-relationship:healthcare_service:code | Identifikasjon av helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:healthcare_service:text | care-relationship:healthcare_service:text | Navn på helsehjelpstjeneste eller fagområde som ytes til pasienten |
+| care_relationship:purpose_of_use:code | subject:purposeOfUse code | Identifikasjon av overordnet formål med tilgangen |
+| care_relationship:purpose_of_use:text | subject:purposeOfUse displayName | Navn på overordnet formål med tilgangen |
+| care_relationship:purpose_of_use_details:code | care-relationship:purpose_of_use_details:code | Identifikasjon av aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:purpose_of_use_details:text | care-relationship:purpose_of_use_details:text | Navn på aktivitet/hendelse som utløste behov for tilgang til pasienten |
+| care_relationship:decision_ref:id | care-relationship:decision_ref:id | Identifikasjon av den spesifikke tilgangen til pasienten som helsepersonellet har fått i lokalt EPJ |
 | patient:id | resource:resource-id | Identifikasjon av pasienten tilgangen gjelder |
 | patient:name | - | Navn på pasienten tilgangen gjelder |
 | patient:point_of_care:id | resource:child-organization-id extension | Identifikasjon av behandlingsstedet som pasienten behandles ved |
@@ -1094,7 +1094,7 @@ Full modell - valgfrie elementer er tatt med
 			"authority": "https://www.nhn.no"
 		}
 	},
-	"care_relation": {
+	"care_relationship": {
 		"healthcare_service": {
 			"code": "S03",
 			"text": "Indremedisin",
@@ -1186,7 +1186,7 @@ Eksempelet hvor en fastlege er konsument
 			"authority": "https://www.brreg.no"
 		}
 	},
-	"care_relation": {
+	"care_relationship": {
 		"healthcare_service": {
 			"code": "KX17",
 			"text": "Fastlege, liste uten fast lege",
@@ -1245,7 +1245,7 @@ I dette eksempelet har en sykehjemslege ved Madserudhjemmet behov for tilgang ti
 			"authority": "https://www.brreg.no"
 		}
 	},
-	"care_relation": {
+	"care_relationship": {
 		"healthcare_service": {
 			"code": "KP01",
 			"text": "Legetjeneste ved sykehjem",
@@ -1323,7 +1323,7 @@ I dette eksempelet skal en anestesilege som formelt tilhører Rikshospitalet for
 			"authority": "https://www.nhn.no"
 		}
 	},
-	"care_relation": {
+	"care_relationship": {
 		"healthcare_service": {
 			"code": "300",
 			"text": "Øyesykdommer",

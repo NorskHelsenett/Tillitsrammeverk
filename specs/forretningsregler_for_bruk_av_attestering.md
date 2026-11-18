@@ -18,10 +18,10 @@ Tabellen under gir en oversikt over attributtene som inngår i en attest.
 | practitioner  | "legal_entity"           | Den juridisk ansvarlige virksomheten hvor helsepersonellet jobber sitt org.nr og navn.            | 
 | practitioner  | "point_of_care"          | Behandlingsstedets org.nr. og navn.<br>Kan være lik verdi som i "legal_entity"                    | 
 | practitioner  | "department"             | Avdeling/org.enhet hvor helsepersonellet yter helsehjelp                                          | 
-| care-relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care-relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care-relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care-relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| care_relationship | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   |
+| care_relationship | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          |
+| care_relationship | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) |
+| care_relationship | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            |
 | patient       | "identifier"             | Unik identifikator for pasienten                                                                  | 
 | patient       | "point_of_care"  	       | Virksomheten hvor pasienten mottar behandling <br>Kan være lik verdi som i "legal_entity"         | 
 | patient       | "department"             | Avdeling/org.enhet hvor pasienten mottar helsehjelp                                        	   | 
@@ -1344,15 +1344,15 @@ Attributtet "practitioner" består av seks underliggende attributt som beskriver
 
 
 
-### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care_relation"
+### 3. Forretningsregler for beskrivelse av behandlerrelasjon - attributt: "care_relationship"
 
-Attributtet "care-relation" består av fire underliggende attributter, som beskriver behandlerrelasjonen som attesten gjelder for.
+Attributtet "care_relationship" består av fire underliggende attributter, som beskriver behandlerrelasjonen som attesten gjelder for.
 | | | |
 | --- | --- | --- |
-| care-relation | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   | 
-| care-relation | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          | 
-| care-relation | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) | 
-| care-relation | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            | 
+| care_relationship | "healthcare_service"     | Helsetjenestetyper som leveres ved virksomheten                                                   |
+| care_relationship | "purpose_of_use"         | Helsepersonellets formål med helseopplysningene (til hva de skal brukes)                          |
+| care_relationship | "purpose_of_use_details" | Detaljert beskrivelse av helsepersonellets formål med helseopplysningene (til hva de skal brukes) |
+| care_relationship | "decision_ref"           | Referanse til lokal tilgangsbeslutning                                                            |
 
 #### 3.1 Forretningsregler for attributtet "healthcare_service"
 
@@ -2439,8 +2439,8 @@ Attributtet "attestation" består av fire underliggende attributter som utgjør 
 | --- | --- |
 | "toa" | Tidspunktet for attestering | 
 | "practitioner" | Informasjon om helsepersonellet | 
-| "care-relation" | Informasjon om behandlerrelasjonen | 
-| "patient" | Informasjon om pasienten som helsepersonellet ønsker å hente helseopplysninger om | 
+| "care_relationship" | Informasjon om behandlerrelasjonen | 
+| "patient" | Informasjon om pasienten som helsepersonellet ønsker å hente helseopplysninger om |
 
 #### 5.1 Forretningsregler for attributtet "toa" for pasient
 <table>
